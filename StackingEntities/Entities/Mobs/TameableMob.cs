@@ -14,7 +14,7 @@ namespace StackingEntities.Entities.Mobs
 			set
 			{
 				_owner = value;
-				PropChanged("Owner");
+				PropChanged();
 				PropChanged("Display");
 				PropChanged("DisplayImage");
 			}

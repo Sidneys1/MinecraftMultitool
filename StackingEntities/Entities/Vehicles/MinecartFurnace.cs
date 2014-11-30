@@ -21,7 +21,7 @@ namespace StackingEntities.Entities.Vehicles
 			set
 			{
 				_fuel = value;
-				PropChanged("Fuel");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

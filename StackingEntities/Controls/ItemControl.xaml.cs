@@ -179,6 +179,7 @@ namespace StackingEntities.Controls
 
 					else if (option.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
 					{
+						// ReSharper disable once UseObjectOrCollectionInitializer
 						var ctrl = new DataGrid
 						{
 							Margin = new Thickness(3),

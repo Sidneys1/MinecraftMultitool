@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using StackingEntities.Items.ItemTags;
 
 namespace StackingEntities.Items
 {
@@ -31,10 +30,6 @@ namespace StackingEntities.Items
 		public List<IJsonAble> Tag = new List<IJsonAble>();
 
 		public bool HasTags => Tag.Count > 0;
-
-		public Item()
-		{
-		}
 
 		public string GenerateJSON(bool topLevel)
 		{

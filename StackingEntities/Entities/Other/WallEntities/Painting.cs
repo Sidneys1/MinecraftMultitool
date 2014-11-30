@@ -14,7 +14,7 @@ namespace StackingEntities.Entities.Other.WallEntities
 			set
 			{
 				_motive = value;
-				PropChanged("Motive");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

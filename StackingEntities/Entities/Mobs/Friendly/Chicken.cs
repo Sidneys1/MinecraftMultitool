@@ -14,7 +14,7 @@ namespace StackingEntities.Entities.Mobs.Friendly
 			set
 			{
 				_isChickenJockey = value;
-				PropChanged("IsChickenJockey");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

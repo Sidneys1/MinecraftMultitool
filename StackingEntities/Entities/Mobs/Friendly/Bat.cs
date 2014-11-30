@@ -14,7 +14,7 @@ namespace StackingEntities.Entities.Mobs.Friendly
 			set
 			{
 				_batFlags = value;
-				PropChanged("BatFlags");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

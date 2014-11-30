@@ -19,7 +19,7 @@ namespace StackingEntities.Entities.DynamicTiles
 		public string Block
 		{
 			get { return _block; }
-			set { _block = value; PropChanged("Block"); PropChanged("Display"); }
+			set { _block = value; PropChanged(); PropChanged("Display"); }
 		}
 
 		[Property("Falling Sand Options", "Block Data")]

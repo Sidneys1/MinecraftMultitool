@@ -16,7 +16,7 @@ namespace StackingEntities.Entities.Mobs.Friendly
 			set
 			{
 				_angry = value;
-				PropChanged("Angry");
+				PropChanged();
 				PropChanged("Display");
 				PropChanged("DisplayImage");
 			}
@@ -30,7 +30,7 @@ namespace StackingEntities.Entities.Mobs.Friendly
 			set
 			{
 				_collarColor = value;
-				PropChanged("CollarColor");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

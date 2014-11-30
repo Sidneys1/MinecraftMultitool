@@ -19,7 +19,7 @@ namespace StackingEntities.Entities.Mobs.Hostile
 			set
 			{
 				_carriedData = value;
-				PropChanged("CarriedData");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}
@@ -33,7 +33,7 @@ namespace StackingEntities.Entities.Mobs.Hostile
 			set
 			{
 				_carried = value;
-				PropChanged("Carried");
+				PropChanged();
 				PropChanged("Display");
 				PropChanged("DisplayImage");
 			}

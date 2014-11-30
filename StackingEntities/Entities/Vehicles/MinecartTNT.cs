@@ -16,7 +16,7 @@ namespace StackingEntities.Entities.Vehicles
 			set
 			{
 				_tntFuse = value;
-				PropChanged("TNTFuse");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

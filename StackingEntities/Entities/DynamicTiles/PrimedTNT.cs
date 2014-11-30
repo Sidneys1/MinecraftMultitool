@@ -14,7 +14,7 @@ namespace StackingEntities.Entities.DynamicTiles
 			set
 			{
 				_fuse = value;
-				PropChanged("Fuse");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

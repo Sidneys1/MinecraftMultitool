@@ -31,7 +31,7 @@ namespace StackingEntities.Entities
 			set
 			{
 				_invulnerable = value;
-				PropChanged("Invulnerable");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}
@@ -47,7 +47,7 @@ namespace StackingEntities.Entities
 			set
 			{
 				_fire = value;
-				PropChanged("Fire");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

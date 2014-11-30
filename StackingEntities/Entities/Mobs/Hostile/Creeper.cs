@@ -14,7 +14,7 @@ namespace StackingEntities.Entities.Mobs.Hostile
 			set
 			{
 				_powered = value;
-				PropChanged("Powered");
+				PropChanged();
 				PropChanged("DisplayImage");
 				PropChanged("Display");
 			}
@@ -36,7 +36,7 @@ namespace StackingEntities.Entities.Mobs.Hostile
 			set
 			{
 				_ignited = value;
-				PropChanged("Ignited");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

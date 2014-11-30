@@ -7,7 +7,7 @@ namespace StackingEntities.Entities.Mobs
 {
 	public abstract class MobBase : EntityBase
 	{
-		public MobBase()
+		protected MobBase()
 		{
 			Holding.Tag.Add(new ItemTagsMap());
 			Holding.Tag.Add(new ItemTagsGeneral());
@@ -49,7 +49,7 @@ namespace StackingEntities.Entities.Mobs
 			set
 			{
 				_customName = value;
-				PropChanged("CustomName");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}
@@ -82,7 +82,7 @@ namespace StackingEntities.Entities.Mobs
 			set
 			{
 				_persistanceRequired = value;
-				PropChanged("PersistanceRequired");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

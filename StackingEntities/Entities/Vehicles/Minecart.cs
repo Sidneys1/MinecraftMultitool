@@ -16,7 +16,7 @@ namespace StackingEntities.Entities.Vehicles
 			set
 			{
 				_customDisplayTile = value;
-				PropChanged("CustomDisplayTile");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}
@@ -29,7 +29,7 @@ namespace StackingEntities.Entities.Vehicles
 			set
 			{
 				_displayTile = value;
-				PropChanged("DisplayTile");
+				PropChanged();
 				PropChanged("Display");
 			}
 		}

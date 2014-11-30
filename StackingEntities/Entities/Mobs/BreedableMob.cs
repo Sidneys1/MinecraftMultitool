@@ -15,7 +15,7 @@ namespace StackingEntities.Entities.Mobs
 			set
 			{
 				_age = value;
-				PropChanged("Age");
+				PropChanged();
 				PropChanged("Display");
 				PropChanged("DisplayImage");
 			}
