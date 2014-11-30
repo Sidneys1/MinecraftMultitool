@@ -195,9 +195,10 @@ namespace StackingEntities
 
 			#region Extract Options
 
-			var props = ent.GetType().GetProperties();
+			var props = ent.GetType().GetPropertiesSorted();
 			foreach (var info in props.Reverse())
 			{
+				//info
 				if (!Attribute.IsDefined(info, typeof(PropertyAttribute))) continue;
 				var prop = (PropertyAttribute)info.GetCustomAttribute(typeof(PropertyAttribute));
 				if (!dict.ContainsKey(prop.Category))

@@ -1,11 +1,36 @@
 using System;
 using System.Text;
+using StackingEntities.Items;
+using StackingEntities.Items.ItemTags;
 
 namespace StackingEntities.Entities.Other
 {
 	internal class ArmorStand : EntityBase
 	{
-		public ArmorStand() {Type = EntityTypes.ArmorStand;}
+		public ArmorStand()
+		{
+			Type = EntityTypes.ArmorStand;
+
+			Holding.Tag.Add(new ItemTagsMap());
+			Holding.Tag.Add(new ItemTagsGeneral());
+			Holding.Tag.Add(new ItemTagsFireworkStar());
+			Holding.Tag.Add(new ItemTagsDisplay());
+			Holding.Tag.Add(new ItemTagsEnchantments());
+			Holding.Tag.Add(new ItemTagsBook());
+			Holding.Tag.Add(new ItemTagsBlock());
+
+			Leggings.Tag.Add(new ItemTagsDisplay());
+			Leggings.Tag.Add(new ItemTagsEnchantments());
+
+			Boots.Tag.Add(new ItemTagsDisplay());
+			Boots.Tag.Add(new ItemTagsEnchantments());
+
+			Chestplate.Tag.Add(new ItemTagsDisplay());
+			Chestplate.Tag.Add(new ItemTagsEnchantments());
+
+			Helmet.Tag.Add(new ItemTagsDisplay());
+			Helmet.Tag.Add(new ItemTagsEnchantments());
+		}
 
 		#region Pose
 
@@ -69,6 +94,21 @@ namespace StackingEntities.Entities.Other
 
 		[Property("Disabled Slots", "Head")]
 		public DisabledSlots HeadDisabledSlots { get; set; }
+
+		[Property("Equipment", "Holding")]
+		public Item Holding { get; set; } = new Item() { Id = string.Empty };
+
+		[Property("Equipment", "Boots")]
+		public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+
+		[Property("Equipment", "Leggings")]
+		public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+
+		[Property("Equipment", "Chestplate")]
+		public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+
+		[Property("Equipment", "Helmet")]
+		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
 		#endregion
 

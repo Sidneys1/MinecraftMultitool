@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
 using System.Linq;
@@ -31,6 +32,17 @@ namespace StackingEntities
 				return (from t in attributes select t as DisplayNameAttribute into displayName where displayName != null && !Equals(displayName, DisplayNameAttribute.Default) select displayName.DisplayName).FirstOrDefault();
 			}
 			return null;
+		}
+
+		public static IEnumerable<PropertyInfo> GetPropertiesSorted(this Type type)
+		{
+			var properties = new List<PropertyInfo>();
+			while (type != null)
+			{
+				properties.AddRange(type.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance));
+				type = type.BaseType;
+			}
+			return properties;
 		}
 	}
 
