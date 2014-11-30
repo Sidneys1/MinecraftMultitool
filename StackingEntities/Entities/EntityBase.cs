@@ -71,7 +71,7 @@ namespace StackingEntities.Entities
 				b.AppendFormat("id:\"{0}\",", JsonTools.EscapeStringValue(Type.ToString()));
 
 			if (Invulnerable)
-				b.Append("Invulnerable:true,");
+				b.Append("Invulnerable:1b,");
 
 			if (Math.Abs(Dx) > 0 || Math.Abs(Dy) > 0 || Math.Abs(Dz) > 0)
 				b.Append(string.Format("Motion:[{0:0.0},{1:0.0},{2:0.0}],", Dx, Dy, Dz));
@@ -81,12 +81,6 @@ namespace StackingEntities.Entities
 
 			return b.ToString();
 		}
-
-		#endregion
-
-		#region Property Handlers
-
-		public override event PropertyChangedEventHandler PropertyChanged;
 
 		#endregion
 	}

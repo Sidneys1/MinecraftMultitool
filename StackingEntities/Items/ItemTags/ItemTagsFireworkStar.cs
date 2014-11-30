@@ -29,8 +29,10 @@ namespace StackingEntities.Items.ItemTags
 		[Property("Firework", "Flight Length"), MinMax(-128, 127)]
 		public int Flight { get; set; }
 
-		[Property("Firework", "Firework Star")]
+		[Property("Firework", "Firework Star", "IsStarEnabled")]
 		public bool IsStar { get; set; } = true;
+
+		public bool IsStarEnabled { get; set; } = true;
 
 		public string GenerateJSON(bool topLevel)
 		{
@@ -50,6 +52,7 @@ namespace StackingEntities.Items.ItemTags
 			if (Type != FireworkShape.SmallBall)
 				b.AppendFormat("Type:{0:D}b,", Type);
 
+			if(b[b.Length - 1] == ',')
 			b.Remove(b.Length - 1, 1);
 
 			if (!IsStar)

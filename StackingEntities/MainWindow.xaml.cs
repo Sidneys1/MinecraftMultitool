@@ -51,7 +51,7 @@ namespace StackingEntities
 				case EntityTypes.Guardian:
 					_model.Entities.Insert(0, new Guardian());
 					break;
-				
+
 				case EntityTypes.Giant:
 					_model.Entities.Insert(0, new Giant());
 					break;
@@ -95,7 +95,7 @@ namespace StackingEntities
 					_model.Entities.Insert(0, new Zombie());
 					break;
 
-					case EntityTypes.Item:
+				case EntityTypes.Item:
 					_model.Entities.Insert(0, new DroppedItem());
 					break;
 
@@ -184,26 +184,27 @@ namespace StackingEntities
 			else
 			{
 				EditStackPanel.Children.Clear();
-				_lastEntity = EntityTypes.Zombie+1;
+				_lastEntity = EntityTypes.Zombie + 1;
 			}
 
 		}
 
 		private void GenControls(EntityBase ent)
 		{
-			var dict = new Dictionary<string, List<Tuple<string, string, Type, object, object>>>();
+			var dict = new Dictionary<string, List<DisplayOption>>();
 
 			#region Extract Options
 
 			var props = ent.GetType().GetProperties();
 			foreach (var info in props.Reverse())
 			{
-				if (!Attribute.IsDefined(info, typeof (PropertyAttribute))) continue;
+				if (!Attribute.IsDefined(info, typeof(PropertyAttribute))) continue;
 				var prop = (PropertyAttribute)info.GetCustomAttribute(typeof(PropertyAttribute));
 				if (!dict.ContainsKey(prop.Category))
-					dict.Add(prop.Category, new List<Tuple<string, string, Type, object, object>>());
+					dict.Add(prop.Category, new List<DisplayOption>());
 
 				object min = null, max = null;
+				var multiline = Attribute.IsDefined(info, typeof (MultilineStringAttribute));
 
 				if (Attribute.IsDefined(info, typeof(MinMaxAttribute)))
 				{
@@ -212,12 +213,7 @@ namespace StackingEntities
 					max = att.Maximum;
 				}
 
-				if (Attribute.IsDefined(info, typeof (MultilineStringAttribute)))
-				{
-					min = "Multiline";
-				}
-
-				dict[prop.Category].Insert(0, new Tuple<string, string, Type, object, object>(prop.Name, info.Name, info.PropertyType, min, max));
+				dict[prop.Category].Insert(0, new DisplayOption(prop.Name, info.Name, info.PropertyType, ent, min, max, multiline, prop.IsEnabledPath));
 			}
 
 			#endregion
@@ -226,9 +222,8 @@ namespace StackingEntities
 
 			foreach (var str in dict.Keys)
 			{
-				var g = new GroupBox {Header = str};
-
-				var grid = new Grid();
+				var g = new Expander { Header = str };
+				var grid = new Grid { Margin = new Thickness(20, 0, 10, 0) };
 				grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Auto) });
 				grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 				g.Content = grid;
@@ -236,11 +231,14 @@ namespace StackingEntities
 
 				#region Add Controls
 
-				foreach (var tuple in dict[str])
+				foreach (var option in dict[str])
 				{
 					grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
-					var l = new Label {Content = tuple.Item1};
+					var l = new Label { Content = option.ReadableName };
 					l.SetValue(Grid.RowProperty, i);
+
+					if (option.EnabledPropertyName != null)
+						l.SetBinding(IsEnabledProperty, new Binding(option.EnabledPropertyName));
 
 					grid.Children.Add(l);
 
@@ -248,10 +246,10 @@ namespace StackingEntities
 
 					#region Bool
 
-					if (tuple.Item3 == typeof(bool))
+					if (option.PropertyType == typeof(bool))
 					{
-						var ctrl = new CheckBox {Margin = new Thickness(3), VerticalAlignment = VerticalAlignment.Center};
-						ctrl.SetBinding(ToggleButton.IsCheckedProperty, new Binding(tuple.Item2));
+						var ctrl = new CheckBox { Margin = new Thickness(3), VerticalAlignment = VerticalAlignment.Center };
+						ctrl.SetBinding(ToggleButton.IsCheckedProperty, new Binding(option.PropertyName));
 						elem = ctrl;
 					}
 
@@ -259,7 +257,7 @@ namespace StackingEntities
 
 					#region Int
 
-					else if (tuple.Item3 == typeof(int))
+					else if (option.PropertyType == typeof(int))
 					{
 						var ctrl = new IntegerUpDown
 						{
@@ -267,13 +265,13 @@ namespace StackingEntities
 							HorizontalAlignment = HorizontalAlignment.Left,
 							MinWidth = 50
 						};
-						ctrl.SetBinding(IntegerUpDown.ValueProperty, new Binding(tuple.Item2));
+						ctrl.SetBinding(IntegerUpDown.ValueProperty, new Binding(option.PropertyName));
 
-						if (tuple.Item4 is int)
-							ctrl.Minimum = (int?)tuple.Item4;
+						if (option.Minimum is int)
+							ctrl.Minimum = (int?)option.Minimum;
 
-						if (tuple.Item5 is int)
-							ctrl.Maximum = (int?)tuple.Item5;
+						if (option.Minimum is int)
+							ctrl.Maximum = (int?)option.Maximum;
 
 						elem = ctrl;
 					}
@@ -282,11 +280,11 @@ namespace StackingEntities
 
 					#region String
 
-					else if (tuple.Item3 == typeof(string))
+					else if (option.PropertyType == typeof(string))
 					{
-						var ctrl = new TextBox {Margin = new Thickness(3)};
+						var ctrl = new TextBox { Margin = new Thickness(3) };
 
-						if ((string) tuple.Item4 == "Multiline")
+						if (option.Multiline)
 						{
 							ctrl.TextWrapping = TextWrapping.Wrap;
 							ctrl.AcceptsReturn = true;
@@ -294,7 +292,7 @@ namespace StackingEntities
 							ctrl.MinHeight = 100;
 						}
 
-						ctrl.SetBinding(TextBox.TextProperty, new Binding(tuple.Item2));
+						ctrl.SetBinding(TextBox.TextProperty, new Binding(option.PropertyName));
 						elem = ctrl;
 					}
 
@@ -302,7 +300,7 @@ namespace StackingEntities
 
 					#region Double
 
-					else if (tuple.Item3 == typeof(double))
+					else if (option.PropertyType == typeof(double))
 					{
 						var ctrl = new DoubleUpDown
 						{
@@ -311,21 +309,21 @@ namespace StackingEntities
 							HorizontalAlignment = HorizontalAlignment.Left,
 							MinWidth = 50
 						};
-						ctrl.SetBinding(DoubleUpDown.ValueProperty, new Binding(tuple.Item2));
+						ctrl.SetBinding(DoubleUpDown.ValueProperty, new Binding(option.PropertyName));
 						elem = ctrl;
 					}
 
 					#endregion
 
 					#region Enum
-						
-					else if (tuple.Item3.IsEnum)
+
+					else if (option.PropertyType.IsEnum)
 					{
-						var ctrl = new ComboBox {Margin = new Thickness(3)};
+						var ctrl = new ComboBox { Margin = new Thickness(3) };
 						//ctrl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding { Source = new EnumerationExtension(tuple.Item3)});
 						//var a = Enum.GetValues(tuple.Item3);
 						//var m = typeof (Enumerable).GetMethod("Cast").MakeGenericMethod(new Type[] {tuple.Item3});
-						var m = typeof (EnumHelper).GetMethod("GetAllValuesAndDescriptions").MakeGenericMethod(tuple.Item3);
+						var m = typeof(EnumHelper).GetMethod("GetAllValuesAndDescriptions").MakeGenericMethod(option.PropertyType);
 						//ctrl.ItemsSource 
 						var ie = m.Invoke(null, null) as IEnumerable;
 						//ctrl.SetBinding(ItemsControl.ItemsSourceProperty,
@@ -333,23 +331,35 @@ namespace StackingEntities
 						ctrl.ItemsSource = ie;
 						//ctrl.DataContext = ent;
 						ctrl.DisplayMemberPath = "Description";
-						ctrl.SetBinding(Selector.SelectedValueProperty, new Binding(tuple.Item2));
+						ctrl.SetBinding(Selector.SelectedValueProperty, new Binding(option.PropertyName));
 						ctrl.SelectedValuePath = "Value";
 						elem = ctrl;
 					}
 
 					#endregion
 
-					else if (tuple.Item3 == typeof(Item))
+					#region Item
+
+					else if (option.PropertyType == typeof(Item))
 					{
-						var ctrl = new ItemControl {Margin = new Thickness(3)};
-						ctrl.SetBinding(DataContextProperty, new Binding(tuple.Item2));
+						var ctrl = new ItemControl { Margin = new Thickness(3) };
+						ctrl.SetBinding(DataContextProperty, new Binding(option.PropertyName));
 						elem = ctrl;
 					}
 
-					else if (tuple.Item3.GetGenericTypeDefinition() == typeof(List<>))
+					#endregion
+
+					#region List
+
+					else if (option.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
 					{
-						var ctrl = new DataGrid { Margin = new Thickness(3), AutoGenerateColumns = true, CanUserAddRows = true, MinHeight = 50 };
+						var ctrl = new DataGrid
+						{
+							Margin = new Thickness(3),
+							AutoGenerateColumns = true,
+							CanUserAddRows = true,
+							MinHeight = 50
+						};
 						ctrl.AutoGeneratingColumn += (sender1, e1) =>
 						{
 							var displayName = Helpers.GetPropertyDisplayName(e1.PropertyDescriptor);
@@ -360,9 +370,11 @@ namespace StackingEntities
 						};
 
 
-						ctrl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(tuple.Item2));
+						ctrl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(option.PropertyName));
 						elem = ctrl;
 					}
+
+					#endregion
 
 					elem.SetValue(Grid.ColumnProperty, 1);
 					elem.SetValue(Grid.RowProperty, i);
@@ -390,7 +402,7 @@ namespace StackingEntities
 				b.Append(_model.Y + " ");
 				b.Append(_model.Z + " ");
 
-				var data = new StringBuilder( _model.Entities[0].GenerateJSON(true));
+				var data = new StringBuilder(_model.Entities[0].GenerateJSON(true));
 
 				foreach (var ent in _model.Entities.Where(ent => ent != _model.Entities[0]))
 				{
@@ -408,7 +420,7 @@ namespace StackingEntities
 				{
 					data.Append("}");
 				}
-				
+
 				if (data[data.Length - 1] == '{')
 					data.Clear();
 
@@ -434,7 +446,7 @@ namespace StackingEntities
 
 		private void CommandListDialogButton_Clicked(object sender, RoutedEventArgs e)
 		{
-			var cmd = new CommandEntry {Owner = this};
+			var cmd = new CommandEntry { Owner = this };
 			if (cmd.ShowDialog() == true)
 			{
 				var text = (string)cmd.Tag;
@@ -444,7 +456,7 @@ namespace StackingEntities
 				{
 					_model.Entities.Insert(0, new MinecartCommandBlock { Command = str.Trim() });
 				}
-				
+
 
 				//do stuff
 			}
@@ -524,7 +536,7 @@ namespace StackingEntities
 
 		private void AboutMenuItem_Click(object sender, RoutedEventArgs e)
 		{
-			var d = new AboutDialog {Owner = this};
+			var d = new AboutDialog { Owner = this };
 			d.ShowDialog();
 			d.Close();
 		}

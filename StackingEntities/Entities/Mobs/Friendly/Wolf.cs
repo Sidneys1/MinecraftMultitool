@@ -70,7 +70,7 @@ namespace StackingEntities.Entities.Mobs.Friendly
 			var b = new StringBuilder(base.GenerateJSON(topLevel));
 
 			if (Angry)
-				b.Append("Angry:true,");
+				b.Append("Angry:1b,");
 
 			if ((!string.IsNullOrWhiteSpace(Owner) && Health != 20) || (string.IsNullOrWhiteSpace(Owner) && Health != 8))
 				b.Append(string.Format("HealF:{0},", Health));

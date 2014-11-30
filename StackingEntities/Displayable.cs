@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using StackingEntities.Annotations;
 
 namespace StackingEntities
 {
@@ -6,12 +8,12 @@ namespace StackingEntities
 	{
 		public abstract string Display { get; }
 		public abstract string DisplayImage { get; }
-		public virtual event PropertyChangedEventHandler PropertyChanged;
+		public event PropertyChangedEventHandler PropertyChanged;
 
-		protected void PropChanged(string propertyName)
+		[NotifyPropertyChangedInvocator]
+		protected virtual void PropChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-			//PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

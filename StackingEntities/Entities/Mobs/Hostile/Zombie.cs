@@ -4,7 +4,7 @@ namespace StackingEntities.Entities.Mobs.Hostile
 {
 	internal class Zombie : MobBase
 	{
-		public Zombie() { Type = EntityTypes.Zombie; Health = 20; ConversionTime = -1; }
+		public Zombie() { Type = EntityTypes.Zombie; Health = 20; }
 
 		#region Type
 
@@ -15,7 +15,6 @@ namespace StackingEntities.Entities.Mobs.Hostile
 			get { return _isVillager; }
 			set {
 				_isVillager = value;
-				PropChanged("IsVillager");
 				PropChanged("DisplayImage");
 				PropChanged("Display");
 			}
@@ -28,7 +27,6 @@ namespace StackingEntities.Entities.Mobs.Hostile
 			set
 			{
 				_isBaby = value;
-				PropChanged("IsVillager");
 				PropChanged("DisplayImage");
 				PropChanged("Display");
 			}
@@ -40,8 +38,9 @@ namespace StackingEntities.Entities.Mobs.Hostile
 
 		[Property("Zombie Options", "Can Break Doors")]
 		public bool CanBreakDoors { get; set; }
-		[Property("Zombie Options", "Conversion Time"), MinMax(-1, null)]
-		public int ConversionTime { get; set; }
+
+		[Property("Zombie Options", "Conversion Time"), MinMax(-1, int.MaxValue)]
+		public int ConversionTime { get; set; } = -1;
 
 		#endregion
 
@@ -70,18 +69,19 @@ namespace StackingEntities.Entities.Mobs.Hostile
 			var b = new StringBuilder(base.GenerateJSON(topLevel));
 
 			if (IsVillager)
-				b.Append("IsVillager:true,");
+				b.Append("IsVillager:1b,");
 
 			if (IsBaby)
-				b.Append("IsBaby:true,");
+				b.Append("IsBaby:1b,");
 
 			if (CanBreakDoors)
-				b.Append("CanBreakDoors:true,");
+				b.Append("CanBreakDoors:1b,");
 
 			if (Health != 20)
-				b.Append(string.Format("HealF:{0},", Health));
+				b.AppendFormat("HealF:{0},", Health);
 
-			
+			if (ConversionTime != -1)
+				b.AppendFormat("ConversionTime:{0},", ConversionTime);
 
 			return b.ToString();
 		}

@@ -63,7 +63,7 @@ namespace StackingEntities.Entities.Vehicles
 				b.Append(string.Format("CustomName:\"{0}\",", CustomName));
 
 			if (CustomDisplayTile)
-				b.Append(string.Format("CustomDisplayTile:true,DisplayTile:\"{0}\",DisplayData:{1},DisplayOffset:{2},", DisplayTile, DisplayData, DisplayOffset));
+				b.Append(string.Format("CustomDisplayTile:1b,DisplayTile:\"{0}\",DisplayData:{1},DisplayOffset:{2},", DisplayTile, DisplayData, DisplayOffset));
 
 			return b.ToString();
 		}

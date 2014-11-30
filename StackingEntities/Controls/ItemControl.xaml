@@ -25,17 +25,17 @@
                 <RowDefinition Height="Auto"/>
 		    </Grid.RowDefinitions>
 		
-		    <Label Content="ID"/>
-		    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3"/>
+		    <Label Content="ID" IsEnabled="{Binding IdTagEnabled}"/>
+		    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3" IsEnabled="{Binding IdTagEnabled}"/>
 		
-		    <Label Grid.Row="1" Grid.Column="0" Content="Count"/>
-		    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Count}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left"/>
+		    <Label Grid.Row="1" Grid.Column="0" Content="Count" IsEnabled="{Binding CountTagEnabled}"/>
+		    <xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Count}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding CountTagEnabled}"/>
 		
-		    <Label Grid.Row="2" Grid.Column="0" Content="Damage"/>
-            <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="3" Value="{Binding Damage}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left"/>
+		    <Label Grid.Row="2" Grid.Column="0" Content="Damage/DV" IsEnabled="{Binding DamageTagEnabled}"/>
+            <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="3" Value="{Binding Damage}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding DamageTagEnabled}"/>
             
-            <Label Grid.Row="3" Grid.Column="0" Content="Slot" IsEnabled="{Binding HasSlotTag, Mode=OneWay}"/>
-            <xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Margin="3" Value="{Binding Slot}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding HasSlotTag, Mode=OneWay}"/>
+            <Label Grid.Row="3" Grid.Column="0" Content="Slot" IsEnabled="{Binding SlotTagEnabled}" Visibility="{Binding HasSlotTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+            <xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Margin="3" Value="{Binding Slot}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding SlotTagEnabled}" Visibility="{Binding HasSlotTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
             
             <Expander Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Header="Additional Options" DataContextChanged="MoreOptsBox_DataContextChanged" Visibility="{Binding HasTags, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" IsExpanded="False">
                 <StackPanel x:Name="MoreOptsBox"/>

@@ -9,16 +9,24 @@ namespace StackingEntities.Items
 		[Property("Item", "Count"), MinMax(byte.MinValue, byte.MaxValue)]
 		public int Count { get; set; } = 1;
 
+		public bool CountTagEnabled { get; set; } = true;
+
 		[Property("Item", "Slot"), MinMax(byte.MinValue, byte.MaxValue)]
 		public int? Slot { get; set; } = null;
 
 		public bool HasSlotTag => Slot.HasValue;
 
+		public bool SlotTagEnabled { get; set; } = true;
+
 		[Property("Item", "Damage/Data Value"), MinMax(short.MinValue, short.MaxValue)]
 		public int Damage { get; set; } = 0;
 
+		public bool DamageTagEnabled { get; set; } = true;
+
 		[Property("Item", "id")]
-		public string Id { get; set; } = "minecraft:stone";
+		public string Id { get; set; }
+
+		public bool IdTagEnabled { get; set; } = true;
 
 		public List<IJsonAble> Tag = new List<IJsonAble>();
 
@@ -26,13 +34,6 @@ namespace StackingEntities.Items
 
 		public Item()
 		{
-			Tag.Add(new ItemTagsBlock());
-			Tag.Add(new ItemTagsGeneral());
-            Tag.Add(new ItemTagsEnchantments());
-			Tag.Add(new ItemTagsDisplay());
-			Tag.Add(new ItemTagsBook());
-			Tag.Add(new ItemTagsFireworkStar());
-			Tag.Add(new ItemTagsMap());
 		}
 
 		public string GenerateJSON(bool topLevel)
