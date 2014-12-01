@@ -58,16 +58,19 @@ namespace StackingEntities.Entities
 		MinecartTNT,
 		//[Description("Mooshroom")]
 		//MushroomCow,
-		//Ozelot,
+		[Description("Ocelot / Cat")]
+		Ozelot,
 		Painting,
-		//Pig,
+		Pig,
 		//[Description("Zombie Pigman")]
 		//PigZombie,
 		[Description("Primed TNT")]
 		PrimedTnt,
-		//Sheep,
+		Rabbit,
+		Sheep,
 		//Silverfish,
-		//Skeleton,
+		[Description("Skeleton / Wither Skeleton")]
+		Skeleton,
 		Slime,
 		//[Description("Fire Charge")]
 		//SmallFireball,

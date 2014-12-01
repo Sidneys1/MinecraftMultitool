@@ -40,6 +40,26 @@ namespace StackingEntities
 		{
 			switch (_model.EType)
 			{
+				case EntityTypes.Skeleton:
+					_model.Entities.Insert(0, new Skeleton());
+					break;
+
+				case EntityTypes.Sheep:
+					_model.Entities.Insert(0, new Sheep());
+					break;
+
+				case EntityTypes.Rabbit:
+					_model.Entities.Insert(0, new Rabbit());
+					break;
+
+				case EntityTypes.Pig:
+					_model.Entities.Insert(0, new Pig());
+					break;
+
+				case EntityTypes.Ozelot:
+					_model.Entities.Insert(0, new Ozelot());
+					break;
+
 				case EntityTypes.LavaSlime:
 					_model.Entities.Insert(0, new LavaSlime());
 					break;
@@ -189,12 +209,241 @@ namespace StackingEntities
 
 		}
 
+
 		private void GenControls(EntityBase ent)
 		{
 			var dict = new Dictionary<string, List<DisplayOption>>();
 
 			#region Extract Options
 
+			ExtractOptions(ent, dict);
+
+			#endregion
+
+			#region Add Groups
+
+			foreach (var str in dict.Keys)
+			{
+				AddGroup(str, dict);
+			}
+
+			#endregion
+		}
+
+		private void AddGroup(string str, Dictionary<string, List<DisplayOption>> dict)
+		{
+			var g = new Expander {Header = str};
+			var grid = new Grid {Margin = new Thickness(20, 0, 10, 0)};
+			grid.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(0, GridUnitType.Auto)});
+			grid.ColumnDefinitions.Add(new ColumnDefinition {Width = new GridLength(1, GridUnitType.Star)});
+			g.Content = grid;
+			var i = 0;
+
+			#region Add Controls
+
+			foreach (var option in dict[str])
+			{
+				grid.RowDefinitions.Add(new RowDefinition {Height = new GridLength(0, GridUnitType.Auto)});
+
+				if (!option.PropertyType.IsGenericType || option.PropertyType.GetGenericTypeDefinition() != typeof (List<>))
+				{
+					var l = new Label {Content = option.ReadableName};
+					l.SetValue(Grid.RowProperty, i);
+
+					if (option.EnabledPropertyName != null)
+						l.SetBinding(IsEnabledProperty, new Binding(option.EnabledPropertyName));
+
+					grid.Children.Add(l);
+				}
+				UIElement elem = new Label();
+
+				#region Bool
+
+				if (option.PropertyType == typeof (bool))
+				{
+					elem = ExtractBool(option);
+				}
+
+					#endregion
+
+					#region Int
+
+				else if (option.PropertyType == typeof (int))
+				{
+					elem = ExtractInt(option);
+				}
+
+					#endregion
+
+					#region String
+
+				else if (option.PropertyType == typeof (string))
+				{
+					elem = ExtractString(option);
+				}
+
+					#endregion
+
+					#region Double
+
+				else if (option.PropertyType == typeof (double))
+				{
+					elem = ExtractDouble(option);
+				}
+
+					#endregion
+
+					#region Enum
+
+				else if (option.PropertyType.IsEnum)
+				{
+					elem = ExtractEnum(option);
+				}
+
+					#endregion
+
+					#region Item
+
+				else if (option.PropertyType == typeof (Item))
+				{
+					elem = ExtractItem(option);
+				}
+
+					#endregion
+
+					#region List
+
+				else if (option.PropertyType.IsGenericType && option.PropertyType.GetGenericTypeDefinition() == typeof (List<>))
+				{
+					elem = ExtractList(option);
+				}
+
+				#endregion
+
+				if (!option.PropertyType.IsGenericType || option.PropertyType.GetGenericTypeDefinition() != typeof (List<>))
+					elem.SetValue(Grid.ColumnProperty, 1);
+
+				elem.SetValue(Grid.RowProperty, i);
+				grid.Children.Add(elem);
+
+				i++;
+			}
+
+			#endregion
+
+			EditStackPanel.Children.Add(g);
+		}
+
+		private static Expander ExtractList(DisplayOption option)
+		{
+			var drop = new Expander {Margin = new Thickness(5), Header = option.ReadableName};
+			// ReSharper disable once UseObjectOrCollectionInitializer
+			var ctrl = new DataGrid
+			{
+				Margin = new Thickness(3),
+				AutoGenerateColumns = true,
+				CanUserAddRows = !option.FixedSize,
+				MinHeight = 50
+			};
+
+			ctrl.AutoGeneratingColumn += (sender1, e1) =>
+			{
+				var displayName = Helpers.GetPropertyDisplayName(e1.PropertyDescriptor);
+				if (!string.IsNullOrEmpty(displayName))
+					e1.Column.Header = displayName;
+				else
+					e1.Cancel = true;
+			};
+
+			if (option.DataGridRowHeaderPath != null)
+			{
+				var rowHeaderStyle = new Style(typeof(DataGridRowHeader));
+				rowHeaderStyle.Setters.Add(new Setter(ContentProperty, new Binding(option.DataGridRowHeaderPath)));
+				ctrl.RowHeaderStyle = rowHeaderStyle;
+			}
+
+			ctrl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(option.PropertyName));
+			//elem = ctrl;
+			drop.Content = ctrl;
+			drop.SetValue(Grid.ColumnSpanProperty, 2);
+			return drop;
+		}
+
+		private static ItemControl ExtractItem(DisplayOption option)
+		{
+			var ctrl = new ItemControl { Margin = new Thickness(3) };
+			ctrl.SetBinding(DataContextProperty, new Binding(option.PropertyName));
+			return ctrl;
+		}
+
+		private static ComboBox ExtractEnum(DisplayOption option)
+		{
+			var ctrl = new ComboBox { Margin = new Thickness(3) };
+			var m = typeof(EnumHelper).GetMethod("GetAllValuesAndDescriptions").MakeGenericMethod(option.PropertyType);
+			var ie = m.Invoke(null, null) as IEnumerable;
+			ctrl.ItemsSource = ie;
+			ctrl.DisplayMemberPath = "Description";
+			ctrl.SetBinding(Selector.SelectedValueProperty, new Binding(option.PropertyName));
+			ctrl.SelectedValuePath = "Value";
+			return ctrl;
+		}
+
+		private static DoubleUpDown ExtractDouble(DisplayOption option)
+		{
+			var ctrl = new DoubleUpDown
+			{
+				FormatString = "F2",
+				Margin = new Thickness(3),
+				HorizontalAlignment = HorizontalAlignment.Left,
+				MinWidth = 50
+			};
+			ctrl.SetBinding(DoubleUpDown.ValueProperty, new Binding(option.PropertyName));
+			return ctrl;
+		}
+
+		private static TextBox ExtractString(DisplayOption option)
+		{
+			var ctrl = new TextBox { Margin = new Thickness(3) };
+
+			if (option.Multiline)
+			{
+				ctrl.TextWrapping = TextWrapping.Wrap;
+				ctrl.AcceptsReturn = true;
+				ctrl.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
+				ctrl.MinHeight = 100;
+			}
+
+			ctrl.SetBinding(TextBox.TextProperty, new Binding(option.PropertyName));
+			return ctrl;
+		}
+
+		private static IntegerUpDown ExtractInt(DisplayOption option)
+		{
+			var ctrl = new IntegerUpDown
+			{
+				Margin = new Thickness(3),
+				HorizontalAlignment = HorizontalAlignment.Left,
+				MinWidth = 50
+			};
+			ctrl.SetBinding(IntegerUpDown.ValueProperty, new Binding(option.PropertyName));
+
+			if (option.Minimum is int)
+				ctrl.Minimum = (int?)option.Minimum;
+
+			if (option.Maximum is int)
+				ctrl.Maximum = (int?)option.Maximum;
+			return ctrl;
+		}
+
+		private static CheckBox ExtractBool(DisplayOption option)
+		{
+			var ctrl = new CheckBox { Margin = new Thickness(3), VerticalAlignment = VerticalAlignment.Center };
+			ctrl.SetBinding(ToggleButton.IsCheckedProperty, new Binding(option.PropertyName));
+			return ctrl;
+		}
+
+		private static void ExtractOptions(EntityBase ent, Dictionary<string, List<DisplayOption>> dict)
+		{
 			var props = ent.GetType().GetPropertiesSorted();
 			foreach (var info in props.Reverse())
 			{
@@ -205,7 +454,7 @@ namespace StackingEntities
 					dict.Add(prop.Category, new List<DisplayOption>());
 
 				object min = null, max = null;
-				var multiline = Attribute.IsDefined(info, typeof (MultilineStringAttribute));
+				var multiline = Attribute.IsDefined(info, typeof(MultilineStringAttribute));
 
 				if (Attribute.IsDefined(info, typeof(MinMaxAttribute)))
 				{
@@ -214,183 +463,10 @@ namespace StackingEntities
 					max = att.Maximum;
 				}
 
-				dict[prop.Category].Insert(0, new DisplayOption(prop.Name, info.Name, info.PropertyType, ent, min, max, multiline, prop.IsEnabledPath));
+				dict[prop.Category].Insert(0,
+					new DisplayOption(prop.Name, info.Name, info.PropertyType, ent, min, max, multiline, prop.IsEnabledPath,
+						prop.FixedSize, prop.DataGridRowHeaderPath));
 			}
-
-			#endregion
-
-			#region Add Groups
-
-			foreach (var str in dict.Keys)
-			{
-				var g = new Expander { Header = str };
-				var grid = new Grid { Margin = new Thickness(20, 0, 10, 0) };
-				grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Auto) });
-				grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-				g.Content = grid;
-				var i = 0;
-
-				#region Add Controls
-
-				foreach (var option in dict[str])
-				{
-					grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
-					var l = new Label { Content = option.ReadableName };
-					l.SetValue(Grid.RowProperty, i);
-
-					if (option.EnabledPropertyName != null)
-						l.SetBinding(IsEnabledProperty, new Binding(option.EnabledPropertyName));
-
-					grid.Children.Add(l);
-
-					UIElement elem = new Label();
-
-					#region Bool
-
-					if (option.PropertyType == typeof(bool))
-					{
-						var ctrl = new CheckBox { Margin = new Thickness(3), VerticalAlignment = VerticalAlignment.Center };
-						ctrl.SetBinding(ToggleButton.IsCheckedProperty, new Binding(option.PropertyName));
-						elem = ctrl;
-					}
-
-					#endregion
-
-					#region Int
-
-					else if (option.PropertyType == typeof(int))
-					{
-						var ctrl = new IntegerUpDown
-						{
-							Margin = new Thickness(3),
-							HorizontalAlignment = HorizontalAlignment.Left,
-							MinWidth = 50
-						};
-						ctrl.SetBinding(IntegerUpDown.ValueProperty, new Binding(option.PropertyName));
-
-						if (option.Minimum is int)
-							ctrl.Minimum = (int?)option.Minimum;
-
-						if (option.Minimum is int)
-							ctrl.Maximum = (int?)option.Maximum;
-
-						elem = ctrl;
-					}
-
-					#endregion
-
-					#region String
-
-					else if (option.PropertyType == typeof(string))
-					{
-						var ctrl = new TextBox { Margin = new Thickness(3) };
-
-						if (option.Multiline)
-						{
-							ctrl.TextWrapping = TextWrapping.Wrap;
-							ctrl.AcceptsReturn = true;
-							ctrl.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-							ctrl.MinHeight = 100;
-						}
-
-						ctrl.SetBinding(TextBox.TextProperty, new Binding(option.PropertyName));
-						elem = ctrl;
-					}
-
-					#endregion
-
-					#region Double
-
-					else if (option.PropertyType == typeof(double))
-					{
-						var ctrl = new DoubleUpDown
-						{
-							FormatString = "F2",
-							Margin = new Thickness(3),
-							HorizontalAlignment = HorizontalAlignment.Left,
-							MinWidth = 50
-						};
-						ctrl.SetBinding(DoubleUpDown.ValueProperty, new Binding(option.PropertyName));
-						elem = ctrl;
-					}
-
-					#endregion
-
-					#region Enum
-
-					else if (option.PropertyType.IsEnum)
-					{
-						var ctrl = new ComboBox { Margin = new Thickness(3) };
-						//ctrl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding { Source = new EnumerationExtension(tuple.Item3)});
-						//var a = Enum.GetValues(tuple.Item3);
-						//var m = typeof (Enumerable).GetMethod("Cast").MakeGenericMethod(new Type[] {tuple.Item3});
-						var m = typeof(EnumHelper).GetMethod("GetAllValuesAndDescriptions").MakeGenericMethod(option.PropertyType);
-						//ctrl.ItemsSource 
-						var ie = m.Invoke(null, null) as IEnumerable;
-						//ctrl.SetBinding(ItemsControl.ItemsSourceProperty,
-						//	new Binding() {Source = ie, Converter = (IValueConverter) Resources["enumDesc"]});
-						ctrl.ItemsSource = ie;
-						//ctrl.DataContext = ent;
-						ctrl.DisplayMemberPath = "Description";
-						ctrl.SetBinding(Selector.SelectedValueProperty, new Binding(option.PropertyName));
-						ctrl.SelectedValuePath = "Value";
-						elem = ctrl;
-					}
-
-					#endregion
-
-					#region Item
-
-					else if (option.PropertyType == typeof(Item))
-					{
-						var ctrl = new ItemControl { Margin = new Thickness(3) };
-						ctrl.SetBinding(DataContextProperty, new Binding(option.PropertyName));
-						elem = ctrl;
-					}
-
-					#endregion
-
-					#region List
-
-					else if (option.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
-					{
-						// ReSharper disable once UseObjectOrCollectionInitializer
-						var ctrl = new DataGrid
-						{
-							Margin = new Thickness(3),
-							AutoGenerateColumns = true,
-							CanUserAddRows = true,
-							MinHeight = 50
-						};
-						ctrl.AutoGeneratingColumn += (sender1, e1) =>
-						{
-							var displayName = Helpers.GetPropertyDisplayName(e1.PropertyDescriptor);
-							if (!string.IsNullOrEmpty(displayName))
-							{
-								e1.Column.Header = displayName;
-							}
-						};
-
-
-						ctrl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(option.PropertyName));
-						elem = ctrl;
-					}
-
-					#endregion
-
-					elem.SetValue(Grid.ColumnProperty, 1);
-					elem.SetValue(Grid.RowProperty, i);
-					grid.Children.Add(elem);
-
-					i++;
-				}
-
-				#endregion
-
-				EditStackPanel.Children.Add(g);
-			}
-
-			#endregion
 		}
 
 		private void GenerateButton_Clicked(object sender, RoutedEventArgs e)

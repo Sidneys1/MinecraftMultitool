@@ -2,11 +2,13 @@
 
 namespace StackingEntities.Entities.Mobs
 {
-	internal abstract class TameableMobBase : BreedableMobBase
+	public abstract class TameableMobBase : BreedableMobBase
 	{
 		#region Appearance
 
 		string _owner = "";
+		private bool _sitting;
+
 		[Property("Tameable Mob Options", "Owner (Player)")]
 		public string Owner
 		{
@@ -14,18 +16,24 @@ namespace StackingEntities.Entities.Mobs
 			set
 			{
 				_owner = value;
-				PropChanged();
 				PropChanged("Display");
 				PropChanged("DisplayImage");
 			}
 		}
 
 		[Property("Tameable Mob Options", "Is Sitting")]
-		public bool Sitting { get; set; }
+		public bool Sitting
+		{
+			get { return _sitting; }
+			set { _sitting = value; PropChanged("Display");
+			}
+		}
 
 		#endregion
 
 		#region Process
+
+		public override string Display => base.Display + (Sitting ? "Sitting " : "") + (string.IsNullOrWhiteSpace(_owner)?"" :"Tamed ");
 
 		public override string GenerateJSON(bool topLevel)
 		{
@@ -35,7 +43,7 @@ namespace StackingEntities.Entities.Mobs
 				b.Append(string.Format("Owner:\"{0}\",", Owner));
 
 			if (Sitting)
-				b.Append("Sitting:1,");
+				b.Append("Sitting:1b,");
 
 			return b.ToString();
 		}

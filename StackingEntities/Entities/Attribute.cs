@@ -1,5 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Text;
 
 namespace StackingEntities.Entities
 {
@@ -11,22 +11,34 @@ namespace StackingEntities.Entities
 		[DisplayName(@"Base Value")]
 		public double Base { get; set; }
 
+
 		public string GenerateJSON(bool topLevel)
 		{
-			throw new NotImplementedException();
+			var b = new StringBuilder();
+
+			b.AppendFormat("Name:\"{0}\",Base:{1:0.0}", Name.Description(), Base);
+
+			return b.ToString();
 		}
 	}
 
 	public enum AttributeType
 	{
-		generic_maxHealth,
-		generic_followRange,
-		generic_knockbackResistance,
-		generic_movementSpeed,
-		generic_attackDamage,
+		[Description("generic.maxHealth")]
+		GenericMaxHealth,
+		[Description("generic.followRange")]
+		GenericFollowRange,
+		[Description("generic.knockbackResistance")]
+		GenericKnockbackResistance,
+		[Description("generic.movementSpeed")]
+		GenericMovementSpeed,
+		[Description("generic.attackDamage")]
+		GenericAttackDamage,
 
-		horse_jumpStrength,
+		[Description("horse.jumpStrength")]
+		HorseJumpStrength,
 
-		zombie_spawnReinforcements
+		[Description("zombie.spawnReinforcements")]
+		ZombieSpawnReinforcements
 	}
 }

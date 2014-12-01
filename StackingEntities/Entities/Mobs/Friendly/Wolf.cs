@@ -40,7 +40,7 @@ namespace StackingEntities.Entities.Mobs.Friendly
 		#region UI
 
 		public override string Display => base.Display + (CollarColor != (Dyes) 14 ? CollarColor.Description() + "-Collared " : "") +
-		                                  (_angry ? "Angry " : "") + (!string.IsNullOrWhiteSpace(Owner) ? "Tamed " : "") + "Wolf";
+		                                  (_angry ? "Angry " : "") + "Wolf";
 
 		public override string DisplayImage
 		{
@@ -72,11 +72,11 @@ namespace StackingEntities.Entities.Mobs.Friendly
 			if (Angry)
 				b.Append("Angry:1b,");
 
-			if ((!string.IsNullOrWhiteSpace(Owner) && Health != 20) || (string.IsNullOrWhiteSpace(Owner) && Health != 8))
-				b.Append(string.Format("HealF:{0},", Health));
+			if ((!string.IsNullOrWhiteSpace(Owner) && Health != 20) || ((string.IsNullOrWhiteSpace(Owner) && Health != 8)))
+				b.Append(string.Format("HealF:{0}f,", Health));
 
 			if (CollarColor != (Dyes)14)
-				b.Append(string.Format("CollarColor:{0},", (int)CollarColor));
+				b.Append(string.Format("CollarColor:{0}b,", (int)CollarColor));
 
 			return b.ToString();
 		}

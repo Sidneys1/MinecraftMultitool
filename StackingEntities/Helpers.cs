@@ -47,7 +47,7 @@ namespace StackingEntities
 
 	public class DisplayOption
 	{
-		public DisplayOption(string rName, string pName, Type pType, Object dContext, object min = null, object max = null, bool mLine = false, string epName = null)
+		public DisplayOption(string rName, string pName, Type pType, Object dContext, object min = null, object max = null, bool mLine = false, string epName = null, bool fSize = false, string dgRowPath = null)
 		{
 			ReadableName = rName;
 			PropertyName = pName;
@@ -59,8 +59,15 @@ namespace StackingEntities
 			Multiline = mLine;
 
 			EnabledPropertyName = epName;
+
+			FixedSize = fSize;
+
+			DataGridRowHeaderPath = dgRowPath;
 		}
 
+		public string DataGridRowHeaderPath { get; set; }
+
+		public bool FixedSize { get; set; }
 
 		public string ReadableName { get; set; }
 
@@ -77,6 +84,19 @@ namespace StackingEntities
 		public object DataContext { get; set; }
 
 		public string EnabledPropertyName { get; set; }
+	}
+
+	public class SimpleDouble
+	{
+		public SimpleDouble(string name = null)
+		{
+			Name = name;
+		}
+
+		[DisplayName("Value")]
+		public double Value { get; set; }
+
+		public string Name { get; set; }
 	}
 
 }

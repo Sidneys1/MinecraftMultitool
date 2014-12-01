@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using StackingEntities.Items;
 using StackingEntities.Items.ItemTags;
@@ -59,7 +60,7 @@ namespace StackingEntities.Entities.Mobs
 
 		#endregion
 
-		//public list<Attribute> Attributes
+		//[Property("Mob Options", "Effects")]
 		//public list<Effect> Effects
 
 		#region Loot
@@ -91,8 +92,8 @@ namespace StackingEntities.Entities.Mobs
 
 		#region Equiptment
 
-		[Property("Equipment", "Holding")]
-		public Item Holding { get; set; } = new Item() {Id = string.Empty };
+		[Property("Equipment", "Held Item")]
+		public Item Holding { get; set; } = new Item() { Id = string.Empty };
 
 		[Property("Equipment", "Boots")]
 		public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
@@ -107,7 +108,16 @@ namespace StackingEntities.Entities.Mobs
 		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
 		[Property("Mob Options", "Attributes")]
-		public List<Attribute> Attributes { get; set; } = new List<Attribute>();
+		public List<Attribute> Attributes { get; } = new List<Attribute>();
+
+		[Property("Mob Options", "Potion Effects")]
+		public List<PotionEffect> PotionEffects { get; } = new List<PotionEffect>();
+
+		[Property("Mob Options", "No AI")]
+		public bool NoAi { get; set; } = false;
+
+		[Property("Equipment", "Drop Chances", fixedSize: true, dgRowPath: "Name")]
+		public List<SimpleDouble> DropChanceFloats { get; set; } = new List<SimpleDouble> { new SimpleDouble("Held Item"), new SimpleDouble("Boots"), new SimpleDouble("Leggings"), new SimpleDouble("Chestplate"), new SimpleDouble("Helmet") };
 
 		#endregion
 
@@ -131,6 +141,8 @@ namespace StackingEntities.Entities.Mobs
 				b.Append("CanPickUpLoot:1b,");
 			if (PersistanceRequired)
 				b.Append("PersistanceRequired:1b,");
+			if (NoAi)
+				b.Append("NoAI:1b,");
 
 			var holding = Holding.GenerateJSON(false);
 			var boots = Boots.GenerateJSON(false);
@@ -153,9 +165,56 @@ namespace StackingEntities.Entities.Mobs
 			if (helm != string.Empty)
 				helm = helm.Remove(helm.Length - 1, 1);
 
-			if (holding != string.Empty)
+			if (holding != string.Empty || boots != string.Empty || leggings != string.Empty || chest != string.Empty || helm != string.Empty)
 				b.AppendFormat("Equipment:[0:{{{0}}},1:{{{1}}},2:{{{2}}},3:{{{3}}},4:{{{4}}}],", holding, boots, leggings, chest, helm);
 
+			StringBuilder aBuilder;
+			if (PotionEffects.Count > 0)
+			{
+				aBuilder = new StringBuilder();
+				for (var i = 0; i < PotionEffects.Count; i++)
+				{
+					var attribute = PotionEffects[i];
+
+					var generateJson = attribute.GenerateJSON(false);
+					if (!string.IsNullOrWhiteSpace(generateJson))
+						aBuilder.AppendFormat("{0}:{{{1}}},", i, generateJson);
+				}
+
+				aBuilder.Remove(aBuilder.Length - 1, 1);
+
+				if (aBuilder.Length > 0)
+					b.AppendFormat("ActiveEffects:[{0}],", aBuilder);
+			}
+
+
+			if (Attributes.Count > 0)
+			{
+				aBuilder = new StringBuilder();
+				for (var i = 0; i < Attributes.Count; i++)
+				{
+					var attribute = Attributes[i];
+
+					var generateJson = attribute.GenerateJSON(false);
+					if (!string.IsNullOrWhiteSpace(generateJson))
+						aBuilder.AppendFormat("{0}:{{{1}}},", i, generateJson);
+				}
+
+				aBuilder.Remove(aBuilder.Length - 1, 1);
+
+				if (aBuilder.Length > 0)
+					b.AppendFormat("Attributes:[{0}],", aBuilder);
+			}
+
+
+			if (Math.Abs(DropChanceFloats[0].Value) > 0.001 || Math.Abs(DropChanceFloats[1].Value) > 0.001 ||
+				Math.Abs(DropChanceFloats[2].Value) > 0.001 || Math.Abs(DropChanceFloats[3].Value) > 0.001 ||
+				Math.Abs(DropChanceFloats[4].Value) > 0.001)
+			{
+				b.AppendFormat("DropChances:[0:{0:0.##}f,1:{1:0.##}f,2:{2:0.##}f,3:{3:0.##}f,4:{4:0.##}f],",
+					DropChanceFloats[0].Value, DropChanceFloats[1].Value, DropChanceFloats[2].Value, DropChanceFloats[3].Value,
+					DropChanceFloats[4].Value);
+			}
 
 			return b.ToString();
 		}

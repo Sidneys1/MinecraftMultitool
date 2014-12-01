@@ -85,7 +85,7 @@ namespace StackingEntities.Entities
 		#endregion
 	}
 
-	internal enum Dyes
+	public enum Dyes
 	{
 		Black = 15,
 		Red = 14,

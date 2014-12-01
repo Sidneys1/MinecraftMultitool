@@ -11,7 +11,7 @@
         <DropShadowEffect x:Key="Blur" ShadowDepth="0" BlurRadius="5" RenderingBias="Quality"/>
 		<stackingEntities:EnumDescriptionConverter x:Key="enumDesc"/>
 		<DataTemplate x:Key="MobItemTemplate" DataType="entities:EntityBase">
-			<Grid MaxHeight="150" MaxWidth="238">
+			<Grid MaxHeight="150" MaxWidth="250">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="*"/>
@@ -22,7 +22,7 @@
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
-				<Image Grid.Column="1" Grid.RowSpan="3" MaxHeight="75" Width="75" Margin="3" Source="{Binding DisplayImage}" Stretch="None" Effect="{DynamicResource Blur}" />
+				<Image Grid.Column="1" Grid.RowSpan="3" MaxHeight="75" Width="75" Margin="7,3" Source="{Binding DisplayImage}" Stretch="None" Effect="{DynamicResource Blur}" />
 				<TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Type, Converter={StaticResource enumDesc}}" TextTrimming="CharacterEllipsis" Margin="3" FontSize="14"/>
 				<TextBlock Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="12"/>
 				<Image Grid.Row="0" Grid.Column="0" Width="20" Height="20" Source="Images/Delete.png"  HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Remove Item" Tag="{Binding Mode=OneWay}" MouseUp="DeleteSelectedEntityButton_Clicked" Stretch="None" Effect="{DynamicResource Blur}" />
