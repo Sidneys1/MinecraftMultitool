@@ -1,7 +1,7 @@
 using System.Text;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Other
 {

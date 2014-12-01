@@ -1,6 +1,6 @@
 using System;
 
-namespace StackingEntities.ViewModel
+namespace StackingEntities.Model.Metadata
 {
 	[AttributeUsage(AttributeTargets.Property)]
 	public class MinMaxAttribute : Attribute

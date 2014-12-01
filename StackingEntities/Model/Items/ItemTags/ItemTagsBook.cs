@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Helpers;
+using StackingEntities.Model.Interface;
+using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
@@ -27,17 +29,17 @@ namespace StackingEntities.Model.Items.ItemTags
 				b.AppendFormat("generation:{0:D},", Generation);
 
 			if (!string.IsNullOrWhiteSpace(Author))
-				b.AppendFormat("author:\"{0}\",", JsonTools.EscapeStringValue(Author));
+				b.AppendFormat("author:\"{0}\",", Author.EscapeJsonString());
 
 			if (!string.IsNullOrWhiteSpace(Title))
-				b.AppendFormat("title:\"{0}\",", JsonTools.EscapeStringValue(Title));
+				b.AppendFormat("title:\"{0}\",", Title.EscapeJsonString());
 
 			if (Pages.Count == 0) return b.ToString();
 
 			var b2 = new StringBuilder("pages:[");
 			foreach (var line in Pages)
 			{
-				b2.AppendFormat("\"{0}\",", JsonTools.EscapeStringValue(line.ToString()));
+				b2.AppendFormat("\"{0}\",", line.ToString().EscapeJsonString());
 			}
 
 			b2.Remove(b2.Length - 1, 1);

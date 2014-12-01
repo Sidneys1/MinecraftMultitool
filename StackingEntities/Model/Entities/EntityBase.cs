@@ -1,7 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Text;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Helpers;
+using StackingEntities.Model.Interface;
+using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities
 {
@@ -69,7 +71,7 @@ namespace StackingEntities.Model.Entities
 			var b = new StringBuilder("{");
 
 			if (!topLevel)
-				b.AppendFormat("id:\"{0}\",", JsonTools.EscapeStringValue(Type.ToString()));
+				b.AppendFormat("id:\"{0}\",", Type.ToString().EscapeJsonString());
 
 			if (Invulnerable)
 				b.Append("Invulnerable:1b,");

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Interface;
+using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items.ItemTags
 {

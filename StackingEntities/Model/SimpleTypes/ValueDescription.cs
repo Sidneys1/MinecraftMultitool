@@ -1,6 +1,6 @@
 using System;
 
-namespace StackingEntities.ViewModel
+namespace StackingEntities.Model.SimpleTypes
 {
 	public class ValueDescription
 	{

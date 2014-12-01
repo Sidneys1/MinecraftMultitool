@@ -1,5 +1,5 @@
 ﻿using System.Text;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {

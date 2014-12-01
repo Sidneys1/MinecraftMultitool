@@ -19,7 +19,9 @@ using StackingEntities.Model.Entities.Mobs.Hostile;
 using StackingEntities.Model.Entities.Other;
 using StackingEntities.Model.Entities.Other.WallEntities;
 using StackingEntities.Model.Entities.Vehicles;
+using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
+using StackingEntities.Model.Metadata;
 using StackingEntities.View.Controls;
 using StackingEntities.ViewModel;
 using Xceed.Wpf.Toolkit;
@@ -539,7 +541,7 @@ namespace StackingEntities.View.Windows
 
 		private void CommandListDialogButton_Clicked(object sender, RoutedEventArgs e)
 		{
-			var cmd = new CommandEntry { Owner = this };
+			var cmd = new CommandListWindow { Owner = this };
 			if (cmd.ShowDialog() == true)
 			{
 				var text = (string)cmd.Tag;

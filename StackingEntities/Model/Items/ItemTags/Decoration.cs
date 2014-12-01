@@ -1,5 +1,7 @@
 using System.ComponentModel;
 using System.Text;
+using StackingEntities.Model.Helpers;
+using StackingEntities.Model.Interface;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
@@ -22,7 +24,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			var b = new StringBuilder();
 
 			if (!string.IsNullOrWhiteSpace(Id))
-				b.AppendFormat("id:\"{0}\",", JsonTools.EscapeStringValue(Id));
+				b.AppendFormat("id:\"{0}\",", Id.EscapeJsonString());
 
 			b.AppendFormat("type:{0:D}b,", MType);
 

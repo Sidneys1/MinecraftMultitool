@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Text;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Helpers;
+using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {

@@ -157,7 +157,10 @@
     <Compile Include="Model\Entities\Vehicles\MinecartCommandBlock.cs" />
     <Compile Include="Model\Entities\Vehicles\MinecartFurnace.cs" />
     <Compile Include="Model\Entities\Vehicles\MinecartTNT.cs" />
-    <Compile Include="Model\IJsonAble.cs" />
+    <Compile Include="Model\Helpers\EnumHelper.cs" />
+    <Compile Include="Model\Helpers\JSONTools.cs" />
+    <Compile Include="Model\Interface\Displayable.cs" />
+    <Compile Include="Model\Interface\IJsonAble.cs" />
     <Compile Include="Model\Items\Item.cs" />
     <Compile Include="Model\Items\ItemTags\BlockType.cs" />
     <Compile Include="Model\Items\ItemTags\Decoration.cs" />
@@ -170,8 +173,11 @@
     <Compile Include="Model\Items\ItemTags\ItemTagsGeneral.cs" />
     <Compile Include="Model\Items\ItemTags\ItemTagsMap.cs" />
     <Compile Include="Model\Items\ItemTags\Page.cs" />
-    <Compile Include="Model\JSONTools.cs" />
-    <Compile Include="Model\SimpleDouble.cs" />
+    <Compile Include="Model\Metadata\MinMaxAttribute.cs" />
+    <Compile Include="Model\Metadata\MultilineStringAttribute.cs" />
+    <Compile Include="Model\Metadata\PropertyAttribute.cs" />
+    <Compile Include="Model\SimpleTypes\SimpleDouble.cs" />
+    <Compile Include="Model\SimpleTypes\ValueDescription.cs" />
     <Compile Include="Properties\Annotations\Annotations.cs" />
     <Compile Include="Properties\Annotations\AspDataFieldAttribute.cs" />
     <Compile Include="Properties\Annotations\AspDataFieldsAttribute.cs" />
@@ -232,15 +238,9 @@
     <Compile Include="Properties\Annotations\ValueProviderAttribute.cs" />
     <Compile Include="Properties\Annotations\XamlItemBindingOfItemsControlAttribute.cs" />
     <Compile Include="Properties\Annotations\XamlItemsControlAttribute.cs" />
-    <Compile Include="ViewModel\Displayable.cs" />
     <Compile Include="ViewModel\DisplayOption.cs" />
     <Compile Include="ViewModel\EnumDescriptionConverter.cs" />
     <Compile Include="ViewModel\EnumerationExtension.cs" />
-    <Compile Include="ViewModel\EnumHelper.cs" />
-    <Compile Include="ViewModel\MinMaxAttribute.cs" />
-    <Compile Include="ViewModel\MultilineStringAttribute.cs" />
-    <Compile Include="ViewModel\PropertyAttribute.cs" />
-    <Compile Include="ViewModel\ValueDescription.cs" />
     <Compile Include="View\Controls\ItemControl.cs">
       <DependentUpon>ItemControl.xaml</DependentUpon>
     </Compile>
@@ -249,8 +249,8 @@
     <Compile Include="View\Windows\AboutDialog.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Windows\CommandEntry.cs">
-      <DependentUpon>CommandEntry.xaml</DependentUpon>
+    <Compile Include="View\Windows\CommandListWindow.xaml.cs">
+      <DependentUpon>CommandListWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Windows\MainWindow.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -267,7 +267,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Windows\CommandEntry.xaml">
+    <Page Include="View\Windows\CommandListWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

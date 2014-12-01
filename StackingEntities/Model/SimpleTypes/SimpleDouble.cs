@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace StackingEntities.Model
+namespace StackingEntities.Model.SimpleTypes
 {
 	public class SimpleDouble
 	{

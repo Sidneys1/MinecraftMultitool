@@ -2,8 +2,10 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using StackingEntities.Model.Helpers;
+using StackingEntities.Model.Interface;
+using StackingEntities.Model.Metadata;
 using StackingEntities.Properties.Annotations;
-using StackingEntities.ViewModel;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
@@ -139,7 +141,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			var b2 = new StringBuilder("display:{");
 
 			if (!string.IsNullOrWhiteSpace(Name))
-				b2.AppendFormat("Name:\"{0}\",", JsonTools.EscapeStringValue(Name));
+				b2.AppendFormat("Name:\"{0}\",", Name.EscapeJsonString());
 
 			if (Color != 0)
 				b2.AppendFormat("color:{0},", Color);
@@ -152,7 +154,7 @@ namespace StackingEntities.Model.Items.ItemTags
 
 				foreach (var line in lines)
 				{
-					b2.AppendFormat("\"{0}\",", JsonTools.EscapeStringValue(line));
+					b2.AppendFormat("\"{0}\",", line.EscapeJsonString());
 				}
 				b2.Remove(b2.Length - 1, 1);
 				b2.Append("],");

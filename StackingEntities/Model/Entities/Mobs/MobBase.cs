@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Metadata;
+using StackingEntities.Model.SimpleTypes;
 
 namespace StackingEntities.Model.Entities.Mobs
 {
@@ -135,7 +137,7 @@ namespace StackingEntities.Model.Entities.Mobs
 			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (!string.IsNullOrWhiteSpace(CustomName))
-				b.AppendFormat("CustomName:\"{0}\",", JsonTools.EscapeStringValue(CustomName));
+				b.AppendFormat("CustomName:\"{0}\",", CustomName.EscapeJsonString());
 			if (!string.IsNullOrWhiteSpace(CustomName) && CustomNameVisible)
 				b.Append("CustomNameVisible:1b,");
 			if (CanPickUpLoot)

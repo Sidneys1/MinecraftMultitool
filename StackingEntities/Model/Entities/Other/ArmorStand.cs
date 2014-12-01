@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Metadata;
+using StackingEntities.Model.SimpleTypes;
 
 namespace StackingEntities.Model.Entities.Other
 {

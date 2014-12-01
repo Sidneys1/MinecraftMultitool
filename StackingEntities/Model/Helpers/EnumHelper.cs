@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
+using StackingEntities.Model.SimpleTypes;
 
-namespace StackingEntities.ViewModel
+namespace StackingEntities.Model.Helpers
 {
 	public static class EnumHelper
 	{

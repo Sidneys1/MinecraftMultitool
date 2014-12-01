@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Text;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Helpers;
+using StackingEntities.Model.Interface;
 
 namespace StackingEntities.Model.Entities
 {

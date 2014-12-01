@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Text;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Helpers;
+using StackingEntities.Model.Interface;
+using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
@@ -24,7 +26,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			b.Append("CanPlaceOn:[");
 			foreach (var item in CanDestroy)
 			{
-				b.AppendFormat("\"{0}\",", JsonTools.EscapeStringValue(item.ToString()));
+				b.AppendFormat("\"{0}\",", item.ToString().EscapeJsonString());
 			}
 			b.Remove(b.Length - 1, 1);
 			b.Append("],");

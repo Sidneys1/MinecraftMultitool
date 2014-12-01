@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Text;
+using StackingEntities.Model.Interface;
 
 namespace StackingEntities.Model.Entities.Mobs
 {

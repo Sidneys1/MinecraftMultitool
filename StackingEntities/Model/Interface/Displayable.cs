@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using StackingEntities.Properties.Annotations;
 
-namespace StackingEntities.ViewModel
+namespace StackingEntities.Model.Interface
 {
 	public abstract class Displayable : INotifyPropertyChanged
 	{

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using StackingEntities.Model.Items;
+using StackingEntities.Model.Metadata;
 using StackingEntities.ViewModel;
 
 namespace StackingEntities.View.Controls

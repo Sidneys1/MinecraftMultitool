@@ -1,4 +1,4 @@
-namespace StackingEntities.Model
+namespace StackingEntities.Model.Interface
 {
 	public interface IJsonAble
 	{

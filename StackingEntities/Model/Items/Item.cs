@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using StackingEntities.ViewModel;
+using StackingEntities.Model.Helpers;
+using StackingEntities.Model.Interface;
+using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items
 {
@@ -44,7 +46,7 @@ namespace StackingEntities.Model.Items
 				b.AppendFormat("Slot:{0}b,", Slot);
 			if (Damage != 0)
 				b.AppendFormat("Damage:{0}s,", Damage);
-			b.AppendFormat("id:\"{0}\",", JsonTools.EscapeStringValue(Id));
+			b.AppendFormat("id:\"{0}\",", Id.EscapeJsonString());
 
 			if (Tag.Count == 0) return b.ToString();
 
