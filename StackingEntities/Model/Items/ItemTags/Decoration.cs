@@ -17,7 +17,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		[DisplayName(@"Rotation")]
 		public double Rotation { get; set; }
 
-		public string GenerateJSON(bool topLevel)
+		public string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder();
 

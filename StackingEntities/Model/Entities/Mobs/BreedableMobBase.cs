@@ -27,9 +27,9 @@ namespace StackingEntities.Model.Entities.Mobs
 
 		public override string Display => Age<0 ? "Baby " + base.Display : base.Display;
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (InLove != 0)
 				b.Append(string.Format("InLove:{0},", InLove));

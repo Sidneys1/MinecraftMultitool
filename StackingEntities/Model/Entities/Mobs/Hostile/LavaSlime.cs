@@ -7,6 +7,6 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			Type = EntityTypes.LavaSlime;
 		}
 
-		public override string DisplayImage => "/Images/Mobs/Slime/LavaSlime.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Mobs/Slime/LavaSlime.png";
 	}
 }

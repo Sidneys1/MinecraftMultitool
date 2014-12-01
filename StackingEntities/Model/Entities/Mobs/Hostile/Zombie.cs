@@ -55,9 +55,9 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			{
 				if (IsBaby)
 				{
-					return IsVillager ? "/Images/Mobs/Zombie/BabyZombieVillager.png" : "/Images/Mobs/Zombie/BabyZombie.png";
+					return IsVillager ? "/StackingEntities;component/Images/Mobs/Zombie/BabyZombieVillager.png" : "/StackingEntities;component/Images/Mobs/Zombie/BabyZombie.png";
 				}
-				return IsVillager ? "/Images/Mobs/Zombie/ZombieVillager.png" : "/Images/Mobs/Zombie/Zombie.png";
+				return IsVillager ? "/StackingEntities;component/Images/Mobs/Zombie/ZombieVillager.png" : "/StackingEntities;component/Images/Mobs/Zombie/Zombie.png";
 			}
 		}
 
@@ -65,9 +65,9 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 		#region Process
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (IsVillager)
 				b.Append("IsVillager:1b,");

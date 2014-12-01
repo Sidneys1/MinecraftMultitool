@@ -1,7 +1,7 @@
 namespace StackingEntities.Model
 {
-	public  interface IJsonAble
+	public interface IJsonAble
 	{
-		string GenerateJSON(bool topLevel);
+		string GenerateJson(bool topLevel);
 	}
 }

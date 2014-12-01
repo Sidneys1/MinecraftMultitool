@@ -15,14 +15,14 @@ namespace StackingEntities.Model.Entities.ItemEntities
 		[Property("Item Options","Item")]
 		public Item Item { get; set; }
 
-		public override string DisplayImage => "Images/Other/Item.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Other/Item.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			b.Append("Item:{");
-			b.Append(Item.GenerateJSON(false));
+			b.Append(Item.GenerateJson(false));
 			b.Append("},");
 
 			return b.ToString();

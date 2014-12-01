@@ -36,14 +36,14 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 			get
 			{
 				if (Age < 0)
-					return "/Images/Mobs/Sheep/BabySheep.png";
-				return Shorn ? "/Images/Mobs/Sheep/ShornSheep.png" : string.Format("/Images/Mobs/Sheep/Sheep_{0:D}.png", Color);
+					return "/StackingEntities;component/Images/Mobs/Sheep/BabySheep.png";
+				return Shorn ? "/StackingEntities;component/Images/Mobs/Sheep/ShornSheep.png" : string.Format("/StackingEntities;component/Images/Mobs/Sheep/Sheep_{0:D}.png", Color);
 			}
 		}
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Shorn)
 				b.Append("Sheared:1b,");

@@ -53,11 +53,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			}
 		}
 
-		public override string DisplayImage => Carried != 0 ? "/Images/Mobs/Enderman/EndermanCarrying.png" : "/Images/Mobs/Enderman/Enderman.png";
+		public override string DisplayImage => Carried != 0 ? "/StackingEntities;component/Images/Mobs/Enderman/EndermanCarrying.png" : "/StackingEntities;component/Images/Mobs/Enderman/Enderman.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (EndermiteCount != 0)
 				b.Append(string.Format("EndermiteCount:{0},", EndermiteCount));

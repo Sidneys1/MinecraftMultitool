@@ -36,11 +36,11 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 			}
 		}
 
-		public override string DisplayImage => Age >= 0 ? "/Images/Mobs/Chicken/Chicken.png" : "/Images/Mobs/Chicken/BabyChicken.png";
+		public override string DisplayImage => Age >= 0 ? "/StackingEntities;component/Images/Mobs/Chicken/Chicken.png" : "/StackingEntities;component/Images/Mobs/Chicken/BabyChicken.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (IsChickenJockey)
 				b.Append("IsChickenJockey:1,");

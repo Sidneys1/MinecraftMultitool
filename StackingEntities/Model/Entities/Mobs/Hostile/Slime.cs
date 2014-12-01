@@ -14,11 +14,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			Health = 1;
 		}
 
-		public override string DisplayImage => "/Images/Mobs/Slime/Slime.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Mobs/Slime/Slime.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			var properHealth = 1;
 

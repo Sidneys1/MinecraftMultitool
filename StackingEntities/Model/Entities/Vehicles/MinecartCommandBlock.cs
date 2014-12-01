@@ -12,15 +12,15 @@ namespace StackingEntities.Model.Entities.Vehicles
 
 		#region UI
 
-		public override string DisplayImage => "/Images/Vehicles/MinecartCommandBlock.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Vehicles/MinecartCommandBlock.png";
 
 		#endregion
 
 		#region Process
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (!string.IsNullOrWhiteSpace(Command))
 				b.Append(string.Format("Command:\"{0}\",", Command));

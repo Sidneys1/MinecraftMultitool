@@ -22,11 +22,11 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public override string Display => base.Display + (BatFlags ? "Hanging" : "Flying");
 
-		public override string DisplayImage => "/Images/Mobs/Bat/Bat.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Mobs/Bat/Bat.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (BatFlags)
 				b.Append("BatFlags:1,");

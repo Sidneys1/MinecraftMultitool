@@ -24,11 +24,11 @@ namespace StackingEntities.Model.Entities.Other
 
 		public override string Display => string.Empty;
 
-		public override string DisplayImage => "Images/Other/FireworkRocketEntity.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Other/FireworkRocketEntity.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Life != 0)
 				b.Append(string.Format("Life:{0},", Life));
@@ -37,7 +37,7 @@ namespace StackingEntities.Model.Entities.Other
 				b.Append(string.Format("LifeTime:{0},", LifeTime));
 
 
-			var generateJson = FireWorksItem.GenerateJSON(false);
+			var generateJson = FireWorksItem.GenerateJson(false);
 			generateJson = generateJson.Remove(generateJson.Length - 1, 1);
 			b.AppendFormat("FireWorksItem:{{{0}}},", generateJson);
 

@@ -247,11 +247,11 @@ namespace StackingEntities.Model.Entities.Other
 			}
 		}
 
-		public override string DisplayImage => "Images/Other/ArmorStand.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Other/ArmorStand.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			//DisabledSlots
 

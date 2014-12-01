@@ -35,7 +35,7 @@ namespace StackingEntities.Model.Items.ItemTags
 
 		public bool IsStarEnabled { get; set; } = true;
 
-		public string GenerateJSON(bool topLevel)
+		public string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder();
 

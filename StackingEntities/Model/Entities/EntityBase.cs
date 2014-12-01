@@ -64,7 +64,7 @@ namespace StackingEntities.Model.Entities
 		#region Process
 
 // ReSharper disable once InconsistentNaming
-		public virtual string GenerateJSON(bool topLevel)
+		public virtual string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder("{");
 

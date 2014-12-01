@@ -22,11 +22,11 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public override string Display => base.Display + CatType;
 
-		public override string DisplayImage => string.Format("/Images/Mobs/Ozelot/Ozelot_{0:D}.png", CatType);
+		public override string DisplayImage => string.Format("/StackingEntities;component/Images/Mobs/Ozelot/Ozelot_{0:D}.png", CatType);
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (CatType != CatType.Ocelot)
 				b.AppendFormat("CatType:{0:D},", CatType);

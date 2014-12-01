@@ -24,11 +24,11 @@ namespace StackingEntities.Model.Entities.Vehicles
 
 		public override string Display => string.Format("Minecart TNT\r\n{0}", (_tntFuse == -1 ? "Inactive" : (_tntFuse >= 20 ? (_tntFuse / 20f) + " Seconds of Fuse" : _tntFuse + " Ticks of Fuse")));
 
-		public override string DisplayImage => "Images/Vehicles/MinecartTNT.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Vehicles/MinecartTNT.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (TNTFuse != -1)
 				b.Append(string.Format("TNTFuse:{0},", TNTFuse));

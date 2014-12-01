@@ -12,7 +12,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		[Property("General", "Can Destroy")]
 		public List<BlockType> CanDestroy { get; set; } = new List<BlockType>();
 
-		public string GenerateJSON(bool topLevel = true)
+		public string GenerateJson(bool topLevel = true)
 		{
 			var b = new StringBuilder();
 

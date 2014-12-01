@@ -58,7 +58,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 				if (!Angry && Age >= 0 && !string.IsNullOrWhiteSpace(Owner))
 					name += "Tame";
 
-				return string.Format("/Images/Mobs/wolf/{0}Wolf.png", name);
+				return string.Format("/StackingEntities;component/Images/Mobs/wolf/{0}Wolf.png", name);
 			}
 		}
 
@@ -66,9 +66,9 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		#region Process
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Angry)
 				b.Append("Angry:1b,");

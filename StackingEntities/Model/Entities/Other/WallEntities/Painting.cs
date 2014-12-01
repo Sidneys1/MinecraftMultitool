@@ -22,11 +22,11 @@ namespace StackingEntities.Model.Entities.Other.WallEntities
 
 		public override string Display => !string.IsNullOrWhiteSpace(Motive) ? "Motive: " + Motive : string.Empty;
 
-		public override string DisplayImage => "Images/Other/Painting.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Other/Painting.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (!string.IsNullOrWhiteSpace(Motive))
 				b.Append(string.Format("Motive:\"{0}\",", Motive));

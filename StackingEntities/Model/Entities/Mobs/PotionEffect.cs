@@ -20,7 +20,7 @@ namespace StackingEntities.Model.Entities.Mobs
 		[DisplayName("Particles")]
 		public bool ShowParticles { get; set; } = true;
 
-		public string GenerateJSON(bool topLevel)
+		public string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder();
 

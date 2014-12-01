@@ -15,11 +15,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		}
 
 		public override string Display => base.Display +" Pigman";
-        public override string DisplayImage =>"/Images/Mobs/PigZombie/PigZombie.png";
+        public override string DisplayImage =>"/StackingEntities;component/Images/Mobs/PigZombie/PigZombie.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Health != 20)
 				b.AppendFormat("HealF:{0}f,", Health);

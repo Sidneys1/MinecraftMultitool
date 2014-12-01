@@ -22,11 +22,11 @@ namespace StackingEntities.Model.Entities.DynamicTiles
 
 		public override string Display => string.Format("Primed TNT\r\n{0} Fuse", (Fuse >= 20) ? (Fuse / 20f).ToString("0.##") + " Second" : Fuse + " Tick");
 
-		public override string DisplayImage => "Images/DynamicTiles/PrimedTNT.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/DynamicTiles/PrimedTNT.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Fuse != 80)
 				b.Append(string.Format("Fuse:{0},", Fuse));

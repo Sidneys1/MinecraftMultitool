@@ -11,7 +11,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		[DisplayName(@"Level"), MinMax(short.MinValue, short.MaxValue)]
 		public int Level { get; set; }
 
-		public string GenerateJSON(bool topLevel = true)
+		public string GenerateJson(bool topLevel = true)
 		{
 			var b = new StringBuilder();
 

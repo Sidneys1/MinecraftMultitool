@@ -10,11 +10,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			Health = 12;
 		}
 
-		public override string DisplayImage => "/Images/Mobs/CaveSpider/CaveSpider.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Mobs/CaveSpider/CaveSpider.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Health != 12)
 				b.AppendFormat("HealF:{0:00}f,", Health);

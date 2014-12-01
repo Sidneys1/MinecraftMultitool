@@ -32,7 +32,7 @@ namespace StackingEntities.Model.Items
 
 		public bool HasTags => Tag.Count > 0;
 
-		public string GenerateJSON(bool topLevel)
+		public string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder();
 
@@ -52,7 +52,7 @@ namespace StackingEntities.Model.Items
 
 			foreach (var jsonAble in Tag)
 			{
-				b2.Append(jsonAble.GenerateJSON(true));
+				b2.Append(jsonAble.GenerateJson(true));
 			}
 			b2.Remove(b2.Length - 1, 1);
 			b2.Append("},");

@@ -53,11 +53,11 @@ namespace StackingEntities.Model.Entities.ItemEntities
 			return size;
 		}
 
-		public override string DisplayImage => string.Format("/Images/Other/experience_orb_{0}.png", GetSize());
+		public override string DisplayImage => string.Format("/StackingEntities;component/Images/Other/experience_orb_{0}.png", GetSize());
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			
 			b.Append(string.Format("Value:{0},", Value));

@@ -14,11 +14,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			Health = 30;
 		}
 
-		public override string DisplayImage => Elder ? "/Images/Mobs/Guardian/ElderGuardian.png" : "/Images/Mobs/Guardian/Guardian.png";
+		public override string DisplayImage => Elder ? "/StackingEntities;component/Images/Mobs/Guardian/ElderGuardian.png" : "/StackingEntities;component/Images/Mobs/Guardian/Guardian.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Health != (Elder ? 80 : 30))
 				b.AppendFormat("HealF:{0:00}f,", Health);

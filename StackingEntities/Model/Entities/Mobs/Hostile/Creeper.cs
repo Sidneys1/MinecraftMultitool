@@ -58,11 +58,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			}
 		}
 
-		public override string DisplayImage => Powered ? "/Images/Mobs/Creeper/ChargedCreeper.png" : "/Images/Mobs/Creeper/Creeper.png";
+		public override string DisplayImage => Powered ? "/StackingEntities;component/Images/Mobs/Creeper/ChargedCreeper.png" : "/StackingEntities;component/Images/Mobs/Creeper/Creeper.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Powered)
 				b.Append("Powered:1,");

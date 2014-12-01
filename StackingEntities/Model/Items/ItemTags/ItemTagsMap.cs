@@ -12,7 +12,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		[Property("Map","Markers")]
 		public List<Decoration> Decor { get; set; } = new List<Decoration>();
 
-		public string GenerateJSON(bool topLevel)
+		public string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder();
 			if (MapScaling) b.Append("map_is_scaling:1b,");
@@ -24,7 +24,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			for (var index = 0; index < Decor.Count; index++)
 			{
 				var decoration = Decor[index];
-				b.AppendFormat("{0}:{{{1}}},", index, decoration.GenerateJSON(false));
+				b.AppendFormat("{0}:{{{1}}},", index, decoration.GenerateJson(false));
 			}
 
 			b.Remove(b.Length - 1, 1);

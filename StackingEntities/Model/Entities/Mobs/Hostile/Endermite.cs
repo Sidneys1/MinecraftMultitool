@@ -14,11 +14,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		[Property("Endermite Options", "Spawned by Player")]
 		public bool PlayerSpawned { get; set; } = false;
 
-		public override string DisplayImage => "/Images/Mobs/Endermite/Endermite.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Mobs/Endermite/Endermite.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Lifetime != 0)
 				b.Append(string.Format("Lifetime:{0},", Lifetime));

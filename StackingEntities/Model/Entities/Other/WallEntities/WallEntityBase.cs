@@ -17,9 +17,9 @@ namespace StackingEntities.Model.Entities.Other.WallEntities
 		[Property("Wall Entity Options", "Direction")]
 		public Direction Direction { get; set; }
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			b.Append(string.Format("TileX:{0},", TileX));
 			b.Append(string.Format("TileY:{0},", TileY));

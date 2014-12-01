@@ -23,11 +23,11 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public override string Display => base.Display + (Saddled ? "Saddled Pig" : "Pig");
 
-		public override string DisplayImage => Age < 0 ? "/Images/Mobs/Pig/BabyPig.png" : "/Images/Mobs/Pig/" + (Saddled ? "SaddlePig.png" : "Pig.png");
+		public override string DisplayImage => Age < 0 ? "/StackingEntities;component/Images/Mobs/Pig/BabyPig.png" : "/StackingEntities;component/Images/Mobs/Pig/" + (Saddled ? "SaddlePig.png" : "Pig.png");
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Health != 10)
 				b.AppendFormat("HealF:{0}f,", Health);

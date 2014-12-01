@@ -22,11 +22,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 		public override string Display => base.Display + (SkeletonType? "Wither Skeleton" :"Skeleton");
 
-		public override string DisplayImage => "/Images/Mobs/Skeleton/" + (SkeletonType ? "WitherSkeleton.png" : "Skeleton.png");
+		public override string DisplayImage => "/StackingEntities;component/Images/Mobs/Skeleton/" + (SkeletonType ? "WitherSkeleton.png" : "Skeleton.png");
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Health != 20)
 				b.AppendFormat("HealF:{0}f,", Health);

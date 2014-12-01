@@ -7,6 +7,6 @@
 			Type = EntityTypes.EyeOfEnderSignal;
 		}
 
-		public override string DisplayImage => "/Images/Other/EyeOfEnder.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Other/EyeOfEnder.png";
 	}
 }

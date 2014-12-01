@@ -132,7 +132,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		public int Blue { get; set; }
 
 
-		public string GenerateJSON(bool topLevel)
+		public string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder();
 

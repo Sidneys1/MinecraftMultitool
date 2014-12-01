@@ -36,9 +36,9 @@ namespace StackingEntities.Model.Entities.Mobs
 
 		public override string Display => base.Display + (Sitting ? "Sitting " : "") + (string.IsNullOrWhiteSpace(_owner)?"" :"Tamed ");
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (!string.IsNullOrWhiteSpace(Owner))
 				b.Append(string.Format("Owner:\"{0}\",", Owner));

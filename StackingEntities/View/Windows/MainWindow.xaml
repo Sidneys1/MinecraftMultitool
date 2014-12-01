@@ -2,13 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 
-	xmlns:stackingEntities="clr-namespace:StackingEntities"
     xmlns:model="clr-namespace:StackingEntities.Model"
         xmlns:viewModel="clr-namespace:StackingEntities.ViewModel"
         xmlns:entities="clr-namespace:StackingEntities.Model.Entities"
         x:Class="StackingEntities.View.Windows.MainWindow"
         Title="Minecraft Summon Generator" Height="600" Width="800" MinHeight="600" MinWidth="800"
-    ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="CommandBlock.ico" SnapsToDevicePixels="True" >
+    ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="/StackingEntities;component/CommandBlock.ico" SnapsToDevicePixels="True" >
     <Window.Resources>
         <DropShadowEffect x:Key="Blur" ShadowDepth="0" BlurRadius="5" RenderingBias="Quality"/>
 		<viewModel:EnumDescriptionConverter x:Key="enumDesc"/>
@@ -27,9 +26,9 @@
 				<Image Grid.Column="1" Grid.RowSpan="3" MaxHeight="75" Width="75" Margin="7,3" Source="{Binding DisplayImage}" Stretch="None" Effect="{DynamicResource Blur}" />
 				<TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Type, Converter={StaticResource enumDesc}}" TextTrimming="CharacterEllipsis" Margin="3" FontSize="14"/>
 				<TextBlock Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="12"/>
-				<Image Grid.Row="0" Grid.Column="0" Width="20" Height="20" Source="Images/Delete.png"  HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Remove Item" Tag="{Binding Mode=OneWay}" MouseUp="DeleteSelectedEntityButton_Clicked" Stretch="None" Effect="{DynamicResource Blur}" />
-				<Image Grid.Row="1" Grid.Column="0" Width="20" Height="20" Source="Images/Up.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Up" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityUpBtn_Clicked" />
-				<Image Grid.Row="2" Grid.Column="0" Width="20" Height="20" Source="Images/Down.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Down" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityDownBtn_Clicked" />
+				<Image Grid.Row="0" Grid.Column="0" Width="20" Height="20" Source="/StackingEntities;component/Images/Delete.png"  HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Remove Item" Tag="{Binding Mode=OneWay}" MouseUp="DeleteSelectedEntityButton_Clicked" Stretch="None" Effect="{DynamicResource Blur}" />
+				<Image Grid.Row="1" Grid.Column="0" Width="20" Height="20" Source="/StackingEntities;component/Images/Up.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Up" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityUpBtn_Clicked" />
+				<Image Grid.Row="2" Grid.Column="0" Width="20" Height="20" Source="/StackingEntities;component/Images/Down.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Down" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityDownBtn_Clicked" />
 			</Grid>
 		</DataTemplate>
 	</Window.Resources>
@@ -56,17 +55,17 @@
             </Menu.ItemsPanel>
             <MenuItem Padding="3" ToolTip="Misc. Tools" Cursor="Hand">
                 <MenuItem.Header>
-                    <Image Source="Images/Tools.png" Effect="{DynamicResource Blur}" StretchDirection="DownOnly" Stretch="None" />
+                    <Image Source="/StackingEntities;component/Images/Tools.png" Effect="{DynamicResource Blur}" StretchDirection="DownOnly" Stretch="None" />
                 </MenuItem.Header>
                 <MenuItem Header="List of Commands}" Click="CommandListDialogButton_Clicked">
                     <MenuItem.Icon>
-                        <Image Source="Images/MCB.png"/>
+                        <Image Source="/StackingEntities;component/Images/MCB.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem x:Name="AboutMenuItem" ToolTip="About..." HorizontalAlignment="Right" Cursor="Hand" Click="AboutMenuItem_Click">
                 <MenuItem.Header>
-                    <Image Effect="{DynamicResource Blur}" Source="Images/About.png" StretchDirection="DownOnly" Stretch="None" />
+                    <Image Effect="{DynamicResource Blur}" Source="/StackingEntities;component/Images/About.png" StretchDirection="DownOnly" Stretch="None" />
                 </MenuItem.Header>
             </MenuItem>
         </Menu>

@@ -22,11 +22,11 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public override string Display => base.Display + RabbitType.Description() + " Rabbit";
 
-		public override string DisplayImage => "/Images/Mobs/Rabbit/Rabbit.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Mobs/Rabbit/Rabbit.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (RabbitType != RabbitTypes.DontCare)
 				b.AppendFormat("RabbitType:{0:D},", RabbitType);

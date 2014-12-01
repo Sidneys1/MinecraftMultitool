@@ -13,7 +13,7 @@ namespace StackingEntities.Model.Entities
 		public double Base { get; set; }
 
 
-		public string GenerateJSON(bool topLevel)
+		public string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder();
 

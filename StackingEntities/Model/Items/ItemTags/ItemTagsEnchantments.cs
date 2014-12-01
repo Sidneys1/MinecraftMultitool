@@ -15,7 +15,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		[Property("Enchanting", "Repair Cost")]
 		public int RepairCost { get; set; }
 
-		public string GenerateJSON(bool topLevel = true)
+		public string GenerateJson(bool topLevel = true)
 		{
 			var b = new StringBuilder();
 
@@ -29,7 +29,7 @@ namespace StackingEntities.Model.Items.ItemTags
 				for (var index = 0; index < StoredEnchantments.Count; index++)
 				{
 					var storedEnchantment = StoredEnchantments[index];
-					b.AppendFormat("{0}:{{{1}}}", index, storedEnchantment.GenerateJSON(false));
+					b.AppendFormat("{0}:{{{1}}}", index, storedEnchantment.GenerateJson(false));
 				}
 			}
 
@@ -40,7 +40,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			for (var index = 0; index < Ench.Count; index++)
 			{
 				var enchantment = Ench[index];
-				b.AppendFormat("{0}:{{{1}}}", index, enchantment.GenerateJSON(false));
+				b.AppendFormat("{0}:{{{1}}}", index, enchantment.GenerateJson(false));
 			}
 
 			return b.ToString();

@@ -50,15 +50,15 @@ namespace StackingEntities.Model.Entities.Vehicles
 
 		public override string Display => "Minecart" + (CustomDisplayTile ? " " + DisplayTile : "");
 
-		public override string DisplayImage => "/Images/Vehicles/Minecart.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Vehicles/Minecart.png";
 
 		#endregion
 
 		#region Process
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (!string.IsNullOrWhiteSpace(CustomName))
 				b.Append(string.Format("CustomName:\"{0}\",", CustomName));

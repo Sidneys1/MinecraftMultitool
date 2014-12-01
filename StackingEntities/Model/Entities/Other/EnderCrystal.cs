@@ -4,6 +4,6 @@
 	{
 		public EnderCrystal()
 		{ Type = EntityTypes.EnderCrystal;}
-		public override string DisplayImage => "/Images/Other/EnderCrystal.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Other/EnderCrystal.png";
 	}
 }

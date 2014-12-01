@@ -495,7 +495,7 @@ namespace StackingEntities.View.Windows
 				b.Append(_model.Y + " ");
 				b.Append(_model.Z + " ");
 
-				var data = new StringBuilder(_model.Entities[0].GenerateJSON(true));
+				var data = new StringBuilder(_model.Entities[0].GenerateJson(true));
 
 				foreach (var ent in _model.Entities.Where(ent => ent != _model.Entities[0]))
 				{
@@ -503,7 +503,7 @@ namespace StackingEntities.View.Windows
 						data.Append(',');
 
 					data.Append("Riding:");
-					data.Append(ent.GenerateJSON(false));
+					data.Append(ent.GenerateJson(false));
 				}
 
 				if (data[data.Length - 1] == ',')

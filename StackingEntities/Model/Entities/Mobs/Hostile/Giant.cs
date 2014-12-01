@@ -10,11 +10,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			Health = 100;
 		}
 
-		public override string DisplayImage => "/Images/Mobs/Zombie/Zombie.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Mobs/Zombie/Zombie.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Health != 100)
 				b.AppendFormat("HealF:{0:00}f,", Health);

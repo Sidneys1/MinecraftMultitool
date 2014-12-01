@@ -130,9 +130,9 @@ namespace StackingEntities.Model.Entities.Mobs
 
 		#region Process
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (!string.IsNullOrWhiteSpace(CustomName))
 				b.AppendFormat("CustomName:\"{0}\",", JsonTools.EscapeStringValue(CustomName));
@@ -145,11 +145,11 @@ namespace StackingEntities.Model.Entities.Mobs
 			if (NoAi)
 				b.Append("NoAI:1b,");
 
-			var holding = Holding.GenerateJSON(false);
-			var boots = Boots.GenerateJSON(false);
-			var leggings = Leggings.GenerateJSON(false);
-			var chest = Chestplate.GenerateJSON(false);
-			var helm = Helmet.GenerateJSON(false);
+			var holding = Holding.GenerateJson(false);
+			var boots = Boots.GenerateJson(false);
+			var leggings = Leggings.GenerateJson(false);
+			var chest = Chestplate.GenerateJson(false);
+			var helm = Helmet.GenerateJson(false);
 
 			if (holding != string.Empty)
 				holding = holding.Remove(holding.Length - 1, 1);
@@ -177,7 +177,7 @@ namespace StackingEntities.Model.Entities.Mobs
 				{
 					var attribute = PotionEffects[i];
 
-					var generateJson = attribute.GenerateJSON(false);
+					var generateJson = attribute.GenerateJson(false);
 					if (!string.IsNullOrWhiteSpace(generateJson))
 						aBuilder.AppendFormat("{0}:{{{1}}},", i, generateJson);
 				}
@@ -196,7 +196,7 @@ namespace StackingEntities.Model.Entities.Mobs
 				{
 					var attribute = Attributes[i];
 
-					var generateJson = attribute.GenerateJSON(false);
+					var generateJson = attribute.GenerateJson(false);
 					if (!string.IsNullOrWhiteSpace(generateJson))
 						aBuilder.AppendFormat("{0}:{{{1}}},", i, generateJson);
 				}

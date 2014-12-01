@@ -29,11 +29,11 @@ namespace StackingEntities.Model.Entities.Vehicles
 
 		public override string Display => string.Format("Minecart Furnace\r\n{0} Fuel", (Fuel == 0 ? "No" : (Fuel >= 20 ? (Fuel/20f) + " Seconds of" : Fuel + " Ticks of")));
 
-		public override string DisplayImage => "Images/Vehicles/MinecartFurnace.png";
+		public override string DisplayImage => "/StackingEntities;component/Images/Vehicles/MinecartFurnace.png";
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Math.Abs(PushX) > 0)
 				b.Append(string.Format("PushX:{0},", PushX));

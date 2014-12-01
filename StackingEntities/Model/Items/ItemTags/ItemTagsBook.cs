@@ -19,7 +19,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		[Property("Book", "Pages")]
 		public List<Page> Pages { get; set; } = new List<Page>(); 
 
-		public string GenerateJSON(bool topLevel)
+		public string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder();
 

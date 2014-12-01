@@ -16,9 +16,9 @@ namespace StackingEntities.Model.Entities.ItemEntities
 			Health = 5;
 		}
 
-		public override string GenerateJSON(bool topLevel)
+		public override string GenerateJson(bool topLevel)
 		{
-			var b = new StringBuilder(base.GenerateJSON(topLevel));
+			var b = new StringBuilder(base.GenerateJson(topLevel));
 
 			if (Age != 0)
 				b.AppendFormat("Age:{0},", Age);

@@ -37,7 +37,7 @@
                 </Image>
                 <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Type}" TextTrimming="CharacterEllipsis" Margin="3" FontSize="16"/>
                 <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="12"/>
-                <Image Grid.Row="0" Grid.Column="1" Width="20" Height="20" Source="Images/Delete.png" Margin="0,-5,-5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ImageButton2}" />
+                <Image Grid.Row="0" Grid.Column="1" Width="20" Height="20" Source="/StackingEntities;component/Images/Delete.png" Margin="0,-5,-5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ImageButton2}" />
             </Grid>
         </DataTemplate>
         <Style x:Key="ImageButton" TargetType="{x:Type Image}"/>
