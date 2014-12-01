@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Text;
 
 namespace StackingEntities.Items.ItemTags
@@ -28,17 +27,6 @@ namespace StackingEntities.Items.ItemTags
 			b.Append(']');
 
 			return b.ToString();
-		}
-	}
-
-	public class BlockType
-	{
-		[DisplayName(@"Block ID")]
-		public string Id { get; set; }
-
-		public override string ToString()
-		{
-			return Id;
 		}
 	}
 }

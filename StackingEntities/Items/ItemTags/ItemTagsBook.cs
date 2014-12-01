@@ -58,15 +58,4 @@ namespace StackingEntities.Items.ItemTags
 		CopyOfCopy,
 		Tattered
 	}
-
-	public class Page
-	{
-		[DisplayName(@"Text")]
-		public string Text { get; set; }
-
-		public override string ToString()
-		{
-			return Text;
-		}
-	}
 }

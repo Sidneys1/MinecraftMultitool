@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using StackingEntities.Items;
 using StackingEntities.Items.ItemTags;
@@ -34,47 +35,65 @@ namespace StackingEntities.Entities.Other
 
 		#region Pose
 
-		[Property("Body Pose", "X Rotation"), MinMax(0, 359)]
-		public double BodyX { get; set; }
-		[Property("Body Pose", "Y Rotation"), MinMax(0, 359)]
-		public double BodyY { get; set; }
-		[Property("Body Pose", "Z Rotation"), MinMax(0, 359)]
-		public double BodyZ { get; set; }
+		[Property("Pose", "Body Pose", fixedSize: true, dgRowPath: "Name")]
+		public List<SimpleDouble> BodyPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
-		[Property("Head Pose", "X Rotation"), MinMax(0, 359)]
-		public double HeadX { get; set; }
-		[Property("Head Pose", "Y Rotation"), MinMax(0, 359)]
-		public double HeadY { get; set; }
-		[Property("Head Pose", "Z Rotation"), MinMax(0, 359)]
-		public double HeadZ { get; set; }
+		//[Property("Body Pose", "X Rotation"), MinMax(0, 359)]
+		//public double BodyX { get; set; }
+		//[Property("Body Pose", "Y Rotation"), MinMax(0, 359)]
+		//public double BodyY { get; set; }
+		//[Property("Body Pose", "Z Rotation"), MinMax(0, 359)]
+		//public double BodyZ { get; set; }
 
-		[Property("Left Arm Pose", "X Rotation"), MinMax(0, 359)]
-		public double LeftArmX { get; set; }
-		[Property("Left Arm Pose", "Y Rotation"), MinMax(0, 359)]
-		public double LeftArmY { get; set; }
-		[Property("Left Arm Pose", "Z Rotation"), MinMax(0, 359)]
-		public double LeftArmZ { get; set; }
+		[Property("Pose", "Head Pose", fixedSize: true, dgRowPath: "Name")]
+		public List<SimpleDouble> HeadPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
-		[Property("Right Arm Pose", "X Rotation"), MinMax(0, 359)]
-		public double RightArmX { get; set; }
-		[Property("Right Arm Pose", "Y Rotation"), MinMax(0, 359)]
-		public double RightArmY { get; set; }
-		[Property("Right Arm Pose", "Z Rotation"), MinMax(0, 359)]
-		public double RightArmZ { get; set; }
+		//[Property("Head Pose", "X Rotation"), MinMax(0, 359)]
+		//public double HeadX { get; set; }
+		//[Property("Head Pose", "Y Rotation"), MinMax(0, 359)]
+		//public double HeadY { get; set; }
+		//[Property("Head Pose", "Z Rotation"), MinMax(0, 359)]
+		//public double HeadZ { get; set; }
 
-		[Property("Left Leg Pose", "X Rotation"), MinMax(0, 359)]
-		public double LeftLegX { get; set; }
-		[Property("Left Leg Pose", "Y Rotation"), MinMax(0, 359)]
-		public double LeftLegY { get; set; }
-		[Property("Left Leg Pose", "Z Rotation"), MinMax(0, 359)]
-		public double LeftLegZ { get; set; }
+		[Property("Pose", "Left Arm Pose", fixedSize: true, dgRowPath: "Name")]
+		public List<SimpleDouble> LeftArmPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
-		[Property("Right Leg Pose", "X Rotation"), MinMax(0, 359)]
-		public double RightLegX { get; set; }
-		[Property("Right Leg Pose", "Y Rotation"), MinMax(0, 359)]
-		public double RightLegY { get; set; }
-		[Property("Right Leg Pose", "Z Rotation"), MinMax(0, 359)]
-		public double RightLegZ { get; set; } 
+		//[Property("Left Arm Pose", "X Rotation"), MinMax(0, 359)]
+		//public double LeftArmX { get; set; }
+		//[Property("Left Arm Pose", "Y Rotation"), MinMax(0, 359)]
+		//public double LeftArmY { get; set; }
+		//[Property("Left Arm Pose", "Z Rotation"), MinMax(0, 359)]
+		//public double LeftArmZ { get; set; }
+
+		[Property("Pose", "Right Arm Pose", fixedSize: true, dgRowPath: "Name")]
+		public List<SimpleDouble> RightArmPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
+
+		//[Property("Right Arm Pose", "X Rotation"), MinMax(0, 359)]
+		//public double RightArmX { get; set; }
+		//[Property("Right Arm Pose", "Y Rotation"), MinMax(0, 359)]
+		//public double RightArmY { get; set; }
+		//[Property("Right Arm Pose", "Z Rotation"), MinMax(0, 359)]
+		//public double RightArmZ { get; set; }
+
+		[Property("Pose", "Left Leg Pose", fixedSize: true, dgRowPath: "Name")]
+		public List<SimpleDouble> LeftLegPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
+
+		//[Property("Left Leg Pose", "X Rotation"), MinMax(0, 359)]
+		//public double LeftLegX { get; set; }
+		//[Property("Left Leg Pose", "Y Rotation"), MinMax(0, 359)]
+		//public double LeftLegY { get; set; }
+		//[Property("Left Leg Pose", "Z Rotation"), MinMax(0, 359)]
+		//public double LeftLegZ { get; set; }
+
+		[Property("Pose", "Right Leg Pose", fixedSize: true, dgRowPath: "Name")]
+		public List<SimpleDouble> RightLegPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
+
+		//[Property("Right Leg Pose", "X Rotation"), MinMax(0, 359)]
+		//public double RightLegX { get; set; }
+		//[Property("Right Leg Pose", "Y Rotation"), MinMax(0, 359)]
+		//public double RightLegY { get; set; }
+		//[Property("Right Leg Pose", "Z Rotation"), MinMax(0, 359)]
+		//public double RightLegZ { get; set; } 
 
 		#endregion
 
@@ -290,18 +309,18 @@ namespace StackingEntities.Entities.Other
 			var poseInner = new StringBuilder();
 
 			const float tol = 0.001f;
-			if (Math.Abs(BodyX) > tol || Math.Abs(BodyY) > tol || Math.Abs(BodyZ) > tol)
-				poseInner.AppendFormat("Body:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", BodyX, BodyY, BodyZ);
-			if (Math.Abs(LeftArmX) > tol || Math.Abs(LeftArmY) > tol || Math.Abs(LeftArmZ) > tol)
-				poseInner.AppendFormat("LeftArm:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", LeftArmX, LeftArmY, LeftArmZ);
-			if (Math.Abs(RightArmX) > tol || Math.Abs(RightArmY) > tol || Math.Abs(RightArmZ) > tol)
-				poseInner.AppendFormat("RightArm:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", RightArmX, RightArmY, RightArmZ);
-			if (Math.Abs(LeftLegX) > tol || Math.Abs(LeftLegY) > tol || Math.Abs(LeftLegZ) > tol)
-				poseInner.AppendFormat("LeftLeg:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", LeftLegX, LeftLegY, LeftLegZ);
-			if (Math.Abs(RightLegX) > tol || Math.Abs(RightLegY) > tol || Math.Abs(RightLegZ) > tol)
-				poseInner.AppendFormat("RightLeg:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", RightLegX, RightLegY, RightLegZ);
-			if (Math.Abs(HeadX) > tol || Math.Abs(HeadY) > tol || Math.Abs(HeadZ) > tol)
-				poseInner.AppendFormat("Head:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", HeadX, HeadY, HeadZ);
+			if (Math.Abs(BodyPose[0].Value) > tol || Math.Abs(BodyPose[1].Value) > tol || Math.Abs(BodyPose[2].Value) > tol)
+				poseInner.AppendFormat("Body:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", BodyPose[0].Value, BodyPose[1].Value, BodyPose[2].Value);
+			if (Math.Abs(LeftArmPose[0].Value) > tol || Math.Abs(LeftArmPose[1].Value) > tol || Math.Abs(LeftArmPose[2].Value) > tol)
+				poseInner.AppendFormat("LeftArm:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", LeftArmPose[0].Value, LeftArmPose[1].Value, LeftArmPose[2].Value);
+			if (Math.Abs(RightArmPose[0].Value) > tol || Math.Abs(RightArmPose[1].Value) > tol || Math.Abs(RightArmPose[2].Value) > tol)
+				poseInner.AppendFormat("RightArm:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", RightArmPose[0].Value, RightArmPose[1].Value, RightArmPose[2].Value);
+			if (Math.Abs(LeftLegPose[0].Value) > tol || Math.Abs(LeftLegPose[1].Value) > tol || Math.Abs(LeftLegPose[2].Value) > tol)
+				poseInner.AppendFormat("LeftLeg:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", LeftLegPose[0].Value, LeftLegPose[1].Value, LeftLegPose[2].Value);
+			if (Math.Abs(RightLegPose[0].Value) > tol || Math.Abs(RightLegPose[1].Value) > tol || Math.Abs(RightLegPose[2].Value) > tol)
+				poseInner.AppendFormat("RightLeg:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", RightLegPose[0].Value, RightLegPose[1].Value, RightLegPose[2].Value);
+			if (Math.Abs(HeadPose[0].Value) > tol || Math.Abs(HeadPose[1].Value) > tol || Math.Abs(HeadPose[2].Value) > tol)
+				poseInner.AppendFormat("Head:[{0:0.##}f,{1:0.##}f,{2:0.##}f],", HeadPose[0].Value, HeadPose[1].Value, HeadPose[2].Value);
 
 			if (poseInner.Length <= 0) return b.ToString();
 			poseInner.Remove(poseInner.Length - 1, 1);

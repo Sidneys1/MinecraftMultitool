@@ -86,11 +86,11 @@ namespace StackingEntities.Entities
 		//[Description("Thrown Potion")]
 		//ThrownPotion,
 		//Villager,
-		//[Description("Iron Golem")]
-		//VillagerGolem,
+		[Description("Iron Golem")]
+		VillagerGolem,
 		//Witch,
-		//[Description("The Wither")]
-		//WitherBoss,
+		[Description("The Wither")]
+		WitherBoss,
 		//[Description("Wither Skull (Projectile)")]
 		//WitherSkull,
 		Wolf,

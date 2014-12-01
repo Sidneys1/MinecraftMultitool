@@ -40,6 +40,14 @@ namespace StackingEntities
 		{
 			switch (_model.EType)
 			{
+				case EntityTypes.VillagerGolem:
+					_model.Entities.Insert(0, new VillagerGolem());
+					break;
+
+				case EntityTypes.WitherBoss:
+					_model.Entities.Insert(0, new WitherBoss());
+					break;
+
 				case EntityTypes.Skeleton:
 					_model.Entities.Insert(0, new Skeleton());
 					break;
