@@ -107,174 +107,174 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AboutDialog.cs">
-      <DependentUpon>AboutDialog.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CommandEntry.cs">
-      <DependentUpon>CommandEntry.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\ItemControl.cs">
+    <Compile Include="Model\DataModel.cs" />
+    <Compile Include="Model\Entities\Attribute.cs" />
+    <Compile Include="Model\Entities\DynamicTiles\FallingSand.cs" />
+    <Compile Include="Model\Entities\DynamicTiles\PrimedTNT.cs" />
+    <Compile Include="Model\Entities\EntityBase.cs" />
+    <Compile Include="Model\Entities\EntityTypes.cs" />
+    <Compile Include="Model\Entities\ItemEntities\DroppedItem.cs" />
+    <Compile Include="Model\Entities\ItemEntities\ItemEntityBase.cs" />
+    <Compile Include="Model\Entities\ItemEntities\XpOrb.cs" />
+    <Compile Include="Model\Entities\Mobs\BreedableMobBase.cs" />
+    <Compile Include="Model\Entities\Mobs\Friendly\Bat.cs" />
+    <Compile Include="Model\Entities\Mobs\Friendly\Chicken.cs" />
+    <Compile Include="Model\Entities\Mobs\Friendly\Cow.cs" />
+    <Compile Include="Model\Entities\Mobs\Friendly\Ozelot.cs" />
+    <Compile Include="Model\Entities\Mobs\Friendly\Pig.cs" />
+    <Compile Include="Model\Entities\Mobs\Friendly\Rabbit.cs" />
+    <Compile Include="Model\Entities\Mobs\Friendly\Sheep.cs" />
+    <Compile Include="Model\Entities\Mobs\Friendly\VillagerGolem.cs" />
+    <Compile Include="Model\Entities\Mobs\Friendly\Wolf.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Blaze.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\CaveSpider.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Creeper.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\EnderDragon.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Enderman.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Endermite.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Ghast.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Giant.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Guardian.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\LavaSlime.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\PigZombie.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Skeleton.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Slime.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\WitherBoss.cs" />
+    <Compile Include="Model\Entities\Mobs\Hostile\Zombie.cs" />
+    <Compile Include="Model\Entities\Mobs\MobBase.cs" />
+    <Compile Include="Model\Entities\Mobs\PotionEffect.cs" />
+    <Compile Include="Model\Entities\Mobs\TameableMobBase.cs" />
+    <Compile Include="Model\Entities\Other\ArmorStand.cs" />
+    <Compile Include="Model\Entities\Other\EnderCrystal.cs" />
+    <Compile Include="Model\Entities\Other\EyeOfEnder.cs" />
+    <Compile Include="Model\Entities\Other\FireworkRocketEntity.cs" />
+    <Compile Include="Model\Entities\Other\WallEntities\ItemFrame.cs" />
+    <Compile Include="Model\Entities\Other\WallEntities\Painting.cs" />
+    <Compile Include="Model\Entities\Other\WallEntities\WallEntityBase.cs" />
+    <Compile Include="Model\Entities\Vehicles\Boat.cs" />
+    <Compile Include="Model\Entities\Vehicles\InventoryMinecart.cs" />
+    <Compile Include="Model\Entities\Vehicles\Minecart.cs" />
+    <Compile Include="Model\Entities\Vehicles\MinecartCommandBlock.cs" />
+    <Compile Include="Model\Entities\Vehicles\MinecartFurnace.cs" />
+    <Compile Include="Model\Entities\Vehicles\MinecartTNT.cs" />
+    <Compile Include="Model\IJsonAble.cs" />
+    <Compile Include="Model\Items\Item.cs" />
+    <Compile Include="Model\Items\ItemTags\BlockType.cs" />
+    <Compile Include="Model\Items\ItemTags\Decoration.cs" />
+    <Compile Include="Model\Items\ItemTags\Enchantment.cs" />
+    <Compile Include="Model\Items\ItemTags\ItemTagsBlock.cs" />
+    <Compile Include="Model\Items\ItemTags\ItemTagsBook.cs" />
+    <Compile Include="Model\Items\ItemTags\ItemTagsDisplay.cs" />
+    <Compile Include="Model\Items\ItemTags\ItemTagsEnchantments.cs" />
+    <Compile Include="Model\Items\ItemTags\ItemTagsFireworkStar.cs" />
+    <Compile Include="Model\Items\ItemTags\ItemTagsGeneral.cs" />
+    <Compile Include="Model\Items\ItemTags\ItemTagsMap.cs" />
+    <Compile Include="Model\Items\ItemTags\Page.cs" />
+    <Compile Include="Model\JSONTools.cs" />
+    <Compile Include="Model\SimpleDouble.cs" />
+    <Compile Include="Properties\Annotations\Annotations.cs" />
+    <Compile Include="Properties\Annotations\AspDataFieldAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspDataFieldsAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMethodPropertyAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcActionAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcActionSelectorAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcAreaAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcAreaMasterLocationFormatAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcAreaPartialViewLocationFormatAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcAreaViewLocationFormatAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcControllerAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcDisplayTemplateAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcEditorTemplateAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcMasterAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcMasterLocationFormatAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcModelTypeAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcPartialViewAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcPartialViewLocationFormatAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcSupressViewErrorAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcTemplateAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcViewAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspMvcViewLocationFormatAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspRequiredAttributeAttribute.cs" />
+    <Compile Include="Properties\Annotations\AspTypePropertyAttribute.cs" />
+    <Compile Include="Properties\Annotations\AssertionConditionAttribute.cs" />
+    <Compile Include="Properties\Annotations\AssertionMethodAttribute.cs" />
+    <Compile Include="Properties\Annotations\BaseTypeRequiredAttribute.cs" />
+    <Compile Include="Properties\Annotations\CanBeNullAttribute.cs" />
+    <Compile Include="Properties\Annotations\CannotApplyEqualityOperatorAttribute.cs" />
+    <Compile Include="Properties\Annotations\CollectionAccessAttribute.cs" />
+    <Compile Include="Properties\Annotations\ContractAnnotationAttribute.cs" />
+    <Compile Include="Properties\Annotations\HtmlAttributeValueAttribute.cs" />
+    <Compile Include="Properties\Annotations\HtmlElementAttributesAttribute.cs" />
+    <Compile Include="Properties\Annotations\InstantHandleAttribute.cs" />
+    <Compile Include="Properties\Annotations\InvokerParameterNameAttribute.cs" />
+    <Compile Include="Properties\Annotations\ItemCanBeNullAttribute.cs" />
+    <Compile Include="Properties\Annotations\ItemNotNullAttribute.cs" />
+    <Compile Include="Properties\Annotations\LinqTunnelAttribute.cs" />
+    <Compile Include="Properties\Annotations\LocalizationRequiredAttribute.cs" />
+    <Compile Include="Properties\Annotations\MeansImplicitUseAttribute.cs" />
+    <Compile Include="Properties\Annotations\NoEnumerationAttribute.cs" />
+    <Compile Include="Properties\Annotations\NotifyPropertyChangedInvocatorAttribute.cs" />
+    <Compile Include="Properties\Annotations\NotNullAttribute.cs" />
+    <Compile Include="Properties\Annotations\PathReferenceAttribute.cs" />
+    <Compile Include="Properties\Annotations\PublicAPIAttribute.cs" />
+    <Compile Include="Properties\Annotations\PureAttribute.cs" />
+    <Compile Include="Properties\Annotations\RazorHelperCommonAttribute.cs" />
+    <Compile Include="Properties\Annotations\RazorImportNamespaceAttribute.cs" />
+    <Compile Include="Properties\Annotations\RazorLayoutAttribute.cs" />
+    <Compile Include="Properties\Annotations\RazorSectionAttribute.cs" />
+    <Compile Include="Properties\Annotations\RazorWriteLiteralMethodAttribute.cs" />
+    <Compile Include="Properties\Annotations\RazorWriteMethodAttribute.cs" />
+    <Compile Include="Properties\Annotations\RazorWriteMethodParameterAttribute.cs" />
+    <Compile Include="Properties\Annotations\RegexPatternAttribute.cs" />
+    <Compile Include="Properties\Annotations\StringFormatMethodAttribute.cs" />
+    <Compile Include="Properties\Annotations\TerminatesProgramAttribute.cs" />
+    <Compile Include="Properties\Annotations\UsedImplicitlyAttribute.cs" />
+    <Compile Include="Properties\Annotations\ValueProviderAttribute.cs" />
+    <Compile Include="Properties\Annotations\XamlItemBindingOfItemsControlAttribute.cs" />
+    <Compile Include="Properties\Annotations\XamlItemsControlAttribute.cs" />
+    <Compile Include="ViewModel\Displayable.cs" />
+    <Compile Include="ViewModel\DisplayOption.cs" />
+    <Compile Include="ViewModel\EnumDescriptionConverter.cs" />
+    <Compile Include="ViewModel\EnumerationExtension.cs" />
+    <Compile Include="ViewModel\EnumHelper.cs" />
+    <Compile Include="ViewModel\MinMaxAttribute.cs" />
+    <Compile Include="ViewModel\MultilineStringAttribute.cs" />
+    <Compile Include="ViewModel\PropertyAttribute.cs" />
+    <Compile Include="ViewModel\ValueDescription.cs" />
+    <Compile Include="View\Controls\ItemControl.cs">
       <DependentUpon>ItemControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Displayable.cs" />
-    <Compile Include="DisplayOption.cs" />
-    <Compile Include="Entities\Attribute.cs" />
-    <Compile Include="Entities\DynamicTiles\FallingSand.cs" />
-    <Compile Include="Entities\DynamicTiles\PrimedTNT.cs" />
-    <Compile Include="Entities\EntityBase.cs" />
-    <Compile Include="Entities\EntityTypes.cs" />
-    <Compile Include="Entities\ItemEntities\DroppedItem.cs" />
-    <Compile Include="Entities\ItemEntities\ItemEntityBase.cs" />
-    <Compile Include="Entities\ItemEntities\XpOrb.cs" />
-    <Compile Include="Entities\Mobs\BreedableMobBase.cs" />
-    <Compile Include="Entities\Mobs\Friendly\Bat.cs" />
-    <Compile Include="Entities\Mobs\Friendly\Chicken.cs" />
-    <Compile Include="Entities\Mobs\Friendly\Cow.cs" />
-    <Compile Include="Entities\Mobs\Friendly\Ozelot.cs" />
-    <Compile Include="Entities\Mobs\Friendly\Pig.cs" />
-    <Compile Include="Entities\Mobs\Friendly\Rabbit.cs" />
-    <Compile Include="Entities\Mobs\Friendly\Sheep.cs" />
-    <Compile Include="Entities\Mobs\Friendly\VillagerGolem.cs" />
-    <Compile Include="Entities\Mobs\Friendly\Wolf.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Blaze.cs" />
-    <Compile Include="Entities\Mobs\Hostile\CaveSpider.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Creeper.cs" />
-    <Compile Include="Entities\Mobs\Hostile\EnderDragon.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Enderman.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Endermite.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Ghast.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Giant.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Guardian.cs" />
-    <Compile Include="Entities\Mobs\Hostile\LavaSlime.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Skeleton.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Slime.cs" />
-    <Compile Include="Entities\Mobs\Hostile\WitherBoss.cs" />
-    <Compile Include="Entities\Mobs\Hostile\Zombie.cs" />
-    <Compile Include="Entities\Mobs\MobBase.cs" />
-    <Compile Include="Entities\Mobs\PotionEffect.cs" />
-    <Compile Include="Entities\Mobs\TameableMobBase.cs" />
-    <Compile Include="Entities\Other\ArmorStand.cs" />
-    <Compile Include="Entities\Other\EnderCrystal.cs" />
-    <Compile Include="Entities\Other\EyeOfEnder.cs" />
-    <Compile Include="Entities\Other\FireworkRocketEntity.cs" />
-    <Compile Include="Entities\Other\WallEntities\ItemFrame.cs" />
-    <Compile Include="Entities\Other\WallEntities\Painting.cs" />
-    <Compile Include="Entities\Other\WallEntities\WallEntityBase.cs" />
-    <Compile Include="Entities\Vehicles\Boat.cs" />
-    <Compile Include="Entities\Vehicles\InventoryMinecart.cs" />
-    <Compile Include="Entities\Vehicles\Minecart.cs" />
-    <Compile Include="Entities\Vehicles\MinecartCommandBlock.cs" />
-    <Compile Include="Entities\Vehicles\MinecartFurnace.cs" />
-    <Compile Include="Entities\Vehicles\MinecartTNT.cs" />
-    <Compile Include="EnumHelper.cs" />
-    <Compile Include="EnumDescriptionConverter.cs" />
-    <Compile Include="EnumerationExtension.cs" />
-    <Compile Include="Helpers.cs" />
-    <Compile Include="IJsonAble.cs" />
-    <Compile Include="Items\Item.cs" />
-    <Compile Include="Items\ItemTags\BlockType.cs" />
-    <Compile Include="Items\ItemTags\Decoration.cs" />
-    <Compile Include="Items\ItemTags\Enchantment.cs" />
-    <Compile Include="Items\ItemTags\ItemTagsBlock.cs" />
-    <Compile Include="Items\ItemTags\ItemTagsBook.cs" />
-    <Compile Include="Items\ItemTags\ItemTagsDisplay.cs" />
-    <Compile Include="Items\ItemTags\ItemTagsEnchantments.cs" />
-    <Compile Include="Items\ItemTags\ItemTagsFireworkStar.cs" />
-    <Compile Include="Items\ItemTags\ItemTagsGeneral.cs" />
-    <Compile Include="Items\ItemTags\ItemTagsMap.cs" />
-    <Compile Include="Items\ItemTags\Page.cs" />
-    <Compile Include="JSONTools.cs" />
-    <Compile Include="MinMaxAttribute.cs" />
-    <Compile Include="MultilineStringAttribute.cs" />
-    <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Properties\AspChildControlTypeAttribute.cs" />
-    <Compile Include="Properties\AspDataFieldAttribute.cs" />
-    <Compile Include="Properties\AspDataFieldsAttribute.cs" />
-    <Compile Include="Properties\AspMethodPropertyAttribute.cs" />
-    <Compile Include="Properties\AspMvcActionAttribute.cs" />
-    <Compile Include="Properties\AspMvcActionSelectorAttribute.cs" />
-    <Compile Include="Properties\AspMvcAreaAttribute.cs" />
-    <Compile Include="Properties\AspMvcAreaMasterLocationFormatAttribute.cs" />
-    <Compile Include="Properties\AspMvcAreaPartialViewLocationFormatAttribute.cs" />
-    <Compile Include="Properties\AspMvcAreaViewLocationFormatAttribute.cs" />
-    <Compile Include="Properties\AspMvcControllerAttribute.cs" />
-    <Compile Include="Properties\AspMvcDisplayTemplateAttribute.cs" />
-    <Compile Include="Properties\AspMvcEditorTemplateAttribute.cs" />
-    <Compile Include="Properties\AspMvcMasterAttribute.cs" />
-    <Compile Include="Properties\AspMvcMasterLocationFormatAttribute.cs" />
-    <Compile Include="Properties\AspMvcModelTypeAttribute.cs" />
-    <Compile Include="Properties\AspMvcPartialViewAttribute.cs" />
-    <Compile Include="Properties\AspMvcPartialViewLocationFormatAttribute.cs" />
-    <Compile Include="Properties\AspMvcSupressViewErrorAttribute.cs" />
-    <Compile Include="Properties\AspMvcTemplateAttribute.cs" />
-    <Compile Include="Properties\AspMvcViewAttribute.cs" />
-    <Compile Include="Properties\AspMvcViewLocationFormatAttribute.cs" />
-    <Compile Include="Properties\AspRequiredAttributeAttribute.cs" />
-    <Compile Include="Properties\AspTypePropertyAttribute.cs" />
-    <Compile Include="Properties\AssertionConditionAttribute.cs" />
-    <Compile Include="Properties\AssertionMethodAttribute.cs" />
-    <Compile Include="Properties\BaseTypeRequiredAttribute.cs" />
-    <Compile Include="Properties\CanBeNullAttribute.cs" />
-    <Compile Include="Properties\CannotApplyEqualityOperatorAttribute.cs" />
-    <Compile Include="Properties\CollectionAccessAttribute.cs" />
-    <Compile Include="Properties\ContractAnnotationAttribute.cs" />
-    <Compile Include="Properties\HtmlAttributeValueAttribute.cs" />
-    <Compile Include="Properties\HtmlElementAttributesAttribute.cs" />
-    <Compile Include="Properties\InstantHandleAttribute.cs" />
-    <Compile Include="Properties\InvokerParameterNameAttribute.cs" />
-    <Compile Include="Properties\ItemCanBeNullAttribute.cs" />
-    <Compile Include="Properties\ItemNotNullAttribute.cs" />
-    <Compile Include="Properties\LinqTunnelAttribute.cs" />
-    <Compile Include="Properties\LocalizationRequiredAttribute.cs" />
-    <Compile Include="Properties\MeansImplicitUseAttribute.cs" />
-    <Compile Include="Properties\NoEnumerationAttribute.cs" />
-    <Compile Include="Properties\NotifyPropertyChangedInvocatorAttribute.cs" />
-    <Compile Include="Properties\NotNullAttribute.cs" />
-    <Compile Include="Properties\PathReferenceAttribute.cs" />
-    <Compile Include="Properties\PublicAPIAttribute.cs" />
-    <Compile Include="Properties\PureAttribute.cs" />
-    <Compile Include="Properties\RazorHelperCommonAttribute.cs" />
-    <Compile Include="Properties\RazorImportNamespaceAttribute.cs" />
-    <Compile Include="Properties\RazorLayoutAttribute.cs" />
-    <Compile Include="Properties\RazorSectionAttribute.cs" />
-    <Compile Include="Properties\RazorWriteLiteralMethodAttribute.cs" />
-    <Compile Include="Properties\RazorWriteMethodAttribute.cs" />
-    <Compile Include="Properties\RazorWriteMethodParameterAttribute.cs" />
-    <Compile Include="Properties\RegexPatternAttribute.cs" />
-    <Compile Include="Properties\StringFormatMethodAttribute.cs" />
-    <Compile Include="Properties\TerminatesProgramAttribute.cs" />
-    <Compile Include="Properties\UsedImplicitlyAttribute.cs" />
-    <Compile Include="Properties\ValueProviderAttribute.cs" />
-    <Compile Include="Properties\XamlItemBindingOfItemsControlAttribute.cs" />
-    <Compile Include="Properties\XamlItemsControlAttribute.cs" />
-    <Compile Include="PropertyAttribute.cs" />
-    <Compile Include="SimpleDouble.cs" />
-    <Compile Include="ValueDescription.cs" />
-    <Page Include="AboutDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CommandEntry.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\ItemControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="View\OptionsGenerator.cs" />
+    <Compile Include="View\PropertyHelpers.cs" />
+    <Compile Include="View\Windows\AboutDialog.cs">
+      <DependentUpon>AboutDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\CommandEntry.cs">
+      <DependentUpon>CommandEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Windows\MainWindow.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataModel.cs" />
-    <Compile Include="MainWindow.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="View\Controls\ItemControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Windows\AboutDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Windows\CommandEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -498,6 +498,10 @@
   <ItemGroup>
     <Resource Include="Images\Mobs\VillagerGolem\VillagerGolem.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\PigZombie\PigZombie.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

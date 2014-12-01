@@ -2,9 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:entities="clr-namespace:StackingEntities.Entities"
-	mc:Ignorable="d" x:Class="StackingEntities.App"
-             StartupUri="MainWindow.xaml">
+    xmlns:entities="clr-namespace:StackingEntities.Model.Entities"
+    mc:Ignorable="d" x:Class="StackingEntities.App"
+             StartupUri="View/Windows/MainWindow.xaml">
     <Application.Resources>
 		 <Style x:Key="Header1Style" TargetType="{x:Type Label}">
 		 	<Setter Property="FontSize" Value="16"/>
