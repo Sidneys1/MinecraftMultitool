@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using StackingEntities.Desktop.ViewModel;
 using StackingEntities.Model;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Entities.Vehicles;
 using StackingEntities.Model.Metadata;
-using StackingEntities.ViewModel;
 using Attribute = System.Attribute;
 
-namespace StackingEntities.View.Windows
+namespace StackingEntities.Desktop.View.Windows
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml

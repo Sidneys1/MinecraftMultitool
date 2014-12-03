@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace StackingEntities.Properties.Annotations
+namespace StackingEntities.Desktop.Properties.Annotations
 {
 	/// <summary>
 	/// Indicates that the marked method builds string by format pattern and (optional) arguments.

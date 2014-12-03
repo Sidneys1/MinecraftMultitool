@@ -1,6 +1,6 @@
 using System;
 
-namespace StackingEntities.ViewModel
+namespace StackingEntities.Desktop.ViewModel
 {
 	public class DisplayOption
 	{

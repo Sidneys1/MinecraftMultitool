@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 
-namespace StackingEntities.ViewModel
+namespace StackingEntities.Desktop.ViewModel
 {
 	public class EnumDescriptionConverter : IValueConverter
 	{

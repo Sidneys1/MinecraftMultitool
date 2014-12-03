@@ -9,8 +9,8 @@ using System.Windows.Input;
 using StackingEntities.Model;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Metadata;
-using StackingEntities.View;
-using StackingEntities.ViewModel;
+using StackingEntities.Desktop.View;
+using StackingEntities.Desktop.ViewModel;
 using Attribute = System.Attribute;
 
 namespace StackingEntities.Web
@@ -180,20 +180,19 @@ namespace StackingEntities.Web
 				}
 
 				dict[prop.Category].Insert(0,
-					new DisplayOption(prop.Name, info.Name, info.PropertyType, ent, desc: prop.Description, min: min, max: max, mLine: multiline, epName: prop.IsEnabledPath,
-						fSize: prop.FixedSize, dgRowPath: prop.DataGridRowHeaderPath));
+					new DisplayOption(prop.Name, info.Name, info.PropertyType, ent, prop.Description, min, max, multiline, prop.IsEnabledPath, prop.FixedSize, prop.DataGridRowHeaderPath));
 			}
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			var props = _model.EType.GetType().GetMember(_model.EType.ToString())[0].GetCustomAttributes(typeof(ClassLinkAttribute));
+			var etype = (EntityTypes)EntityTypeComboBox.SelectedValue;
 
-			foreach (var prop2 in props.Cast<ClassLinkAttribute>())
-			{
-				_model.Entities.Insert(0, (EntityBase)Activator.CreateInstance(prop2.LinkType));
-				return;
-			}
+			var props = etype.GetType().GetMember(etype.ToString())[0].GetCustomAttributes(typeof(ClassLinkAttribute));
+			var attributes = props as IList<Attribute> ?? props.ToList();
+			var eb = attributes.Cast<ClassLinkAttribute>().FirstOrDefault();
+			if (eb != null)
+				_model.Entities.Insert(0, (EntityBase)Activator.CreateInstance(eb.LinkType));
 		}
 
 		private void AboutMenuItem_Click(object sender, RoutedEventArgs e)

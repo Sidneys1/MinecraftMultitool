@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CF1CC3BF-F66D-42D4-907B-DCBDAED4C03F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StackingEntities.Model</RootNamespace>
+    <AssemblyName>StackingEntities.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataModel.cs" />
+    <Compile Include="Entities\Attribute.cs" />
+    <Compile Include="Entities\DynamicTiles\FallingSand.cs" />
+    <Compile Include="Entities\DynamicTiles\PrimedTNT.cs" />
+    <Compile Include="Entities\EntityBase.cs" />
+    <Compile Include="Entities\EntityTypes.cs" />
+    <Compile Include="Entities\ItemEntities\DroppedItem.cs" />
+    <Compile Include="Entities\ItemEntities\ItemEntityBase.cs" />
+    <Compile Include="Entities\ItemEntities\XpOrb.cs" />
+    <Compile Include="Entities\Mobs\BreedableMobBase.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Bat.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Chicken.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Cow.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Ozelot.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Pig.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Rabbit.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Sheep.cs" />
+    <Compile Include="Entities\Mobs\Friendly\VillagerGolem.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Wolf.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Blaze.cs" />
+    <Compile Include="Entities\Mobs\Hostile\CaveSpider.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Creeper.cs" />
+    <Compile Include="Entities\Mobs\Hostile\EnderDragon.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Enderman.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Endermite.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Ghast.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Giant.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Guardian.cs" />
+    <Compile Include="Entities\Mobs\Hostile\LavaSlime.cs" />
+    <Compile Include="Entities\Mobs\Hostile\PigZombie.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Skeleton.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Slime.cs" />
+    <Compile Include="Entities\Mobs\Hostile\WitherBoss.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Zombie.cs" />
+    <Compile Include="Entities\Mobs\MobBase.cs" />
+    <Compile Include="Entities\Mobs\PotionEffect.cs" />
+    <Compile Include="Entities\Mobs\TameableMobBase.cs" />
+    <Compile Include="Entities\Other\ArmorStand.cs" />
+    <Compile Include="Entities\Other\EnderCrystal.cs" />
+    <Compile Include="Entities\Other\EyeOfEnder.cs" />
+    <Compile Include="Entities\Other\FireworkRocketEntity.cs" />
+    <Compile Include="Entities\Other\WallEntities\ItemFrame.cs" />
+    <Compile Include="Entities\Other\WallEntities\Painting.cs" />
+    <Compile Include="Entities\Other\WallEntities\WallEntityBase.cs" />
+    <Compile Include="Entities\Projectiles\Arrow.cs" />
+    <Compile Include="Entities\Projectiles\BaseClasses\DirectionProjectileBase.cs" />
+    <Compile Include="Entities\Projectiles\BaseClasses\OwnedProjectileBase.cs" />
+    <Compile Include="Entities\Projectiles\BaseClasses\ProjectileBase.cs" />
+    <Compile Include="Entities\Projectiles\BaseClasses\ShakingProjectileBase.cs" />
+    <Compile Include="Entities\Projectiles\Fireball.cs" />
+    <Compile Include="Entities\Projectiles\SmallFireball.cs" />
+    <Compile Include="Entities\Projectiles\Snowball.cs" />
+    <Compile Include="Entities\Projectiles\ThrownEnderPearl.cs" />
+    <Compile Include="Entities\Projectiles\ThrownExpBottle.cs" />
+    <Compile Include="Entities\Projectiles\ThrownPotion.cs" />
+    <Compile Include="Entities\Projectiles\WitherSkull.cs" />
+    <Compile Include="Entities\Vehicles\Boat.cs" />
+    <Compile Include="Entities\Vehicles\InventoryMinecart.cs" />
+    <Compile Include="Entities\Vehicles\Minecart.cs" />
+    <Compile Include="Entities\Vehicles\MinecartCommandBlock.cs" />
+    <Compile Include="Entities\Vehicles\MinecartFurnace.cs" />
+    <Compile Include="Entities\Vehicles\MinecartTNT.cs" />
+    <Compile Include="Helpers\EnumHelper.cs" />
+    <Compile Include="Helpers\JSONTools.cs" />
+    <Compile Include="Interface\Displayable.cs" />
+    <Compile Include="Interface\IJsonAble.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemTags\BlockType.cs" />
+    <Compile Include="Items\ItemTags\Decoration.cs" />
+    <Compile Include="Items\ItemTags\Enchantment.cs" />
+    <Compile Include="Items\ItemTags\ItemTagsBlock.cs" />
+    <Compile Include="Items\ItemTags\ItemTagsBook.cs" />
+    <Compile Include="Items\ItemTags\ItemTagsDisplay.cs" />
+    <Compile Include="Items\ItemTags\ItemTagsEnchantments.cs" />
+    <Compile Include="Items\ItemTags\ItemTagsFireworkStar.cs" />
+    <Compile Include="Items\ItemTags\ItemTagsGeneral.cs" />
+    <Compile Include="Items\ItemTags\ItemTagsMap.cs" />
+    <Compile Include="Items\ItemTags\Page.cs" />
+    <Compile Include="Metadata\ClassLinkAttribute.cs" />
+    <Compile Include="Metadata\EntityDescriptorAttribute.cs" />
+    <Compile Include="Metadata\MinMaxAttribute.cs" />
+    <Compile Include="Metadata\MultilineStringAttribute.cs" />
+    <Compile Include="Metadata\NotifyPropertyChangedInvocatorAttribute.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleTypes\SimpleDouble.cs" />
+    <Compile Include="SimpleTypes\ValueDescription.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StackingEntities.Resources\StackingEntities.Resources.csproj">
+      <Project>{9306555a-045a-4093-a96f-af64986f488c}</Project>
+      <Name>StackingEntities.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

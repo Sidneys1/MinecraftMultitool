@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace StackingEntities.Properties.Annotations
+namespace StackingEntities.Desktop.Properties.Annotations
 {
 	/// <summary>
 	/// Indicates that collection or enumerable value does not contain null elements

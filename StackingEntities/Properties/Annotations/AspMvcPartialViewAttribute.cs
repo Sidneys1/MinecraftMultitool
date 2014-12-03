@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace StackingEntities.Properties.Annotations
+namespace StackingEntities.Desktop.Properties.Annotations
 {
 	/// <summary>
 	/// ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC

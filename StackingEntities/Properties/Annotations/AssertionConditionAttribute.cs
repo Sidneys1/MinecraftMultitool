@@ -1,8 +1,8 @@
 using System;
 using System.Diagnostics;
-using StackingEntities.Annotations;
+using StackingEntities.Desktop.Desktop.Annotations;
 
-namespace StackingEntities.Properties.Annotations
+namespace StackingEntities.Desktop.Properties.Annotations
 {
 	/// <summary>
 	/// Indicates the condition parameter of the assertion method. The method itself should be

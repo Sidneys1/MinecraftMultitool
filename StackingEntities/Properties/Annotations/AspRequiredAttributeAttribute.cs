@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace StackingEntities.Properties.Annotations
+namespace StackingEntities.Desktop.Properties.Annotations
 {
 	[AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
 	[Conditional("JETBRAINS_ANNOTATIONS")]

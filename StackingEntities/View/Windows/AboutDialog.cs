@@ -1,4 +1,4 @@
-﻿namespace StackingEntities.View.Windows
+﻿namespace StackingEntities.Desktop.View.Windows
 {
 	/// <summary>
 	/// Interaction logic for AboutDialog.xaml

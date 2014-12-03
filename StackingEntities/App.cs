@@ -1,4 +1,4 @@
-﻿namespace StackingEntities
+﻿namespace StackingEntities.Desktop
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

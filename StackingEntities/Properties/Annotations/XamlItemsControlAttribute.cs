@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
 
-namespace StackingEntities.Properties.Annotations
+namespace StackingEntities.Desktop.Properties.Annotations
 {
 	/// <summary>
 	/// XAML attribute. Indicates the type that has <c>ItemsSource</c> property and should be

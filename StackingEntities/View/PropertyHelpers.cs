@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
-namespace StackingEntities.View
+namespace StackingEntities.Desktop.View
 {
 	public static class PropertyHelpers
 	{

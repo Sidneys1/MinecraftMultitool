@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace StackingEntities.View
+namespace StackingEntities.Desktop.View
 {
 	static class CustomCommands
 	{

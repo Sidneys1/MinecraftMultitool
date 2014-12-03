@@ -1,9 +1,9 @@
 ﻿<Window 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:properties="clr-namespace:StackingEntities.Properties"
+        xmlns:properties="clr-namespace:StackingEntities.Desktop.Properties"
         Title="Command Entry"
-        x:Class="StackingEntities.View.Windows.CommandListWindow"
+        x:Class="StackingEntities.Desktop.View.Windows.CommandListWindow"
         Height="300" Width="400" WindowStyle="ToolWindow" 
         SnapsToDevicePixels="True" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner"
         DataContext="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}">

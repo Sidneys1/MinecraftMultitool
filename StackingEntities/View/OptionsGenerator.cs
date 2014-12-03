@@ -5,13 +5,13 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
+using StackingEntities.Desktop.View.Controls;
+using StackingEntities.Desktop.ViewModel;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
-using StackingEntities.View.Controls;
-using StackingEntities.ViewModel;
 using Xceed.Wpf.Toolkit;
 
-namespace StackingEntities.View
+namespace StackingEntities.Desktop.View
 {
 	public class OptionsGenerator
 	{

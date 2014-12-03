@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Markup;
 
-namespace StackingEntities.ViewModel
+namespace StackingEntities.Desktop.ViewModel
 {
 	public class EnumerationExtension : MarkupExtension
 	{

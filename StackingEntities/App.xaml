@@ -2,8 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:entities="clr-namespace:StackingEntities.Model.Entities"
-    mc:Ignorable="d" x:Class="StackingEntities.App"
+    mc:Ignorable="d" x:Class="StackingEntities.Desktop.App"
              StartupUri="View/Windows/MainWindow.xaml">
     <Application.Resources>
         <Style x:Key="Header1Style" TargetType="{x:Type Label}">
@@ -19,38 +18,10 @@
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="FontFamily" Value="Segoe UI"/>
         </Style>
-        <!--<DataTemplate x:Key="MobItemTemplate" DataType="entities:EntityBase">
-            <Grid MaxHeight="150" d:DesignWidth="339">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Image Grid.RowSpan="2" MaxHeight="75" Width="75" Margin="3" Source="{Binding DisplayImage}" Stretch="None" >
-                    <Image.Effect>
-                        <DropShadowEffect Opacity="0.75" RenderingBias="Quality" ShadowDepth="0"/>
-                    </Image.Effect>
-                </Image>
-                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Type}" TextTrimming="CharacterEllipsis" Margin="3" FontSize="16"/>
-                <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="12"/>
-                <Image Grid.Row="0" Grid.Column="1" Width="20" Height="20" Source="/StackingEntities;component/Images/Delete.png" Margin="0,-5,-5,0" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ImageButton2}" />
-            </Grid>
-        </DataTemplate>-->
-        <!--<Style x:Key="ImageButton" TargetType="{x:Type Image}"/>
-        <Style x:Key="ImageButton2" TargetType="{x:Type Image}">
-            <Setter Property="FlowDirection" Value="LeftToRight"/>
-        </Style>-->
 
         <Style TargetType="Label">
-            <Setter Property="FontFamily" Value="/StackingEntities;component/Fonts/#pixelmix"/>
+            <Setter Property="FontFamily" Value="/StackingEntities.Resources;component/Fonts/#pixelmix"/>
             <Setter Property="FontSize" Value="9pt"/>
-            <!--<Setter Property="SnapsToDevicePixels" Value="True"/>-->
-            <!--<Setter Property="TextOptions.TextRenderingMode" Value="Aliased"/>-->
-            <!--<Setter Property="TextOptions.TextFormattingMode" Value="Display"/>-->
         </Style>
 
         <Style x:Key="ExpanderHeaderFocusVisual">
@@ -74,14 +45,14 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                <Image x:Name="icon" RenderOptions.BitmapScalingMode="NearestNeighbor" Margin="2" Cursor="Hand" Source="Images/ExpanderClosed.png" Stretch="None" SnapsToDevicePixels="True" UseLayoutRounding="True"/>
+                                <Image x:Name="icon" RenderOptions.BitmapScalingMode="NearestNeighbor" Margin="2" Cursor="Hand" Source="/StackingEntities.Resources;component/Images/ExpanderClosed.png" Stretch="None" SnapsToDevicePixels="True" UseLayoutRounding="True"/>
                                 <ContentPresenter Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"
                                                   />
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="true">
-                                <Setter Property="Source" TargetName="icon" Value="Images/ExpanderOpen.png"/>
+                                <Setter Property="Source" TargetName="icon" Value="/StackingEntities.Resources;component/Images/ExpanderOpen.png"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -98,7 +69,7 @@
             <Setter Property="HeaderTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <ContentPresenter TextBlock.FontSize="12pt" TextBlock.FontFamily="/StackingEntities;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased" Content="{TemplateBinding Content}" VerticalAlignment="Center"/>
+                        <ContentPresenter TextBlock.FontSize="12pt" TextBlock.FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased" Content="{TemplateBinding Content}" VerticalAlignment="Center"/>
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
@@ -142,17 +113,17 @@
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
         <VisualBrush x:Key="Button.Static.Background" Viewport="0,0,60,60" ViewportUnits="Absolute" TileMode="Tile">
             <VisualBrush.Visual>
-                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities;component/Images/ButtonBackEnabled.bmp" />
+                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities.Resources;component/Images/ButtonBackEnabled.bmp" />
             </VisualBrush.Visual>
         </VisualBrush>
         <VisualBrush x:Key="Button.MouseOver.Background" Viewport="0,0,60,60" ViewportUnits="Absolute" TileMode="Tile">
             <VisualBrush.Visual>
-                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities;component/Images/ButtonBackHover.bmp" />
+                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities.Resources;component/Images/ButtonBackHover.bmp" />
             </VisualBrush.Visual>
         </VisualBrush>
         <VisualBrush x:Key="Button.Disabled.Background" Viewport="0,0,60,60" ViewportUnits="Absolute" TileMode="Tile">
             <VisualBrush.Visual>
-                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities;component/Images/ButtonBackDisabled.bmp" />
+                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities.Resources;component/Images/ButtonBackDisabled.bmp" />
             </VisualBrush.Visual>
         </VisualBrush>
         <TransformGroup x:Key="TransformGroup">
@@ -170,7 +141,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
-            <Setter Property="FontFamily" Value="/StackingEntities;component/Fonts/#pixelmix"/>
+            <Setter Property="FontFamily" Value="/StackingEntities.Resources;component/Fonts/#pixelmix"/>
             <Setter Property="FontSize" Value="12pt"/>
             <Setter Property="UseLayoutRounding" Value="True"/>
             <Setter Property="Template">

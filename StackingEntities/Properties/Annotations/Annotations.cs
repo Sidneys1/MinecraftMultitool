@@ -1,5 +1,5 @@
 using System;
-using StackingEntities.Properties.Annotations;
+using StackingEntities.Desktop.Properties.Annotations;
 
 #pragma warning disable 1591
 // ReSharper disable UnusedMember.Global
@@ -10,7 +10,7 @@ using StackingEntities.Properties.Annotations;
 // ReSharper disable InconsistentNaming
 
 // ReSharper disable once CheckNamespace
-namespace StackingEntities.Annotations
+namespace StackingEntities.Desktop.Desktop.Annotations
 {
 	[Flags]
   public enum ImplicitUseKindFlags

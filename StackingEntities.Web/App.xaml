@@ -20,17 +20,17 @@
         <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
         <VisualBrush x:Key="Button.Static.Background" Viewport="0,0,60,60" ViewportUnits="Absolute" TileMode="Tile">
             <VisualBrush.Visual>
-                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities;component/Images/ButtonBackEnabled.bmp" />
+                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities.Resources;component/Images/ButtonBackEnabled.bmp" />
             </VisualBrush.Visual>
         </VisualBrush>
         <VisualBrush x:Key="Button.MouseOver.Background" Viewport="0,0,60,60" ViewportUnits="Absolute" TileMode="Tile">
             <VisualBrush.Visual>
-                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities;component/Images/ButtonBackHover.bmp" />
+                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities.Resources;component/Images/ButtonBackHover.bmp" />
             </VisualBrush.Visual>
         </VisualBrush>
         <VisualBrush x:Key="Button.Disabled.Background" Viewport="0,0,60,60" ViewportUnits="Absolute" TileMode="Tile">
             <VisualBrush.Visual>
-                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities;component/Images/ButtonBackDisabled.bmp" />
+                <Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities.Resources;component/Images/ButtonBackDisabled.bmp" />
             </VisualBrush.Visual>
         </VisualBrush>
         <TransformGroup x:Key="TransformGroup">
@@ -48,7 +48,7 @@
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Padding" Value="1"/>
-            <Setter Property="FontFamily" Value="/StackingEntities;component/Fonts/#pixelmix"/>
+            <Setter Property="FontFamily" Value="/StackingEntities.Resources;component/Fonts/#pixelmix"/>
             <Setter Property="FontSize" Value="12pt"/>
             <Setter Property="UseLayoutRounding" Value="True"/>
             <Setter Property="Template">

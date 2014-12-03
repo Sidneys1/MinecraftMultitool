@@ -4,11 +4,11 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using StackingEntities.Desktop.ViewModel;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
-using StackingEntities.ViewModel;
 
-namespace StackingEntities.View.Controls
+namespace StackingEntities.Desktop.View.Controls
 {
 	/// <summary>
 	/// Interaction logic for ItemControl.xaml

@@ -1,0 +1,376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9306555A-045A-4093-A96F-AF64986F488C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StackingEntities.Resources</RootNamespace>
+    <AssemblyName>StackingEntities.Resources</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\About.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ButtonBackDisabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ButtonBackEnabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ButtonBackHover.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\command_block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DynamicTiles\FallingSand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\DynamicTiles\PrimedTNT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExpanderClosed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExpanderOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\MCB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Bat\Bat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Blaze\Blaze.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\CaveSpider\CaveSpider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Chicken\BabyChicken.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Chicken\Chicken.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Cow\BabyCow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Cow\Cow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Creeper\ChargedCreeper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Creeper\Creeper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\EnderDragon\EnderDragon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Enderman\Enderman.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Enderman\EndermanCarrying.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Endermite\Endermite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Ghast\Ghast.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Guardian\ElderGuardian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Guardian\Guardian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Ozelot\Ozelot_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Ozelot\Ozelot_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Ozelot\Ozelot_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Ozelot\Ozelot_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Pig\BabyPig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Pig\Pig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Pig\SaddlePig.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\PigZombie\PigZombie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Rabbit\Rabbit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\BabySheep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_13.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_14.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_15.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\Sheep_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Sheep\ShornSheep.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Skeleton\Skeleton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Skeleton\WitherSkeleton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Slime\LavaSlime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Slime\Slime.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\VillagerGolem\VillagerGolem.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\WitherBoss\WitherBoss.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Wolf\AngryBabyWolf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Wolf\AngryWolf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Wolf\BabyWolf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Wolf\TameWolf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Wolf\Wolf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Zombie\BabyZombie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Zombie\BabyZombieVillager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Zombie\Zombie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Zombie\ZombieVillager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\ArmorStand.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\EnderCrystal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_11.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_8.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\experience_orb_9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\EyeOfEnder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\FireworkRocketEntity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\Item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\ItemFrame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\Painting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\Arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\Fireball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\Snowball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\ThrownEnderPearl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\ThrownExpBottle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\ThrownPotion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\WitherSkull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Vehicles\Boat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Vehicles\Minecart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Vehicles\MinecartCommandBlock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Vehicles\MinecartFurnace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Vehicles\MinecartTNT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\pixelmix.ttf" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

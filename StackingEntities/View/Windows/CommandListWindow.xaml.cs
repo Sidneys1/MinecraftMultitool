@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace StackingEntities.View.Windows
+namespace StackingEntities.Desktop.View.Windows
 {
 	/// <summary>
 	/// Interaction logic for CommandEntry.xaml
@@ -10,8 +10,8 @@ namespace StackingEntities.View.Windows
 		public CommandListWindow()
 		{
 			InitializeComponent();
-			Title = Properties.Resources.CommandBlockWindow_Title;
-			Desc.Text = Properties.Resources.CommandBlockWindow_Description;
+			//Title = Desktop.Properties.Resources.CommandBlockWindow_Title;
+			//Desc.Text = Desktop.Properties.Resources.CommandBlockWindow_Description;
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)

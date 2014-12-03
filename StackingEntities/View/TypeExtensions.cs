@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace StackingEntities.View
+namespace StackingEntities.Desktop.View
 {
 	static class TypeExtensions
 	{
