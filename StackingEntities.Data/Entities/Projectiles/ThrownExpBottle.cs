@@ -1,6 +1,8 @@
-﻿namespace StackingEntities.Model.Entities.Projectiles
+﻿using StackingEntities.Model.Entities.Projectiles.BaseClasses;
+
+namespace StackingEntities.Model.Entities.Projectiles
 {
-	public class ThrownExpBottle : BaseClasses.OwnedProjectileBase
+	public class ThrownExpBottle : OwnedProjectileBase
 	{
 		public ThrownExpBottle()
 		{

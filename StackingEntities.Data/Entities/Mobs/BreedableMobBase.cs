@@ -22,8 +22,9 @@ namespace StackingEntities.Model.Entities.Mobs
 			}
 		}
 
-		//[PropertyAttribute("Breedable Mob Options", "Love Mode (Ticks)")]
-		//public int ForcedAge { get; set; }
+		protected BreedableMobBase(int baseHealth) : base(baseHealth)
+		{
+		}
 
 		public override string Display => Age<0 ? "Baby " + base.Display : base.Display;
 

@@ -1,9 +1,10 @@
 ﻿using System.Text;
+using StackingEntities.Model.Entities.Projectiles.BaseClasses;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Projectiles
 {
-	public class Fireball : BaseClasses.DirectionProjectileBase
+	public class Fireball : DirectionProjectileBase
 	{
 		private int _explosionPower = 1;
 

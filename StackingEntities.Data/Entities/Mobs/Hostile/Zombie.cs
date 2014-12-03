@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
 	public class Zombie : MobBase
 	{
-		public Zombie() { Type = EntityTypes.Zombie; Health = 20; }
+		public Zombie() : base(20) { Type = EntityTypes.Zombie; }
 
 		#region Type
 
@@ -77,9 +77,6 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 			if (CanBreakDoors)
 				b.Append("CanBreakDoors:1b,");
-
-			if (Health != 20)
-				b.AppendFormat("HealF:{0},", Health);
 
 			if (ConversionTime != -1)
 				b.AppendFormat("ConversionTime:{0},", ConversionTime);

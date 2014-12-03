@@ -365,6 +365,50 @@
   <ItemGroup>
     <Resource Include="Fonts\pixelmix.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Horse\BabyDonkey.png" />
+    <Resource Include="Images\Mobs\Horse\BabyHorse.png" />
+    <Resource Include="Images\Mobs\Horse\BabyMule.png" />
+    <Resource Include="Images\Mobs\Horse\BabySkeletonHorse.png" />
+    <Resource Include="Images\Mobs\Horse\BabyUndeadHorse.png" />
+    <Resource Include="Images\Mobs\Horse\Donkey.png" />
+    <Resource Include="Images\Mobs\Horse\Horse.png" />
+    <Resource Include="Images\Mobs\Horse\Mule.png" />
+    <Resource Include="Images\Mobs\Horse\SkeletonHorse.png" />
+    <Resource Include="Images\Mobs\Horse\UndeadHorse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Other\Lead.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Vehicles\MinecartChest.png" />
+    <Resource Include="Images\Vehicles\MinecartHopper.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Vehicles\MinecartSpawner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\MushroomCow\BabyMushroomCow.png" />
+    <Resource Include="Images\Mobs\MushroomCow\MushroomCow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Silverfish\Silverfish.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\SnowMan\SnowMan.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Spider\Spider.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Squid\Squid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Witch\Witch.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Mobs\Villager\Villager.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

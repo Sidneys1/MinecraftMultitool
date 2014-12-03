@@ -32,6 +32,9 @@ namespace StackingEntities.Model.Entities.Mobs
 
 		#endregion
 
+		protected TameableMobBase(int baseHealth) :base(baseHealth)
+		{ }
+
 		#region Process
 
 		public override string Display => base.Display + (Sitting ? "Sitting " : "") + (string.IsNullOrWhiteSpace(_owner)?"" :"Tamed ");

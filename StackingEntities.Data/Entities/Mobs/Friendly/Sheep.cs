@@ -24,10 +24,9 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 			set { _shorn = value; PropChanged("Display"); PropChanged("DisplayImage"); }
 		}
 
-		public Sheep()
+		public Sheep() : base(8)
 		{
 			Type = EntityTypes.Sheep;
-			Health = 8;
 		}
 
 		public override string Display => base.Display + (Shorn ? "Sheared " :"") + Color.Description() + "-Colored Sheep";
@@ -51,9 +50,6 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 			if (Color != SheepColors.DontCare)
 				b.AppendFormat("Color:{0:D}b,", Color);
-
-			if (Health != 8)
-				b.AppendFormat("HealF:{0}f,", Health);
 
 			return b.ToString();
 		}

@@ -11,8 +11,11 @@ namespace StackingEntities.Model.Entities.Mobs
 {
 	public abstract class MobBase : EntityBase
 	{
-		protected MobBase()
+		protected MobBase(int baseHealth)
 		{
+			DefaultHealth = baseHealth;
+			Health = DefaultHealth.Value;
+
 			Holding.Tag.Add(new ItemTagsMap());
 			Holding.Tag.Add(new ItemTagsGeneral());
 			Holding.Tag.Add(new ItemTagsFireworkStar());
@@ -40,6 +43,8 @@ namespace StackingEntities.Model.Entities.Mobs
 		[EntityDescriptor("Mob Options", "Health"), MinMax(0, null)]
 		public int Health { get; set; }
 
+		protected int? DefaultHealth { get; set; }
+
 		#endregion
 
 		#region Custom Name
@@ -62,9 +67,6 @@ namespace StackingEntities.Model.Entities.Mobs
 		public bool CustomNameVisible { get; set; }
 
 		#endregion
-
-		//[Property("Mob Options", "Effects")]
-		//public list<Effect> Effects
 
 		#region Loot
 
@@ -170,6 +172,9 @@ namespace StackingEntities.Model.Entities.Mobs
 
 			if (holding != string.Empty || boots != string.Empty || leggings != string.Empty || chest != string.Empty || helm != string.Empty)
 				b.AppendFormat("Equipment:[0:{{{0}}},1:{{{1}}},2:{{{2}}},3:{{{3}}},4:{{{4}}}],", holding, boots, leggings, chest, helm);
+
+			if (DefaultHealth.HasValue && Health != DefaultHealth)
+				b.AppendFormat("HealF:{0}f,", Health);
 
 			StringBuilder aBuilder;
 			if (PotionEffects.Count > 0)

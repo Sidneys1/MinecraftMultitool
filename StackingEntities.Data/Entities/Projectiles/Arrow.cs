@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
 using System.Text;
+using StackingEntities.Model.Entities.Projectiles.BaseClasses;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Projectiles
 {
-	public class Arrow : BaseClasses.ShakingProjectileBase
+	public class Arrow : ShakingProjectileBase
 	{
 		[EntityDescriptor("Arrow Options", "DV Of Block Landed On"), MinMax(byte.MinValue, byte.MaxValue)]
 		public int InData { get; set; }

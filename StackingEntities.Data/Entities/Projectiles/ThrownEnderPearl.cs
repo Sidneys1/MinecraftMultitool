@@ -1,6 +1,8 @@
-﻿namespace StackingEntities.Model.Entities.Projectiles
+﻿using StackingEntities.Model.Entities.Projectiles.BaseClasses;
+
+namespace StackingEntities.Model.Entities.Projectiles
 {
-	public class ThrownEnderPearl : BaseClasses.OwnedProjectileBase
+	public class ThrownEnderPearl : OwnedProjectileBase
 	{
 		public ThrownEnderPearl()
 		{

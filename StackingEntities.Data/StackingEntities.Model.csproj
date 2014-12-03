@@ -52,10 +52,15 @@
     <Compile Include="Entities\Mobs\Friendly\Bat.cs" />
     <Compile Include="Entities\Mobs\Friendly\Chicken.cs" />
     <Compile Include="Entities\Mobs\Friendly\Cow.cs" />
+    <Compile Include="Entities\Mobs\Friendly\EntityHorse.cs" />
+    <Compile Include="Entities\Mobs\Friendly\MushroomCow.cs" />
     <Compile Include="Entities\Mobs\Friendly\Ozelot.cs" />
     <Compile Include="Entities\Mobs\Friendly\Pig.cs" />
     <Compile Include="Entities\Mobs\Friendly\Rabbit.cs" />
     <Compile Include="Entities\Mobs\Friendly\Sheep.cs" />
+    <Compile Include="Entities\Mobs\Friendly\SnowMan.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Squid.cs" />
+    <Compile Include="Entities\Mobs\Friendly\Villager.cs" />
     <Compile Include="Entities\Mobs\Friendly\VillagerGolem.cs" />
     <Compile Include="Entities\Mobs\Friendly\Wolf.cs" />
     <Compile Include="Entities\Mobs\Hostile\Blaze.cs" />
@@ -69,8 +74,11 @@
     <Compile Include="Entities\Mobs\Hostile\Guardian.cs" />
     <Compile Include="Entities\Mobs\Hostile\LavaSlime.cs" />
     <Compile Include="Entities\Mobs\Hostile\PigZombie.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Silverfish.cs" />
     <Compile Include="Entities\Mobs\Hostile\Skeleton.cs" />
     <Compile Include="Entities\Mobs\Hostile\Slime.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Spider.cs" />
+    <Compile Include="Entities\Mobs\Hostile\Witch.cs" />
     <Compile Include="Entities\Mobs\Hostile\WitherBoss.cs" />
     <Compile Include="Entities\Mobs\Hostile\Zombie.cs" />
     <Compile Include="Entities\Mobs\MobBase.cs" />
@@ -80,6 +88,7 @@
     <Compile Include="Entities\Other\EnderCrystal.cs" />
     <Compile Include="Entities\Other\EyeOfEnder.cs" />
     <Compile Include="Entities\Other\FireworkRocketEntity.cs" />
+    <Compile Include="Entities\Other\LeashKnot.cs" />
     <Compile Include="Entities\Other\WallEntities\ItemFrame.cs" />
     <Compile Include="Entities\Other\WallEntities\Painting.cs" />
     <Compile Include="Entities\Other\WallEntities\WallEntityBase.cs" />
@@ -98,8 +107,11 @@
     <Compile Include="Entities\Vehicles\Boat.cs" />
     <Compile Include="Entities\Vehicles\InventoryMinecart.cs" />
     <Compile Include="Entities\Vehicles\Minecart.cs" />
+    <Compile Include="Entities\Vehicles\MinecartChest.cs" />
     <Compile Include="Entities\Vehicles\MinecartCommandBlock.cs" />
     <Compile Include="Entities\Vehicles\MinecartFurnace.cs" />
+    <Compile Include="Entities\Vehicles\MinecartHopper.cs" />
+    <Compile Include="Entities\Vehicles\MinecartSpawner.cs" />
     <Compile Include="Entities\Vehicles\MinecartTNT.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\JSONTools.cs" />

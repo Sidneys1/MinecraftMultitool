@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
 	internal class Chicken : BreedableMobBase 
 	{
-		public Chicken() { Type = EntityTypes.Chicken; Health = 4; IsChickenJockey = false; }
+		public Chicken() :base(4) { Type = EntityTypes.Chicken; IsChickenJockey = false; }
 
 		bool _isChickenJockey;
 		[EntityDescriptor("Chicken Options", "Is Jockey")]
@@ -44,9 +44,6 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 			if (IsChickenJockey)
 				b.Append("IsChickenJockey:1,");
-
-			if (Health != 4)
-				b.Append(string.Format("HealF:{0},", Health));
 
 			return b.ToString();
 		}

@@ -4,7 +4,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
 	public class Cow :BreedableMobBase
 	{
-		public Cow()
+		public Cow() :base(10)
 		{
 			Type = EntityTypes.Cow;
 			Health = 10;
@@ -14,9 +14,6 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		public override string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder(base.GenerateJson(topLevel));
-
-			if (Health != 10)
-				b.AppendFormat("HealF:{0:00}f,", Health);
 
 			return b.ToString();
 		}

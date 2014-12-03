@@ -6,7 +6,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
 	internal class Wolf : TameableMobBase
 	{
-		public Wolf() { Type = EntityTypes.Wolf; Health = 8; }
+		public Wolf() : base(8) { Type = EntityTypes.Wolf; }
 
 		#region Type
 

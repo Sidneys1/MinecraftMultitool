@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
 	internal class Bat : MobBase 
 	{
-		public Bat() { Type = EntityTypes.Bat; Health = 6; BatFlags = false; }
+		public Bat() :base(6) { Type = EntityTypes.Bat; BatFlags = false; }
 
 		bool _batFlags;
 		[EntityDescriptor("Bat Options", "Is Hanging")]
@@ -30,9 +30,6 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 			if (BatFlags)
 				b.Append("BatFlags:1,");
-
-			if (Health != 6)
-				b.Append(string.Format("HealF:{0},", Health));
 
 			return b.ToString();
 		}

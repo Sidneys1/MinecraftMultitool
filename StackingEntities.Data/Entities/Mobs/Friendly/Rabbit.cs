@@ -15,10 +15,9 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 			set { _rabbitType = value; PropChanged("Display"); }
 		}
 
-		public Rabbit()
+		public Rabbit() : base(10)
 		{
 			Type = EntityTypes.Rabbit;
-			Health = 10;
 		}
 
 		public override string Display => base.Display + RabbitType.Description() + " Rabbit";

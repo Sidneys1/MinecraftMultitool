@@ -14,10 +14,9 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 			set { _saddled = value; PropChanged("Display"); PropChanged("DisplayImage"); }
 		}
 
-		public Pig()
+		public Pig() : base(10)
 		{
 			Type = EntityTypes.Pig;
-			Health = 10;
 		}
 
 
@@ -28,9 +27,6 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		public override string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder(base.GenerateJson(topLevel));
-
-			if (Health != 10)
-				b.AppendFormat("HealF:{0}f,", Health);
 
 			if (Saddled)
 				b.Append("Saddled:1b,");

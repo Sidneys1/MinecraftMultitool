@@ -8,10 +8,9 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		[EntityDescriptor("Ghast Options", "Explosion Power"), MinMax(0, int.MaxValue)]
 		public int ExplosionPower { get; set; } = 1;
 
-		public Ghast()
+		public Ghast() : base(10)
 		{
 			Type = EntityTypes.Ghast;
-			Health = 10;
 		}
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Mobs/Ghast/Ghast.png";
@@ -19,9 +18,6 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		public override string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder(base.GenerateJson(topLevel));
-
-			if (Health != 10)
-				b.AppendFormat("HealF:{0:00}f,", Health);
 
 			if (ExplosionPower != 1)
 				b.AppendFormat("ExplosionPower:{0},", ExplosionPower);

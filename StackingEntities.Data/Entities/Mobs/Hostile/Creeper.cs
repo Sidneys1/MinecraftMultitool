@@ -5,7 +5,8 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
 	internal class Creeper : MobBase 
 	{
-		public Creeper() { Type = EntityTypes.Creeper; Health = 20; Powered = false; ExplosionRadius = 3; Fuse = 30; }
+		public Creeper() : base(20)
+		{ Type = EntityTypes.Creeper;}
 
 		bool _powered;
 		[EntityDescriptor("Creeper Options", "Charged")]
@@ -23,11 +24,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 		[EntityDescriptor("Creeper Options", "Explosion Radius")]
 		[MinMax(0, byte.MaxValue)]
-		public int ExplosionRadius { get; set; }
+		public int ExplosionRadius { get; set; } = 3;
 
 		[EntityDescriptor("Creeper Options", "Fuse Time (Ticks)")]
 		[MinMax(0, short.MaxValue)]
-		public int Fuse { get; set; }
+		public int Fuse { get; set; } = 30;
 
 		bool _ignited;
 		[EntityDescriptor("Creeper Options", "Ignited")]
@@ -75,9 +76,6 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 			if (Fuse != 30)
 				b.Append(string.Format("Fuse:{0},", Fuse));
-
-			if (Health != 20)
-				b.Append(string.Format("HealF:{0},", Health));
 
 			return b.ToString();
 		}

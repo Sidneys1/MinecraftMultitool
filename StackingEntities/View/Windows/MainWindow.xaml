@@ -26,7 +26,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="1" Grid.RowSpan="3" Width="Auto" Height="Auto">
-                    <Image RenderOptions.BitmapScalingMode="HighQuality" SnapsToDevicePixels="True" UseLayoutRounding="True" Margin="5" Source="{Binding DisplayImage}" Stretch="None" Effect="{DynamicResource Blur}"/>
+                    <Image RenderOptions.BitmapScalingMode="HighQuality" Margin="5" Width="75px" Source="{Binding DisplayImage}" Stretch="None" Effect="{DynamicResource Blur}"/>
                 </Border>
                 <TextBlock Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Type, Converter={StaticResource enumDesc}}" TextTrimming="CharacterEllipsis"
                     FontSize="12pt" FontFamily="/StackingEntities.Resources;component/Fonts/#Minecraftia" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"

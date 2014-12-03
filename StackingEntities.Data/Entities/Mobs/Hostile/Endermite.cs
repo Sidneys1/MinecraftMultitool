@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
 	internal class Endermite : MobBase 
 	{
-		public Endermite() { Type = EntityTypes.Endermite; Health = 8; Lifetime = 0; }
+		public Endermite() : base(8) { Type = EntityTypes.Endermite; }
 
 		[EntityDescriptor("Endermite Options", "Lifetime")]
 		[MinMax(0, 2400)]
@@ -22,9 +22,6 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 			if (Lifetime != 0)
 				b.Append(string.Format("Lifetime:{0},", Lifetime));
-
-			if (Health != 8)
-				b.Append(string.Format("HealF:{0},", Health));
 
 			if (PlayerSpawned)
 				b.Append("PlayerSpawned:1b,");

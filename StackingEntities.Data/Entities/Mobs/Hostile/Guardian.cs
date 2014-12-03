@@ -8,10 +8,9 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		[EntityDescriptor("Guardian Options", "Is Elder")]
 		public bool Elder { get; set; } = false;
 
-		public Guardian()
+		public Guardian() : base(30)
 		{
 			Type = EntityTypes.Guardian;
-			Health = 30;
 		}
 
 		public override string DisplayImage => Elder ? "/StackingEntities.Resources;component/Images/Mobs/Guardian/ElderGuardian.png" : "/StackingEntities.Resources;component/Images/Mobs/Guardian/Guardian.png";
@@ -19,9 +18,6 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		public override string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder(base.GenerateJson(topLevel));
-
-			if (Health != (Elder ? 80 : 30))
-				b.AppendFormat("HealF:{0:00}f,", Health);
 
 			if (Elder)
 				b.Append("Elder:1b,");

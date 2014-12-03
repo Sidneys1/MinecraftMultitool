@@ -14,10 +14,9 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 			set { _catType = value; PropChanged("Display"); PropChanged("DisplayImage"); }
 		}
 
-		public Ozelot()
+		public Ozelot() : base(10)
 		{
 			Type = EntityTypes.Ozelot;
-			Health = 10;
 		}
 
 		public override string Display => base.Display + CatType;

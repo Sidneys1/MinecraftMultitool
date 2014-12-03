@@ -5,10 +5,25 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
 	public class Slime : MobBase
 	{
-		[EntityDescriptor("Slime Options", "Size"), MinMax(0, int.MaxValue)]
-		public int Size { get; set; }
+		private int _size;
 
-		public Slime()
+		[EntityDescriptor("Slime Options", "Size"), MinMax(0, int.MaxValue)]
+		public int Size
+		{
+			get { return _size; }
+			set
+			{
+				_size = value;
+				var properHealth = 1;
+				if (Size == 1)
+					properHealth = 4;
+				if (Size == 2)
+					properHealth = 16;
+				DefaultHealth = properHealth;
+			}
+		}
+
+		public Slime() : base(1)
 		{
 			Type = EntityTypes.Slime;
 			Health = 1;
@@ -19,17 +34,6 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		public override string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder(base.GenerateJson(topLevel));
-
-			var properHealth = 1;
-
-			if (Size == 1)
-				properHealth = 4;
-
-			if (Size == 2)
-				properHealth = 16;
-
-			if (Health != properHealth)
-				b.AppendFormat("HealF:{0}f,", Health);
 
 			b.AppendFormat("Size:{0},", Size);
 

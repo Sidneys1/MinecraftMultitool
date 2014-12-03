@@ -1,4 +1,12 @@
 ﻿using System.ComponentModel;
+using StackingEntities.Model.Entities.DynamicTiles;
+using StackingEntities.Model.Entities.ItemEntities;
+using StackingEntities.Model.Entities.Mobs.Friendly;
+using StackingEntities.Model.Entities.Mobs.Hostile;
+using StackingEntities.Model.Entities.Other;
+using StackingEntities.Model.Entities.Other.WallEntities;
+using StackingEntities.Model.Entities.Projectiles;
+using StackingEntities.Model.Entities.Vehicles;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities
@@ -7,118 +15,124 @@ namespace StackingEntities.Model.Entities
 	{
 		[Description("Choose an Entity...")]
 		NoEnt = 0x0,
-		[Description("Armor Stand"), ClassLink(typeof(Other.ArmorStand))]
+		[Description("Armor Stand"), ClassLink(typeof(ArmorStand))]
 		ArmorStand,
-		[ClassLink(typeof(Projectiles.Arrow))]
+		[ClassLink(typeof(Arrow))]
 		Arrow,
-		[ClassLink(typeof(Mobs.Friendly.Bat))]
+		[ClassLink(typeof(Bat))]
 		Bat,
-		[ClassLink(typeof(Mobs.Hostile.Blaze))]
+		[ClassLink(typeof(Blaze))]
         Blaze,
-		[ClassLink(typeof(Vehicles.Boat))]
+		[ClassLink(typeof(Boat))]
 		Boat,
-		[Description("Cave Spider"), ClassLink(typeof(Mobs.Hostile.CaveSpider))]
+		[Description("Cave Spider"), ClassLink(typeof(CaveSpider))]
 		CaveSpider,
-		[ClassLink(typeof(Mobs.Friendly.Chicken))]
+		[ClassLink(typeof(Chicken))]
 		Chicken,
-		[ClassLink(typeof(Mobs.Friendly.Cow))]
+		[ClassLink(typeof(Cow))]
 		Cow,
-		[ClassLink(typeof(Mobs.Hostile.Creeper))]
+		[ClassLink(typeof(Creeper))]
 		Creeper,
-		[Description("Ender Crystal"), ClassLink(typeof(Other.EnderCrystal))]
+		[Description("Ender Crystal"), ClassLink(typeof(EnderCrystal))]
 		EnderCrystal,
-		[Description("Ender Dragon"), ClassLink(typeof(Mobs.Hostile.EnderDragon))]
+		[Description("Ender Dragon"), ClassLink(typeof(EnderDragon))]
 		EnderDragon,
-		[ClassLink(typeof(Mobs.Hostile.Enderman))]
+		[ClassLink(typeof(Enderman))]
 		Enderman,
-		[Description("Endermite"), ClassLink(typeof(Mobs.Hostile.Endermite))]
+		[Description("Endermite"), ClassLink(typeof(Endermite))]
 		Endermite,
-		//[Description("Horse/Donkey")]
-		//EntityHorse,
-		[Description("Thrown Eye of Ender"), ClassLink(typeof(Other.EyeOfEnder))]
+		[Description("Horse"), ClassLink(typeof(EntityHorse))]
+		EntityHorse,
+		[Description("Thrown Eye of Ender"), ClassLink(typeof(EyeOfEnder))]
 		EyeOfEnderSignal,
-		[Description("Falling Sand"), ClassLink(typeof(DynamicTiles.FallingSand))]
+		[Description("Falling Sand"), ClassLink(typeof(FallingSand))]
 		FallingSand,
-		[ClassLink(typeof(Projectiles.Fireball))]
+		[ClassLink(typeof(Fireball))]
 		Fireball,
-		[Description("Firework Rocket"), ClassLink(typeof(Other.FireworkRocketEntity))]
+		[Description("Firework Rocket"), ClassLink(typeof(FireworkRocketEntity))]
 		FireworksRocketEntity,
-		[ClassLink(typeof(Mobs.Hostile.Ghast))]
+		[ClassLink(typeof(Ghast))]
 		Ghast,
-		[ClassLink(typeof(Mobs.Hostile.Giant))]
+		[ClassLink(typeof(Giant))]
 		Giant,
-		[ClassLink(typeof(Mobs.Hostile.Guardian))]
+		[ClassLink(typeof(Guardian))]
 		Guardian,
-		[ClassLink(typeof(ItemEntities.DroppedItem))]
+		[ClassLink(typeof(DroppedItem))]
 		Item,
-		[Description("Item Frame"), ClassLink(typeof(Other.WallEntities.ItemFrame))]
+		[Description("Item Frame"), ClassLink(typeof(ItemFrame))]
 		ItemFrame,
-		[Description("Magma Cube"), ClassLink(typeof(Mobs.Hostile.LavaSlime))]
+		[Description("Magma Cube"), ClassLink(typeof(LavaSlime))]
 		LavaSlime,
-		//[Description("Leash Knot")]
-		//LeashKnot,
-		//[Description("Minecart Chest")]
-		//MinecartChest,
-		[Description("Command Block Minecart"), ClassLink(typeof(Vehicles.MinecartCommandBlock))]
+		[Description("Lead Fence Knot"), ClassLink(typeof(LeashKnot))]
+		LeashKnot,
+		[Description("Minecart Chest"), ClassLink(typeof(MinecartChest))]
+		MinecartChest,
+		[Description("Command Block Minecart"), ClassLink(typeof(MinecartCommandBlock))]
 		MinecartCommandBlock,
-		[Description("Furnace Minecart"), ClassLink(typeof(Vehicles.MinecartFurnace))]
+		[Description("Furnace Minecart"), ClassLink(typeof(MinecartFurnace))]
 		MinecartFurnace,
-		//MinecartHopper,
-		[ClassLink(typeof(Vehicles.Minecart))]
+		[Description("Minecart Hopper"), ClassLink(typeof(MinecartHopper))]
+		MinecartHopper,
+		[ClassLink(typeof(Minecart))]
 		Minecart,
-		//[Description("Spawner Minecart")]
-		//MinecartSpawner,
+		[Description("Spawner Minecart"), ClassLink(typeof(MinecartSpawner))]
+		MinecartSpawner,
 		// ReSharper disable once InconsistentNaming
-		[Description("TNT Minecart"), ClassLink(typeof(Vehicles.MinecartTNT))]
+		[Description("TNT Minecart"), ClassLink(typeof(MinecartTNT))]
 		MinecartTNT,
-		//[Description("Mooshroom")]
-		//MushroomCow,
-		[Description("Ocelot / Cat"), ClassLink(typeof(Mobs.Friendly.Ozelot))]
+		[Description("Mooshroom"), ClassLink(typeof(MushroomCow))]
+		MushroomCow,
+		[Description("Ocelot / Cat"), ClassLink(typeof(Ozelot))]
 		Ozelot,
-		[ClassLink(typeof(Other.WallEntities.Painting))]
+		[ClassLink(typeof(Painting))]
 		Painting,
-		[ClassLink(typeof(Mobs.Friendly.Pig))]
+		[ClassLink(typeof(Pig))]
 		Pig,
-		[Description("Zombie Pigman"), ClassLink(typeof(Mobs.Hostile.PigZombie))]
+		[Description("Zombie Pigman"), ClassLink(typeof(PigZombie))]
 		PigZombie,
-		[Description("Primed TNT"), ClassLink(typeof(DynamicTiles.PrimedTNT))]
+		[Description("Primed TNT"), ClassLink(typeof(PrimedTNT))]
 		PrimedTnt,
-		[ClassLink(typeof(Mobs.Friendly.Rabbit))]
+		[ClassLink(typeof(Rabbit))]
 		Rabbit,
-		[ClassLink(typeof(Mobs.Friendly.Sheep))]
+		[ClassLink(typeof(Sheep))]
 		Sheep,
-		//Silverfish,
-		[Description("Skeleton / Wither Skeleton"), ClassLink(typeof(Mobs.Hostile.Skeleton))]
+		[ClassLink(typeof(Silverfish))]
+		Silverfish,
+		[Description("Skeleton / Wither Skeleton"), ClassLink(typeof(Skeleton))]
 		Skeleton,
-		[ClassLink(typeof(Mobs.Hostile.Slime))]
+		[ClassLink(typeof(Slime))]
 		Slime,
-		[Description("Fire Charge"), ClassLink(typeof(Projectiles.SmallFireball))]
+		[Description("Fire Charge"), ClassLink(typeof(SmallFireball))]
 		SmallFireball,
-		[ClassLink(typeof(Projectiles.Snowball))]
+		[ClassLink(typeof(Snowball))]
 		Snowball,
-		//[Description("Snow Golem")]
-		//SnowMan,
-		//Spider,
-		//Squid,
-		[Description("Thrown Ender Pearl"), ClassLink(typeof(Projectiles.ThrownEnderPearl))]
+		[Description("Snow Golem"), ClassLink(typeof(SnowMan))]
+		SnowMan,
+		[ClassLink(typeof(Spider))]
+		Spider,
+		[ClassLink(typeof(Squid))]
+		Squid,
+		[Description("Thrown Ender Pearl"), ClassLink(typeof(ThrownEnderPearl))]
 		ThrownEnderpearl,
-		[Description("Bottle o' Enchanting"), ClassLink(typeof(Projectiles.ThrownExpBottle))]
+		[Description("Bottle o' Enchanting"), ClassLink(typeof(ThrownExpBottle))]
 		ThrownExpBottle,
-		[Description("Thrown Potion"), ClassLink(typeof(Projectiles.ThrownPotion))]
+		[Description("Thrown Potion"), ClassLink(typeof(ThrownPotion))]
 		ThrownPotion,
-		//Villager,
-		[Description("Iron Golem"), ClassLink(typeof(Mobs.Friendly.VillagerGolem))]
+		[ClassLink(typeof(Villager))]
+		Villager,
+		[Description("Iron Golem"), ClassLink(typeof(VillagerGolem))]
 		VillagerGolem,
-		//Witch,
-		[Description("The Wither"), ClassLink(typeof(Mobs.Hostile.WitherBoss))]
+		[ClassLink(typeof(Witch))]
+		Witch,
+		[Description("The Wither"), ClassLink(typeof(WitherBoss))]
 		WitherBoss,
-		[Description("Wither Skull (Projectile)"), ClassLink(typeof(Projectiles.WitherSkull))]
+		[Description("Wither Skull (Projectile)"), ClassLink(typeof(WitherSkull))]
 		WitherSkull,
-		[ClassLink(typeof(Mobs.Friendly.Wolf))]
+		[ClassLink(typeof(Wolf))]
 		Wolf,
-		[Description("Experience Orb"), ClassLink(typeof(ItemEntities.XpOrb))]
+		[Description("Experience Orb"), ClassLink(typeof(XpOrb))]
 		XPOrb,
-		[ClassLink(typeof(Mobs.Hostile.Zombie))]
+		[ClassLink(typeof(Zombie))]
 		Zombie
 	}
 }
