@@ -7,12 +7,12 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	{
 		public Enderman() { Type = EntityTypes.Enderman; Health = 40; Carried = 0; EndermiteCount = 0; CarriedData = 0; }
 
-		[Property("Enderman Options", "Ender-mite Count")]
+		[EntityDescriptor("Enderman Options", "Ender-mite Count")]
 		[MinMax(0, int.MaxValue)]
 		public int EndermiteCount { get; set; }
 
 		int _carriedData;
-		[Property("Enderman Options", "Carried Block Data")]
+		[EntityDescriptor("Enderman Options", "Carried Block Data")]
 		[MinMax(0, short.MaxValue)]
 		public int CarriedData
 		{
@@ -26,7 +26,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		}
 
 		int _carried;
-		[Property("Enderman Options", "Carried Block")]
+		[EntityDescriptor("Enderman Options", "Carried Block")]
 		[MinMax(0, short.MaxValue)]
 		public int Carried
 		{

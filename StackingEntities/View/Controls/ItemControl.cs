@@ -64,8 +64,8 @@ namespace StackingEntities.View.Controls
 				var props = jsonAble.GetType().GetProperties();
 				foreach (var info in props.Reverse())
 				{
-					if (!Attribute.IsDefined(info, typeof (PropertyAttribute))) continue;
-					var prop = (PropertyAttribute) info.GetCustomAttribute(typeof (PropertyAttribute));
+					if (!Attribute.IsDefined(info, typeof (EntityDescriptorAttribute))) continue;
+					var prop = (EntityDescriptorAttribute) info.GetCustomAttribute(typeof (EntityDescriptorAttribute));
 					if (!dict.ContainsKey(prop.Category))
 						dict.Add(prop.Category, new List<DisplayOption>());
 
@@ -80,7 +80,7 @@ namespace StackingEntities.View.Controls
 					}
 
 					dict[prop.Category].Insert(0,
-						new DisplayOption(prop.Name, info.Name, info.PropertyType, jsonAble, min, max, multiline, prop.IsEnabledPath));
+						new DisplayOption(prop.Name, info.Name, info.PropertyType, jsonAble, desc:prop.Description, min: min, max: max, mLine: multiline, epName: prop.IsEnabledPath));
 				}
 			}
 		}

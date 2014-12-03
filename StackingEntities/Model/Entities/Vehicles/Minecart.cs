@@ -10,7 +10,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 		#region Cargo
 
 		bool _customDisplayTile;
-		[Property("Minecart Options", "Display Cargo")]
+		[EntityDescriptor("Minecart Options", "Display Cargo")]
 		public bool CustomDisplayTile
 		{
 			get { return _customDisplayTile; }
@@ -23,7 +23,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 		}
 
 		string _displayTile = "";
-		[Property("Minecart Options", "Cargo ID")]
+		[EntityDescriptor("Minecart Options", "Cargo ID")]
 		public string DisplayTile
 		{
 			get { return _displayTile; }
@@ -35,15 +35,15 @@ namespace StackingEntities.Model.Entities.Vehicles
 			}
 		}
 
-		[Property("Minecart Options", "Cargo Data"), MinMax(0, 15)]
+		[EntityDescriptor("Minecart Options", "Cargo Data"), MinMax(0, 15)]
 		public int DisplayData { get; set; }
 
-		[Property("Minecart Options", "Cargo Offset")]
+		[EntityDescriptor("Minecart Options", "Cargo Offset")]
 		public int DisplayOffset { get; set; }
 
 		#endregion
 
-		[Property("Minecart Options", "Custom Name")]
+		[EntityDescriptor("Minecart Options", "Custom Name")]
 		public string CustomName { get; set; }
 
 		#region UI

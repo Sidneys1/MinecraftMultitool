@@ -6,19 +6,19 @@ namespace StackingEntities.Model.Entities.Mobs
 {
 	public class PotionEffect :IJsonAble
 	{
-		[DisplayName("Type")]
+		[DisplayName(@"Type")]
 		public EffectId Id { get; set; }
 
-		[DisplayName("Level (0=I)")]
+		[DisplayName(@"Level (0=I)")]
 		public byte Amplifier { get; set; }
 
-		[DisplayName("Duration (Ticks)")]
+		[DisplayName(@"Duration (Ticks)")]
 		public int Duration { get; set; }
 
-		[DisplayName("From Beacon")]
+		[DisplayName(@"From Beacon")]
 		public bool Ambient { get; set; } = false;
 
-		[DisplayName("Particles")]
+		[DisplayName(@"Particles")]
 		public bool ShowParticles { get; set; } = true;
 
 		public string GenerateJson(bool topLevel)

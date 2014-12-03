@@ -7,10 +7,10 @@ namespace StackingEntities.Model.Items.ItemTags
 {
 	public class ItemTagsMap : IJsonAble
 	{
-		[Property("Map", "Map is Scaled")]
+		[EntityDescriptor("Map", "Map is Scaled")]
 		public bool MapScaling { get; set; } = false;
 
-		[Property("Map","Markers")]
+		[EntityDescriptor("Map","Markers")]
 		public List<Decoration> Decor { get; set; } = new List<Decoration>();
 
 		public string GenerateJson(bool topLevel)

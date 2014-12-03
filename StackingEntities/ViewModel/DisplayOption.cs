@@ -4,7 +4,7 @@ namespace StackingEntities.ViewModel
 {
 	public class DisplayOption
 	{
-		public DisplayOption(string rName, string pName, Type pType, Object dContext, object min = null, object max = null, bool mLine = false, string epName = null, bool fSize = false, string dgRowPath = null)
+		public DisplayOption(string rName, string pName, Type pType, object dContext, string desc = null, object min = null, object max = null, bool mLine = false, string epName = null, bool fSize = false, string dgRowPath = null)
 		{
 			ReadableName = rName;
 			PropertyName = pName;
@@ -20,6 +20,8 @@ namespace StackingEntities.ViewModel
 			FixedSize = fSize;
 
 			DataGridRowHeaderPath = dgRowPath;
+
+			Description = desc;
 		}
 
 		public string DataGridRowHeaderPath { get; set; }
@@ -41,5 +43,7 @@ namespace StackingEntities.ViewModel
 		public object DataContext { get; set; }
 
 		public string EnabledPropertyName { get; set; }
+
+		public string Description { get; set; }
 	}
 }

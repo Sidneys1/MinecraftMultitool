@@ -37,7 +37,7 @@ namespace StackingEntities.Model.Entities.Other
 
 		#region Pose
 
-		[Property("Pose", "Body Pose", fixedSize: true, dgRowPath: "Name")]
+		[EntityDescriptor("Pose", "Body Pose", fixedSize: true, dgRowPath: "Name")]
 		public List<SimpleDouble> BodyPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		//[Property("Body Pose", "X Rotation"), MinMax(0, 359)]
@@ -47,7 +47,7 @@ namespace StackingEntities.Model.Entities.Other
 		//[Property("Body Pose", "Z Rotation"), MinMax(0, 359)]
 		//public double BodyZ { get; set; }
 
-		[Property("Pose", "Head Pose", fixedSize: true, dgRowPath: "Name")]
+		[EntityDescriptor("Pose", "Head Pose", fixedSize: true, dgRowPath: "Name")]
 		public List<SimpleDouble> HeadPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		//[Property("Head Pose", "X Rotation"), MinMax(0, 359)]
@@ -57,7 +57,7 @@ namespace StackingEntities.Model.Entities.Other
 		//[Property("Head Pose", "Z Rotation"), MinMax(0, 359)]
 		//public double HeadZ { get; set; }
 
-		[Property("Pose", "Left Arm Pose", fixedSize: true, dgRowPath: "Name")]
+		[EntityDescriptor("Pose", "Left Arm Pose", fixedSize: true, dgRowPath: "Name")]
 		public List<SimpleDouble> LeftArmPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		//[Property("Left Arm Pose", "X Rotation"), MinMax(0, 359)]
@@ -67,7 +67,7 @@ namespace StackingEntities.Model.Entities.Other
 		//[Property("Left Arm Pose", "Z Rotation"), MinMax(0, 359)]
 		//public double LeftArmZ { get; set; }
 
-		[Property("Pose", "Right Arm Pose", fixedSize: true, dgRowPath: "Name")]
+		[EntityDescriptor("Pose", "Right Arm Pose", fixedSize: true, dgRowPath: "Name")]
 		public List<SimpleDouble> RightArmPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		//[Property("Right Arm Pose", "X Rotation"), MinMax(0, 359)]
@@ -77,7 +77,7 @@ namespace StackingEntities.Model.Entities.Other
 		//[Property("Right Arm Pose", "Z Rotation"), MinMax(0, 359)]
 		//public double RightArmZ { get; set; }
 
-		[Property("Pose", "Left Leg Pose", fixedSize: true, dgRowPath: "Name")]
+		[EntityDescriptor("Pose", "Left Leg Pose", fixedSize: true, dgRowPath: "Name")]
 		public List<SimpleDouble> LeftLegPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		//[Property("Left Leg Pose", "X Rotation"), MinMax(0, 359)]
@@ -87,7 +87,7 @@ namespace StackingEntities.Model.Entities.Other
 		//[Property("Left Leg Pose", "Z Rotation"), MinMax(0, 359)]
 		//public double LeftLegZ { get; set; }
 
-		[Property("Pose", "Right Leg Pose", fixedSize: true, dgRowPath: "Name")]
+		[EntityDescriptor("Pose", "Right Leg Pose", fixedSize: true, dgRowPath: "Name")]
 		public List<SimpleDouble> RightLegPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		//[Property("Right Leg Pose", "X Rotation"), MinMax(0, 359)]
@@ -101,34 +101,34 @@ namespace StackingEntities.Model.Entities.Other
 
 		#region Slots
 
-		[Property("Disabled Slots", "Hands")]
+		[EntityDescriptor("Disabled Slots", "Hands")]
 		public DisabledSlots HandsDisabledSlots { get; set; } = DisabledSlots.All;
 
-		[Property("Disabled Slots", "Fee")]
+		[EntityDescriptor("Disabled Slots", "Fee")]
 		public DisabledSlots FeetDisabledSlots { get; set; }
 
-		[Property("Disabled Slots", "Legs")]
+		[EntityDescriptor("Disabled Slots", "Legs")]
 		public DisabledSlots LegsDisabledSlots { get; set; }
 
-		[Property("Disabled Slots", "Chest")]
+		[EntityDescriptor("Disabled Slots", "Chest")]
 		public DisabledSlots ChestDisabledSlots { get; set; }
 
-		[Property("Disabled Slots", "Head")]
+		[EntityDescriptor("Disabled Slots", "Head")]
 		public DisabledSlots HeadDisabledSlots { get; set; }
 
-		[Property("Equipment", "Holding")]
+		[EntityDescriptor("Equipment", "Holding")]
 		public Item Holding { get; set; } = new Item() { Id = string.Empty };
 
-		[Property("Equipment", "Boots")]
+		[EntityDescriptor("Equipment", "Boots")]
 		public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
-		[Property("Equipment", "Leggings")]
+		[EntityDescriptor("Equipment", "Leggings")]
 		public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
-		[Property("Equipment", "Chestplate")]
+		[EntityDescriptor("Equipment", "Chestplate")]
 		public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
-		[Property("Equipment", "Helmet")]
+		[EntityDescriptor("Equipment", "Helmet")]
 		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
 		#endregion
@@ -137,7 +137,7 @@ namespace StackingEntities.Model.Entities.Other
 
 		private bool _marker;
 
-		[Property("Armor Stand Options", "Marker")]
+		[EntityDescriptor("Armor Stand Options", "Marker")]
 		public bool Marker
 		{
 			get { return _marker; }
@@ -150,7 +150,7 @@ namespace StackingEntities.Model.Entities.Other
 
 		private bool _invisible;
 
-		[Property("Armor Stand Options", "Invisible")]
+		[EntityDescriptor("Armor Stand Options", "Invisible")]
 		public bool Invisible
 		{
 			get { return _invisible; }
@@ -163,7 +163,7 @@ namespace StackingEntities.Model.Entities.Other
 
 		private bool _noBasePlate;
 
-		[Property("Armor Stand Options", "No Baseplate")]
+		[EntityDescriptor("Armor Stand Options", "No Baseplate")]
 		public bool NoBasePlate
 		{
 			get { return _noBasePlate; }
@@ -176,7 +176,7 @@ namespace StackingEntities.Model.Entities.Other
 
 		private bool _noGravity;
 
-		[Property("Armor Stand Options", "No Gravity")]
+		[EntityDescriptor("Armor Stand Options", "No Gravity")]
 		public bool NoGravity
 		{
 			get { return _noGravity; }
@@ -189,7 +189,7 @@ namespace StackingEntities.Model.Entities.Other
 
 		private bool _showArms;
 
-		[Property("Armor Stand Options", "Show Arms")]
+		[EntityDescriptor("Armor Stand Options", "Show Arms")]
 		public bool ShowArms
 		{
 			get { return _showArms; }
@@ -203,7 +203,7 @@ namespace StackingEntities.Model.Entities.Other
 		private bool _small;
 		
 
-		[Property("Armor Stand Options", "Small")]
+		[EntityDescriptor("Armor Stand Options", "Small")]
 		public bool Small
 		{
 			get { return _small; }

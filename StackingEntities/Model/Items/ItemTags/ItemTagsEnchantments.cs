@@ -7,13 +7,13 @@ namespace StackingEntities.Model.Items.ItemTags
 {
 	public class ItemTagsEnchantments : IJsonAble
 	{
-		[Property("Enchanting","Enchantments")]
+		[EntityDescriptor("Enchanting","Enchantments")]
 		public List<Enchantment> Ench { get; set; } = new List<Enchantment>();
 
-		[Property("Enchanting", "Book Enchantments")]
+		[EntityDescriptor("Enchanting", "Book Enchantments")]
 		public List<Enchantment> StoredEnchantments {get; set; }= new List<Enchantment>();
 
-		[Property("Enchanting", "Repair Cost")]
+		[EntityDescriptor("Enchanting", "Repair Cost")]
 		public int RepairCost { get; set; }
 
 		public string GenerateJson(bool topLevel = true)

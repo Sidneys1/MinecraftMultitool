@@ -8,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		public Creeper() { Type = EntityTypes.Creeper; Health = 20; Powered = false; ExplosionRadius = 3; Fuse = 30; }
 
 		bool _powered;
-		[Property("Creeper Options", "Charged")]
+		[EntityDescriptor("Creeper Options", "Charged")]
 		public bool Powered
 		{
 			get { return _powered; }
@@ -21,16 +21,16 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			}
 		}
 
-		[Property("Creeper Options", "Explosion Radius")]
+		[EntityDescriptor("Creeper Options", "Explosion Radius")]
 		[MinMax(0, byte.MaxValue)]
 		public int ExplosionRadius { get; set; }
 
-		[Property("Creeper Options", "Fuse Time (Ticks)")]
+		[EntityDescriptor("Creeper Options", "Fuse Time (Ticks)")]
 		[MinMax(0, short.MaxValue)]
 		public int Fuse { get; set; }
 
 		bool _ignited;
-		[Property("Creeper Options", "Ignited")]
+		[EntityDescriptor("Creeper Options", "Ignited")]
 		public bool Ignited
 		{
 			get { return _ignited; }

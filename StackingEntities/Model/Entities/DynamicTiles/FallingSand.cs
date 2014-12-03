@@ -16,29 +16,29 @@ namespace StackingEntities.Model.Entities.DynamicTiles
 
 		string _block;
 
-		[Property("Falling Sand Options", "Block")]
+		[EntityDescriptor("Falling Sand Options", "Block")]
 		public string Block
 		{
 			get { return _block; }
 			set { _block = value; PropChanged(); PropChanged("Display"); }
 		}
 
-		[Property("Falling Sand Options", "Block Data")]
+		[EntityDescriptor("Falling Sand Options", "Block Data")]
 		public int Data { get; set; }
 
-		[Property("Falling Sand Options", "Time")]
+		[EntityDescriptor("Falling Sand Options", "Time")]
 		public int Time { get; set; }
 
-		[Property("Falling Sand Options", "Drop Item")]
+		[EntityDescriptor("Falling Sand Options", "Drop Item")]
 		public bool DropItem { get; set; }
 
-		[Property("Falling Sand Options", "Damage Enemies/Players")]
+		[EntityDescriptor("Falling Sand Options", "Damage Enemies/Players")]
 		public bool HurtEnemies { get; set; }
 
-		[Property("Falling Sand Options", "Max Damage")]
+		[EntityDescriptor("Falling Sand Options", "Max Damage")]
 		public int FallHurtMax { get; set; }
 
-		[Property("Falling Sand Options", "Damage Multiplier")]
+		[EntityDescriptor("Falling Sand Options", "Damage Multiplier")]
 		public double FallHurtAmount { get; set; }
 
 		#region UI

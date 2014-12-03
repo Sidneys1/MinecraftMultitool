@@ -7,7 +7,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 	{
 		public MinecartCommandBlock() { Type = EntityTypes.MinecartCommandBlock; }
 
-		[Property("Minecart Command Block Options", "Command")]
+		[EntityDescriptor("Minecart Command Block Options", "Command")]
 		public string Command { get; set; }
 
 		#region UI

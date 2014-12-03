@@ -8,10 +8,10 @@ namespace StackingEntities.Model.Entities.Other.WallEntities
 	{
 		public ItemFrame() { Type = EntityTypes.ItemFrame; ItemDropChance = 1f; }
 
-		[Property("Item Frame Options", "Item Drop Chance")]
+		[EntityDescriptor("Item Frame Options", "Item Drop Chance")]
 		public double ItemDropChance { get; set; }
 
-		[Property("Wall Entity Options", "Rotation")]
+		[EntityDescriptor("Wall Entity Options", "Rotation")]
 		public int ItemRotation { get; set; }
 
 		#region UI

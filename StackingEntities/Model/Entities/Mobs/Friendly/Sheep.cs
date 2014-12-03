@@ -10,14 +10,14 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		private SheepColors _color = SheepColors.DontCare;
 		private bool _shorn;
 
-		[Property("Sheep Options", "Wool Color")]
+		[EntityDescriptor("Sheep Options", "Wool Color")]
 		public SheepColors Color
 		{
 			get { return _color; }
 			set { _color = value; PropChanged("Display"); PropChanged("DisplayImage");}
 		}
 
-		[Property("Sheep Options", "Is Sheared")]
+		[EntityDescriptor("Sheep Options", "Is Sheared")]
 		public bool Shorn
 		{
 			get { return _shorn; }

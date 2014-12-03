@@ -11,7 +11,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		#region Type
 
 		private bool _angry;
-		[Property("Wolf Options", "Is Angry")]
+		[EntityDescriptor("Wolf Options", "Is Angry")]
 		public bool Angry
 		{
 			get { return _angry; }
@@ -25,7 +25,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		}
 
 		private Dyes _collarColor = (Dyes)14;
-		[Property("Wolf Options", "Collar Color")]
+		[EntityDescriptor("Wolf Options", "Collar Color")]
 		public Dyes CollarColor
 		{
 			get { return _collarColor; }

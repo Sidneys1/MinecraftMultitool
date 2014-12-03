@@ -8,7 +8,7 @@ namespace StackingEntities.Model.Items.ItemTags
 {
 	public class ItemTagsBlock : IJsonAble
 	{
-		[Property("Block", "Can Place On")]
+		[EntityDescriptor("Block", "Can Place On")]
 		public List<BlockType> CanPlaceOn { get; set; } = new List<BlockType>();
 
 		//[Property("Block", "Block Entity")]

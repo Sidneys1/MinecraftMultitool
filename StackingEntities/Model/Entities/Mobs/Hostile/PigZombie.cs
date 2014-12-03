@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
 	public class PigZombie : Zombie
 	{
-		[Property("Zombie Pigman Options", "Ticks Until Neutral"), MinMax(short.MinValue, short.MaxValue)]
+		[EntityDescriptor("Zombie Pigman Options", "Ticks Until Neutral"), MinMax(short.MinValue, short.MaxValue)]
 		public int Anger { get; set; } = 0;
 
 		public PigZombie()

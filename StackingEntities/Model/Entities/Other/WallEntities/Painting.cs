@@ -8,7 +8,7 @@ namespace StackingEntities.Model.Entities.Other.WallEntities
 		public Painting() { Type = EntityTypes.Painting; }
 
 		string _motive = "";
-		[Property("Painting Options", "Motive")]
+		[EntityDescriptor("Painting Options", "Motive")]
 		public string Motive
 		{
 			get { return _motive; }

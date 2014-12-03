@@ -19,19 +19,19 @@ namespace StackingEntities.Model.Items.ItemTags
 
 	public class ItemTagsFireworkStar : IJsonAble 
 	{
-		[Property("Firework", "Flicker")]
+		[EntityDescriptor("Firework", "Flicker")]
 		public bool Flicker { get; set; } = false;
 
-		[Property("Firework", "Trail")]
+		[EntityDescriptor("Firework", "Trail")]
 		public bool Trail { get; set; } = false;
 
-		[Property("Firework", "Type")]
+		[EntityDescriptor("Firework", "Type")]
 		public FireworkShape Type { get; set; }
 
-		[Property("Firework", "Flight Length"), MinMax(-128, 127)]
+		[EntityDescriptor("Firework", "Flight Length"), MinMax(-128, 127)]
 		public int Flight { get; set; }
 
-		[Property("Firework", "Firework Star", "IsStarEnabled")]
+		[EntityDescriptor("Firework", "Firework Star", isEnabledPath: "IsStarEnabled")]
 		public bool IsStar { get; set; } = true;
 
 		public bool IsStarEnabled { get; set; } = true;

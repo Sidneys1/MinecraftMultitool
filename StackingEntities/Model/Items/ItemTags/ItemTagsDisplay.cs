@@ -26,15 +26,15 @@ namespace StackingEntities.Model.Items.ItemTags
 
 	public class ItemTagsDisplay : IJsonAble, INotifyPropertyChanged
 	{
-		[Property("Display", "Custom Name")]
+		[EntityDescriptor("Display", "Custom Name")]
 		public string Name { get; set; }
 
-		[Property("Display", "Lore"), MultilineString]
+		[EntityDescriptor("Display", "Lore"), MultilineString]
 		public string Lore { get; set; }
 
 		public DisplayHideFlags DisplayHideFlags { get; set; } = DisplayHideFlags.None;
 
-		[Property("Display", "Hide Enchantments")]
+		[EntityDescriptor("Display", "Hide Enchantments")]
 		public bool DisplayEnchants
 		{
 			get { return (DisplayHideFlags & DisplayHideFlags.Enchantments) == DisplayHideFlags.Enchantments; }
@@ -49,7 +49,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			}
 		}
 
-		[Property("Display", "Hide Attribute Modifiers")]
+		[EntityDescriptor("Display", "Hide Attribute Modifiers")]
 		public bool DisplayAttributes
 		{
 			get { return (DisplayHideFlags & DisplayHideFlags.AttribueModifiers) == DisplayHideFlags.AttribueModifiers; }
@@ -64,7 +64,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			}
 		}
 
-		[Property("Display", "Hide 'Unbreakable'")]
+		[EntityDescriptor("Display", "Hide 'Unbreakable'")]
 		public bool DisplayUnbreakable
 		{
 			get { return (DisplayHideFlags & DisplayHideFlags.Unbreakable) == DisplayHideFlags.Unbreakable; }
@@ -79,7 +79,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			}
 		}
 
-		[Property("Display", "Hide 'Can Destroy'")]
+		[EntityDescriptor("Display", "Hide 'Can Destroy'")]
 		public bool DisplayCanDestroy
 		{
 			get { return (DisplayHideFlags & DisplayHideFlags.CanDestroy) == DisplayHideFlags.CanDestroy; }
@@ -94,7 +94,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			}
 		}
 
-		[Property("Display", "Hide 'Can Place On'")]
+		[EntityDescriptor("Display", "Hide 'Can Place On'")]
 		public bool DisplayCanPlaceOn
 		{
 			get { return (DisplayHideFlags & DisplayHideFlags.CanPlaceOn) == DisplayHideFlags.CanPlaceOn; }
@@ -109,7 +109,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			}
 		}
 
-		[Property("Display", "Hide Other Info")]
+		[EntityDescriptor("Display", "Hide Other Info")]
 		public bool DisplayOther
 		{
 			get { return (DisplayHideFlags & DisplayHideFlags.Other) == DisplayHideFlags.Other; }
@@ -126,11 +126,11 @@ namespace StackingEntities.Model.Items.ItemTags
 
 		public int Color => Blue | (Green << 8) | (Red << 16);
 
-		[Property("Leather Armor Color", "Red"), MinMax(0, 255)]
+		[EntityDescriptor("Leather Armor Color", "Red"), MinMax(0, 255)]
 		public int Red { get; set; }
-		[Property("Leather Armor Color", "Green"), MinMax(0, 255)]
+		[EntityDescriptor("Leather Armor Color", "Green"), MinMax(0, 255)]
 		public int Green { get; set; }
-		[Property("Leather Armor Color", "Blue"), MinMax(0, 255)]
+		[EntityDescriptor("Leather Armor Color", "Blue"), MinMax(0, 255)]
 		public int Blue { get; set; }
 
 

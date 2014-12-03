@@ -8,14 +8,14 @@ namespace StackingEntities.Model.Entities.Vehicles
 	{
 		public MinecartFurnace() { Type = EntityTypes.MinecartFurnace; }
 
-		[Property("Minecart Furnace Options","Push X")]
+		[EntityDescriptor("Minecart Furnace Options","Push X")]
 		public double PushX { get; set; }
 
-		[Property("Minecart Furnace Options", "Push Z")]
+		[EntityDescriptor("Minecart Furnace Options", "Push Z")]
 		public double PushZ { get; set; }
 
 		int _fuel;
-		[Property("Minecart Furnace Options", "Ticks of Fuel"), MinMax(0, null)]
+		[EntityDescriptor("Minecart Furnace Options", "Ticks of Fuel"), MinMax(0, null)]
 		public int Fuel
 		{
 			get { return _fuel; }

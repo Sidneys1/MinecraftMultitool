@@ -5,46 +5,62 @@
     xmlns:model="clr-namespace:StackingEntities.Model"
         xmlns:viewModel="clr-namespace:StackingEntities.ViewModel"
         xmlns:entities="clr-namespace:StackingEntities.Model.Entities"
+        xmlns:view="clr-namespace:StackingEntities.View"
         x:Class="StackingEntities.View.Windows.MainWindow"
         Title="Minecraft Summon Generator" Height="600" Width="800" MinHeight="600" MinWidth="800"
     ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="/StackingEntities;component/CommandBlock.ico" SnapsToDevicePixels="True" >
     <Window.Resources>
         <DropShadowEffect x:Key="Blur" ShadowDepth="0" BlurRadius="5" RenderingBias="Quality"/>
-		<viewModel:EnumDescriptionConverter x:Key="enumDesc"/>
-		<DataTemplate x:Key="MobItemTemplate" DataType="entities:EntityBase">
-			<Grid MaxHeight="150" MaxWidth="250">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="*"/>
-					<RowDefinition Height="*"/>
-				</Grid.RowDefinitions>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
-				<Image Grid.Column="1" Grid.RowSpan="3" MaxHeight="75" Width="75" Margin="7,3" Source="{Binding DisplayImage}" Stretch="None" Effect="{DynamicResource Blur}" />
-				<TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding Type, Converter={StaticResource enumDesc}}" TextTrimming="CharacterEllipsis" Margin="3" FontSize="14"/>
-				<TextBlock Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="12"/>
-				<Image Grid.Row="0" Grid.Column="0" Width="20" Height="20" Source="/StackingEntities;component/Images/Delete.png"  HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Remove Item" Tag="{Binding Mode=OneWay}" MouseUp="DeleteSelectedEntityButton_Clicked" Stretch="None" Effect="{DynamicResource Blur}" />
-				<Image Grid.Row="1" Grid.Column="0" Width="20" Height="20" Source="/StackingEntities;component/Images/Up.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Up" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityUpBtn_Clicked" />
-				<Image Grid.Row="2" Grid.Column="0" Width="20" Height="20" Source="/StackingEntities;component/Images/Down.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Down" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityDownBtn_Clicked" />
-			</Grid>
-		</DataTemplate>
-	</Window.Resources>
+        <viewModel:EnumDescriptionConverter x:Key="enumDesc"/>
+        <DataTemplate x:Key="MobItemTemplate" DataType="entities:EntityBase">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="1" Grid.RowSpan="3" Width="Auto" Height="Auto">
+                    <Image RenderOptions.BitmapScalingMode="HighQuality" SnapsToDevicePixels="True" UseLayoutRounding="True" Margin="5" Source="{Binding DisplayImage}" Stretch="None" Effect="{DynamicResource Blur}"/>
+                </Border>
+                <TextBlock Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Type, Converter={StaticResource enumDesc}}" TextTrimming="CharacterEllipsis"
+                    FontSize="12pt" FontFamily="/StackingEntities;component/Fonts/#Minecraftia" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+
+                <TextBlock Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="12"/>
+
+                <Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="0" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/StackingEntities;component/Images/Delete.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Remove Item" Tag="{Binding Mode=OneWay}" MouseUp="DeleteSelectedEntityButton_Clicked" Stretch="None" Effect="{DynamicResource Blur}" />
+                <Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="1" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities;component/Images/Up.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Up" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityUpBtn_Clicked" />
+                <Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="2" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities;component/Images/Down.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Down" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityDownBtn_Clicked" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Window.DataContext>
         <model:DataModel X="~" Y="~" Z="~"/>
     </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="F4" Modifiers="Alt" Command="{x:Static view:CustomCommands.Exit}"/>
+        <KeyBinding Key="F1" Command="Help"/>
+    </Window.InputBindings>
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static view:CustomCommands.Exit}" Executed="CommandExit_Execute"/>
+        <CommandBinding Command="Help" Executed="CommandAbout_Execute"/>
+        <CommandBinding Command="New" CanExecute="CommandNew_CanExecute" Executed="CommandNew_Execute"></CommandBinding>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto" MaxHeight="100"/>
+            <RowDefinition Height="Auto" MaxHeight="150"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" MaxWidth="400" MinWidth="200"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Menu Grid.ColumnSpan="2" Padding="3" Height="30">
@@ -53,19 +69,45 @@
                     <DockPanel HorizontalAlignment="Stretch"/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Padding="3" ToolTip="Misc. Tools" Cursor="Hand">
-                <MenuItem.Header>
-                    <Image Source="/StackingEntities;component/Images/Tools.png" Effect="{DynamicResource Blur}" StretchDirection="DownOnly" Stretch="None" />
-                </MenuItem.Header>
-                <MenuItem Header="List of Commands}" Click="CommandListDialogButton_Clicked">
+            <MenuItem Header="File">
+                <MenuItem Header="New" Command="New">
                     <MenuItem.Icon>
-                        <Image Source="/StackingEntities;component/Images/MCB.png"/>
+                        <Image Source="/StackingEntities;component/Images/New.png" Stretch="None"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Open..." Command="Open">
+                    <MenuItem.Icon>
+                        <Image Source="/StackingEntities;component/Images/Open.png" Stretch="None"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Save" Command="Save">
+                    <MenuItem.Icon>
+                        <Image Source="/StackingEntities;component/Images/Save.png" Stretch="None"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save as..." Command="SaveAs">
+                    <MenuItem.Icon>
+                        <Image Source="/StackingEntities;component/Images/SaveAs.png" Width="16" Height="16" StretchDirection="DownOnly"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator/>
+                <MenuItem Header="Exit" Command="{x:Static view:CustomCommands.Exit}" InputGestureText="Alt+F4">
+                    <MenuItem.Icon>
+                        <Image Source="/StackingEntities;component/Images/Exit.png" Stretch="None"/>
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem x:Name="AboutMenuItem" ToolTip="About..." HorizontalAlignment="Right" Cursor="Hand" Click="AboutMenuItem_Click">
+            <MenuItem Padding="3" Header="Tools" Cursor="Hand">
+                <MenuItem Header="List of Commands..." Click="CommandListDialogButton_Clicked">
+                    <MenuItem.Icon>
+                        <Image Source="/StackingEntities;component/Images/MCB.png" Stretch="None"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem x:Name="AboutMenuItem" ToolTip="About..." HorizontalAlignment="Right" Cursor="Hand" Command="Help">
                 <MenuItem.Header>
-                    <Image Effect="{DynamicResource Blur}" Source="/StackingEntities;component/Images/About.png" StretchDirection="DownOnly" Stretch="None" />
+                    <Image Source="/StackingEntities;component/Images/About.png" Stretch="None"/>
                 </MenuItem.Header>
             </MenuItem>
         </Menu>
@@ -73,7 +115,6 @@
         <GroupBox Header="Stacked Entities" Grid.Row="1" Grid.RowSpan="3" Grid.Column="0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
@@ -81,17 +122,16 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Add New"/>
-                <ComboBox x:Name="EntityTypeComboBox" Grid.Row="0" Grid.Column="1" Margin="3" SelectedIndex="0" 
+                <ComboBox x:Name="EntityTypeComboBox" Margin="3" SelectedIndex="0" 
 						  ItemsSource="{Binding Source={viewModel:Enumeration {x:Type entities:EntityTypes}}}"
 						  DisplayMemberPath="Description"
-						  SelectedValue="{Binding EType}"
-						  SelectedValuePath="Value"/>
-				<!--ItemsSource="{Binding Source={StaticResource sysEnum}}" />-->
-	            <Button Grid.Column="2" Grid.Row="0" Content="Add" Margin="3" Click="Button_Click" HorizontalAlignment="Right" Padding="10,0"/>
-                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="0" VerticalScrollBarVisibility="Auto" BorderBrush="#FFABADB3" BorderThickness="1">
-					<ListBox x:Name="EntitiesListBox" ItemsSource="{Binding Entities}" ItemTemplate="{DynamicResource MobItemTemplate}" BorderThickness="0" BorderBrush="{x:Null}" SelectionChanged="ListBox_SelectionChanged" HorizontalContentAlignment="Stretch" MaxWidth="250" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewKeyDown="EntitiesListBox_PreviewKeyDown"/>
-				</ScrollViewer>
+						  SelectedValuePath="Value" VerticalAlignment="Center"/>
+                <!--ItemsSource="{Binding Source={StaticResource sysEnum}}" />-->
+                <Button Grid.Column="1" Grid.Row="0" Content="Add" Margin="3" Click="Button_Click" HorizontalAlignment="Right" Padding="10,4"  />
+
+                <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" BorderBrush="#FFABADB3" BorderThickness="1">
+                    <ListBox x:Name="EntitiesListBox" ItemsSource="{Binding Entities}" ItemTemplate="{DynamicResource MobItemTemplate}" BorderThickness="0" BorderBrush="{x:Null}" SelectionChanged="EntitiesListBox_SelectionChanged" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewKeyDown="EntitiesListBox_PreviewKeyDown"/>
+                </ScrollViewer>
             </Grid>
         </GroupBox>
 
@@ -100,23 +140,25 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
+
                 <Label Content="X"/>
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding X}"/>
-                <Label Grid.Row="1" Grid.Column="0" Content="Y"/>
-                <TextBox Grid.Column="1" Grid.Row="1" Margin="3" Text="{Binding Y}"/>
-                <Label Grid.Row="2" Grid.Column="0" Content="Z"/>
-                <TextBox Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding Z}"/>
+                <TextBox Grid.Column="1" Margin="3" Text="{Binding X}"/>
+
+                <Label Grid.Column="2" Content="Y"/>
+                <TextBox Grid.Column="3"  Margin="3" Text="{Binding Y}"/>
+
+                <Label Grid.Column="4" Content="Z"/>
+                <TextBox Grid.Column="5" Margin="3" Text="{Binding Z}"/>
             </Grid>
         </GroupBox>
 
         <ScrollViewer Grid.Column="1" Grid.Row="2" VerticalScrollBarVisibility="Auto" >
-            <StackPanel x:Name="EditStackPanel" DataContext="{Binding SelectedItem, ElementName=EntitiesListBox}" />
+            <StackPanel x:Name="EditStackPanel" DataContext="{Binding SelectedItem, ElementName=EntitiesListBox}"/>
         </ScrollViewer>
 
         <Grid Grid.Column="1" Grid.Row="3">
@@ -126,9 +168,10 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Button Content="Generate Summon" Padding="5" Margin="5" Click="GenerateButton_Clicked" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Button Content="Generate Summon" Padding="5" Margin="5" Click="GenerateButton_Clicked" VerticalAlignment="Center" HorizontalAlignment="Left"
+                     />
             <TextBox Grid.Column="1" x:Name="SummonCommandOutputTxtBx" Background="Transparent" BorderThickness="0" Text="/summon x ~ ~ ~" IsReadOnly="True" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontFamily="Courier New" VerticalScrollBarVisibility="Auto" MaxHeight="150" />
-            <Button Grid.Column="2" Content="Copy" Padding="5" Margin="5" Click="CopyButton_Clicked" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+            <Button Grid.Column="2" Content="Copy" Padding="5" Margin="5" Click="CopyButton_Clicked" VerticalAlignment="Center" HorizontalAlignment="Right" />
         </Grid>
     </Grid>
 </Window>

@@ -5,10 +5,10 @@ namespace StackingEntities.Model.Entities.ItemEntities
 {
 	internal abstract class ItemEntityBase : EntityBase
 	{
-		[Property("Item Entity Options", "Age")]
+		[EntityDescriptor("Item Entity Options", "Age")]
 		public int Age { get; set; }
 
-		[Property("Item Entity Options", "Health"), MinMax(0, 255)]
+		[EntityDescriptor("Item Entity Options", "Health"), MinMax(0, 255)]
 		public int Health { get; set; }
 
 		protected ItemEntityBase()

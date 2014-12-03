@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
 	public class Slime : MobBase
 	{
-		[Property("Slime Options", "Size"), MinMax(0, int.MaxValue)]
+		[EntityDescriptor("Slime Options", "Size"), MinMax(0, int.MaxValue)]
 		public int Size { get; set; }
 
 		public Slime()

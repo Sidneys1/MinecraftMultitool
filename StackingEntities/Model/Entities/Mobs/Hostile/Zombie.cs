@@ -10,7 +10,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 		#region Type
 
 		bool _isVillager, _isBaby;
-		[Property("Zombie Options", "Is Villager")]
+		[EntityDescriptor("Zombie Options", "Is Villager")]
 		public bool IsVillager
 		{
 			get { return _isVillager; }
@@ -21,7 +21,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 			}
 		}
 
-		[Property("Zombie Options", "Is Baby")]
+		[EntityDescriptor("Zombie Options", "Is Baby")]
 		public bool IsBaby 
 		{
 			get { return _isBaby; }
@@ -37,10 +37,10 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 		#region Abilities
 
-		[Property("Zombie Options", "Can Break Doors")]
+		[EntityDescriptor("Zombie Options", "Can Break Doors")]
 		public bool CanBreakDoors { get; set; }
 
-		[Property("Zombie Options", "Conversion Time"), MinMax(-1, int.MaxValue)]
+		[EntityDescriptor("Zombie Options", "Conversion Time"), MinMax(-1, int.MaxValue)]
 		public int ConversionTime { get; set; } = -1;
 
 		#endregion

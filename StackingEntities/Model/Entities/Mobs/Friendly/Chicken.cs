@@ -8,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		public Chicken() { Type = EntityTypes.Chicken; Health = 4; IsChickenJockey = false; }
 
 		bool _isChickenJockey;
-		[Property("Chicken Options", "Is Jockey")]
+		[EntityDescriptor("Chicken Options", "Is Jockey")]
 		public bool IsChickenJockey
 		{
 			get { return _isChickenJockey; }

@@ -8,7 +8,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 		public MinecartTNT() { Type = EntityTypes.MinecartTNT; }
 
 		int _tntFuse = -1;
-		[Property("Minecart TNT Options", "Fuse Ticks (-1 = Inactive)"), MinMax(-1, null)]
+		[EntityDescriptor("Minecart TNT Options", "Fuse Ticks (-1 = Inactive)"), MinMax(-1, null)]
 		// ReSharper disable once InconsistentNaming
 		public int TNTFuse
 		{

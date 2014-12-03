@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
 	public class VillagerGolem : MobBase
 	{
-		[Property("Iron Golem Options", "Created by Player")]
+		[EntityDescriptor("Iron Golem Options", "Created by Player")]
 		public bool PlayerCreated { get; set; } = false;
 
 		public VillagerGolem()

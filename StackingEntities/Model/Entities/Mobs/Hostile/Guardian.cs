@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
 	public class Guardian : MobBase
 	{
-		[Property("Guardian Options", "Is Elder")]
+		[EntityDescriptor("Guardian Options", "Is Elder")]
 		public bool Elder { get; set; } = false;
 
 		public Guardian()

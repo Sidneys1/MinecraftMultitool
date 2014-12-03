@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Data;
 
 namespace StackingEntities.ViewModel
@@ -16,8 +17,9 @@ namespace StackingEntities.ViewModel
 			if (attribArray.Length == 0)
 				return enumObj.ToString();
 
-			var attrib = attribArray[0] as DescriptionAttribute;
-			return attrib != null ? attrib.Description : "";
+			var attrib = attribArray.OfType<DescriptionAttribute>().FirstOrDefault();
+
+			return attrib?.Description ?? enumObj.ToString();
 		}
 
 		object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)

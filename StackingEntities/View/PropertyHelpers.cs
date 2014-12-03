@@ -6,7 +6,7 @@ using System.Reflection;
 
 namespace StackingEntities.View
 {
-	static internal class PropertyHelpers
+	public static class PropertyHelpers
 	{
 		public static string GetPropertyDisplayName(object descriptor)
 		{

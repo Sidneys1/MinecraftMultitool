@@ -37,7 +37,7 @@ namespace StackingEntities.Model.Entities.Mobs
 
 		#region Health
 
-		[Property("Mob Options", "Health"), MinMax(0, null)]
+		[EntityDescriptor("Mob Options", "Health"), MinMax(0, null)]
 		public int Health { get; set; }
 
 		#endregion
@@ -46,7 +46,7 @@ namespace StackingEntities.Model.Entities.Mobs
 
 		string _customName = "";
 
-		[Property("Mob Options", "Custom Name")]
+		[EntityDescriptor("Mob Options", "Custom Name")]
 		public string CustomName
 		{
 			get { return _customName; }
@@ -58,7 +58,7 @@ namespace StackingEntities.Model.Entities.Mobs
 			}
 		}
 
-		[Property("Mob Options", "CN Visible")]
+		[EntityDescriptor("Mob Options", "CN Visible")]
 		public bool CustomNameVisible { get; set; }
 
 		#endregion
@@ -68,7 +68,7 @@ namespace StackingEntities.Model.Entities.Mobs
 
 		#region Loot
 
-		[Property("Mob Options", "Can Pick Up Loot")]
+		[EntityDescriptor("Mob Options", "Can Pick Up Loot")]
 		public bool CanPickUpLoot { get; set; }
 
 		//public list<Item> Equipment
@@ -79,7 +79,7 @@ namespace StackingEntities.Model.Entities.Mobs
 		#region Despawning
 
 		bool _persistanceRequired;
-		[Property("Mob Options", "Don't Despawn")]
+		[EntityDescriptor("Mob Options", "Don't Despawn")]
 		public bool PersistanceRequired
 		{
 			get { return _persistanceRequired; }
@@ -95,31 +95,31 @@ namespace StackingEntities.Model.Entities.Mobs
 
 		#region Equiptment
 
-		[Property("Equipment", "Held Item")]
+		[EntityDescriptor("Equipment", "Held Item")]
 		public Item Holding { get; set; } = new Item() { Id = string.Empty };
 
-		[Property("Equipment", "Boots")]
+		[EntityDescriptor("Equipment", "Boots")]
 		public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
-		[Property("Equipment", "Leggings")]
+		[EntityDescriptor("Equipment", "Leggings")]
 		public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
-		[Property("Equipment", "Chestplate")]
+		[EntityDescriptor("Equipment", "Chestplate")]
 		public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
-		[Property("Equipment", "Helmet")]
+		[EntityDescriptor("Equipment", "Helmet")]
 		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
 
-		[Property("Mob Options", "Attributes")]
+		[EntityDescriptor("Mob Options", "Attributes")]
 		public List<Attribute> Attributes { get; } = new List<Attribute>();
 
-		[Property("Mob Options", "Potion Effects")]
+		[EntityDescriptor("Mob Options", "Potion Effects")]
 		public List<PotionEffect> PotionEffects { get; } = new List<PotionEffect>();
 
-		[Property("Mob Options", "No AI")]
+		[EntityDescriptor("Mob Options", "No AI")]
 		public bool NoAi { get; set; } = false;
 
-		[Property("Equipment", "Drop Chances", fixedSize: true, dgRowPath: "Name")]
+		[EntityDescriptor("Equipment", "Drop Chances", fixedSize: true, dgRowPath: "Name")]
 		public List<SimpleDouble> DropChanceFloats { get; set; } = new List<SimpleDouble> { new SimpleDouble("Held Item"), new SimpleDouble("Boots"), new SimpleDouble("Leggings"), new SimpleDouble("Chestplate"), new SimpleDouble("Helmet") };
 
 		#endregion

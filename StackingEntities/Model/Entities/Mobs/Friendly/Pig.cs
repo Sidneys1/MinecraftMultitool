@@ -7,7 +7,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 	{
 		private bool _saddled;
 
-		[Property("Pig Options", "Saddled")]
+		[EntityDescriptor("Pig Options", "Saddled")]
 		public bool Saddled
 		{
 			get { return _saddled; }

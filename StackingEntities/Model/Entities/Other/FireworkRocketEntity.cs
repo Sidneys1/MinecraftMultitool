@@ -13,13 +13,13 @@ namespace StackingEntities.Model.Entities.Other
 			FireWorksItem.Tag.Add(new ItemTagsFireworkStar {IsStar = false, IsStarEnabled = false});
 		}
 
-		[Property("Firework Options", "Life (Age)")]
+		[EntityDescriptor("Firework Options", "Life (Age)")]
 		public int Life{get;set;}
 
-		[Property("Firework Options", "Life Time")]
+		[EntityDescriptor("Firework Options", "Life Time")]
 		public int LifeTime{get;set;}
 
-		[Property("Firework Options", "Firework Item")]
+		[EntityDescriptor("Firework Options", "Firework Item")]
 		public Item FireWorksItem { get; set; } = new Item {Id = "minecraft:fireworks", IdTagEnabled = false, CountTagEnabled = false, SlotTagEnabled = false, DamageTagEnabled = false};
 
 		public override string Display => string.Empty;

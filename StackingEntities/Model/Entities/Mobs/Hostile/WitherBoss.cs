@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
 	public class WitherBoss :MobBase
 	{
-		[Property("Wither Options", "Invulnerable For <x> Ticks")]
+		[EntityDescriptor("Wither Options", "Invulnerable For <x> Ticks")]
 		public int Invul { get; set; }
 
 		public WitherBoss()

@@ -8,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		public Bat() { Type = EntityTypes.Bat; Health = 6; BatFlags = false; }
 
 		bool _batFlags;
-		[Property("Bat Options", "Is Hanging")]
+		[EntityDescriptor("Bat Options", "Is Hanging")]
 		public bool BatFlags
 		{
 			get { return _batFlags; }

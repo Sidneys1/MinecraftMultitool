@@ -7,7 +7,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 	{
 		private CatType _catType;
 
-		[Property("Ocelot Options", "Type")]
+		[EntityDescriptor("Ocelot Options", "Type")]
 		public CatType CatType
 		{
 			get { return _catType; }

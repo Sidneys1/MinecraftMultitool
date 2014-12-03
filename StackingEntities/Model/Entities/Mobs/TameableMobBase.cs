@@ -10,7 +10,7 @@ namespace StackingEntities.Model.Entities.Mobs
 		string _owner = "";
 		private bool _sitting;
 
-		[Property("Tameable Mob Options", "Owner (Player)")]
+		[EntityDescriptor("Tameable Mob Options", "Owner (Player)")]
 		public string Owner
 		{
 			get { return _owner; }
@@ -22,7 +22,7 @@ namespace StackingEntities.Model.Entities.Mobs
 			}
 		}
 
-		[Property("Tameable Mob Options", "Is Sitting")]
+		[EntityDescriptor("Tameable Mob Options", "Is Sitting")]
 		public bool Sitting
 		{
 			get { return _sitting; }

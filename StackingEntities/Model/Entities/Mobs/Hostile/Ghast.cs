@@ -5,7 +5,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
 	public class Ghast : MobBase
 	{
-		[Property("Ghast Options", "Explosion Power"), MinMax(0, int.MaxValue)]
+		[EntityDescriptor("Ghast Options", "Explosion Power"), MinMax(0, int.MaxValue)]
 		public int ExplosionPower { get; set; } = 1;
 
 		public Ghast()

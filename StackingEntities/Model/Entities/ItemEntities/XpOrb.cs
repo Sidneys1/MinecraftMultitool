@@ -9,7 +9,7 @@ namespace StackingEntities.Model.Entities.ItemEntities
 
 		
 
-		[Property("XP Orb Options", "Value (XP Points)"), MinMax(0, int.MaxValue)]
+		[EntityDescriptor("XP Orb Options", "Value (XP Points)"), MinMax(0, int.MaxValue)]
 		public int Value
 		{
 			get { return _value; }

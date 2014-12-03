@@ -8,10 +8,10 @@ namespace StackingEntities.Model.Items.ItemTags
 {
 	public class ItemTagsGeneral : IJsonAble
 	{
-		[Property("General", "Unbreakable")]
+		[EntityDescriptor("General", "Unbreakable")]
 		public bool Unbreakable { get; set; }
 
-		[Property("General", "Can Destroy")]
+		[EntityDescriptor("General", "Can Destroy")]
 		public List<BlockType> CanDestroy { get; set; } = new List<BlockType>();
 
 		public string GenerateJson(bool topLevel = true)

@@ -12,7 +12,7 @@ namespace StackingEntities.Model.Entities.ItemEntities
 			Item = new Item();
 		}
 
-		[Property("Item Options","Item")]
+		[EntityDescriptor("Item Options","Item")]
 		public Item Item { get; set; }
 
 		public override string DisplayImage => "/StackingEntities;component/Images/Other/Item.png";

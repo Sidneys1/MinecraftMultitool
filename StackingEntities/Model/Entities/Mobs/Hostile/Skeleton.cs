@@ -7,7 +7,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	{
 		private bool _skeletonType;
 
-		[Property("Skeleton Options", "Is Wither Skeleton")]
+		[EntityDescriptor("Skeleton Options", "Is Wither Skeleton")]
 		public bool SkeletonType
 		{
 			get { return _skeletonType; }

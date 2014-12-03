@@ -8,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 	public class Rabbit :BreedableMobBase
 	{
 		private RabbitTypes _rabbitType = RabbitTypes.DontCare;
-		[Property("Rabbit Options", "Rabbit Type")]
+		[EntityDescriptor("Rabbit Options", "Rabbit Type")]
 		public RabbitTypes RabbitType
 		{
 			get { return _rabbitType; }

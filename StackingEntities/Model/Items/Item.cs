@@ -8,24 +8,24 @@ namespace StackingEntities.Model.Items
 {
 	public class Item: IJsonAble
 	{
-		[Property("Item", "Count"), MinMax(byte.MinValue, byte.MaxValue)]
+		[EntityDescriptor("Item", "Count"), MinMax(byte.MinValue, byte.MaxValue)]
 		public int Count { get; set; } = 1;
 
 		public bool CountTagEnabled { get; set; } = true;
 
-		[Property("Item", "Slot"), MinMax(byte.MinValue, byte.MaxValue)]
+		[EntityDescriptor("Item", "Slot"), MinMax(byte.MinValue, byte.MaxValue)]
 		public int? Slot { get; set; } = null;
 
 		public bool HasSlotTag => Slot.HasValue;
 
 		public bool SlotTagEnabled { get; set; } = true;
 
-		[Property("Item", "Damage/Data Value"), MinMax(short.MinValue, short.MaxValue)]
+		[EntityDescriptor("Item", "Damage/Data Value"), MinMax(short.MinValue, short.MaxValue)]
 		public int Damage { get; set; } = 0;
 
 		public bool DamageTagEnabled { get; set; } = true;
 
-		[Property("Item", "id")]
+		[EntityDescriptor("Item", "id")]
 		public string Id { get; set; }
 
 		public bool IdTagEnabled { get; set; } = true;

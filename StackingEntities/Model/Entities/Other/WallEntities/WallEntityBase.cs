@@ -5,16 +5,16 @@ namespace StackingEntities.Model.Entities.Other.WallEntities
 {
 	internal abstract class WallEntityBase : EntityBase
 	{
-		[Property("Wall Entity Options", "Tile X")]
+		[EntityDescriptor("Wall Entity Options", "Tile X")]
 		public int TileX { get; set; }
 
-		[Property("Wall Entity Options", "Tile Y")]
+		[EntityDescriptor("Wall Entity Options", "Tile Y")]
 		public int TileY { get; set; }
 
-		[Property("Wall Entity Options", "Tile Z")]
+		[EntityDescriptor("Wall Entity Options", "Tile Z")]
 		public int TileZ { get; set; }
 
-		[Property("Wall Entity Options", "Direction")]
+		[EntityDescriptor("Wall Entity Options", "Direction")]
 		public Direction Direction { get; set; }
 
 		public override string GenerateJson(bool topLevel)

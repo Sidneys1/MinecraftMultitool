@@ -8,7 +8,7 @@ namespace StackingEntities.Model.Entities.DynamicTiles
 		public PrimedTNT() { Type = EntityTypes.PrimedTnt; }
 
 		int _fuse = 80;
-		[Property("Primed TNT Settings", "Fuse Length (Ticks)")]
+		[EntityDescriptor("Primed TNT Settings", "Fuse Length (Ticks)")]
 		public int Fuse
 		{
 			get { return _fuse; }

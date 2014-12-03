@@ -7,11 +7,11 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	{
 		public Endermite() { Type = EntityTypes.Endermite; Health = 8; Lifetime = 0; }
 
-		[Property("Endermite Options", "Lifetime")]
+		[EntityDescriptor("Endermite Options", "Lifetime")]
 		[MinMax(0, 2400)]
 		public int Lifetime { get; set; }
 
-		[Property("Endermite Options", "Spawned by Player")]
+		[EntityDescriptor("Endermite Options", "Spawned by Player")]
 		public bool PlayerSpawned { get; set; } = false;
 
 		public override string DisplayImage => "/StackingEntities;component/Images/Mobs/Endermite/Endermite.png";

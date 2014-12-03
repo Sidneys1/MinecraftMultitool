@@ -9,16 +9,16 @@ namespace StackingEntities.Model.Items.ItemTags
 {
 	public class ItemTagsBook : IJsonAble
 	{
-		[Property("Book", "Generation")]
+		[EntityDescriptor("Book", "Generation")]
 		public BookGeneration Generation { get; set; } = BookGeneration.Original;
 
-		[Property("Book", "Author")]
+		[EntityDescriptor("Book", "Author")]
 		public string Author { get; set; }
 
-		[Property("Book", "Title")]
+		[EntityDescriptor("Book", "Title")]
 		public string Title { get; set; }
 
-		[Property("Book", "Pages")]
+		[EntityDescriptor("Book", "Pages")]
 		public List<Page> Pages { get; set; } = new List<Page>(); 
 
 		public string GenerateJson(bool topLevel)

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
+using StackingEntities.Model.SimpleTypes;
 
 namespace StackingEntities.Model.Entities
 {
@@ -13,21 +15,20 @@ namespace StackingEntities.Model.Entities
 
 		#region Motion
 
-		[Property("Entity Options", "Velocity X")]
-		public double Dx { get; set; }
-
-		[Property("Entity Options", "Velocity Y")]
-		public double Dy { get; set; }
-
-		[Property("Entity Options", "Velocity Z")]
-		public double Dz { get; set; }
+		[EntityDescriptor("Entity Options", "Velocity", fixedSize: true, dgRowPath: "Name")]
+		public List<SimpleDouble> Velocity { get; } = new List<SimpleDouble>
+		{
+			new SimpleDouble("X"),
+			new SimpleDouble("Y"),
+			new SimpleDouble("Z")
+		};
 
 		#endregion
 
 		#region Invulnerable
 
 		bool _invulnerable;
-		[Property("Entity Options", "Invulnerable")]
+		[EntityDescriptor("Entity Options", "Invulnerable")]
 		public bool Invulnerable
 		{
 			get { return _invulnerable; }
@@ -43,7 +44,7 @@ namespace StackingEntities.Model.Entities
 
 		#region Fire
 		int _fire;
-		[Property("Entity Options", "Fire (Ticks)"), MinMax(-1, null)]
+		[EntityDescriptor("Entity Options", "Fire (Ticks)"), MinMax(-1, null)]
 		public int Fire
 		{
 			get { return _fire; }
@@ -76,6 +77,7 @@ namespace StackingEntities.Model.Entities
 			if (Invulnerable)
 				b.Append("Invulnerable:1b,");
 
+			double Dx = Velocity[0].Value, Dy = Velocity[1].Value, Dz = Velocity[2].Value;
 			if (Math.Abs(Dx) > 0 || Math.Abs(Dy) > 0 || Math.Abs(Dz) > 0)
 				b.Append(string.Format("Motion:[{0:0.0},{1:0.0},{2:0.0}],", Dx, Dy, Dz));
 

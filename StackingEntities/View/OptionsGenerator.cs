@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows;
@@ -14,7 +15,7 @@ namespace StackingEntities.View
 {
 	public class OptionsGenerator
 	{
-		public static Expander AddGroup(string header, Dictionary<string, List<DisplayOption>> dict, bool BindDirect = false, bool wide = false)
+		public static Expander AddGroup(string header, IDictionary<string, List<DisplayOption>> dict, bool bindDirect = false, bool wide = false)
 		{
 			var g = new Expander { Header = header };
 
@@ -100,7 +101,7 @@ namespace StackingEntities.View
 
 				if (!option.PropertyType.IsGenericType || option.PropertyType.GetGenericTypeDefinition() != typeof(List<>))
 				{
-					var l = new Label { Content = option.ReadableName };
+					var l = new Label { Content = option.ReadableName, ToolTip = option.Description};
 					l.SetValue(Grid.RowProperty, i);
 
 					if (option.EnabledPropertyName != null)
@@ -114,7 +115,10 @@ namespace StackingEntities.View
 					elem.SetBinding(UIElement.IsEnabledProperty, new Binding(option.EnabledPropertyName));
 
 				elem.SetValue(Grid.RowProperty, i);
-				if (BindDirect)
+
+				elem.ToolTip = option.Description;
+
+				if (bindDirect)
 					elem.DataContext = option.DataContext;
 
 				grid.Children.Add(elem);
@@ -192,6 +196,19 @@ namespace StackingEntities.View
 				MinWidth = 50
 			};
 			ctrl.SetBinding(DoubleUpDown.ValueProperty, new Binding(option.PropertyName));
+
+			double newVal;
+			if (option.Minimum != null)
+			{
+				newVal = Convert.ToDouble(option.Minimum);
+				ctrl.Minimum = newVal;
+			}
+			if (option.Maximum != null)
+			{
+				newVal = Convert.ToDouble(option.Maximum);
+				ctrl.Maximum = newVal;
+			}
+
 			return ctrl;
 		}
 
@@ -221,11 +238,17 @@ namespace StackingEntities.View
 			};
 			ctrl.SetBinding(IntegerUpDown.ValueProperty, new Binding(option.PropertyName));
 
-			if (option.Minimum is int)
-				ctrl.Minimum = (int?)option.Minimum;
-
-			if (option.Maximum is int)
-				ctrl.Maximum = (int?)option.Maximum;
+			int newVal;
+			if (option.Minimum != null)
+			{
+				newVal = Convert.ToInt32(option.Minimum);
+				ctrl.Minimum = newVal;
+			}
+			if (option.Maximum != null)
+			{
+				newVal = Convert.ToInt32(option.Maximum);
+				ctrl.Maximum = newVal;
+			}
 			return ctrl;
 		}
 

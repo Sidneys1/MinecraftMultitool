@@ -151,6 +151,18 @@
     <Compile Include="Model\Entities\Other\WallEntities\ItemFrame.cs" />
     <Compile Include="Model\Entities\Other\WallEntities\Painting.cs" />
     <Compile Include="Model\Entities\Other\WallEntities\WallEntityBase.cs" />
+    <Compile Include="Model\Entities\Projectiles\Arrow.cs" />
+    <Compile Include="Model\Entities\Projectiles\BaseClasses\DirectionProjectileBase.cs" />
+    <Compile Include="Model\Entities\Projectiles\BaseClasses\OwnedProjectileBase.cs" />
+    <Compile Include="Model\Entities\Projectiles\BaseClasses\ProjectileBase.cs" />
+    <Compile Include="Model\Entities\Projectiles\BaseClasses\ShakingProjectileBase.cs" />
+    <Compile Include="Model\Entities\Projectiles\Fireball.cs" />
+    <Compile Include="Model\Entities\Projectiles\SmallFireball.cs" />
+    <Compile Include="Model\Entities\Projectiles\Snowball.cs" />
+    <Compile Include="Model\Entities\Projectiles\ThrownEnderPearl.cs" />
+    <Compile Include="Model\Entities\Projectiles\ThrownExpBottle.cs" />
+    <Compile Include="Model\Entities\Projectiles\ThrownPotion.cs" />
+    <Compile Include="Model\Entities\Projectiles\WitherSkull.cs" />
     <Compile Include="Model\Entities\Vehicles\Boat.cs" />
     <Compile Include="Model\Entities\Vehicles\InventoryMinecart.cs" />
     <Compile Include="Model\Entities\Vehicles\Minecart.cs" />
@@ -173,9 +185,10 @@
     <Compile Include="Model\Items\ItemTags\ItemTagsGeneral.cs" />
     <Compile Include="Model\Items\ItemTags\ItemTagsMap.cs" />
     <Compile Include="Model\Items\ItemTags\Page.cs" />
+    <Compile Include="Model\Metadata\ClassLinkAttribute.cs" />
     <Compile Include="Model\Metadata\MinMaxAttribute.cs" />
     <Compile Include="Model\Metadata\MultilineStringAttribute.cs" />
-    <Compile Include="Model\Metadata\PropertyAttribute.cs" />
+    <Compile Include="Model\Metadata\EntityDescriptorAttribute.cs" />
     <Compile Include="Model\SimpleTypes\SimpleDouble.cs" />
     <Compile Include="Model\SimpleTypes\ValueDescription.cs" />
     <Compile Include="Properties\Annotations\Annotations.cs" />
@@ -241,11 +254,13 @@
     <Compile Include="ViewModel\DisplayOption.cs" />
     <Compile Include="ViewModel\EnumDescriptionConverter.cs" />
     <Compile Include="ViewModel\EnumerationExtension.cs" />
+    <Compile Include="View\CustomCommands.cs" />
     <Compile Include="View\Controls\ItemControl.cs">
       <DependentUpon>ItemControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\OptionsGenerator.cs" />
     <Compile Include="View\PropertyHelpers.cs" />
+    <Compile Include="View\TypeExtensions.cs" />
     <Compile Include="View\Windows\AboutDialog.cs">
       <DependentUpon>AboutDialog.xaml</DependentUpon>
     </Compile>
@@ -294,6 +309,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Fonts\pixelmix.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -326,9 +342,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\DynamicTiles\FallingSand.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Tools.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\MCB.png" />
@@ -501,7 +514,56 @@
   <ItemGroup>
     <Resource Include="Images\Mobs\PigZombie\PigZombie.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\Fireball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\Snowball.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\ThrownEnderPearl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\ThrownExpBottle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\WitherSkull.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\ThrownPotion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ExpanderClosed.png" />
+    <Resource Include="Images\ExpanderOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ButtonBackEnabled.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ButtonBackDisabled.bmp" />
+    <Resource Include="Images\ButtonBackHover.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\command_block.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\New.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SaveAs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Projectiles\Arrow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

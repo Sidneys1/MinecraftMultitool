@@ -5,11 +5,11 @@ namespace StackingEntities.Model.Entities.Mobs
 {
 	public abstract class BreedableMobBase : MobBase
 	{
-		[Property("Breedable Mob Options", "Love Mode (Ticks)")]
+		[EntityDescriptor("Breedable Mob Options", "Love Mode (Ticks)")]
 		public int InLove { get; set; }
 
 		int _age;
-		[Property("Breedable Mob Options", "Age (Ticks)")]
+		[EntityDescriptor("Breedable Mob Options", "Age (Ticks)")]
 		public int Age
 		{
 			get { return _age; }
