@@ -9,11 +9,10 @@ namespace StackingEntities.Model.Entities.ItemEntities
 		public DroppedItem()
 		{
 			Type= EntityTypes.Item;
-			Item = new Item();
 		}
 
 		[EntityDescriptor("Item Options","Item")]
-		public Item Item { get; set; }
+		public Item Item { get; set; } = new Item {SlotTitle = "Item"};
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Other/Item.png";
 

@@ -1,10 +1,23 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Text;
+using StackingEntities.Model.Metadata;
+using StackingEntities.Model.SimpleTypes;
 
 namespace StackingEntities.Model.Entities.Projectiles.BaseClasses
 {
 	public abstract class DirectionProjectileBase : ProjectileBase
 	{
+		[EntityDescriptor("Projectile Options", "Direction", fixedSize: true, dgRowPath: "Name")]
+		public new ObservableCollection<SimpleDouble> Velocity
+		{ get; }
+		= new ObservableCollection<SimpleDouble>
+		{
+			new SimpleDouble("X"),
+			new SimpleDouble("Y"),
+			new SimpleDouble("Z")
+		};
+
 		public override string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder(base.GenerateJson(topLevel));

@@ -41,6 +41,9 @@
   <ItemGroup>
     <Compile Include="DataModel.cs" />
     <Compile Include="Entities\Attribute.cs" />
+    <Compile Include="Entities\Direction.cs" />
+    <Compile Include="Entities\DisabledSlots.cs" />
+    <Compile Include="Entities\Dyes.cs" />
     <Compile Include="Entities\DynamicTiles\FallingSand.cs" />
     <Compile Include="Entities\DynamicTiles\PrimedTNT.cs" />
     <Compile Include="Entities\EntityBase.cs" />
@@ -129,11 +132,13 @@
     <Compile Include="Items\ItemTags\ItemTagsGeneral.cs" />
     <Compile Include="Items\ItemTags\ItemTagsMap.cs" />
     <Compile Include="Items\ItemTags\Page.cs" />
+    <Compile Include="Items\ItemTagTypes.cs" />
     <Compile Include="Metadata\ClassLinkAttribute.cs" />
     <Compile Include="Metadata\EntityDescriptorAttribute.cs" />
     <Compile Include="Metadata\MinMaxAttribute.cs" />
     <Compile Include="Metadata\MultilineStringAttribute.cs" />
     <Compile Include="Metadata\NotifyPropertyChangedInvocatorAttribute.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleTypes\SimpleDouble.cs" />
     <Compile Include="SimpleTypes\ValueDescription.cs" />

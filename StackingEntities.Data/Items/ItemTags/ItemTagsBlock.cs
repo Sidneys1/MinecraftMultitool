@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
@@ -9,7 +9,7 @@ namespace StackingEntities.Model.Items.ItemTags
 	public class ItemTagsBlock : IJsonAble
 	{
 		[EntityDescriptor("Block", "Can Place On")]
-		public List<BlockType> CanPlaceOn { get; set; } = new List<BlockType>();
+		public ObservableCollection<BlockType> CanPlaceOn { get; set; } = new ObservableCollection<BlockType>();
 
 		//[Property("Block", "Block Entity")]
 		//public TileEntity BlockEntityTag{get;}

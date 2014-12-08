@@ -64,23 +64,23 @@ namespace StackingEntities.Desktop.View.Controls
 				var props = jsonAble.GetType().GetProperties();
 				foreach (var info in props.Reverse())
 				{
-					if (!Attribute.IsDefined(info, typeof (EntityDescriptorAttribute))) continue;
-					var prop = (EntityDescriptorAttribute) info.GetCustomAttribute(typeof (EntityDescriptorAttribute));
+					if (!Attribute.IsDefined(info, typeof(EntityDescriptorAttribute))) continue;
+					var prop = (EntityDescriptorAttribute)info.GetCustomAttribute(typeof(EntityDescriptorAttribute));
 					if (!dict.ContainsKey(prop.Category))
 						dict.Add(prop.Category, new List<DisplayOption>());
 
 					object min = null, max = null;
-					var multiline = Attribute.IsDefined(info, typeof (MultilineStringAttribute));
+					var multiline = Attribute.IsDefined(info, typeof(MultilineStringAttribute));
 
-					if (Attribute.IsDefined(info, typeof (MinMaxAttribute)))
+					if (Attribute.IsDefined(info, typeof(MinMaxAttribute)))
 					{
-						var att = (MinMaxAttribute) info.GetCustomAttribute(typeof (MinMaxAttribute));
+						var att = (MinMaxAttribute)info.GetCustomAttribute(typeof(MinMaxAttribute));
 						min = att.Minimum;
 						max = att.Maximum;
 					}
 
 					dict[prop.Category].Insert(0,
-						new DisplayOption(prop.Name, info.Name, info.PropertyType, jsonAble, desc:prop.Description, min: min, max: max, mLine: multiline, epName: prop.IsEnabledPath));
+						new DisplayOption(prop.Name, info.Name, info.PropertyType, jsonAble, desc: prop.Description, min: min, max: max, mLine: multiline, epName: prop.IsEnabledPath));
 				}
 			}
 		}

@@ -138,14 +138,15 @@ namespace StackingEntities.Desktop.View.Windows
 			if (cmd.ShowDialog() == true)
 			{
 				var text = (string)cmd.Tag;
-				var lines = text.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-				foreach (var str in lines.Where(str => !string.IsNullOrWhiteSpace(str)))
+				if (!string.IsNullOrWhiteSpace(text))
 				{
-					_model.Entities.Insert(0, new MinecartCommandBlock { Command = str.Trim() });
+					var lines = text.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+
+					foreach (var str in lines.Where(str => !string.IsNullOrWhiteSpace(str)))
+					{
+						_model.Entities.Insert(0, new MinecartCommandBlock {Command = str.Trim()});
+					}
 				}
-
-
 				//do stuff
 			}
 			cmd.Close();
@@ -241,7 +242,7 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void CommandNew_CanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
-			e.CanExecute = true;
+			e.CanExecute = false;
 		}
 
 		private void CommandNew_Execute(object sender, ExecutedRoutedEventArgs e)

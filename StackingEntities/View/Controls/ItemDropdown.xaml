@@ -1,0 +1,37 @@
+﻿<UserControl x:Name="userControl" x:Class="StackingEntities.Desktop.View.Controls.ItemDropdown"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StackingEntities.Desktop.View.Controls"
+             xmlns:items="clr-namespace:StackingEntities.Model.Items;assembly=StackingEntities.Data"
+             mc:Ignorable="d" >
+	<Border BorderBrush="#373737" BorderThickness="2,2,0,0">
+		<Border BorderBrush="White" BorderThickness="0,0,2,2" Background="#8b8b8b">
+			<StackPanel Orientation="Vertical">
+				<ToggleButton x:Name="TestBox">
+					<ToggleButton.Style>
+						<Style TargetType="ToggleButton" BasedOn="{StaticResource ExpanderDownHeaderStyle}">
+							<Setter Property="Opacity" Value="0.5"/>
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Path=(items:Item.HasId)}" Value="True">
+									<Setter Property="Opacity" Value="1"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</ToggleButton.Style>
+				</ToggleButton>
+				<Popup IsOpen="{Binding IsChecked, ElementName=TestBox}" StaysOpen="False">
+					<Border BorderBrush="Black" BorderThickness="2">
+						<Border.Background>
+							<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.ControlColorKey}}"/>
+						</Border.Background>
+						<ScrollViewer VerticalScrollBarVisibility="Auto">
+							<local:ItemControl DataContext="{Binding}" />	
+						</ScrollViewer>
+					</Border>
+				</Popup>
+			</StackPanel>
+		</Border>
+	</Border>
+</UserControl>

@@ -1,45 +1,44 @@
 ﻿<UserControl x:Name="userControl" x:Class="StackingEntities.Desktop.View.Controls.ItemControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:items="clr-namespace:StackingEntities.Model.Items;assembly=StackingEntities.Data"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300" >
-    <UserControl.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <items:Item x:Key="DesignViewModel"/>
-    </UserControl.Resources>
-    <Expander Header="Item Options" IsExpanded="False" IsEnabled="{Binding IsEnabled, ElementName=userControl}">
-        <Grid d:DataContext="{Binding Source={StaticResource DesignViewModel}}">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+			 MinWidth="350" MaxWidth="500"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="300" d:DesignWidth="350">
+	<UserControl.Resources>
+		<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+	</UserControl.Resources>
+	<Expander IsExpanded="False" Header="{Binding SlotTitle, TargetNullValue=Item Options}" IsEnabled="{Binding IsEnabled, ElementName=userControl}">
+		<Grid Margin="15,0,0,0">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
 
-            <Label Content="ID" IsEnabled="{Binding IdTagEnabled}"/>
-            <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3" IsEnabled="{Binding IdTagEnabled}"/>
+			<Label Content="ID" IsEnabled="{Binding IdTagEnabled}"/>
+			<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3" IsEnabled="{Binding IdTagEnabled}"/>
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Count" IsEnabled="{Binding CountTagEnabled}"/>
-            <xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Count}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding CountTagEnabled}"/>
+			<Label Grid.Row="1" Grid.Column="0" Content="Count" IsEnabled="{Binding CountTagEnabled}"/>
+			<xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Count}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding CountTagEnabled}"/>
 
-            <Label Grid.Row="2" Grid.Column="0" Content="Damage/DV" IsEnabled="{Binding DamageTagEnabled}"/>
-            <xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="3" Value="{Binding Damage}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding DamageTagEnabled}"/>
+			<Label Grid.Row="2" Grid.Column="0" Content="Damage/DV" IsEnabled="{Binding DamageTagEnabled}"/>
+			<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="3" Value="{Binding Damage}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding DamageTagEnabled}"/>
 
-            <Label Grid.Row="3" Grid.Column="0" Content="Slot" IsEnabled="{Binding SlotTagEnabled}" Visibility="{Binding HasSlotTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
-            <xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Margin="3" Value="{Binding Slot}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding SlotTagEnabled}" Visibility="{Binding HasSlotTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+			<Label Grid.Row="3" Grid.Column="0" Content="Slot" IsEnabled="{Binding SlotTagEnabled}" Visibility="{Binding HasSlotTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+			<xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Margin="3" Value="{Binding Slot}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding SlotTagEnabled}" Visibility="{Binding HasSlotTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
 
-            <Expander Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Header="Additional Options" DataContextChanged="MoreOptsBox_DataContextChanged" Visibility="{Binding HasTags, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" IsExpanded="False">
-                <StackPanel x:Name="MoreOptsBox"/>
-            </Expander>
-        </Grid>
-    </Expander>
+			<Expander Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Header="Additional Options" DataContextChanged="MoreOptsBox_DataContextChanged" Visibility="{Binding HasTags, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}" IsExpanded="False" Margin="15,0,0,0" FontSize="12">
+				<StackPanel x:Name="MoreOptsBox" />
+			</Expander>
+		</Grid>
+	</Expander>
 </UserControl>

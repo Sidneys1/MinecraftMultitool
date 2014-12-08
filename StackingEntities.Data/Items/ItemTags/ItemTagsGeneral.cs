@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
@@ -12,7 +12,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		public bool Unbreakable { get; set; }
 
 		[EntityDescriptor("General", "Can Destroy")]
-		public List<BlockType> CanDestroy { get; set; } = new List<BlockType>();
+		public ObservableCollection<BlockType> CanDestroy { get; set; } = new ObservableCollection<BlockType>();
 
 		public string GenerateJson(bool topLevel = true)
 		{

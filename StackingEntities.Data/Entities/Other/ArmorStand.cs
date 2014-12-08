@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
@@ -38,64 +38,22 @@ namespace StackingEntities.Model.Entities.Other
 		#region Pose
 
 		[EntityDescriptor("Pose", "Body Pose", fixedSize: true, dgRowPath: "Name")]
-		public List<SimpleDouble> BodyPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
-
-		//[Property("Body Pose", "X Rotation"), MinMax(0, 359)]
-		//public double BodyX { get; set; }
-		//[Property("Body Pose", "Y Rotation"), MinMax(0, 359)]
-		//public double BodyY { get; set; }
-		//[Property("Body Pose", "Z Rotation"), MinMax(0, 359)]
-		//public double BodyZ { get; set; }
+		public ObservableCollection<SimpleDouble> BodyPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Head Pose", fixedSize: true, dgRowPath: "Name")]
-		public List<SimpleDouble> HeadPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
-
-		//[Property("Head Pose", "X Rotation"), MinMax(0, 359)]
-		//public double HeadX { get; set; }
-		//[Property("Head Pose", "Y Rotation"), MinMax(0, 359)]
-		//public double HeadY { get; set; }
-		//[Property("Head Pose", "Z Rotation"), MinMax(0, 359)]
-		//public double HeadZ { get; set; }
+		public ObservableCollection<SimpleDouble> HeadPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Left Arm Pose", fixedSize: true, dgRowPath: "Name")]
-		public List<SimpleDouble> LeftArmPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
-
-		//[Property("Left Arm Pose", "X Rotation"), MinMax(0, 359)]
-		//public double LeftArmX { get; set; }
-		//[Property("Left Arm Pose", "Y Rotation"), MinMax(0, 359)]
-		//public double LeftArmY { get; set; }
-		//[Property("Left Arm Pose", "Z Rotation"), MinMax(0, 359)]
-		//public double LeftArmZ { get; set; }
+		public ObservableCollection<SimpleDouble> LeftArmPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Right Arm Pose", fixedSize: true, dgRowPath: "Name")]
-		public List<SimpleDouble> RightArmPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
-
-		//[Property("Right Arm Pose", "X Rotation"), MinMax(0, 359)]
-		//public double RightArmX { get; set; }
-		//[Property("Right Arm Pose", "Y Rotation"), MinMax(0, 359)]
-		//public double RightArmY { get; set; }
-		//[Property("Right Arm Pose", "Z Rotation"), MinMax(0, 359)]
-		//public double RightArmZ { get; set; }
+		public ObservableCollection<SimpleDouble> RightArmPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Left Leg Pose", fixedSize: true, dgRowPath: "Name")]
-		public List<SimpleDouble> LeftLegPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
-
-		//[Property("Left Leg Pose", "X Rotation"), MinMax(0, 359)]
-		//public double LeftLegX { get; set; }
-		//[Property("Left Leg Pose", "Y Rotation"), MinMax(0, 359)]
-		//public double LeftLegY { get; set; }
-		//[Property("Left Leg Pose", "Z Rotation"), MinMax(0, 359)]
-		//public double LeftLegZ { get; set; }
+		public ObservableCollection<SimpleDouble> LeftLegPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Right Leg Pose", fixedSize: true, dgRowPath: "Name")]
-		public List<SimpleDouble> RightLegPose { get; } = new List<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
-
-		//[Property("Right Leg Pose", "X Rotation"), MinMax(0, 359)]
-		//public double RightLegX { get; set; }
-		//[Property("Right Leg Pose", "Y Rotation"), MinMax(0, 359)]
-		//public double RightLegY { get; set; }
-		//[Property("Right Leg Pose", "Z Rotation"), MinMax(0, 359)]
-		//public double RightLegZ { get; set; } 
+		public ObservableCollection<SimpleDouble> RightLegPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		#endregion
 
@@ -116,20 +74,20 @@ namespace StackingEntities.Model.Entities.Other
 		[EntityDescriptor("Disabled Slots", "Head")]
 		public DisabledSlots HeadDisabledSlots { get; set; }
 
-		[EntityDescriptor("Equipment", "Holding")]
-		public Item Holding { get; set; } = new Item() { Id = string.Empty };
+		[EntityDescriptor("Equipment", "Held Item")]
+		public Item Holding { get; set; } = new Item { Id = string.Empty, SlotTitle = "Held Item" };
 
 		[EntityDescriptor("Equipment", "Boots")]
-		public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+		public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Boots" };
 
 		[EntityDescriptor("Equipment", "Leggings")]
-		public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+		public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Leggings" };
 
 		[EntityDescriptor("Equipment", "Chestplate")]
-		public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+		public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Chestplate" };
 
 		[EntityDescriptor("Equipment", "Helmet")]
-		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Helmet" };
 
 		#endregion
 

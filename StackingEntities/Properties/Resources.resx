@@ -118,10 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CommandBlockWindow_Description" xml:space="preserve">
-    <value>Enter your commands, one per line. We'll create a MinecartCommandBlock stack for you that will execute in order. (We recommend adding &amp;quot;kill @e[type=MinecartCommandBlock]&amp;quot; as your last command.</value>
+    <value>Enter your commands, one per line. We'll create a MinecartCommandBlock stack for you that will execute in order.
+(We recommend adding "kill @e[type=MinecartCommandBlock,r=1]" as your last command.</value>
   </data>
   <data name="CommandBlockWindow_Title" xml:space="preserve">
-    <value>Command Entry</value>
+    <value>Command Stack Generator</value>
   </data>
   <data name="MainWindow_Title" xml:space="preserve">
     <value>Minecraft Entity Stacker</value>
@@ -144,10 +145,25 @@
   <data name="MainWindow_AboutTooltip" xml:space="preserve">
     <value>About...</value>
   </data>
-  <data name="MainWindow_MiscToolsTooltip" xml:space="preserve">
-    <value>Misc. Tools</value>
+  <data name="MainWindow_File" xml:space="preserve">
+    <value>File</value>
   </data>
-  <data name="MainWindow_ListOfCommands" xml:space="preserve">
-    <value>List of Commands...</value>
+  <data name="MainWindow_File_New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="MainWindow_File_Open" xml:space="preserve">
+    <value>Open...</value>
+  </data>
+  <data name="MainWindow_File_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="MainWindow_File_SaveAs" xml:space="preserve">
+    <value>Save as...</value>
+  </data>
+  <data name="MainWindow_File_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="MainWindow_Tools" xml:space="preserve">
+    <value>Tools</value>
   </data>
 </root>

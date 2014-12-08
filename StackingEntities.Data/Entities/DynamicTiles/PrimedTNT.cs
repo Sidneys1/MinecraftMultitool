@@ -1,4 +1,5 @@
 using System.Text;
+using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.DynamicTiles
@@ -20,7 +21,7 @@ namespace StackingEntities.Model.Entities.DynamicTiles
 			}
 		}
 
-		public override string Display => string.Format("Primed TNT\r\n{0} Fuse", (Fuse >= 20) ? (Fuse / 20f).ToString("0.##") + " Second" : Fuse + " Tick");
+		public override string Display => string.Format("{0}Primed TNT\r\n{1} Fuse", base.Display, JsonTools.TicksToTime(Fuse));
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/DynamicTiles/PrimedTNT.png";
 

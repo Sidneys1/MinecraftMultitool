@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
+using StackingEntities.Model.Items.ItemTags;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
@@ -11,12 +13,13 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		private HorseType _horseType;
 		private bool _tame;
 		private bool _allowVariant;
+		private bool _chestedHorse;
 
 		[EntityDescriptor("Horse Options", "Horse Type")]
 		public HorseType HorseType
 		{
 			get { return _horseType; }
-			set { _horseType = value; PropChanged("DisplayImage"); PropChanged("Display"); PropChanged("VariantEnabled"); PropChanged("IsHorse"); }
+			set { _horseType = value; PropChanged("DisplayImage"); PropChanged("Display"); PropChanged("VariantEnabled"); PropChanged("IsHorse"); PropChanged("IsNotHorse"); }
 		}
 		[EntityDescriptor("Horse Options", "Tamed")]
 		public bool Tame
@@ -29,29 +32,48 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		public int Temper { get; set; }
 
 		public bool VariantEnabled => AllowVariant && IsHorse;
-		public bool IsHorse => (HorseType == HorseType.Default || HorseType == HorseType.Horse);
+		public bool IsHorse => (HorseType != HorseType.Donkey && HorseType != HorseType.Mule);
+		public bool IsNotHorse => (HorseType == HorseType.Donkey || HorseType == HorseType.Mule);
 
-		[EntityDescriptor("Horse Options", "Use Colors/Markings", isEnabledPath:"IsHorse")]
+		[EntityDescriptor("Horse Options", "Use Colors/Markings", isEnabledPath: "IsHorse")]
 		public bool AllowVariant
 		{
 			get { return _allowVariant; }
 			set { _allowVariant = value; PropChanged("VariantEnabled"); }
 		}
 
-		[EntityDescriptor("Horse Options", "Color", isEnabledPath:"VariantEnabled")]
+		[EntityDescriptor("Horse Options", "Color", isEnabledPath: "VariantEnabled")]
 		public HorseColors Color { get; set; }
-		[EntityDescriptor("Horse Options", "Markings", isEnabledPath:"VariantEnabled")]
+		[EntityDescriptor("Horse Options", "Markings", isEnabledPath: "VariantEnabled")]
 		public HorseMarkings Markings { get; set; }
 
 		[EntityDescriptor("Horse Options", "Has Saddle")]
 		public bool Saddle { get; set; }
 
 		[EntityDescriptor("Horse Options", "Armor Item", isEnabledPath: "IsHorse")]
-		public Item ArmorItem { get; } = new Item() {CountTagEnabled = false, Slot=null, DamageTagEnabled = false};
+		public Item ArmorItem { get; } = new Item(false) { CountTagEnabled = false, Slot = null, DamageTagEnabled = false, SlotTitle = "Armor Item" };
+
+		[EntityDescriptor("Horse Options", "Has Chests", isEnabledPath: "IsNotHorse")]
+		public bool ChestedHorse
+		{
+			get { return _chestedHorse; }
+			set { _chestedHorse = value; PropChanged(); }
+		}
+
+		[EntityDescriptor("Horse Options", "Inventory", isEnabledPath: "ChestedHorse", fixedSize: true), MinMax(5, 3)]
+		public ObservableCollection<Item> Inventory { get; } = new ObservableCollection<Item>();
 
 		public EntityHorse() : base(30)
 		{
 			Type = EntityTypes.EntityHorse;
+
+			for (var i = 2; i <= 16; i++)
+			{
+				Inventory.Add(new Item { Slot = i, SlotTagEnabled = false });
+			}
+
+			ArmorItem.Tag.Add(new ItemTagsGeneral());
+			ArmorItem.Tag.Add(new ItemTagsDisplay());
 		}
 
 		public override string Display
@@ -91,10 +113,16 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 				b.AppendFormat("Type:{0:D},", HorseType);
 
 			if (VariantEnabled)
-				b.AppendFormat("Variant:{0},", ((int) Color) | (((int) Markings) << 8));
+				b.AppendFormat("Variant:{0},", ((int)Color) | (((int)Markings) << 8));
 
-			if (IsHorse && !string.IsNullOrWhiteSpace(ArmorItem.Id))
-				b.AppendFormat("ArmorItem:{{{0}}},",ArmorItem.GenerateJson(false));
+			if (IsHorse && ArmorItem.HasId)
+				b.AppendFormat("ArmorItem:{{{0}}},", ArmorItem.GenerateJson(false));
+
+			if (!IsHorse && ChestedHorse)
+				b.Append("ChestedHorse:1b,");
+
+			if (!IsHorse && ChestedHorse && Inventory.Count > 0)
+				b.Append(JsonTools.GenItems(Inventory));
 
 			return b.ToString();
 		}

@@ -171,6 +171,12 @@
     <Compile Include="ViewModel\DisplayOption.cs" />
     <Compile Include="ViewModel\EnumDescriptionConverter.cs" />
     <Compile Include="ViewModel\EnumerationExtension.cs" />
+    <Compile Include="View\Controls\ItemDropdown.xaml.cs">
+      <DependentUpon>ItemDropdown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\ItemListControl.xaml.cs">
+      <DependentUpon>ItemListControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CustomCommands.cs" />
     <Compile Include="View\Controls\ItemControl.cs">
       <DependentUpon>ItemControl.xaml</DependentUpon>
@@ -194,6 +200,14 @@
     <Page Include="View\Controls\ItemControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Controls\ItemDropdown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\ItemListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\AboutDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -223,7 +237,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <Resource Include="Fonts\pixelmix.ttf" />

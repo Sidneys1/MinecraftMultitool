@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Vehicles
@@ -27,7 +28,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 			}
 		}
 
-		public override string Display => string.Format("Minecart Furnace\r\n{0} Fuel", (Fuel == 0 ? "No" : (Fuel >= 20 ? (Fuel/20f) + " Seconds of" : Fuel + " Ticks of")));
+		public override string Display => string.Format("Minecart Furnace\r\n{0} Fuel", (Fuel == 0 ? "No" : (JsonTools.TicksToTime(Fuel) + " of")));
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Vehicles/MinecartFurnace.png";
 

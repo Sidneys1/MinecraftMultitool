@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
+using StackingEntities.Model.Items.ItemTags;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items
 {
-	public class Item: IJsonAble
+	public class Item: IJsonAble, INotifyPropertyChanged
 	{
 		[EntityDescriptor("Item", "Count"), MinMax(byte.MinValue, byte.MaxValue)]
 		public int Count { get; set; } = 1;
@@ -26,13 +29,41 @@ namespace StackingEntities.Model.Items
 		public bool DamageTagEnabled { get; set; } = true;
 
 		[EntityDescriptor("Item", "id")]
-		public string Id { get; set; }
+		public string Id
+		{
+			get { return _id; }
+			set { _id = value;
+				PropChanged("HasId");
+			}
+		}
 
 		public bool IdTagEnabled { get; set; } = true;
 
-		public List<IJsonAble> Tag = new List<IJsonAble>();
+		public ObservableCollection<IJsonAble> Tag = new ObservableCollection<IJsonAble>();
+		private string _id;
 
 		public bool HasTags => Tag.Count > 0;
+
+		public string SlotTitle { get; set; } = null;
+
+		public bool CanAddTags { get; set; } = false;
+
+		public bool HasId => !string.IsNullOrWhiteSpace(Id);
+
+		public Item(bool allTags = true)
+		{
+			if (!allTags) return;
+			Tag.Add(new ItemTagsGeneral());
+			Tag.Add(new ItemTagsBlock());
+			Tag.Add(new ItemTagsEnchantments());
+			//Tag.Add(new ItemTagsAttributes());
+			//Tag.Add(new ItemTagsPotionEffects());
+			Tag.Add(new ItemTagsDisplay());
+			Tag.Add(new ItemTagsBook());
+			//Tag.Add(new ItemTagsPlayerSkulls());
+			Tag.Add(new ItemTagsFireworkStar());
+			Tag.Add(new ItemTagsMap());
+		}
 
 		public string GenerateJson(bool topLevel)
 		{
@@ -40,7 +71,7 @@ namespace StackingEntities.Model.Items
 
 			if (string.IsNullOrWhiteSpace(Id)) return b.ToString();
 
-			if (Count != 1)
+			if (Count != 0)
 				b.AppendFormat("Count:{0}b,", Count);
 			if (Slot.HasValue)
 				b.AppendFormat("Slot:{0}b,", Slot);
@@ -56,12 +87,26 @@ namespace StackingEntities.Model.Items
 			{
 				b2.Append(jsonAble.GenerateJson(true));
 			}
-			b2.Remove(b2.Length - 1, 1);
+			if (b2[b2.Length - 1] == ',')
+				b2.Remove(b2.Length - 1, 1);
 			b2.Append("},");
 
 			if (b2.Length > 7)
 				b.Append(b2);
 			return b.ToString();
+		}
+
+		public override string ToString()
+		{
+			return string.Format("\"{0}\", C:{1}, DV:{2}{3}", Id.Trim().EscapeJsonString(), Count, Damage, Slot.HasValue ? string.Format(", S:{0}", Slot.Value) :"");
+		}
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		[Annotations.NotifyPropertyChangedInvocator]
+		protected virtual void PropChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

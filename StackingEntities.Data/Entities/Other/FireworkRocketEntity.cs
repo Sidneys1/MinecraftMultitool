@@ -20,7 +20,7 @@ namespace StackingEntities.Model.Entities.Other
 		public int LifeTime{get;set;}
 
 		[EntityDescriptor("Firework Options", "Firework Item")]
-		public Item FireWorksItem { get; set; } = new Item {Id = "minecraft:fireworks", IdTagEnabled = false, CountTagEnabled = false, SlotTagEnabled = false, DamageTagEnabled = false};
+		public Item FireWorksItem { get; set; } = new Item(false) {Id = "minecraft:fireworks", IdTagEnabled = false, CountTagEnabled = false, SlotTagEnabled = false, DamageTagEnabled = false, SlotTitle = "Firework Item" };
 
 		public override string Display => string.Empty;
 

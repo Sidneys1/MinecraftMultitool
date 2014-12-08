@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Text;
+using StackingEntities.Model.Items;
 
 namespace StackingEntities.Model.Helpers
 {
@@ -44,5 +48,72 @@ namespace StackingEntities.Model.Helpers
 
 			return output.ToString();
 		}
+
+		public static string GenItems(ObservableCollection<Item> items, string tagName = "Items")
+		{
+			var b = new StringBuilder();
+			var usedSlots = new List<int>();
+
+			var i = 0;
+			foreach (var item in items)
+			{
+				if (item.Slot == null || usedSlots.Contains(item.Slot.Value)) continue;
+
+				var s = item.GenerateJson(false);
+
+				if (s == string.Empty) continue;
+
+				if (item.Slot != null) usedSlots.Add(item.Slot.Value);
+				if (s[s.Length - 1] == ',')
+					s = s.Remove(s.Length - 1, 1);
+
+				b.AppendFormat("{0}:{{{1}}},", i++, s);
+			}
+
+			if (b.Length == 0)
+				return string.Empty;
+
+			if (b[b.Length - 1] == ',')
+				b.Remove(b.Length - 1, 1);
+
+
+			b.Insert(0, string.Format("{0}:[", tagName));
+			b.Append("],");
+
+			usedSlots.Clear();
+
+			return b.ToString();
+		}
+
+		public static string TicksToTime(int ticks)
+		{
+			if (ticks < 20)
+				return string.Format("{0} Ticks", ticks);
+
+			var t = TimeSpan.FromMilliseconds((ticks / 20.0) * 1000.0);
+
+			var b = new StringBuilder();
+
+			if (t.Days > 0)
+				b.AppendFormat("{0}d, ", t.Days);
+
+			if (t.Hours > 0)
+				b.AppendFormat("{0}h, ", t.Hours);
+
+			if (t.Minutes > 0)
+				b.AppendFormat("{0}m, ", t.Minutes);
+
+
+			b.AppendFormat("{0}s, ", t.Seconds);
+
+			if (t.Milliseconds > 0)
+				b.AppendFormat("{0}ms, ", t.Milliseconds);
+
+			if (b.ToString().EndsWith(", "))
+				b.Remove(b.Length - 2, 2);
+
+			return b.ToString();
+		}
+
 	}
 }

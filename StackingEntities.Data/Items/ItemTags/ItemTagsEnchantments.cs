@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
@@ -8,10 +8,10 @@ namespace StackingEntities.Model.Items.ItemTags
 	public class ItemTagsEnchantments : IJsonAble
 	{
 		[EntityDescriptor("Enchanting","Enchantments")]
-		public List<Enchantment> Ench { get; set; } = new List<Enchantment>();
+		public ObservableCollection<Enchantment> Ench { get; set; } = new ObservableCollection<Enchantment>();
 
 		[EntityDescriptor("Enchanting", "Book Enchantments")]
-		public List<Enchantment> StoredEnchantments {get; set; }= new List<Enchantment>();
+		public ObservableCollection<Enchantment> StoredEnchantments {get; set; }= new ObservableCollection<Enchantment>();
 
 		[EntityDescriptor("Enchanting", "Repair Cost")]
 		public int RepairCost { get; set; }
@@ -43,6 +43,8 @@ namespace StackingEntities.Model.Items.ItemTags
 				var enchantment = Ench[index];
 				b.AppendFormat("{0}:{{{1}}}", index, enchantment.GenerateJson(false));
 			}
+
+			b.Append("]");
 
 			return b.ToString();
 		}

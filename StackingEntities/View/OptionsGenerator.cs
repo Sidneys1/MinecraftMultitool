@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -92,16 +93,17 @@ namespace StackingEntities.Desktop.View
 
 				#region List
 
-				else if (option.PropertyType.IsGenericType && option.PropertyType.GetGenericTypeDefinition() == typeof(List<>))
+				else if (option.PropertyType.IsGenericType && option.PropertyType.GetGenericTypeDefinition() == typeof(ObservableCollection<>))
 				{
 					elem = ExtractList(option);
 				}
 
 				#endregion
 
-				if (!option.PropertyType.IsGenericType || option.PropertyType.GetGenericTypeDefinition() != typeof(List<>))
+				//if (!option.PropertyType.IsGenericType || option.PropertyType.GetGenericTypeDefinition() != typeof(ObservableCollection<>))
+				if (elem.GetValue(Grid.ColumnSpanProperty)?.Equals(1) ?? true)
 				{
-					var l = new Label { Content = option.ReadableName, ToolTip = option.Description};
+					var l = new Label { Content = option.ReadableName, ToolTip = option.Description };
 					l.SetValue(Grid.RowProperty, i);
 
 					if (option.EnabledPropertyName != null)
@@ -135,32 +137,87 @@ namespace StackingEntities.Desktop.View
 		private static FrameworkElement ExtractList(DisplayOption option)
 		{
 			var drop = new Expander { Margin = new Thickness(5), Header = option.ReadableName };
-			// ReSharper disable once UseObjectOrCollectionInitializer
-			var ctrl = new DataGrid
-			{
-				Margin = new Thickness(3),
-				AutoGenerateColumns = true,
-				CanUserAddRows = !option.FixedSize,
-				MinHeight = 50
-			};
 
-			ctrl.AutoGeneratingColumn += (sender1, e1) =>
+			var listType = option.PropertyType.GetGenericArguments()[0];
+
+			FrameworkElement ctrl;
+
+			if (listType == typeof(Item) || listType == typeof(Model.Entities.Attribute) || listType == typeof(Model.Entities.Mobs.Friendly.VillagerRecipe))
 			{
-				var displayName = PropertyHelpers.GetPropertyDisplayName(e1.PropertyDescriptor);
-				if (!string.IsNullOrEmpty(displayName))
-					e1.Column.Header = displayName;
+				if (!option.FixedSize || (option.Minimum == null || option.Maximum == null))
+				{
+					var sPanel = new ItemListControl
+					{
+						SlotDescription = { Text = option.Description },
+						AddRemoveButtons = { Visibility = option.FixedSize ? Visibility.Collapsed : Visibility.Visible }
+					};
+					sPanel.SetBinding(FrameworkElement.DataContextProperty, new Binding(option.PropertyName));
+					ctrl = sPanel;
+				}
 				else
-					e1.Cancel = true;
-			};
+				{
+					var invGrid = new Grid();
+					var itemList = option.DataContext.GetType().GetProperty(option.PropertyName).GetValue(option.DataContext) as ObservableCollection<Item>;
+					if (itemList == null || itemList.Count != ((int)option.Minimum * (int)option.Maximum))
+						throw new IndexOutOfRangeException("What the hell, Steve?");
 
-			if (option.DataGridRowHeaderPath != null)
+					for (var i = 0; i < (int)option.Minimum; i++)
+					{
+						invGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
+					}
+
+					for (var i = 0; i < (int)option.Maximum; i++)
+					{
+						invGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+					}
+
+					for (var x = 0; x < (int)option.Minimum; x++)
+					{
+						for (var y = 0; y < (int)option.Maximum; y++)
+						{
+							var itemDrop = new ItemDropdown { DataContext = itemList[(y * (int)option.Minimum) + x] };
+							itemDrop.SetValue(Grid.ColumnProperty, x); itemDrop.SetValue(Grid.RowProperty, y);
+							invGrid.Children.Add(itemDrop);
+						}
+					}
+
+					//invGrid.SetBinding(FrameworkElement.DataContextProperty, new Binding(option.PropertyName));
+					invGrid.HorizontalAlignment = HorizontalAlignment.Center;
+					ctrl = invGrid;
+				}
+			}
+			else
 			{
-				var rowHeaderStyle = new Style(typeof(DataGridRowHeader));
-				rowHeaderStyle.Setters.Add(new Setter(ContentControl.ContentProperty, new Binding(option.DataGridRowHeaderPath)));
-				ctrl.RowHeaderStyle = rowHeaderStyle;
+				// ReSharper disable once UseObjectOrCollectionInitializer
+				var ctrl2 = new DataGrid
+				{
+					Margin = new Thickness(3),
+					AutoGenerateColumns = true,
+					CanUserAddRows = !option.FixedSize,
+					MinHeight = 50
+				};
+
+				ctrl2.AutoGeneratingColumn += (sender1, e1) =>
+				{
+					var displayName = PropertyHelpers.GetPropertyDisplayName(e1.PropertyDescriptor);
+					if (!string.IsNullOrEmpty(displayName))
+						e1.Column.Header = displayName;
+					else
+						e1.Cancel = true;
+				};
+
+				if (option.DataGridRowHeaderPath != null)
+				{
+					var rowHeaderStyle = new Style(typeof(DataGridRowHeader));
+					rowHeaderStyle.Setters.Add(new Setter(ContentControl.ContentProperty, new Binding(option.DataGridRowHeaderPath)));
+					ctrl2.RowHeaderStyle = rowHeaderStyle;
+				}
+				ctrl2.Margin = new Thickness(15,0,0,0);
+				ctrl = ctrl2;
+				ctrl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(option.PropertyName));
 			}
 
-			ctrl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(option.PropertyName));
+
 			//elem = ctrl;
 			drop.Content = ctrl;
 			drop.SetValue(Grid.ColumnSpanProperty, 2);
@@ -171,6 +228,10 @@ namespace StackingEntities.Desktop.View
 		{
 			var ctrl = new ItemControl { Margin = new Thickness(3) };
 			ctrl.SetBinding(FrameworkElement.DataContextProperty, new Binding(option.PropertyName));
+			var item = option.DataContext.GetType().GetProperty(option.PropertyName).GetValue(option.DataContext) as Item;
+			if (item?.SlotTitle != null)
+				ctrl.SetValue(Grid.ColumnSpanProperty, 2);
+
 			return ctrl;
 		}
 

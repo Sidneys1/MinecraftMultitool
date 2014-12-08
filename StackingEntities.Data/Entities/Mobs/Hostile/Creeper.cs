@@ -1,4 +1,5 @@
 using System.Text;
+using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
@@ -28,9 +29,15 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 		[EntityDescriptor("Creeper Options", "Fuse Time (Ticks)")]
 		[MinMax(0, short.MaxValue)]
-		public int Fuse { get; set; } = 30;
+		public int Fuse
+		{
+			get { return _fuse; }
+			set { _fuse = value; PropChanged("Display"); }
+		}
 
 		bool _ignited;
+		private int _fuse = 30;
+
 		[EntityDescriptor("Creeper Options", "Ignited")]
 		public bool Ignited
 		{
@@ -54,6 +61,9 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 				if (Ignited)
 					add += "Ignited ";
+
+				if (Fuse != 30)
+					add += JsonTools.TicksToTime(Fuse) + "-Fuse ";
 
 				return base.Display + add;
 			}

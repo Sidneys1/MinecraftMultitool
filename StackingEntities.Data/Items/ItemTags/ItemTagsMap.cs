@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
@@ -11,7 +11,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		public bool MapScaling { get; set; } = false;
 
 		[EntityDescriptor("Map","Markers")]
-		public List<Decoration> Decor { get; set; } = new List<Decoration>();
+		public ObservableCollection<Decoration> Decor { get; set; } = new ObservableCollection<Decoration>();
 
 		public string GenerateJson(bool topLevel)
 		{

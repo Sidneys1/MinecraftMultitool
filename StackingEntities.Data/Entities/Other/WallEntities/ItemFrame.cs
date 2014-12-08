@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Other.WallEntities
@@ -13,6 +14,8 @@ namespace StackingEntities.Model.Entities.Other.WallEntities
 
 		[EntityDescriptor("Wall Entity Options", "Rotation")]
 		public int ItemRotation { get; set; }
+
+		public Item Item { get; }= new Item {Count = 1, CountTagEnabled = false, SlotTitle = "Item"};
 
 		#region UI
 
@@ -33,6 +36,9 @@ namespace StackingEntities.Model.Entities.Other.WallEntities
 
 			if (ItemRotation != 0)
 				b.Append(string.Format("ItemRotation:{0},", ItemRotation));
+
+			if (Item.HasId)
+				b.AppendFormat("Item:{{{0}}},", Item.GenerateJson(false));
 
 			return b.ToString();
 		}

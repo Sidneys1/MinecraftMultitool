@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
@@ -37,7 +37,6 @@ namespace StackingEntities.Model.Entities.Mobs
 			Helmet.Tag.Add(new ItemTagsEnchantments());
 		}
 
-
 		#region Health
 
 		[EntityDescriptor("Mob Options", "Health"), MinMax(0, null)]
@@ -73,9 +72,6 @@ namespace StackingEntities.Model.Entities.Mobs
 		[EntityDescriptor("Mob Options", "Can Pick Up Loot")]
 		public bool CanPickUpLoot { get; set; }
 
-		//public list<Item> Equipment
-		//public float[] DropChances = {1f, 1f, 1f, 1f, 1f};
-
 		#endregion
 
 		#region Despawning
@@ -98,31 +94,31 @@ namespace StackingEntities.Model.Entities.Mobs
 		#region Equiptment
 
 		[EntityDescriptor("Equipment", "Held Item")]
-		public Item Holding { get; set; } = new Item() { Id = string.Empty };
+		public Item Holding { get; set; } = new Item() { Id = string.Empty, SlotTitle = "Held Item" };
 
 		[EntityDescriptor("Equipment", "Boots")]
-		public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+		public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Boots" };
 
 		[EntityDescriptor("Equipment", "Leggings")]
-		public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+		public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Leggings" };
 
 		[EntityDescriptor("Equipment", "Chestplate")]
-		public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+		public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Chestplate" };
 
 		[EntityDescriptor("Equipment", "Helmet")]
-		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false };
+		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Helmet" };
 
 		[EntityDescriptor("Mob Options", "Attributes")]
-		public List<Attribute> Attributes { get; } = new List<Attribute>();
+		public ObservableCollection<Attribute> Attributes { get; } = new ObservableCollection<Attribute>();
 
 		[EntityDescriptor("Mob Options", "Potion Effects")]
-		public List<PotionEffect> PotionEffects { get; } = new List<PotionEffect>();
+		public ObservableCollection<PotionEffect> PotionEffects { get; } = new ObservableCollection<PotionEffect>();
 
 		[EntityDescriptor("Mob Options", "No AI")]
 		public bool NoAi { get; set; } = false;
 
 		[EntityDescriptor("Equipment", "Drop Chances", fixedSize: true, dgRowPath: "Name")]
-		public List<SimpleDouble> DropChanceFloats { get; set; } = new List<SimpleDouble> { new SimpleDouble("Held Item"), new SimpleDouble("Boots"), new SimpleDouble("Leggings"), new SimpleDouble("Chestplate"), new SimpleDouble("Helmet") };
+		public ObservableCollection<SimpleDouble> DropChanceFloats { get; set; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("Held Item"), new SimpleDouble("Boots"), new SimpleDouble("Leggings"), new SimpleDouble("Chestplate"), new SimpleDouble("Helmet") };
 
 		#endregion
 

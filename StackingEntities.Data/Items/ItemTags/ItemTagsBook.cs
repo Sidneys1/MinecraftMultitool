@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
@@ -19,7 +19,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		public string Title { get; set; }
 
 		[EntityDescriptor("Book", "Pages")]
-		public List<Page> Pages { get; set; } = new List<Page>(); 
+		public ObservableCollection<Page> Pages { get; set; } = new ObservableCollection<Page>(); 
 
 		public string GenerateJson(bool topLevel)
 		{

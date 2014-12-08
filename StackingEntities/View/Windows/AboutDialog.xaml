@@ -4,15 +4,24 @@
         Title="About" Height="200" Width="350" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterOwner" Icon="/StackingEntities;component/CommandBlock.ico">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="113*"/>
-            <RowDefinition Height="58*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="119*"/>
-            <ColumnDefinition Width="225*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Image Source="/StackingEntities;component/CommandBlock.ico" Stretch="None" StretchDirection="DownOnly"/>
-        <Label Content="Minecraft Summon Generator" Grid.Row="0" Grid.Column="1" FontSize="16" FontFamily="Segoe UI Light"/>
+        <Image Margin="15" Source="/StackingEntities;component/CommandBlock.ico" Stretch="None" StretchDirection="DownOnly"/>
+		<StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Orientation="Vertical">
+			<Label Content="Minecraft Summon Generator" FontSize="12" HorizontalAlignment="Center"/>
+			<TextBlock>
+				(c) 2014-2015 Sidneys1<LineBreak/>
+				Thanks to everyone at Mojang!<LineBreak/>
+				<LineBreak/>
+				Coming Soon:<LineBreak/>
+				Minecart Spawner options
+			</TextBlock>
+		</StackPanel>
 
-    </Grid>
+	</Grid>
 </Window>
