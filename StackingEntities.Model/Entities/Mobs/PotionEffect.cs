@@ -1,9 +1,11 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Interface;
 
 namespace StackingEntities.Model.Entities.Mobs
 {
+	[Serializable]
 	public class PotionEffect :IJsonAble
 	{
 		[DisplayName(@"Type")]

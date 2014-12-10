@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Vehicles
 {
+	[Serializable]
 	internal class MinecartTNT : Minecart
 	{
 		public MinecartTNT() { Type = EntityTypes.MinecartTNT; }

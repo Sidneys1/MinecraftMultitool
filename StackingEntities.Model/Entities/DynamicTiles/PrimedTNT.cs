@@ -1,9 +1,11 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.DynamicTiles
 {
+	[Serializable]
 	internal class PrimedTNT : EntityBase
 	{
 		public PrimedTNT() { Type = EntityTypes.PrimedTnt; }

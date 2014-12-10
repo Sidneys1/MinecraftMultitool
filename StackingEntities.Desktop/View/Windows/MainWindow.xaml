@@ -6,11 +6,12 @@
         xmlns:view="clr-namespace:StackingEntities.Desktop.View"
         xmlns:viewModel1="clr-namespace:StackingEntities.Desktop.ViewModel"
         xmlns:entities="clr-namespace:StackingEntities.Model.Entities;assembly=StackingEntities.Data"
-        xmlns:model="clr-namespace:StackingEntities.Model;assembly=StackingEntities.Data"
         xmlns:Properties="clr-namespace:StackingEntities.Desktop.Properties"
+        xmlns:model1="clr-namespace:StackingEntities.Desktop.Model"
         x:Class="StackingEntities.Desktop.View.Windows.MainWindow"
         Title="{x:Static Properties:Resources.MainWindow_Title}" Height="600" Width="800" MinHeight="600" MinWidth="800"
-    ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="/StackingEntities;component/CommandBlock.ico" SnapsToDevicePixels="True" >
+		ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="/StackingEntities;component/CommandBlock.ico" SnapsToDevicePixels="True"
+	DataContextChanged="MainWindow_OnDataContextChanged" Closing="MainWindow_OnClosing">
 	<Window.Resources>
 		<DropShadowEffect x:Key="Blur" ShadowDepth="0" BlurRadius="5" RenderingBias="Quality"/>
 		<viewModel1:EnumDescriptionConverter x:Key="enumDesc"/>
@@ -42,7 +43,7 @@
 		</DataTemplate>
 	</Window.Resources>
 	<Window.DataContext>
-		<model:DataModel X="~" Y="~" Z="~"/>
+		<model1:DataModel X="~" Y="~" Z="~"/>
 	</Window.DataContext>
 	<Window.InputBindings>
 		<KeyBinding Key="F4" Modifiers="Alt" Command="{x:Static view:CustomCommands.Exit}"/>
@@ -51,7 +52,10 @@
 	<Window.CommandBindings>
 		<CommandBinding Command="{x:Static view:CustomCommands.Exit}" Executed="CommandExit_Execute"/>
 		<CommandBinding Command="Help" Executed="CommandAbout_Execute"/>
-		<CommandBinding Command="New" CanExecute="CommandNew_CanExecute" Executed="CommandNew_Execute"></CommandBinding>
+		<CommandBinding Command="New" CanExecute="CommandNew_CanExecute" Executed="CommandNew_Execute"/>
+		<CommandBinding Command="Save" Executed="CommandSave_Execute"/>
+		<CommandBinding Command="SaveAs" Executed="CommandSaveAs_Execute"/>
+		<CommandBinding Command="Open" Executed="CommandOpen_Execute"/>
 	</Window.CommandBindings>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -72,28 +76,28 @@
 				</ItemsPanelTemplate>
 			</Menu.ItemsPanel>
 			<MenuItem Header="{x:Static Properties:Resources.MainWindow_File}">
-				<MenuItem Header="{x:Static Properties:Resources.MainWindow_File_New}" Command="New" Visibility="Collapsed">
+				<MenuItem Header="{x:Static Properties:Resources.MainWindow_File_New}" Command="New">
 					<MenuItem.Icon>
 						<Image Source="/StackingEntities.Resources;component/Images/New.png" Stretch="None"/>
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{x:Static Properties:Resources.MainWindow_File_Open}" Command="Open" Visibility="Collapsed">
+				<MenuItem Header="{x:Static Properties:Resources.MainWindow_File_Open}" Command="Open">
 					<MenuItem.Icon>
 						<Image Source="/StackingEntities.Resources;component/Images/Open.png" Stretch="None"/>
 					</MenuItem.Icon>
 				</MenuItem>
-				<Separator Visibility="Collapsed"/>
-				<MenuItem Header="{x:Static Properties:Resources.MainWindow_File_Save}" Command="Save" Visibility="Collapsed">
+				<Separator/>
+				<MenuItem Header="{x:Static Properties:Resources.MainWindow_File_Save}" Command="Save">
 					<MenuItem.Icon>
 						<Image Source="/StackingEntities.Resources;component/Images/Save.png" Stretch="None"/>
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="{x:Static Properties:Resources.MainWindow_File_SaveAs}" Command="SaveAs" Visibility="Collapsed">
+				<MenuItem Header="{x:Static Properties:Resources.MainWindow_File_SaveAs}" Command="SaveAs" InputGestureText="Ctrl+Shift+S">
 					<MenuItem.Icon>
 						<Image Source="/StackingEntities.Resources;component/Images/SaveAs.png" Width="16" Height="16" StretchDirection="DownOnly"/>
 					</MenuItem.Icon>
 				</MenuItem>
-				<Separator Visibility="Collapsed"/>
+				<Separator/>
 				<MenuItem Header="{x:Static Properties:Resources.MainWindow_File_Exit}" Command="{x:Static view:CustomCommands.Exit}" InputGestureText="Alt+F4">
 					<MenuItem.Icon>
 						<Image Source="/StackingEntities.Resources;component/Images/Exit.png" Stretch="None"/>
@@ -106,7 +110,11 @@
 						<Image Source="/StackingEntities.Resources;component/Images/MCB.png" Stretch="None"/>
 					</MenuItem.Icon>
 				</MenuItem>
-				<MenuItem Header="Give Generator" Click="GiveGeneratorMenu_Clicked"/>
+				<MenuItem Header="Give Generator" Click="GiveGeneratorMenu_Clicked">
+					<MenuItem.Icon>
+						<Image Source="/StackingEntities.Resources;component/Images/Redstone.png" Stretch="None"/>
+					</MenuItem.Icon>
+				</MenuItem>
 			</MenuItem>
 			<MenuItem x:Name="AboutMenuItem" ToolTip="{x:Static Properties:Resources.MainWindow_AboutTooltip}" HorizontalAlignment="Right" Cursor="Hand" Command="Help">
 				<MenuItem.Header>
@@ -130,7 +138,7 @@
 						  DisplayMemberPath="Description"
 						  SelectedValuePath="Value" VerticalAlignment="Center"/>
 				<!--ItemsSource="{Binding Source={StaticResource sysEnum}}" />-->
-				<Button Grid.Column="1" Grid.Row="0" Content="{x:Static Properties:Resources.MainWindow_Add}" Margin="3" Click="Button_Click" HorizontalAlignment="Right"  />
+				<Button Grid.Column="1" Grid.Row="0" Content="{x:Static Properties:Resources.MainWindow_Add}" Margin="3" Click="AddButton_Clicked" HorizontalAlignment="Right"  />
 
 				<ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" BorderBrush="#FFABADB3" BorderThickness="1">
 					<ListBox x:Name="EntitiesListBox" ItemsSource="{Binding Entities}" ItemTemplate="{DynamicResource MobItemTemplate}" BorderThickness="0" BorderBrush="{x:Null}" SelectionChanged="EntitiesListBox_SelectionChanged" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewKeyDown="EntitiesListBox_PreviewKeyDown"/>

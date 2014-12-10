@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
@@ -6,6 +7,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
+	[Serializable]
 	public class ItemTagsGeneral : IJsonAble
 	{
 		[EntityDescriptor("General", "Unbreakable")]

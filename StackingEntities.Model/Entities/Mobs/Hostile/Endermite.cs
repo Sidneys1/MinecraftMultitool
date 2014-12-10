@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
+	[Serializable]
 	internal class Endermite : MobBase 
 	{
 		public Endermite() : base(8) { Type = EntityTypes.Endermite; }

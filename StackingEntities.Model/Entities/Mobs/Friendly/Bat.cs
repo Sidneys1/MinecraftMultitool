@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
+	[Serializable]
 	internal class Bat : MobBase 
 	{
 		public Bat() :base(6) { Type = EntityTypes.Bat; BatFlags = false; }

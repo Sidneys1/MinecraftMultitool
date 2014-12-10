@@ -4,6 +4,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.DynamicTiles
 {
+	[Serializable]
 	internal class FallingSand : EntityBase
 	{
 		public FallingSand() 

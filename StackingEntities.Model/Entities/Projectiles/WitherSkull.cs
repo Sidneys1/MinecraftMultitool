@@ -1,7 +1,9 @@
-﻿using StackingEntities.Model.Entities.Projectiles.BaseClasses;
+﻿using System;
+using StackingEntities.Model.Entities.Projectiles.BaseClasses;
 
 namespace StackingEntities.Model.Entities.Projectiles
 {
+	[Serializable]
 	public class WitherSkull : DirectionProjectileBase
 	{
 		public WitherSkull()

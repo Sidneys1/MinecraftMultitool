@@ -1,8 +1,10 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
+	[Serializable]
 	public class VillagerGolem : MobBase
 	{
 		[EntityDescriptor("Iron Golem Options", "Created by Player")]

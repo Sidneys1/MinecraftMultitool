@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Vehicles
 {
+	[Serializable]
 	public class MinecartCommandBlock : Minecart
 	{
 		public MinecartCommandBlock() { Type = EntityTypes.MinecartCommandBlock; }

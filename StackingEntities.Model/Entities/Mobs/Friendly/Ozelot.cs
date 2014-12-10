@@ -1,8 +1,10 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
+	[Serializable]
 	public class Ozelot : TameableMobBase
 	{
 		private CatType _catType;

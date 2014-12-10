@@ -1,19 +1,25 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using StackingEntities.Desktop.View.Windows;
 using StackingEntities.Model.Entities;
 
 //using System.Attribute;
 
-namespace StackingEntities.Model
+namespace StackingEntities.Desktop.Model
 {
-	//[Serializable]
+	[Serializable]
 	public class DataModel: INotifyPropertyChanged
 	{
 		public ObservableCollection<EntityBase> Entities { get; } = new ObservableCollection<EntityBase>();
 
-		private string _x, _y, _z;
+		[field: NonSerialized] public string savePath = null;
+
+		private string _x="~", _y="~", _z="~";
 		public string X
 		{
 			get { return _x; }
@@ -41,16 +47,15 @@ namespace StackingEntities.Model
 			get { return _z; }
 			set
 			{
-				if (_z == null || !_z.Equals(value))
-				{
-					_z = value;
-					PropChanged("Z");
-				}
+				if (_z != null && _z.Equals(value)) return;
+				_z = value;
+				PropChanged("Z");
 			}
 		}
 
 		#region Property Changed
 
+		[field:NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		private void PropChanged(string propertyName)
@@ -100,6 +105,37 @@ namespace StackingEntities.Model
 			}
 			var s = b.ToString();
 			return s;
+		}
+
+		public void Save(string path = null)
+		{
+			if (path == null)
+				path = savePath;
+
+			using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+			{
+				var f = new BinaryFormatter();
+
+				f.Serialize(fs, this);
+				fs.Flush();
+				fs.Close();
+			}
+
+			savePath = path;
+		}
+
+		public static DataModel Open(string path)
+		{
+			DataModel m;
+			using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+			{
+				var f = new BinaryFormatter();
+
+				m = (DataModel)f.Deserialize(fs);
+				m.savePath = path;
+				fs.Close();
+			}
+			return m;
 		}
 	}
 }

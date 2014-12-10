@@ -1,9 +1,11 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
+	[Serializable]
 	internal class Wolf : TameableMobBase
 	{
 		public Wolf() : base(8) { Type = EntityTypes.Wolf; }

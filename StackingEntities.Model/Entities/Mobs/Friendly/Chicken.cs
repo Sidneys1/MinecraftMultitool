@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
+	[Serializable]
 	internal class Chicken : BreedableMobBase 
 	{
 		public Chicken() :base(4) { Type = EntityTypes.Chicken; IsChickenJockey = false; }

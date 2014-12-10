@@ -1,5 +1,8 @@
-﻿namespace StackingEntities.Model.Entities.Mobs.Hostile
+﻿using System;
+
+namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
+	[Serializable]
 	public class Blaze : MobBase
 	{
 		public Blaze() : base(20)

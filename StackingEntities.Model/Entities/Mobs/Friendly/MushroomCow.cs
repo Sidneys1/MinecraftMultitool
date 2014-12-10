@@ -1,5 +1,8 @@
-﻿namespace StackingEntities.Model.Entities.Mobs.Friendly
+﻿using System;
+
+namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
+	[Serializable]
 	public class MushroomCow : BreedableMobBase
 	{
 		public MushroomCow() : base(10)

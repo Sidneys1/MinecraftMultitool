@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Win32;
+using StackingEntities.Desktop.Model;
 using StackingEntities.Desktop.ViewModel;
-using StackingEntities.Model;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Entities.Vehicles;
 using StackingEntities.Model.Metadata;
@@ -23,15 +27,73 @@ namespace StackingEntities.Desktop.View.Windows
 		#region Variables
 
 		EntityTypes _lastEntity = EntityTypes.NoEnt;
-		readonly DataModel _model;
+
+		readonly SaveFileDialog _saveFileDialog = new SaveFileDialog
+		{
+			Filter = "StackingEntities Project (*.sep)|*.sep",
+			Title = "Save Project..."
+		};
+
+		readonly OpenFileDialog _openFileDialog = new OpenFileDialog
+		{
+			Filter = "StackingEntities Project (*.sep)|*.sep",
+			Title = "Open Project..."
+		};
 
 		#endregion
 
 		public MainWindow()
 		{
 			InitializeComponent();
-			_model = (DataModel)DataContext;
+			InputBindings.Add(new InputBinding(ApplicationCommands.SaveAs,
+				new KeyGesture(Key.S, (ModifierKeys.Control | ModifierKeys.Shift))));
+
+			var args = Environment.GetCommandLineArgs();
+
+			// ReSharper disable InvertIf
+			if (args.Length == 2)
+			{
+				if (File.Exists(args[1]))
+					
+				{
+					DataModel m = null;
+					var success = true;
+
+					try
+					{
+						m = DataModel.Open(args[1]);
+					}
+					catch (Exception)
+					{
+						success = false;
+					}
+
+					if (success && m != null)
+						DataContext = m;
+					else
+						MessageBox.Show(this, "Project could not be opened.");
+				}
+			}
+			// ReSharper restore InvertIf
+
+
+			//var values = Enum.GetValues(typeof(EntityTypes));
+			//foreach (var eb in 
+			//	from EntityTypes etype in values
+			//	select etype.GetType().GetMember(etype.ToString())[0].GetCustomAttributes(typeof(ClassLinkAttribute))
+			//	into props
+			//	select (IList<Attribute>) (props as IList<Attribute> ?? props.ToList())
+			//	into attributes
+			//	select attributes.Cast<ClassLinkAttribute>().FirstOrDefault()
+			//	into eb
+			//	where eb != null
+			//	select eb)
+			//{
+			//	_model.Entities.Insert(0, (EntityBase)Activator.CreateInstance(eb.LinkType));
+			//}
 		}
+
+		public DataModel Model { set; get; }
 
 		#region Methods
 
@@ -82,11 +144,29 @@ namespace StackingEntities.Desktop.View.Windows
 			}
 		}
 
+		private bool CheckSave()
+		{
+			if (Model.savePath == null && Model.Entities.Count == 0) return true;
+
+			var r = MessageBox.Show(this, "Would you like to save your existing project?", "Save?", MessageBoxButton.YesNoCancel);
+
+			switch (r)
+			{
+				case MessageBoxResult.Cancel:
+					return false;
+				case MessageBoxResult.Yes:
+					CommandSaveAs_Execute(null, null);
+					break;
+			}
+
+			return true;
+		}
+
 		#endregion
 
 		#region UI Event Handlers
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private void AddButton_Clicked(object sender, RoutedEventArgs e)
 		{
 			var etype = (EntityTypes)EntityTypeComboBox.SelectedValue;
 
@@ -94,7 +174,7 @@ namespace StackingEntities.Desktop.View.Windows
 			var attributes = props as IList<Attribute> ?? props.ToList();
 			var eb = attributes.Cast<ClassLinkAttribute>().FirstOrDefault();
 			if (eb != null)
-				_model.Entities.Insert(0, (EntityBase)Activator.CreateInstance(eb.LinkType));
+				Model.Entities.Insert(0, (EntityBase)Activator.CreateInstance(eb.LinkType));
 		}
 
 		private void EntitiesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -117,7 +197,7 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void GenerateButton_Clicked(object sender, RoutedEventArgs e)
 		{
-			SummonCommandOutputTxtBx.Text = _model.GenerateSummon();
+			SummonCommandOutputTxtBx.Text = Model.GenerateSummon();
 		}
 
 		private void CopyButton_Clicked(object sender, RoutedEventArgs e)
@@ -140,11 +220,11 @@ namespace StackingEntities.Desktop.View.Windows
 				var text = (string)cmd.Tag;
 				if (!string.IsNullOrWhiteSpace(text))
 				{
-					var lines = text.Split(new[] {"\r\n"}, StringSplitOptions.RemoveEmptyEntries);
+					var lines = text.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
 					foreach (var str in lines.Where(str => !string.IsNullOrWhiteSpace(str)))
 					{
-						_model.Entities.Insert(0, new MinecartCommandBlock {Command = str.Trim()});
+						Model.Entities.Insert(0, new MinecartCommandBlock { Command = str.Trim() });
 					}
 				}
 				//do stuff
@@ -154,7 +234,7 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void DeleteSelectedEntityButton_Clicked(object sender, MouseButtonEventArgs e)
 		{
-			_model.Entities.Remove((EntityBase)EntitiesListBox.SelectedItem);
+			Model.Entities.Remove((EntityBase)EntitiesListBox.SelectedItem);
 		}
 
 		private void MoveSelectedEntityUpBtn_Clicked(object sender, MouseButtonEventArgs e)
@@ -167,15 +247,15 @@ namespace StackingEntities.Desktop.View.Windows
 
 			if (index <= 0) return;
 			EntitiesListBox.SelectedIndex = -1;
-			_model.Entities.Remove(ent);
+			Model.Entities.Remove(ent);
 			if ((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift) //Keyboard.IsKeyDown(Key.LeftShift))
 			{
-				_model.Entities.Insert(0, ent);
+				Model.Entities.Insert(0, ent);
 				EntitiesListBox.SelectedIndex = 0;
 			}
 			else
 			{
-				_model.Entities.Insert(--index, ent);
+				Model.Entities.Insert(--index, ent);
 				EntitiesListBox.SelectedIndex = index;
 			}
 		}
@@ -187,19 +267,19 @@ namespace StackingEntities.Desktop.View.Windows
 			var ent = (EntityBase)EntitiesListBox.SelectedItem;
 			var index = EntitiesListBox.SelectedIndex;
 
-			if (index == _model.Entities.Count - 1) return;
+			if (index == Model.Entities.Count - 1) return;
 			EntitiesListBox.SelectedIndex = -1;
-			_model.Entities.Remove(ent);
+			Model.Entities.Remove(ent);
 
 			if ((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)
 			{
-				var ind = _model.Entities.Count;
-				_model.Entities.Insert(ind, ent);
+				var ind = Model.Entities.Count;
+				Model.Entities.Insert(ind, ent);
 				EntitiesListBox.SelectedIndex = ind;
 			}
 			else
 			{
-				_model.Entities.Insert(++index, ent);
+				Model.Entities.Insert(++index, ent);
 				EntitiesListBox.SelectedIndex = index;
 			}
 		}
@@ -223,6 +303,24 @@ namespace StackingEntities.Desktop.View.Windows
 			}
 		}
 
+		private void GiveGeneratorMenu_Clicked(object sender, RoutedEventArgs e)
+		{
+			var cmd = new GiveGeneratorDialog { Owner = this };
+			cmd.ShowDialog();
+			cmd.Close();
+		}
+
+		private void MainWindow_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			Model = (DataModel)DataContext;
+		}
+
+		private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+		{
+			if (!CheckSave())
+				e.Cancel = true;
+		}
+
 		#endregion
 
 		#region Command Handlers
@@ -236,27 +334,52 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void CommandExit_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			// TODO: Check if not saved...
+			
 			Application.Current.Shutdown();
 		}
 
 		private void CommandNew_CanExecute(object sender, CanExecuteRoutedEventArgs e)
 		{
-			e.CanExecute = false;
+			e.CanExecute = true;
 		}
 
 		private void CommandNew_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			// TODO: Check if not saved...
+			if (!CheckSave()) return;
+
+			DataContext = new DataModel();
+		}
+
+		private void CommandSave_Execute(object sender, ExecutedRoutedEventArgs e)
+		{
+			if (Model.savePath == null)
+				CommandSaveAs_Execute(sender, e);
+			else
+				Model.Save();
+		}
+
+		private void CommandOpen_Execute(object sender, ExecutedRoutedEventArgs e)
+		{
+			if (!CheckSave()) return;
+
+			var result = _openFileDialog.ShowDialog(this);
+
+			if (result != true) return;
+
+			var path = _openFileDialog.FileName;
+
+			DataContext = DataModel.Open(path);
+		}
+
+		private void CommandSaveAs_Execute(object sender, ExecutedRoutedEventArgs e)
+		{
+			var result = _saveFileDialog.ShowDialog(this);
+			if (result != true) return;
+			var path = _saveFileDialog.FileName;
+
+			Model.Save(path);
 		}
 
 		#endregion
-
-		private void GiveGeneratorMenu_Clicked(object sender, RoutedEventArgs e)
-		{
-			var cmd = new GiveGeneratorDialog { Owner = this };
-			cmd.ShowDialog();
-			cmd.Close();
-		}
 	}
 }

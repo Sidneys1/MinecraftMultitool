@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
@@ -6,6 +7,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Vehicles
 {
+	[Serializable]
 	public class MinecartChest : Minecart
 	{
 		[EntityDescriptor("Minecart Chest Options", "Inventory", fixedSize: true), MinMax(9, 3)]

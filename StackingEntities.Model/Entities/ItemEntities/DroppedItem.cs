@@ -1,9 +1,11 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.ItemEntities
 {
+	[Serializable]
 	internal class DroppedItem : ItemEntityBase
 	{
 		public DroppedItem()

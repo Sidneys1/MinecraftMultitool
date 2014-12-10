@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
@@ -6,6 +7,7 @@ using StackingEntities.Model.Interface;
 
 namespace StackingEntities.Model.Entities
 {
+	[Serializable]
 	public class Attribute : IJsonAble
 	{
 		[DisplayName(@"Name")]

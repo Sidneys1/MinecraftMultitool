@@ -6,6 +6,7 @@ using StackingEntities.Model.SimpleTypes;
 
 namespace StackingEntities.Model.Entities.Projectiles.BaseClasses
 {
+	[Serializable]
 	public abstract class DirectionProjectileBase : ProjectileBase
 	{
 		[EntityDescriptor("Projectile Options", "Direction", fixedSize: true, dgRowPath: "Name")]

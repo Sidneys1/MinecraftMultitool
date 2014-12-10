@@ -8,7 +8,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
-	[Flags]
+	[Flags,Serializable]
 	public enum DisplayHideFlags
 	{
 		None = 0,
@@ -22,7 +22,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		CanPlaceOn = 16,
 		Other = 32
 	}
-
+	[Serializable]
 	public class ItemTagsDisplay : IJsonAble, INotifyPropertyChanged
 	{
 		[EntityDescriptor("Display", "Custom Name")]
@@ -169,7 +169,7 @@ namespace StackingEntities.Model.Items.ItemTags
 
 			return b.ToString();
 		}
-
+		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		[NotifyPropertyChangedInvocator]

@@ -1,5 +1,8 @@
-﻿namespace StackingEntities.Model.Entities.Mobs.Hostile
+﻿using System;
+
+namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
+	[Serializable]
 	public class Giant : MobBase
 	{
 		public Giant() : base(100)

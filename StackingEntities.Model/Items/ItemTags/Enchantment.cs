@@ -1,10 +1,12 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
+	[Serializable]
 	public class Enchantment:IJsonAble
 	{
 		[DisplayName(@"ID")]

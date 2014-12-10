@@ -1,7 +1,9 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
+	[Serializable]
 	public class Cow :BreedableMobBase
 	{
 		public Cow() :base(10)

@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
+	[Serializable]
 	public class ItemTagsMap : IJsonAble
 	{
 		[EntityDescriptor("Map", "Map is Scaled")]
@@ -34,7 +36,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			return b.ToString();
 		}
 	}
-
+	[Serializable]
 	public enum MapMarker
 	{
 		WhiteMarker,

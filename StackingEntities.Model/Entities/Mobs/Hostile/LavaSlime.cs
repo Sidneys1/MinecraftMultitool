@@ -1,5 +1,8 @@
+using System;
+
 namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
+	[Serializable]
 	public class LavaSlime : Slime
 	{
 		public LavaSlime()

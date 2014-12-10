@@ -1,7 +1,9 @@
+using System;
 using System.ComponentModel;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
+	[Serializable]
 	public class BlockType
 	{
 		[DisplayName(@"Block ID")]

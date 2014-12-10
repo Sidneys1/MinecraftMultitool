@@ -8,6 +8,7 @@ using StackingEntities.Model.SimpleTypes;
 
 namespace StackingEntities.Model.Entities.Other
 {
+	[Serializable]
 	internal class ArmorStand : EntityBase
 	{
 		public ArmorStand()

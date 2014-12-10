@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.ItemEntities
 {
+	[Serializable]
 	internal class XpOrb : ItemEntityBase
 	{
 		private int _value;

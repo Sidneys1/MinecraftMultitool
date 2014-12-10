@@ -5,6 +5,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Other.WallEntities
 {
+	[Serializable]
 	internal class ItemFrame : WallEntityBase
 	{
 		public ItemFrame() { Type = EntityTypes.ItemFrame; ItemDropChance = 1f; }

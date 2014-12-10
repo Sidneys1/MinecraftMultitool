@@ -1,8 +1,10 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Projectiles.BaseClasses
 {
+	[Serializable]
 	public abstract class ShakingProjectileBase : ProjectileBase
 	{
 		[EntityDescriptor("Projectile Options", "Arrow Shake"), MinMax(byte.MinValue, byte.MaxValue)]

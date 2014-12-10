@@ -1,5 +1,8 @@
-﻿namespace StackingEntities.Model.Entities.Vehicles
+﻿using System;
+
+namespace StackingEntities.Model.Entities.Vehicles
 {
+	[Serializable]
 	public class MinecartSpawner : Minecart
 	{
 		// TODO Spawner

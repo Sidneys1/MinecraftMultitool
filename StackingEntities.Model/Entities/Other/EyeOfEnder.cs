@@ -1,5 +1,8 @@
-﻿namespace StackingEntities.Model.Entities.Other
+﻿using System;
+
+namespace StackingEntities.Model.Entities.Other
 {
+	[Serializable]
 	public class EyeOfEnder : EntityBase
 	{
 		public EyeOfEnder()

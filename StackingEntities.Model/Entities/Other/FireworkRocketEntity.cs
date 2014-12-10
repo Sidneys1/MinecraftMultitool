@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
@@ -5,6 +6,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Other
 {
+	[Serializable]
 	internal class FireworkRocketEntity : EntityBase
 	{
 		public FireworkRocketEntity()

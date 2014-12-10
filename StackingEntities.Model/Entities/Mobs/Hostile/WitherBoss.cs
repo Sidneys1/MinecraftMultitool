@@ -1,8 +1,10 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
+	[Serializable]
 	public class WitherBoss :MobBase
 	{
 		[EntityDescriptor("Wither Options", "Invulnerable For <x> Ticks")]

@@ -48,7 +48,7 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 			
-			<Button Grid.Column="0" Content="Generate" Margin="5" Click="Button_Click"/>
+			<Button Grid.Column="0" Content="Generate Give" Margin="5" Click="Button_Click"/>
 			<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" >
 
 				<TextBlock x:Name="TextBlock" Margin="5" Text="/give @p" VerticalAlignment="Center" FontFamily="Courier New" TextWrapping="Wrap"/>

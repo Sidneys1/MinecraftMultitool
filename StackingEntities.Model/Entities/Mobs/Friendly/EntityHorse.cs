@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
@@ -8,6 +9,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
+	[Serializable]
 	public class EntityHorse : BreedableMobBase
 	{
 		private HorseType _horseType;

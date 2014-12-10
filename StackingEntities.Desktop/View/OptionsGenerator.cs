@@ -8,6 +8,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using StackingEntities.Desktop.View.Controls;
 using StackingEntities.Desktop.ViewModel;
+using StackingEntities.Model.Entities;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using Xceed.Wpf.Toolkit;
@@ -142,7 +143,7 @@ namespace StackingEntities.Desktop.View
 
 			FrameworkElement ctrl;
 
-			if (listType == typeof(Item) || listType == typeof(Model.Entities.Attribute) || listType == typeof(Model.Entities.Mobs.Friendly.VillagerRecipe))
+			if (listType == typeof(Item) || listType == typeof(StackingEntities.Model.Entities.Attribute) || listType == typeof(StackingEntities.Model.Entities.Mobs.Friendly.VillagerRecipe))
 			{
 				if (!option.FixedSize || (option.Minimum == null || option.Maximum == null))
 				{

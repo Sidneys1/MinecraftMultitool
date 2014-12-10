@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Other.WallEntities
 {
+	[Serializable]
 	internal abstract class WallEntityBase : EntityBase
 	{
 		[EntityDescriptor("Wall Entity Options", "Tile X")]

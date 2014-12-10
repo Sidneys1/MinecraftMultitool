@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
@@ -5,6 +6,7 @@ using StackingEntities.Model.Interface;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
+	[Serializable]
 	public class Decoration : IJsonAble
 	{
 		[DisplayName(@"ID")]

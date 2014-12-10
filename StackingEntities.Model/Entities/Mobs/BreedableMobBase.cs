@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs
 {
+	[Serializable]
 	public abstract class BreedableMobBase : MobBase
 	{
 		[EntityDescriptor("Breedable Mob Options", "Love Mode (Ticks)")]

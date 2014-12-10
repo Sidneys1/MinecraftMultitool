@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
@@ -8,6 +9,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
+	[Serializable]
 	public class Villager : MobBase
 	{
 		[EntityDescriptor("Villager Options", "Willing", "Whether or not the Villager is willing to breed.")]
@@ -72,7 +74,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		}
 	}
-
+	[Serializable]
 	public class VillagerRecipe : IJsonAble
 	{
 		public bool RewardExp { get; set; }

@@ -1,9 +1,11 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Projectiles.BaseClasses
 {
+	[Serializable]
 	public abstract class OwnedProjectileBase : ShakingProjectileBase
 	{
 		[EntityDescriptor("Projectile Options", "Thrown By <Username>")]

@@ -5,6 +5,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Vehicles
 {
+	[Serializable]
 	internal class MinecartFurnace : Minecart
 	{
 		public MinecartFurnace() { Type = EntityTypes.MinecartFurnace; }

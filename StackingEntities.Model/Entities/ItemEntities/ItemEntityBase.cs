@@ -1,8 +1,10 @@
+using System;
 using System.Text;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.ItemEntities
 {
+	[Serializable]
 	internal abstract class ItemEntityBase : EntityBase
 	{
 		[EntityDescriptor("Item Entity Options", "Age")]

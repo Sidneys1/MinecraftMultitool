@@ -39,7 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataModel.cs" />
     <Compile Include="Entities\Attribute.cs" />
     <Compile Include="Entities\Direction.cs" />
     <Compile Include="Entities\DisabledSlots.cs" />
@@ -108,7 +107,6 @@
     <Compile Include="Entities\Projectiles\ThrownPotion.cs" />
     <Compile Include="Entities\Projectiles\WitherSkull.cs" />
     <Compile Include="Entities\Vehicles\Boat.cs" />
-    <Compile Include="Entities\Vehicles\InventoryMinecart.cs" />
     <Compile Include="Entities\Vehicles\Minecart.cs" />
     <Compile Include="Entities\Vehicles\MinecartChest.cs" />
     <Compile Include="Entities\Vehicles\MinecartCommandBlock.cs" />
@@ -148,6 +146,9 @@
       <Project>{9306555a-045a-4093-a96f-af64986f488c}</Project>
       <Name>StackingEntities.Resources</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

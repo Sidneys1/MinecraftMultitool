@@ -8,6 +8,7 @@ using StackingEntities.Model.SimpleTypes;
 
 namespace StackingEntities.Model.Entities
 {
+	[Serializable]
 	public abstract class EntityBase : Displayable, IJsonAble
 	{
 		public EntityTypes Type { get; set; }

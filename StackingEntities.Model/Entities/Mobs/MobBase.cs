@@ -9,6 +9,7 @@ using StackingEntities.Model.SimpleTypes;
 
 namespace StackingEntities.Model.Entities.Mobs
 {
+	[Serializable]
 	public abstract class MobBase : EntityBase
 	{
 		protected MobBase(int baseHealth)

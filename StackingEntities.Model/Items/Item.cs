@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -9,6 +10,7 @@ using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items
 {
+	[Serializable]
 	public class Item: IJsonAble, INotifyPropertyChanged
 	{
 		[EntityDescriptor("Item", "Count"), MinMax(byte.MinValue, byte.MaxValue)]
@@ -122,7 +124,7 @@ namespace StackingEntities.Model.Items
 		{
 			return string.Format("\"{0}\", C:{1}, DV:{2}{3}", Id.Trim().EscapeJsonString(), Count, Damage, Slot.HasValue ? string.Format(", S:{0}", Slot.Value) :"");
 		}
-
+		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		[Annotations.NotifyPropertyChangedInvocator]
