@@ -251,5 +251,12 @@ namespace StackingEntities.Desktop.View.Windows
 		}
 
 		#endregion
+
+		private void GiveGeneratorMenu_Clicked(object sender, RoutedEventArgs e)
+		{
+			var cmd = new GiveGeneratorDialog { Owner = this };
+			cmd.ShowDialog();
+			cmd.Close();
+		}
 	}
 }

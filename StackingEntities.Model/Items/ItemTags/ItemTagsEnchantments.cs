@@ -44,7 +44,7 @@ namespace StackingEntities.Model.Items.ItemTags
 				b.AppendFormat("{0}:{{{1}}}", index, enchantment.GenerateJson(false));
 			}
 
-			b.Append("]");
+			b.Append("],");
 
 			return b.ToString();
 		}

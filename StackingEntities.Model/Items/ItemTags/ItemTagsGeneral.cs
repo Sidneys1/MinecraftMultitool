@@ -23,7 +23,7 @@ namespace StackingEntities.Model.Items.ItemTags
 
 			if (CanDestroy.Count == 0) return b.ToString();
 
-			b.Append("CanPlaceOn:[");
+			b.Append("CanDestroy:[");
 			foreach (var item in CanDestroy)
 			{
 				b.AppendFormat("\"{0}\",", item.ToString().EscapeJsonString());

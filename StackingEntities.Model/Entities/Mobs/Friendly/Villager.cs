@@ -81,8 +81,8 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public bool TwoItems { get; set; } = false;
 
-		public Item BuyItem { get; } = new Item(false) {SlotTitle = "Buying (Item 1)" };
-		public Item BuyItemB { get; } = new Item(false) {SlotTitle = "Buying (Item 2)" };
+		public Item BuyItem { get; } = new Item {SlotTitle = "Buying (Item 1)" };
+		public Item BuyItemB { get; } = new Item {SlotTitle = "Buying (Item 2)" };
 		public Item SellItem { get; }=new Item {SlotTitle = "Selling"};
 		public string GenerateJson(bool topLevel)
 		{

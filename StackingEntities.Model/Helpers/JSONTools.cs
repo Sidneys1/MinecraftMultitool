@@ -16,6 +16,8 @@ namespace StackingEntities.Model.Helpers
 
 			const char ret = '\r';
 
+			if (string.IsNullOrWhiteSpace(value)) return string.Empty;
+
 			var output = new StringBuilder(value.Length);
 			foreach (var c in value)
 			{

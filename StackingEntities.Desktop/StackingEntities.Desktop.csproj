@@ -197,6 +197,9 @@
     <Compile Include="View\Windows\CommandListWindow.xaml.cs">
       <DependentUpon>CommandListWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Windows\GiveGeneratorDialog.xaml.cs">
+      <DependentUpon>GiveGeneratorDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\MainWindow.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
     <Page Include="View\Windows\CommandListWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Windows\GiveGeneratorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Windows\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

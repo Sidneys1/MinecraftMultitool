@@ -106,6 +106,7 @@
 						<Image Source="/StackingEntities.Resources;component/Images/MCB.png" Stretch="None"/>
 					</MenuItem.Icon>
 				</MenuItem>
+				<MenuItem Header="Give Generator" Click="GiveGeneratorMenu_Clicked"/>
 			</MenuItem>
 			<MenuItem x:Name="AboutMenuItem" ToolTip="{x:Static Properties:Resources.MainWindow_AboutTooltip}" HorizontalAlignment="Right" Cursor="Hand" Command="Help">
 				<MenuItem.Header>

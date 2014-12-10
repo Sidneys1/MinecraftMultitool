@@ -27,11 +27,11 @@
 			<Label Content="ID" IsEnabled="{Binding IdTagEnabled}"/>
 			<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3" IsEnabled="{Binding IdTagEnabled}"/>
 
-			<Label Grid.Row="1" Grid.Column="0" Content="Count" IsEnabled="{Binding CountTagEnabled}"/>
-			<xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Count}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding CountTagEnabled}"/>
+			<Label Grid.Row="1" Grid.Column="0" Content="Count" IsEnabled="{Binding CountTagEnabled}" Visibility="{Binding HasCountTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+			<xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Count}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding CountTagEnabled}"  Visibility="{Binding HasCountTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
 
-			<Label Grid.Row="2" Grid.Column="0" Content="Damage/DV" IsEnabled="{Binding DamageTagEnabled}"/>
-			<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="3" Value="{Binding Damage}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding DamageTagEnabled}"/>
+			<Label Grid.Row="2" Grid.Column="0" Content="Damage/DV" IsEnabled="{Binding DamageTagEnabled}" Visibility="{Binding HasDamageTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+			<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="3" Value="{Binding Damage}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding DamageTagEnabled}" Visibility="{Binding HasDamageTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
 
 			<Label Grid.Row="3" Grid.Column="0" Content="Slot" IsEnabled="{Binding SlotTagEnabled}" Visibility="{Binding HasSlotTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
 			<xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Margin="3" Value="{Binding Slot}" Minimum="0" Maximum="255" MinWidth="50" HorizontalAlignment="Left" IsEnabled="{Binding SlotTagEnabled}" Visibility="{Binding HasSlotTag, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>

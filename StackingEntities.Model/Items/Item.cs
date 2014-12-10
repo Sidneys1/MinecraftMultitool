@@ -12,7 +12,9 @@ namespace StackingEntities.Model.Items
 	public class Item: IJsonAble, INotifyPropertyChanged
 	{
 		[EntityDescriptor("Item", "Count"), MinMax(byte.MinValue, byte.MaxValue)]
-		public int Count { get; set; } = 1;
+		public int? Count { get; set; } = 1;
+
+		public bool HasCountTag => Count.HasValue;
 
 		public bool CountTagEnabled { get; set; } = true;
 
@@ -24,7 +26,9 @@ namespace StackingEntities.Model.Items
 		public bool SlotTagEnabled { get; set; } = true;
 
 		[EntityDescriptor("Item", "Damage/Data Value"), MinMax(short.MinValue, short.MaxValue)]
-		public int Damage { get; set; } = 0;
+		public int? Damage { get; set; } = 0;
+
+		public bool HasDamageTag => Damage.HasValue;
 
 		public bool DamageTagEnabled { get; set; } = true;
 
@@ -39,6 +43,8 @@ namespace StackingEntities.Model.Items
 
 		public bool IdTagEnabled { get; set; } = true;
 
+		public bool GenIdTag { get; set; } = true;
+
 		public ObservableCollection<IJsonAble> Tag = new ObservableCollection<IJsonAble>();
 		private string _id;
 
@@ -49,6 +55,20 @@ namespace StackingEntities.Model.Items
 		public bool CanAddTags { get; set; } = false;
 
 		public bool HasId => !string.IsNullOrWhiteSpace(Id);
+
+		public Item()
+		{
+			Tag.Add(new ItemTagsGeneral());
+			Tag.Add(new ItemTagsBlock());
+			Tag.Add(new ItemTagsEnchantments());
+			//Tag.Add(new ItemTagsAttributes());
+			//Tag.Add(new ItemTagsPotionEffects());
+			Tag.Add(new ItemTagsDisplay());
+			Tag.Add(new ItemTagsBook());
+			//Tag.Add(new ItemTagsPlayerSkulls());
+			Tag.Add(new ItemTagsFireworkStar());
+			Tag.Add(new ItemTagsMap());
+		}
 
 		public Item(bool allTags = true)
 		{
@@ -71,13 +91,15 @@ namespace StackingEntities.Model.Items
 
 			if (string.IsNullOrWhiteSpace(Id)) return b.ToString();
 
-			if (Count != 0)
+			if (Count.HasValue && Count != 0)
 				b.AppendFormat("Count:{0}b,", Count);
 			if (Slot.HasValue)
 				b.AppendFormat("Slot:{0}b,", Slot);
-			if (Damage != 0)
+			if (Damage.HasValue && Damage != 0)
 				b.AppendFormat("Damage:{0}s,", Damage);
-			b.AppendFormat("id:\"{0}\",", Id.EscapeJsonString());
+
+			if (GenIdTag)
+				b.AppendFormat("id:\"{0}\",", Id.EscapeJsonString());
 
 			if (Tag.Count == 0) return b.ToString();
 

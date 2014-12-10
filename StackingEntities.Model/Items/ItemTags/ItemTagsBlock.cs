@@ -27,7 +27,7 @@ namespace StackingEntities.Model.Items.ItemTags
 				b.AppendFormat("\"{0}\",", item.ToString().EscapeJsonString());
 			}
 			b.Remove(b.Length - 1, 1);
-			b.Append(']');
+			b.Append("],");
 
 			return b.ToString();
 		}
