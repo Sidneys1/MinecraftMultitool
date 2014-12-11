@@ -1,0 +1,8 @@
+StackingEntities.Web/
+StackingEntities.Desktop/
+StackingEntities.Model/
+StackingEntities.Resources/
+StackingEntities.sln.ide/
+packages/
+*.suo
+StackingEntities.sln
