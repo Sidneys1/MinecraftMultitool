@@ -363,9 +363,6 @@
     <Resource Include="Images\Vehicles\MinecartTNT.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Fonts\pixelmix.ttf" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Mobs\Horse\BabyDonkey.png" />
     <Resource Include="Images\Mobs\Horse\BabyHorse.png" />
     <Resource Include="Images\Mobs\Horse\BabyMule.png" />
@@ -411,6 +408,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\Redstone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\pixelmix.ttf" />
+    <Resource Include="Fonts\pixelmix_bold.ttf" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -15,7 +15,7 @@
 	<Window.Resources>
 		<DropShadowEffect x:Key="Blur" ShadowDepth="0" BlurRadius="5" RenderingBias="Quality"/>
 		<viewModel1:EnumDescriptionConverter x:Key="enumDesc"/>
-		<DataTemplate x:Key="MobItemTemplate" DataType="entities:EntityBase">
+		<DataTemplate DataType="{x:Type entities:EntityBase}">
 			<Grid>
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto"/>
@@ -28,13 +28,17 @@
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				<Border Grid.Column="1" Grid.RowSpan="3" Width="Auto" Height="Auto">
-					<Image RenderOptions.BitmapScalingMode="HighQuality" Margin="5" Width="75px" Source="{Binding DisplayImage}" Stretch="None" Effect="{DynamicResource Blur}"/>
+					<Image RenderOptions.BitmapScalingMode="HighQuality" Margin="5" Width="75px" Source="{Binding DisplayImage}" Stretch="Uniform" Effect="{DynamicResource Blur}" StretchDirection="DownOnly"/>
 				</Border>
 				<TextBlock Grid.Row="0" Grid.Column="2" Margin="3" Text="{Binding Type, Converter={StaticResource enumDesc}}" TextTrimming="CharacterEllipsis"
-                    FontSize="12pt" FontFamily="/StackingEntities.Resources;component/Fonts/#Minecraftia" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"
+                    FontSize="12pt" FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"
                     HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
-				<TextBlock Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="12"/>
+				<!--<TextBlock Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="9pt" FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"/>-->
+				
+				<TextBlock Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Margin="3" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap"
+                    FontSize="6pt" FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"
+                    UseLayoutRounding="True"/>
 
 				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="0" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/StackingEntities.Resources;component/Images/Delete.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Remove Item" Tag="{Binding Mode=OneWay}" MouseUp="DeleteSelectedEntityButton_Clicked" Stretch="None" Effect="{DynamicResource Blur}" />
 				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="1" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Up.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Up" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityUpBtn_Clicked" />
@@ -141,7 +145,7 @@
 				<Button Grid.Column="1" Grid.Row="0" Content="{x:Static Properties:Resources.MainWindow_Add}" Margin="3" Click="AddButton_Clicked" HorizontalAlignment="Right"  />
 
 				<ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" BorderBrush="#FFABADB3" BorderThickness="1">
-					<ListBox x:Name="EntitiesListBox" ItemsSource="{Binding Entities}" ItemTemplate="{DynamicResource MobItemTemplate}" BorderThickness="0" BorderBrush="{x:Null}" SelectionChanged="EntitiesListBox_SelectionChanged" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewKeyDown="EntitiesListBox_PreviewKeyDown"/>
+					<ListBox x:Name="EntitiesListBox" ItemsSource="{Binding Entities}" BorderThickness="0" BorderBrush="{x:Null}" SelectionChanged="EntitiesListBox_SelectionChanged" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewKeyDown="EntitiesListBox_PreviewKeyDown"/>
 				</ScrollViewer>
 			</Grid>
 		</GroupBox>

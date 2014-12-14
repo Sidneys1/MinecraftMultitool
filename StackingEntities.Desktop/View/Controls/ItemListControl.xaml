@@ -15,7 +15,7 @@
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
-		<TextBlock x:Name="SlotDescription" Grid.ColumnSpan="2" FontFamily="/StackingEntities;component/Fonts/#pixelmix" TextAlignment="Center" TextWrapping="Wrap"/>
+		<TextBlock x:Name="SlotDescription" Grid.ColumnSpan="2" FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" TextAlignment="Center" TextWrapping="Wrap"/>
 		<Grid Grid.Row="1" x:Name="AddRemoveButtons">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>

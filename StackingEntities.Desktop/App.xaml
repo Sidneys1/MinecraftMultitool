@@ -8,6 +8,7 @@
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:viewModel="clr-namespace:StackingEntities.Desktop.ViewModel"
     xmlns:friendly="clr-namespace:StackingEntities.Model.Entities.Mobs.Friendly;assembly=StackingEntities.Data"
+    xmlns:mobs="clr-namespace:StackingEntities.Model.Entities.Mobs;assembly=StackingEntities.Data"
     mc:Ignorable="d" x:Class="StackingEntities.Desktop.App"
              StartupUri="View/Windows/MainWindow.xaml">
 	<Application.Resources>
@@ -25,9 +26,13 @@
 			<Setter Property="FontFamily" Value="Segoe UI"/>
 		</Style>
 
-		<Style TargetType="Label">
+		<Style TargetType="{x:Type Label}">
 			<Setter Property="FontFamily" Value="/StackingEntities.Resources;component/Fonts/#pixelmix"/>
-			<Setter Property="FontSize" Value="9pt"/>
+			<Setter Property="FontSize" Value="6pt"/>
+			<Setter Property="SnapsToDevicePixels" Value="True"/>
+			<Setter Property="UseLayoutRounding" Value="True"/>
+			<Setter Property="TextOptions.TextRenderingMode" Value="Aliased"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
 		</Style>
 
 		<Style x:Key="ExpanderHeaderFocusVisual">
@@ -75,7 +80,7 @@
 			<Setter Property="HeaderTemplate">
 				<Setter.Value>
 					<DataTemplate>
-						<ContentPresenter TextBlock.FontSize="12pt" TextBlock.FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased" Content="{TemplateBinding Content}" VerticalAlignment="Center"/>
+						<ContentPresenter TextBlock.FontSize="12pt" TextBlock.FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased" Content="{TemplateBinding Content}" VerticalAlignment="Center" UseLayoutRounding="True"/>
 					</DataTemplate>
 				</Setter.Value>
 			</Setter>
@@ -90,7 +95,7 @@
 										<ColumnDefinition Width="*"/>
 									</Grid.ColumnDefinitions>
 									<ToggleButton x:Name="HeaderSite"  ContentTemplate="{TemplateBinding HeaderTemplate}" ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" Content="{TemplateBinding Header}" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FocusVisualStyle="{StaticResource ExpanderHeaderFocusVisual}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" MinWidth="0" MinHeight="0" Padding="{TemplateBinding Padding}" Style="{StaticResource ExpanderDownHeaderStyle}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-									<Label Grid.Column="1" Content="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="{TemplateBinding FontSize}"/>
+									<Label Grid.Column="1" Content="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12pt" TextOptions.TextRenderingMode="Aliased"/>
 								</Grid>
 								<ContentPresenter x:Name="ExpandSite" DockPanel.Dock="Bottom" Focusable="false" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Visibility="Collapsed" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
 							</DockPanel>
@@ -296,6 +301,10 @@
 					<controls:ItemControl Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{Binding SellItem}"/>
 				</Grid>
 			</Expander>
+		</DataTemplate>
+		
+		<DataTemplate DataType="{x:Type mobs:PotionEffect}">
+			
 		</DataTemplate>
 	</Application.Resources>
 </Application>

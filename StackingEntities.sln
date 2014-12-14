@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackingEntities.Desktop", "StackingEntities.Desktop\StackingEntities.Desktop.csproj", "{B5C4A092-70B2-43B0-8514-762FD5541B63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackingEntities.Web", "StackingEntities.Web\StackingEntities.Web.csproj", "{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackingEntities.Model", "StackingEntities.Model\StackingEntities.Model.csproj", "{CF1CC3BF-F66D-42D4-907B-DCBDAED4C03F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StackingEntities.Resources", "StackingEntities.Resources\StackingEntities.Resources.csproj", "{9306555A-045A-4093-A96F-AF64986F488C}"
@@ -39,16 +37,6 @@ Global
 		{B5C4A092-70B2-43B0-8514-762FD5541B63}.Release|x64.Build.0 = Release|Any CPU
 		{B5C4A092-70B2-43B0-8514-762FD5541B63}.Release|x86.ActiveCfg = Release|Any CPU
 		{B5C4A092-70B2-43B0-8514-762FD5541B63}.Release|x86.Build.0 = Release|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Release|ARM.ActiveCfg = Release|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Release|x64.ActiveCfg = Release|Any CPU
-		{1C847037-22C6-4CA2-9712-CD50F3E5EEBC}.Release|x86.ActiveCfg = Release|Any CPU
 		{CF1CC3BF-F66D-42D4-907B-DCBDAED4C03F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CF1CC3BF-F66D-42D4-907B-DCBDAED4C03F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF1CC3BF-F66D-42D4-907B-DCBDAED4C03F}.Debug|ARM.ActiveCfg = Debug|Any CPU
