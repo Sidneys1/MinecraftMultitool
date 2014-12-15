@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
 using StackingEntities.Model.Metadata;

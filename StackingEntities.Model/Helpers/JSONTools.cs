@@ -15,6 +15,7 @@ namespace StackingEntities.Model.Helpers
 			const char dblQuote = '"';
 
 			const char ret = '\r';
+			const char newl = '\n';
 
 			if (string.IsNullOrWhiteSpace(value)) return string.Empty;
 
@@ -38,9 +39,9 @@ namespace StackingEntities.Model.Helpers
 					case ret:
 						break;
 
-					//case NEW:
-					//	output.Append("\\n");
-					//	break;
+					case newl:
+						output.Append("\\n");
+						break;
 
 					default:
 						output.Append(c);

@@ -5,17 +5,16 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
 using StackingEntities.Desktop.Model;
 using StackingEntities.Desktop.ViewModel;
+using StackingEntities.Model;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Entities.Vehicles;
 using StackingEntities.Model.Metadata;
-using Attribute = System.Attribute;
 
 namespace StackingEntities.Desktop.View.Windows
 {
@@ -146,7 +145,7 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private bool CheckSave()
 		{
-			if (Model.savePath == null && Model.Entities.Count == 0) return true;
+			if (Model.SavePath == null && Model.Entities.Count == 0) return true;
 
 			var r = MessageBox.Show(this, "Would you like to save your existing project?", "Save?", MessageBoxButton.YesNoCancel);
 
@@ -352,7 +351,7 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void CommandSave_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			if (Model.savePath == null)
+			if (Model.SavePath == null)
 				CommandSaveAs_Execute(sender, e);
 			else
 				Model.Save();

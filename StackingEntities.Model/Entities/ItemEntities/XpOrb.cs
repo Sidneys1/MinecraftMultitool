@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Entities.ItemEntities.BaseClasses;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.ItemEntities

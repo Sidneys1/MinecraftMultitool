@@ -4,12 +4,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:items="clr-namespace:StackingEntities.Model.Items;assembly=StackingEntities.Data"
     xmlns:controls="clr-namespace:StackingEntities.Desktop.View.Controls"
-    xmlns:entities="clr-namespace:StackingEntities.Model.Entities;assembly=StackingEntities.Data"
-    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:viewModel="clr-namespace:StackingEntities.Desktop.ViewModel"
-    xmlns:friendly="clr-namespace:StackingEntities.Model.Entities.Mobs.Friendly;assembly=StackingEntities.Data"
-    xmlns:mobs="clr-namespace:StackingEntities.Model.Entities.Mobs;assembly=StackingEntities.Data"
-    mc:Ignorable="d" x:Class="StackingEntities.Desktop.App"
+	xmlns:objects="clr-namespace:StackingEntities.Model.Objects;assembly=StackingEntities.Data"
+	xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
+	mc:Ignorable="d" x:Class="StackingEntities.Desktop.App"
              StartupUri="View/Windows/MainWindow.xaml">
 	<Application.Resources>
 		<Style x:Key="Header1Style" TargetType="{x:Type Label}">
@@ -205,12 +204,17 @@
 			</Setter>
 		</Style>
 
+		<Style x:Key="DataGridTextColumnStyle"  TargetType="{x:Type TextBox}">
+			<Setter Property="TextWrapping" Value="Wrap"/>
+			<Setter Property="AcceptsReturn" Value="True"/>
+		</Style>
+
 		<!-- Data Templates -->
 		<DataTemplate DataType="{x:Type items:Item}">
 			<controls:ItemControl/>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type entities:Attribute}">
+		<DataTemplate DataType="{x:Type objects:Attribute}">
 			<Expander IsExpanded="False" Header="Attribute Options">
 				<Grid Margin="15,0,0,0">
 					<Grid.ColumnDefinitions>
@@ -224,7 +228,7 @@
 					</Grid.RowDefinitions>
 
 					<Label Content="Type"/>
-					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type entities:AttributeType}}}"
+					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:AttributeType}}}"
 						  DisplayMemberPath="Description"
 						  SelectedValue="{Binding Name}"
 						  SelectedValuePath="Value"/>
@@ -239,7 +243,7 @@
 			</Expander>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type entities:AttributeModifier}">
+		<DataTemplate DataType="{x:Type objects:AttributeModifier}">
 			<Expander IsExpanded="False" Header="Attribute Modifier Options">
 				<Grid Margin="15,0,0,0">
 					<Grid.ColumnDefinitions>
@@ -253,12 +257,12 @@
 					</Grid.RowDefinitions>
 					<Label Content="Name"/>
 					<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" Margin="3"/>
-					
+
 					<Label Grid.Row="1" Grid.Column="0" Content="Amount"/>
 					<xctk:DoubleUpDown Grid.Row="1" Grid.Column="1" Value="{Binding Amount}" Margin="3" MinWidth="50" HorizontalAlignment="Left"/>
-					
+
 					<Label Grid.Row="2" Grid.Column="0" Content="Operation"/>
-					<ComboBox Grid.Row="2" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type entities:AttributeModifierOperation}}}"
+					<ComboBox Grid.Row="2" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:AttributeModifierOperation}}}"
 						  DisplayMemberPath="Description"
 						  SelectedValue="{Binding Operation}"
 						  SelectedValuePath="Value"/>
@@ -266,7 +270,7 @@
 			</Expander>
 		</DataTemplate>
 
-		<DataTemplate DataType="{x:Type friendly:VillagerRecipe}">
+		<DataTemplate DataType="{x:Type objects:VillagerRecipe}">
 			<Expander IsExpanded="False" Header="Villager Trade Options">
 				<Grid Margin="15,0,0,0">
 					<Grid.ColumnDefinitions>
@@ -282,29 +286,61 @@
 						<RowDefinition Height="Auto"/>
 						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
-					
+
 					<Label Content="Reward Experience"/>
 					<CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding RewardExp}" Margin="3"/>
-					
+
 					<Label Grid.Row="1" Grid.Column="0" Content="Maxiumum Uses"/>
 					<xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Value="{Binding MaxUses}" Minimum="0" Margin="3" MinWidth="50" HorizontalAlignment="Left"/>
-					
-					
+
+
 					<Label Grid.Row="2" Grid.Column="0" Content="Current Uses"/>
 					<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Value="{Binding Uses}" Minimum="0" Margin="3" MinWidth="50" HorizontalAlignment="Left"/>
-					
+
 					<Label Grid.Row="3" Grid.Column="0" Content="Buy Two Items"/>
 					<CheckBox x:Name="CheckBox"  Grid.Row="3" Grid.Column="1" IsChecked="{Binding TwoItems}" Margin="3"/>
-					
+
 					<controls:ItemControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{Binding BuyItem}"/>
 					<controls:ItemControl Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" IsEnabled="{Binding ElementName=CheckBox, Path=IsChecked}" DataContext="{Binding BuyItemB}"/>
 					<controls:ItemControl Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{Binding SellItem}"/>
 				</Grid>
 			</Expander>
 		</DataTemplate>
-		
-		<DataTemplate DataType="{x:Type mobs:PotionEffect}">
-			
+
+		<DataTemplate DataType="{x:Type objects:PotionEffect}">
+			<Expander IsExpanded="False" Header="Potion Effect Options">
+				<Grid Margin="15,0,0,0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+
+					<Label Content="Type"/>
+					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:EffectId}}}"
+						  DisplayMemberPath="Description"
+						  SelectedValue="{Binding Id}"
+						  SelectedValuePath="Value"/>
+
+					<Label Grid.Row="1" Grid.Column="0" Content="Level" ToolTip="0 = I, 1 = II, 11 = X, etc."/>
+					<xctk:ByteUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Amplifier}" MinWidth="50" HorizontalAlignment="Left" ToolTip="0 = I, 1 = II, 11 = X, etc."/>
+
+					<Label Grid.Row="2" Grid.Column="0" Content="Duration (Ticks)"/>
+					<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="3" Value="{Binding Duration}" Minimum="0" MinWidth="50" HorizontalAlignment="Left"/>
+
+					<Label Grid.Row="3" Grid.Column="0" Content="From Beacon"/>
+					<CheckBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Ambient}"/>
+
+					<Label Grid.Row="4" Grid.Column="0" Content="Show Particles"/>
+					<CheckBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding ShowParticles}"/>
+				</Grid>
+			</Expander>
 		</DataTemplate>
 	</Application.Resources>
 </Application>

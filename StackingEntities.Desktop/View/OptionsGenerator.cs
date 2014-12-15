@@ -8,10 +8,11 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using StackingEntities.Desktop.View.Controls;
 using StackingEntities.Desktop.ViewModel;
-using StackingEntities.Model.Entities;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
+using StackingEntities.Model.Objects;
 using Xceed.Wpf.Toolkit;
+using Attribute = StackingEntities.Model.Objects.Attribute;
 
 namespace StackingEntities.Desktop.View
 {
@@ -143,7 +144,10 @@ namespace StackingEntities.Desktop.View
 
 			FrameworkElement ctrl;
 
-			if (listType == typeof(Item) || listType == typeof(StackingEntities.Model.Entities.Attribute) || listType == typeof(StackingEntities.Model.Entities.Mobs.Friendly.VillagerRecipe))
+			if (listType == typeof(Item) 
+				|| listType == typeof(Attribute) 
+				|| listType == typeof(VillagerRecipe)
+				|| listType == typeof(PotionEffect))
 			{
 				if (!option.FixedSize || (option.Minimum == null || option.Maximum == null))
 				{
@@ -201,6 +205,9 @@ namespace StackingEntities.Desktop.View
 				ctrl2.AutoGeneratingColumn += (sender1, e1) =>
 				{
 					var displayName = PropertyHelpers.GetPropertyDisplayName(e1.PropertyDescriptor);
+					if (e1.PropertyType == typeof (string))
+						((DataGridTextColumn) e1.Column).EditingElementStyle = (Style)Application.Current.Resources["DataGridTextColumnStyle"];
+
 					if (!string.IsNullOrEmpty(displayName))
 						e1.Column.Header = displayName;
 					else

@@ -12,7 +12,7 @@ namespace StackingEntities.Desktop.View.Windows
 	/// </summary>
 	public partial class GiveGeneratorDialog
 	{
-		private Item _context;
+		private readonly Item _context;
 		public GiveGeneratorDialog()
 		{
 			InitializeComponent();

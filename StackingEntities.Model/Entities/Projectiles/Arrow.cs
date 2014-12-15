@@ -1,7 +1,7 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Entities.Projectiles.BaseClasses;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Projectiles
@@ -52,15 +52,5 @@ namespace StackingEntities.Model.Entities.Projectiles
 
 			return b.ToString();
 		}
-	}
-
-	public enum ArrowPickup
-	{
-		[Description("Cannot be Picked Up")]
-		NoPickup,
-		[Description("Can be picked Up in Survival & Creative")]
-		SurvivalCreative,
-		[Description("Can be picked up in Creative")]
-		Creative
 	}
 }

@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using StackingEntities.Desktop.View.Windows;
 using StackingEntities.Model.Entities;
 
 //using System.Attribute;
@@ -17,7 +16,7 @@ namespace StackingEntities.Desktop.Model
 	{
 		public ObservableCollection<EntityBase> Entities { get; } = new ObservableCollection<EntityBase>();
 
-		[field: NonSerialized] public string savePath = null;
+		[field: NonSerialized] public string SavePath;
 
 		private string _x="~", _y="~", _z="~";
 		public string X
@@ -110,7 +109,7 @@ namespace StackingEntities.Desktop.Model
 		public void Save(string path = null)
 		{
 			if (path == null)
-				path = savePath;
+				path = SavePath;
 
 			using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write))
 			{
@@ -121,7 +120,7 @@ namespace StackingEntities.Desktop.Model
 				fs.Close();
 			}
 
-			savePath = path;
+			SavePath = path;
 		}
 
 		public static DataModel Open(string path)
@@ -132,7 +131,7 @@ namespace StackingEntities.Desktop.Model
 				var f = new BinaryFormatter();
 
 				m = (DataModel)f.Deserialize(fs);
-				m.savePath = path;
+				m.SavePath = path;
 				fs.Close();
 			}
 			return m;

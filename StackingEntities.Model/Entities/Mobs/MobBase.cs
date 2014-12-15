@@ -5,7 +5,9 @@ using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
 using StackingEntities.Model.Metadata;
+using StackingEntities.Model.Objects;
 using StackingEntities.Model.SimpleTypes;
+using Attribute = StackingEntities.Model.Objects.Attribute;
 
 namespace StackingEntities.Model.Entities.Mobs
 {

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Entities.Other.WallEntities.BaseClasses;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Other.WallEntities

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
+using StackingEntities.Model.Objects;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
@@ -21,7 +21,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		public string Title { get; set; }
 
 		[EntityDescriptor("Book", "Pages")]
-		public ObservableCollection<Page> Pages { get; set; } = new ObservableCollection<Page>(); 
+		public ObservableCollection<JsonText> Pages { get; set; } = new ObservableCollection<JsonText>(); 
 
 		public string GenerateJson(bool topLevel)
 		{
@@ -53,14 +53,5 @@ namespace StackingEntities.Model.Items.ItemTags
 			return b.ToString();
 		}
 
-	}
-
-	public enum BookGeneration
-	{
-		Original,
-		Copy,
-		[Description("Copy of a Copy")]
-		CopyOfCopy,
-		Tattered
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 
@@ -36,21 +36,4 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 			return b.ToString();
 		}
 	}
-
-	public enum RabbitTypes
-	{
-		[Description("Any")]
-		DontCare = -1,
-		Brown,
-		White,
-		Black,
-		[Description("Black & White")]
-		BlackWhite,
-		Gold,
-		[Description("Salt & Pepper")]
-		SaltPepper,
-		[Description("Killer Bunny")]
-		KillerBunny = 99
-	}
-
 }

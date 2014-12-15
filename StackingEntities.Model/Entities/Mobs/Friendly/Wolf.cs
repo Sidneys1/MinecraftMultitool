@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 

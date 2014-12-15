@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
+using StackingEntities.Model.Objects;
 
 namespace StackingEntities.Model.Items.ItemTags
 {

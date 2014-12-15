@@ -1,22 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
-	[Serializable]
-	public enum FireworkShape
-	{
-		[Description("Small Ball")]
-		SmallBall,
-		[Description("Large Ball")]
-		LargeBall,
-		Star,
-		Creeper,
-		Burst
-	}
 	[Serializable]
 
 	public class ItemTagsFireworkStar : IJsonAble 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
@@ -128,42 +128,5 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 			return b.ToString();
 		}
-	}
-
-	public enum HorseType
-	{
-		Default,
-		Horse,
-		Donkey,
-		Mule,
-		[Description("Undead Horse")]
-		UndeadHorse,
-		[Description("Skeleton Horse")]
-		SkeletonHorse
-	}
-
-	public enum HorseColors
-	{
-		White,
-		Buckskin,
-		[Description("Dark Bay")]
-		DarkBay,
-		Bay,
-		Black,
-		[Description("Dapple Gray")]
-		DappleGray,
-		[Description("Flaxen Chestnut")]
-		FlaxenChestnut
-	}
-
-	public enum HorseMarkings
-	{
-		None,
-		[Description("Stockings & Blaze")]
-		StockingsAndBlaze,
-		[Description("Snowflake Appaloosa")]
-		SnowflakeAppaloosa,
-		Paint,
-		Sooty
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
@@ -34,13 +35,5 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 			return b.ToString();
 		}
-	}
-
-	public enum CatType
-	{
-		Ocelot,
-		Tuxedo,
-		Tabby,
-		Siamese
 	}
 }
