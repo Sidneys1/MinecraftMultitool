@@ -21,7 +21,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		public string Title { get; set; }
 
 		[EntityDescriptor("Book", "Pages")]
-		public ObservableCollection<JsonText> Pages { get; set; } = new ObservableCollection<JsonText>(); 
+		public ObservableCollection<BookPage> Pages { get; set; } = new ObservableCollection<BookPage>(); 
 
 		public string GenerateJson(bool topLevel)
 		{
@@ -41,7 +41,7 @@ namespace StackingEntities.Model.Items.ItemTags
 			var b2 = new StringBuilder("pages:[");
 			foreach (var line in Pages)
 			{
-				b2.AppendFormat("\"{0}\",", line.ToString().EscapeJsonString());
+				b2.AppendFormat("\"{0}\",", line);
 			}
 
 			b2.Remove(b2.Length - 1, 1);

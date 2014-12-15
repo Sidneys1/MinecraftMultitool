@@ -9,13 +9,14 @@
         xmlns:Properties="clr-namespace:StackingEntities.Desktop.Properties"
         xmlns:model1="clr-namespace:StackingEntities.Desktop.Model"
         xmlns:model="clr-namespace:StackingEntities.Model;assembly=StackingEntities.Data"
+        xmlns:converters="clr-namespace:StackingEntities.Desktop.ViewModel.Converters"
         x:Class="StackingEntities.Desktop.View.Windows.MainWindow"
         Title="{x:Static Properties:Resources.MainWindow_Title}" Height="600" Width="800" MinHeight="600" MinWidth="800"
 		ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="/StackingEntities;component/CommandBlock.ico" SnapsToDevicePixels="True"
 	DataContextChanged="MainWindow_OnDataContextChanged" Closing="MainWindow_OnClosing">
 	<Window.Resources>
 		<DropShadowEffect x:Key="Blur" ShadowDepth="0" BlurRadius="5" RenderingBias="Quality"/>
-		<viewModel1:EnumDescriptionConverter x:Key="enumDesc"/>
+		<converters:EnumDescriptionConverter x:Key="enumDesc"/>
 		<DataTemplate DataType="{x:Type entities:EntityBase}">
 			<Grid>
 				<Grid.RowDefinitions>

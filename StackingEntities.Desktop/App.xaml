@@ -8,6 +8,8 @@
     xmlns:viewModel="clr-namespace:StackingEntities.Desktop.ViewModel"
 	xmlns:objects="clr-namespace:StackingEntities.Model.Objects;assembly=StackingEntities.Data"
 	xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
+	xmlns:system="clr-namespace:System;assembly=mscorlib"
+	xmlns:simpleTypes="clr-namespace:StackingEntities.Model.SimpleTypes;assembly=StackingEntities.Data"
 	mc:Ignorable="d" x:Class="StackingEntities.Desktop.App"
              StartupUri="View/Windows/MainWindow.xaml">
 	<Application.Resources>
@@ -208,6 +210,11 @@
 			<Setter Property="TextWrapping" Value="Wrap"/>
 			<Setter Property="AcceptsReturn" Value="True"/>
 		</Style>
+		
+		<Style TargetType="{x:Type CheckBox}">
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Margin" Value="3"></Setter>
+		</Style>
 
 		<!-- Data Templates -->
 		<DataTemplate DataType="{x:Type items:Item}">
@@ -341,6 +348,25 @@
 					<CheckBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding ShowParticles}"/>
 				</Grid>
 			</Expander>
+		</DataTemplate>
+		
+		<DataTemplate DataType="{x:Type objects:BookPage}">
+			<ContentPresenter Content="{Binding Text}"/>
+		</DataTemplate>
+		
+		<DataTemplate DataType="{x:Type objects:JsonTextElement}">
+			<controls:JsonTextControl/>
+		</DataTemplate>
+		
+		<DataTemplate DataType="{x:Type simpleTypes:SimpleString}">
+			<Grid >
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Label Content="{Binding Name}"/>
+				<TextBox Grid.Column="1" Text="{Binding Value}"/>
+			</Grid>
 		</DataTemplate>
 	</Application.Resources>
 </Application>

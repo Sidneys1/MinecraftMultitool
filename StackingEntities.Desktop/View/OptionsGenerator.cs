@@ -147,7 +147,8 @@ namespace StackingEntities.Desktop.View
 			if (listType == typeof(Item) 
 				|| listType == typeof(Attribute) 
 				|| listType == typeof(VillagerRecipe)
-				|| listType == typeof(PotionEffect))
+				|| listType == typeof(PotionEffect)
+				|| listType == typeof(BookPage))
 			{
 				if (!option.FixedSize || (option.Minimum == null || option.Maximum == null))
 				{
@@ -323,7 +324,7 @@ namespace StackingEntities.Desktop.View
 
 		private static FrameworkElement ExtractBool(DisplayOption option)
 		{
-			var ctrl = new CheckBox { Margin = new Thickness(3), VerticalAlignment = VerticalAlignment.Center };
+			var ctrl = new CheckBox();
 			ctrl.SetBinding(ToggleButton.IsCheckedProperty, new Binding(option.PropertyName));
 			return ctrl;
 		}

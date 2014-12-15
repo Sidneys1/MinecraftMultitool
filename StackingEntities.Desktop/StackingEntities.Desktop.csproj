@@ -188,14 +188,19 @@
     <Compile Include="Properties\Annotations\ValueProviderAttribute.cs" />
     <Compile Include="Properties\Annotations\XamlItemBindingOfItemsControlAttribute.cs" />
     <Compile Include="Properties\Annotations\XamlItemsControlAttribute.cs" />
+    <Compile Include="ViewModel\Converters\EnumDescriptionConverter.cs" />
+    <Compile Include="ViewModel\Converters\EnumVisiblilityConverter.cs" />
+    <Compile Include="ViewModel\Converters\YesNoInheritConverter.cs" />
     <Compile Include="ViewModel\DisplayOption.cs" />
-    <Compile Include="ViewModel\EnumDescriptionConverter.cs" />
     <Compile Include="ViewModel\EnumerationExtension.cs" />
     <Compile Include="View\Controls\ItemDropdown.xaml.cs">
       <DependentUpon>ItemDropdown.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Controls\ItemListControl.xaml.cs">
       <DependentUpon>ItemListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\JsonTextControl.xaml.cs">
+      <DependentUpon>JsonTextControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\CustomCommands.cs" />
     <Compile Include="View\Controls\ItemControl.cs">
@@ -229,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Controls\ItemListControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\JsonTextControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

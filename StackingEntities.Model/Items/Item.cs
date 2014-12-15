@@ -127,7 +127,7 @@ namespace StackingEntities.Model.Items
 		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		[Annotations.NotifyPropertyChangedInvocator]
+		[Properties.Annotations.NotifyPropertyChangedInvocator]
 		protected virtual void PropChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
