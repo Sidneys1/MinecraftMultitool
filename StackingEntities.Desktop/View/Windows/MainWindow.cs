@@ -11,9 +11,9 @@ using System.Windows.Input;
 using Microsoft.Win32;
 using StackingEntities.Desktop.Model;
 using StackingEntities.Desktop.ViewModel;
-using StackingEntities.Model;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Entities.Vehicles;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Desktop.View.Windows
@@ -25,7 +25,7 @@ namespace StackingEntities.Desktop.View.Windows
 	{
 		#region Variables
 
-		EntityTypes _lastEntity = EntityTypes.NoEnt;
+		EntityType _lastEntity = EntityType.NoEnt;
 
 		readonly SaveFileDialog _saveFileDialog = new SaveFileDialog
 		{
@@ -167,7 +167,7 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void AddButton_Clicked(object sender, RoutedEventArgs e)
 		{
-			var etype = (EntityTypes)EntityTypeComboBox.SelectedValue;
+			var etype = (EntityType)EntityTypeComboBox.SelectedValue;
 
 			var props = etype.GetType().GetMember(etype.ToString())[0].GetCustomAttributes(typeof(ClassLinkAttribute));
 			var attributes = props as IList<Attribute> ?? props.ToList();
@@ -191,7 +191,7 @@ namespace StackingEntities.Desktop.View.Windows
 			}
 
 			EditStackPanel.Children.Clear();
-			_lastEntity = EntityTypes.NoEnt;
+			_lastEntity = EntityType.NoEnt;
 		}
 
 		private void GenerateButton_Clicked(object sender, RoutedEventArgs e)

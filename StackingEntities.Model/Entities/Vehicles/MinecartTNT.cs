@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Vehicles
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 	[Serializable]
 	internal class MinecartTNT : Minecart
 	{
-		public MinecartTNT() { Type = EntityTypes.MinecartTNT; }
+		public MinecartTNT() { Type = EntityType.MinecartTNT; }
 
 		int _tntFuse = -1;
 		[EntityDescriptor("Minecart TNT Options", "Fuse Ticks (-1 = Inactive)"), MinMax(-1, null)]

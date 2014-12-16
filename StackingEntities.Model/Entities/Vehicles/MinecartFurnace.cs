@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 
@@ -8,7 +9,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 	[Serializable]
 	internal class MinecartFurnace : Minecart
 	{
-		public MinecartFurnace() { Type = EntityTypes.MinecartFurnace; }
+		public MinecartFurnace() { Type = EntityType.MinecartFurnace; }
 
 		[EntityDescriptor("Minecart Furnace Options","Push X")]
 		public double PushX { get; set; }

@@ -16,8 +16,8 @@ namespace StackingEntities.Desktop.View.Controls
 
 		private void JsonTextControl_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
-			Extra.DataContext = ((JsonTextElement)DataContext).Extra;
-			TranslateWithControl.DataContext = ((JsonTextElement) DataContext).TranslateWith;
+			Extra.DataContext = ((JsonTextElement)DataContext)?.Extra;
+			TranslateWithControl.DataContext = ((JsonTextElement) DataContext)?.TranslateWith;
 		}
 	}
 }

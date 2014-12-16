@@ -1,4 +1,5 @@
 ﻿using System;
+using StackingEntities.Model.Enums;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	{
 		public Blaze() : base(20)
 		{
-			Type = EntityTypes.Blaze;
+			Type = EntityType.Blaze;
 		}
 
 

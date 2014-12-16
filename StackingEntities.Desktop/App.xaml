@@ -1,17 +1,16 @@
 ﻿<Application
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:items="clr-namespace:StackingEntities.Model.Items;assembly=StackingEntities.Data"
     xmlns:controls="clr-namespace:StackingEntities.Desktop.View.Controls"
 	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:viewModel="clr-namespace:StackingEntities.Desktop.ViewModel"
 	xmlns:objects="clr-namespace:StackingEntities.Model.Objects;assembly=StackingEntities.Data"
 	xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
-	xmlns:system="clr-namespace:System;assembly=mscorlib"
 	xmlns:simpleTypes="clr-namespace:StackingEntities.Model.SimpleTypes;assembly=StackingEntities.Data"
 	mc:Ignorable="d" x:Class="StackingEntities.Desktop.App"
-             StartupUri="View/Windows/MainWindow.xaml">
+    StartupUri="View/Windows/MainWindow.xaml">
 	<Application.Resources>
 		<Style x:Key="Header1Style" TargetType="{x:Type Label}">
 			<Setter Property="FontSize" Value="16"/>

@@ -32,7 +32,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public Villager() : base(20)
 		{
-			Type = EntityTypes.Villager;
+			Type = EntityType.Villager;
 			for (var i = 0; i <= 7; i++)
 			{
 				Inventory.Add(new Item { Slot = i, SlotTagEnabled = false });

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
@@ -15,7 +16,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 
 		public MinecartHopper()
 		{
-			Type = EntityTypes.MinecartHopper;
+			Type = EntityType.MinecartHopper;
 			for (var i = 0; i <= 4; i++)
 			{
 				Inventory.Add(new Item { Slot = i, SlotTagEnabled = false });

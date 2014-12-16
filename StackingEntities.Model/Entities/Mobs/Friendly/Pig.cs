@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
@@ -18,7 +19,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public Pig() : base(10)
 		{
-			Type = EntityTypes.Pig;
+			Type = EntityType.Pig;
 		}
 
 

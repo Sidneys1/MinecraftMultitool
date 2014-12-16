@@ -1,5 +1,6 @@
 ﻿using System;
 using StackingEntities.Model.Entities.Projectiles.BaseClasses;
+using StackingEntities.Model.Enums;
 
 namespace StackingEntities.Model.Entities.Projectiles
 {
@@ -8,7 +9,7 @@ namespace StackingEntities.Model.Entities.Projectiles
 	{
 		public WitherSkull()
 		{
-			Type = EntityTypes.WitherSkull;
+			Type = EntityType.WitherSkull;
 		}
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Projectiles/WitherSkull.png";

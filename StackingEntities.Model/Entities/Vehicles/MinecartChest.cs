@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
@@ -15,7 +16,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 
 		public MinecartChest()
 		{
-			Type = EntityTypes.MinecartChest;
+			Type = EntityType.MinecartChest;
 
 			for (var i = 0; i <= 26; i++)
 			{

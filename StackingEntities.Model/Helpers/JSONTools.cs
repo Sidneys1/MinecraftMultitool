@@ -20,8 +20,9 @@ namespace StackingEntities.Model.Helpers
 			if (string.IsNullOrWhiteSpace(value)) return string.Empty;
 
 			var output = new StringBuilder(value.Length);
-			foreach (var c in value)
+			for (var i = 0; i < value.Length; i++)
 			{
+				var c = value[i];
 				switch (c)
 				{
 					case slash:
@@ -29,7 +30,11 @@ namespace StackingEntities.Model.Helpers
 						break;
 
 					case backSlash:
-						output.AppendFormat("{0}{0}", backSlash);
+						if (value.Length < i + 1)
+							if (value[i + 1] != 'n')
+								output.AppendFormat("{0}{0}", backSlash);
+							else
+								output.Append(backSlash);
 						break;
 
 					case dblQuote:

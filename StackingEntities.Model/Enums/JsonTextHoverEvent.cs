@@ -4,15 +4,17 @@ namespace StackingEntities.Model.Enums
 {
 	public enum JsonTextHoverEvent
 	{
+		// ReSharper disable InconsistentNaming
 		[Description("None/Inherit")]
 		None,
 		[Description("Show Text")]
-		ShowText,
+		show_text,
 		[Description("Show Item")]
-		ShowItem,
+		show_item,
 		[Description("Show Achievement")]
-		ShowAchievement,
+		show_achievement,
 		[Description("Show Entity")]
-		ShowEntity
+		show_entity
+		// ReSharper restore InconsistentNaming
 	}
 }

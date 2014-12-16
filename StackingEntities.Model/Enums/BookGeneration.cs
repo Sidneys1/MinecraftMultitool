@@ -1,6 +1,6 @@
 using System.ComponentModel;
 
-namespace StackingEntities.Model.Items.ItemTags
+namespace StackingEntities.Model.Enums
 {
 	public enum BookGeneration
 	{

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.DynamicTiles
@@ -9,7 +10,7 @@ namespace StackingEntities.Model.Entities.DynamicTiles
 	{
 		public FallingSand() 
 		{
-			Type = EntityTypes.FallingSand;
+			Type = EntityType.FallingSand;
 			DropItem = true;
 			FallHurtMax = 40;
 			FallHurtAmount = 2;

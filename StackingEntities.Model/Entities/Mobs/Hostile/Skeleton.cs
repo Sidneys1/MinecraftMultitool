@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
@@ -18,7 +19,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 		public Skeleton() : base(20)
 		{
-			Type = EntityTypes.Skeleton;
+			Type = EntityType.Skeleton;
 		}
 
 		public override string Display => base.Display + (SkeletonType? "Wither Skeleton" :"Skeleton");

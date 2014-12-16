@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
 using StackingEntities.Model.Metadata;
@@ -11,7 +12,7 @@ namespace StackingEntities.Model.Entities.Other
 	{
 		public FireworkRocketEntity()
 		{
-			Type = EntityTypes.FireworksRocketEntity;
+			Type = EntityType.FireworksRocketEntity;
 			FireWorksItem.Tag.Add(new ItemTagsFireworkStar {IsStar = false, IsStarEnabled = false});
 		}
 

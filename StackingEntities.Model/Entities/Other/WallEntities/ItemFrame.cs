@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using StackingEntities.Model.Entities.Other.WallEntities.BaseClasses;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
 
@@ -9,7 +10,7 @@ namespace StackingEntities.Model.Entities.Other.WallEntities
 	[Serializable]
 	internal class ItemFrame : WallEntityBase
 	{
-		public ItemFrame() { Type = EntityTypes.ItemFrame; ItemDropChance = 1f; }
+		public ItemFrame() { Type = EntityType.ItemFrame; ItemDropChance = 1f; }
 
 		[EntityDescriptor("Item Frame Options", "Item Drop Chance")]
 		public double ItemDropChance { get; set; }

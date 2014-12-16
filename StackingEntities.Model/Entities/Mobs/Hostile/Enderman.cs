@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
@@ -8,7 +9,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	internal class Enderman : MobBase
 	{
 		public Enderman() : base(40)
-		{ Type = EntityTypes.Enderman; }
+		{ Type = EntityType.Enderman; }
 
 		int _carriedData;
 		[EntityDescriptor("Enderman Options", "Carried Block Data")]

@@ -1,4 +1,5 @@
 ﻿using System;
+using StackingEntities.Model.Enums;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 	{
 		public MushroomCow() : base(10)
 		{
-			Type = EntityTypes.MushroomCow;
+			Type = EntityType.MushroomCow;
 		}
 
 		public override string DisplayImage => Age < 0 ? "/StackingEntities.Resources;component/Images/Mobs/MushroomCow/BabyMushroomCow.png" : "/StackingEntities.Resources;component/Images/Mobs/MushroomCow/MushroomCow.png";

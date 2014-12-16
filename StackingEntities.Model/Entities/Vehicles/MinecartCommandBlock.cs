@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Vehicles
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 	[Serializable]
 	public class MinecartCommandBlock : Minecart
 	{
-		public MinecartCommandBlock() { Type = EntityTypes.MinecartCommandBlock; }
+		public MinecartCommandBlock() { Type = EntityType.MinecartCommandBlock; }
 
 		[EntityDescriptor("Minecart Command Block Options", "Command")]
 		public string Command { get; set; }

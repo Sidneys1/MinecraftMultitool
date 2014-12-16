@@ -1,4 +1,5 @@
 ﻿using System;
+using StackingEntities.Model.Enums;
 
 namespace StackingEntities.Model.Entities.Vehicles
 {
@@ -9,7 +10,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 
 		public MinecartSpawner()
 		{
-			Type = EntityTypes.MinecartSpawner;
+			Type = EntityType.MinecartSpawner;
 		}
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Vehicles/MinecartSpawner.png";

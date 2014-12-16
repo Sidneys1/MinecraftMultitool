@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 	[Serializable]
 	internal class Bat : MobBase 
 	{
-		public Bat() :base(6) { Type = EntityTypes.Bat; BatFlags = false; }
+		public Bat() :base(6) { Type = EntityType.Bat; BatFlags = false; }
 
 		bool _batFlags;
 		[EntityDescriptor("Bat Options", "Is Hanging")]

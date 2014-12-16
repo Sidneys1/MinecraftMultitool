@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using StackingEntities.Model.Entities.ItemEntities.BaseClasses;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
 
@@ -11,7 +12,7 @@ namespace StackingEntities.Model.Entities.ItemEntities
 	{
 		public DroppedItem()
 		{
-			Type= EntityTypes.Item;
+			Type= EntityType.Item;
 		}
 
 		[EntityDescriptor("Item Options","Item")]
@@ -25,6 +26,8 @@ namespace StackingEntities.Model.Entities.ItemEntities
 
 			b.Append("Item:{");
 			b.Append(Item.GenerateJson(false));
+			if (b[b.Length - 1] == ',')
+				b.Remove(b.Length - 1, 1);
 			b.Append("},");
 
 			return b.ToString();

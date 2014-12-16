@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
@@ -11,7 +12,7 @@ namespace StackingEntities.Model.Entities
 	[Serializable]
 	public abstract class EntityBase : Displayable, IJsonAble
 	{
-		public EntityTypes Type { get; set; }
+		public EntityType Type { get; set; }
 
 		#region Motion
 

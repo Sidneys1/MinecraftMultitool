@@ -1,4 +1,5 @@
 ﻿using System;
+using StackingEntities.Model.Enums;
 
 namespace StackingEntities.Model.Entities.Other
 {
@@ -6,7 +7,7 @@ namespace StackingEntities.Model.Entities.Other
 	public class EnderCrystal : EntityBase
 	{
 		public EnderCrystal()
-		{ Type = EntityTypes.EnderCrystal;}
+		{ Type = EntityType.EnderCrystal;}
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Other/EnderCrystal.png";
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
@@ -27,7 +28,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 		public Slime() : base(1)
 		{
-			Type = EntityTypes.Slime;
+			Type = EntityType.Slime;
 			Health = 1;
 		}
 

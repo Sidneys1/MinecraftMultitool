@@ -8,9 +8,9 @@
              xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
              xmlns:Converters="clr-namespace:StackingEntities.Desktop.ViewModel.Converters"
              xmlns:controls="clr-namespace:StackingEntities.Desktop.View.Controls"
-             x:Class="StackingEntities.Desktop.View.Controls.JsonTextControl"
+	x:Class="StackingEntities.Desktop.View.Controls.JsonTextControl"
              mc:Ignorable="d" x:Name="userControl"
-             d:DesignHeight="300" d:DesignWidth="400" d:DataContext="{d:DesignInstance objects:JsonTextElement}"
+             d:DesignHeight="800" d:DesignWidth="400" d:DataContext="{d:DesignInstance objects:JsonTextElement}"
 	DataContextChanged="JsonTextControl_OnDataContextChanged">
 	<UserControl.Resources>
 		<Converters:YesNoInheritConverter x:Key="YesNoInheritConverter"/>
@@ -35,7 +35,7 @@
 			</Grid.ColumnDefinitions>
 
 			<Label Content="Type"/>
-			<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:TextType}}}"
+			<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:JsonTextType}}}"
 				DisplayMemberPath="Description"
 				SelectedValue="{Binding TextType}"
 				SelectedValuePath="Value"/>
@@ -47,9 +47,9 @@
 					<ColumnDefinition Width="*"/>
 				</Grid.ColumnDefinitions>
 				<Label Content="Text"/>
-				<TextBox Grid.Column="1" Margin="3" Text="{Binding Text}"/>
+				<TextBox Grid.Column="1" Margin="3" Text="{Binding Text}" AcceptsReturn="True" TextWrapping="Wrap"/>
 			</Grid>
-			
+
 			<Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
 			      Visibility="{Binding TextType, ConverterParameter=Selector, Converter={StaticResource EnumVisibilityConverter}}" >
 				<Grid.ColumnDefinitions>
@@ -59,7 +59,7 @@
 				<Label Content="Selector"/>
 				<TextBox Grid.Column="1" Margin="3" Text="{Binding Selector}"/>
 			</Grid>
-			
+
 			<Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
 			      Visibility="{Binding TextType, ConverterParameter=Translate, Converter={StaticResource EnumVisibilityConverter}}" >
 				<Grid.ColumnDefinitions>
@@ -72,12 +72,12 @@
 				</Grid.RowDefinitions>
 				<Label Content="Translation Key"/>
 				<TextBox Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding Translate}"/>
-				
+
 				<Expander Header="Translation Arguments" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" >
 					<controls:ItemListControl x:Name="TranslateWithControl" Margin="15,0,0,0"/>
 				</Expander>
 			</Grid>
-			
+
 			<Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
 			      Visibility="{Binding TextType, ConverterParameter=Score, Converter={StaticResource EnumVisibilityConverter}}" >
 				<Grid.ColumnDefinitions>
@@ -91,10 +91,10 @@
 				</Grid.RowDefinitions>
 				<Label Content="Player Name"/>
 				<TextBox Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding ScoreName}"/>
-				
+
 				<Label Grid.Row="1" Grid.Column="0" Content="Objective"/>
 				<TextBox Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding ScoreObjective}"/>
-				
+
 				<Label Grid.Row="2" Grid.Column="0" Content="Value Override"/>
 				<TextBox Grid.Row="2" Grid.Column="1" Margin="3" Text="{Binding ScoreValue}"/>
 			</Grid>
@@ -115,7 +115,7 @@
 					</Grid.ColumnDefinitions>
 
 					<Label Content="Color"/>
-					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:TextColor}}}"
+					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:JsonTextColor}}}"
 						DisplayMemberPath="Description"
 						SelectedValue="{Binding Color}"
 						SelectedValuePath="Value"/>
@@ -136,28 +136,77 @@
 					<CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding Obfuscated}" IsThreeState="True" Content="{Binding Obfuscated, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>
 				</Grid>
 			</Expander>
-			
+
 			<Label Grid.Row="3" Grid.Column="0" Content="Insertion"/>
 			<TextBox Grid.Row="3" Grid.Column="1" Margin="3" Text="{Binding InsertionText}"/>
-			
+
 			<Label Grid.Row="4" Grid.Column="0" Content="Click Event"/>
 			<ComboBox Grid.Row="4" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:JsonTextClickEvent}}}"
 				DisplayMemberPath="Description"
 				SelectedValue="{Binding ClickEvent}"
 				SelectedValuePath="Value"/>
-			
+
 			<Label Grid.Row="5" Grid.Column="0" Content="Click Event Value" Visibility="{Binding ClickEvent, ConverterParameter=!None, Converter={StaticResource EnumVisibilityConverter}}"/>
 			<TextBox Grid.Row="5" Grid.Column="1" Margin="3" Text="{Binding ClickEventValue}" Visibility="{Binding ClickEvent, ConverterParameter=!None, Converter={StaticResource EnumVisibilityConverter}}"/>
-			
+
 			<Label Grid.Row="6" Grid.Column="0" Content="Hover Event"/>
 			<ComboBox Grid.Row="6" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:JsonTextHoverEvent}}}"
 				DisplayMemberPath="Description"
 				SelectedValue="{Binding HoverEvent}"
 				SelectedValuePath="Value"/>
-			
-			<Label Grid.Row="7" Grid.Column="0" Content="Hover Event Value" Visibility="{Binding HoverEvent, ConverterParameter=!None, Converter={StaticResource EnumVisibilityConverter}}"/>
-			<TextBox Grid.Row="7" Grid.Column="1" Margin="3" Text="{Binding HoverEventValue}" Visibility="{Binding HoverEvent, ConverterParameter=!None, Converter={StaticResource EnumVisibilityConverter}}"/>
-			
+
+			<Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Visibility="{Binding HoverEvent, ConverterParameter=show_text, Converter={StaticResource EnumVisibilityConverter}}">
+				<ContentPresenter  Content="{Binding HoverEventText}"/>
+			</Grid>
+
+			<Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Visibility="{Binding HoverEvent, ConverterParameter=show_achievement, Converter={StaticResource EnumVisibilityConverter}}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Label Content="Hover Acheivement ID"/>
+				<ComboBox Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:AchievementName}}}"
+					DisplayMemberPath="Description"
+					SelectedValue="{Binding HoverEventAchievementName}"
+					SelectedValuePath="Value"/>
+			</Grid>
+
+			<Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Visibility="{Binding HoverEvent, ConverterParameter=show_item, Converter={StaticResource EnumVisibilityConverter}}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<Label Content="Hover Item"/>
+				<ContentPresenter Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Margin="3" Content="{Binding HoverEventItem}"/>
+			</Grid>
+
+			<Grid Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Visibility="{Binding HoverEvent, ConverterParameter=show_entity, Converter={StaticResource EnumVisibilityConverter}}">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Label Content="Hover Entity Type"/>
+				<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:EntityType}}}"
+					DisplayMemberPath="Description"
+					SelectedValue="{Binding HoverEntityType}"
+					SelectedValuePath="Value"/>
+
+				<Label Grid.Row="1" Grid.Column="0" Content="Hover Entity Name"/>
+				<TextBox Grid.Row="1" Grid.Column="1" Margin="3" Text="{Binding HoverEventEntityName}"/>
+
+				<Label Grid.Row="2" Grid.Column="0" Content="Hover Entity ID"/>
+				<TextBox Grid.Row="2"  Grid.Column="1" Margin="3" Text="{Binding HoverEntityId}"/>
+			</Grid>
+
 			<Expander Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Header="Extra" IsExpanded="False">
 				<controls:ItemListControl x:Name="Extra" />
 			</Expander>

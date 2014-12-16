@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using StackingEntities.Model.Entities.Other.WallEntities.BaseClasses;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Other.WallEntities
@@ -8,7 +9,7 @@ namespace StackingEntities.Model.Entities.Other.WallEntities
 	[Serializable]
 	internal class Painting : WallEntityBase
 	{
-		public Painting() { Type = EntityTypes.Painting; }
+		public Painting() { Type = EntityType.Painting; }
 
 		string _motive = "";
 		[EntityDescriptor("Painting Options", "Motive")]

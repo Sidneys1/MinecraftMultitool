@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	[Serializable]
 	public class Zombie : MobBase
 	{
-		public Zombie() : base(20) { Type = EntityTypes.Zombie; }
+		public Zombie() : base(20) { Type = EntityType.Zombie; }
 
 		#region Type
 

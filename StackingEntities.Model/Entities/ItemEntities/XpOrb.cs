@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using StackingEntities.Model.Entities.ItemEntities.BaseClasses;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.ItemEntities
@@ -24,7 +25,7 @@ namespace StackingEntities.Model.Entities.ItemEntities
 
 		public XpOrb ()
 		{
-			Type = EntityTypes.XPOrb;
+			Type = EntityType.XPOrb;
 			Health = 0;
 		}
 

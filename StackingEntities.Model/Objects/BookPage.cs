@@ -1,12 +1,11 @@
 using System;
-using System.ComponentModel;
 
 namespace StackingEntities.Model.Objects
 {
 	[Serializable]
 	public class BookPage
 	{
-		public JsonTextElement Text { get; } = new JsonTextElement { Title = "Book Page Options", Text = "Text"};
+		public JsonTextElement Text { get; } = new JsonTextElement { Title = "Book Page Options"};
 
 		public override string ToString()
 		{

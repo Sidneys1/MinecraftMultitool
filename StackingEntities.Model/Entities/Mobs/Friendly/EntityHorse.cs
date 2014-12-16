@@ -67,7 +67,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public EntityHorse() : base(30)
 		{
-			Type = EntityTypes.EntityHorse;
+			Type = EntityType.EntityHorse;
 
 			for (var i = 2; i <= 16; i++)
 			{

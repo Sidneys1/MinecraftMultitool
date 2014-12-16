@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Metadata;
 
@@ -9,7 +10,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	internal class Creeper : MobBase 
 	{
 		public Creeper() : base(20)
-		{ Type = EntityTypes.Creeper;}
+		{ Type = EntityType.Creeper;}
 
 		bool _powered;
 		[EntityDescriptor("Creeper Options", "Charged")]

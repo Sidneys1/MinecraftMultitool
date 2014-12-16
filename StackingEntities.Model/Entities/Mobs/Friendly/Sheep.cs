@@ -28,7 +28,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public Sheep() : base(8)
 		{
-			Type = EntityTypes.Sheep;
+			Type = EntityType.Sheep;
 		}
 
 		public override string Display => base.Display + (Shorn ? "Sheared " :"") + Color.Description() + "-Colored Sheep";

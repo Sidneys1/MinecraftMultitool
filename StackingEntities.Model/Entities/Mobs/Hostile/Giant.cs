@@ -1,4 +1,5 @@
 ﻿using System;
+using StackingEntities.Model.Enums;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	{
 		public Giant() : base(100)
 		{
-			Type = EntityTypes.Giant;
+			Type = EntityType.Giant;
 		}
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Mobs/Zombie/Zombie.png";

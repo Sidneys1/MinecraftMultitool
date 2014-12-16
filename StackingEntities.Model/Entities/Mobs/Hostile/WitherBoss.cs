@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
@@ -12,7 +13,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 		public WitherBoss() : base(300)
 		{
-			Type = EntityTypes.WitherBoss;
+			Type = EntityType.WitherBoss;
 		}
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Mobs/WitherBoss/WitherBoss.png";

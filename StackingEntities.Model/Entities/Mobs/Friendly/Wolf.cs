@@ -9,7 +9,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 	[Serializable]
 	internal class Wolf : TameableMobBase
 	{
-		public Wolf() : base(8) { Type = EntityTypes.Wolf; }
+		public Wolf() : base(8) { Type = EntityType.Wolf; }
 
 		#region Type
 

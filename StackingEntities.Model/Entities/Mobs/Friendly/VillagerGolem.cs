@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
@@ -12,7 +13,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public VillagerGolem() : base(100)
 		{
-			Type = EntityTypes.VillagerGolem;
+			Type = EntityType.VillagerGolem;
 		}
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Mobs/VillagerGolem/VillagerGolem.png";

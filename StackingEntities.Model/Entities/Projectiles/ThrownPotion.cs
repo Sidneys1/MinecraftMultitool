@@ -1,5 +1,6 @@
 ﻿using System;
 using StackingEntities.Model.Entities.Projectiles.BaseClasses;
+using StackingEntities.Model.Enums;
 
 namespace StackingEntities.Model.Entities.Projectiles
 {
@@ -13,7 +14,7 @@ namespace StackingEntities.Model.Entities.Projectiles
 
 		public ThrownPotion()
 		{
-			Type = EntityTypes.ThrownPotion;
+			Type = EntityType.ThrownPotion;
 		}
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Projectiles/ThrownPotion.png";

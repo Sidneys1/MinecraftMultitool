@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
@@ -12,7 +13,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 
 		public Guardian() : base(30)
 		{
-			Type = EntityTypes.Guardian;
+			Type = EntityType.Guardian;
 		}
 
 		public override string DisplayImage => Elder ? "/StackingEntities.Resources;component/Images/Mobs/Guardian/ElderGuardian.png" : "/StackingEntities.Resources;component/Images/Mobs/Guardian/Guardian.png";

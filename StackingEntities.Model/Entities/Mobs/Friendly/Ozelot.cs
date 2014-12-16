@@ -19,7 +19,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public Ozelot() : base(10)
 		{
-			Type = EntityTypes.Ozelot;
+			Type = EntityType.Ozelot;
 		}
 
 		public override string Display => base.Display + CatType;

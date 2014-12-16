@@ -26,7 +26,7 @@ namespace StackingEntities.Model.Entities.Projectiles
 
 		public Arrow()
 		{
-			Type = EntityTypes.Arrow;
+			Type = EntityType.Arrow;
 		}
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Projectiles/Arrow.png";

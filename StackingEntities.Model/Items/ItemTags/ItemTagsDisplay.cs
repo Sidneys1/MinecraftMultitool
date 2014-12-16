@@ -133,7 +133,7 @@ namespace StackingEntities.Model.Items.ItemTags
 
 			if (!string.IsNullOrWhiteSpace(Lore))
 			{
-				var lines = Lore.Split(new[] {Environment.NewLine, "\r", "\n"}, StringSplitOptions.None);
+				var lines = Lore.Split(new[] { Environment.NewLine, "\r", "\n" }, StringSplitOptions.None);
 
 				b2.Append("Lore:[");
 
@@ -144,6 +144,8 @@ namespace StackingEntities.Model.Items.ItemTags
 				b2.Remove(b2.Length - 1, 1);
 				b2.Append("],");
 			}
+
+
 			b2.Remove(b2.Length - 1, 1);
 			b2.Append("},");
 

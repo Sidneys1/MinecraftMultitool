@@ -4,15 +4,17 @@ namespace StackingEntities.Model.Enums
 {
 	public enum JsonTextClickEvent
 	{
+		// ReSharper disable InconsistentNaming
 		[Description("None/Inherit")]
 		None,
 		[Description("Open URL")]
-		OpenUrl,
+		open_url,
 		[Description("Run Command")]
-		RunCommand,
+		run_command,
 		[Description("Change Page")]
-		ChangePage,
+		change_page,
 		[Description("Suggest Command")]
-		SuggestCommand
+		suggest_command
+		// ReSharper restore InconsistentNaming
 	}
 }

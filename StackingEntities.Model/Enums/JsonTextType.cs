@@ -1,6 +1,6 @@
 namespace StackingEntities.Model.Enums
 {
-	public enum TextType
+	public enum JsonTextType
 	{
 		Text,
 		Translate,

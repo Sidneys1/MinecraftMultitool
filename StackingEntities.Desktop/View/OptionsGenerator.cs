@@ -148,7 +148,8 @@ namespace StackingEntities.Desktop.View
 				|| listType == typeof(Attribute) 
 				|| listType == typeof(VillagerRecipe)
 				|| listType == typeof(PotionEffect)
-				|| listType == typeof(BookPage))
+				|| listType == typeof(BookPage)
+                || listType == typeof(JsonTextElement))
 			{
 				if (!option.FixedSize || (option.Minimum == null || option.Maximum == null))
 				{

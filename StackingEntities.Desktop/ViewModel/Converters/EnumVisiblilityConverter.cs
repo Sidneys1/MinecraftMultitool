@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 
@@ -12,27 +13,21 @@ namespace StackingEntities.Desktop.ViewModel.Converters
 		public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
 		{
 			var parameterString = parameter as string;
+
 			if (parameterString == null)
 				return DependencyProperty.UnsetValue;
 
-			if (Enum.IsDefined(value.GetType(), value) == false)
-				return DependencyProperty.UnsetValue;
+			var split =
+				parameterString.Split(new[] {","}, StringSplitOptions.RemoveEmptyEntries)
+					.Select(pstr => new {pVal = Enum.Parse(value.GetType(), pstr.Replace("!","")), invert = pstr.StartsWith("!")}).ToArray();
 
-			var invert = false;
-			if (parameterString.StartsWith("!"))
-			{
-				invert = true;
-				parameterString = parameterString.Remove(0, 1);
-			}
-
-			var parameterValue = Enum.Parse(value.GetType(), parameterString);
-
-			var match = parameterValue.Equals(value);
-
-			if (invert)
-				match = !match;
-
-			return match ? Visibility.Visible : Visibility.Collapsed;
+			return split.Any(o => !Enum.IsDefined(value.GetType(), o.pVal))
+				? DependencyProperty.UnsetValue
+				: (
+					split.Any(o => o.invert ? !o.pVal.Equals(value) : o.pVal.Equals(value))
+						? Visibility.Visible 
+						: Visibility.Collapsed
+				);
 		}
 
 		public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	[Serializable]
 	internal class Endermite : MobBase 
 	{
-		public Endermite() : base(8) { Type = EntityTypes.Endermite; }
+		public Endermite() : base(8) { Type = EntityType.Endermite; }
 
 		[EntityDescriptor("Endermite Options", "Lifetime")]
 		[MinMax(0, 2400)]

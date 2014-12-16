@@ -19,7 +19,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		public Rabbit() : base(10)
 		{
-			Type = EntityTypes.Rabbit;
+			Type = EntityType.Rabbit;
 		}
 
 		public override string Display => base.Display + RabbitType.Description() + " Rabbit";

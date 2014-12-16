@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
@@ -39,9 +40,10 @@ namespace StackingEntities.Model.Items.ItemTags
 			if (Pages.Count == 0) return b.ToString();
 
 			var b2 = new StringBuilder("pages:[");
-			foreach (var line in Pages)
+			for (var i = 0; i < Pages.Count; i++)
 			{
-				b2.AppendFormat("\"{0}\",", line);
+				var line = Pages[i];
+				b2.AppendFormat("{0}:\"{1}\",", i, line.ToString().EscapeJsonString());
 			}
 
 			b2.Remove(b2.Length - 1, 1);

@@ -9,9 +9,9 @@ using StackingEntities.Model.Entities.Projectiles;
 using StackingEntities.Model.Entities.Vehicles;
 using StackingEntities.Model.Metadata;
 
-namespace StackingEntities.Model
+namespace StackingEntities.Model.Enums
 {
-	public enum EntityTypes
+	public enum EntityType
 	{
 		[Description("Choose an Entity...")]
 		NoEnt = 0x0,

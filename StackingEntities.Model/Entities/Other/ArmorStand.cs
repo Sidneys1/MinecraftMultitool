@@ -14,7 +14,7 @@ namespace StackingEntities.Model.Entities.Other
 	{
 		public ArmorStand()
 		{
-			Type = EntityTypes.ArmorStand;
+			Type = EntityType.ArmorStand;
 
 			Holding.Tag.Add(new ItemTagsMap());
 			Holding.Tag.Add(new ItemTagsGeneral());

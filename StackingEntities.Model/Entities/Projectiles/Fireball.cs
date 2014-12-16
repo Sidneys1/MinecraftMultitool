@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using StackingEntities.Model.Entities.Projectiles.BaseClasses;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Model.Entities.Projectiles
@@ -19,7 +20,7 @@ namespace StackingEntities.Model.Entities.Projectiles
 
 		public Fireball()
 		{
-			Type = EntityTypes.Fireball;
+			Type = EntityType.Fireball;
 		}
 
 		public override string Display => base.Display + string.Format("Explosion Power {0}", ExplosionPower);

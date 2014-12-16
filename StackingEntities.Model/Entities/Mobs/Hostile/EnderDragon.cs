@@ -1,4 +1,5 @@
 ﻿using System;
+using StackingEntities.Model.Enums;
 
 namespace StackingEntities.Model.Entities.Mobs.Hostile
 {
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Mobs.Hostile
 	{
 		public EnderDragon() : base(200)
 		{
-			Type = EntityTypes.EnderDragon;
+			Type = EntityType.EnderDragon;
 			Health = 200;
 		}
 

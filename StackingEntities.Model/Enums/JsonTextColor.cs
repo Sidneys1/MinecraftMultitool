@@ -2,33 +2,35 @@ using System.ComponentModel;
 
 namespace StackingEntities.Model.Enums
 {
-	public enum TextColor
+	public enum JsonTextColor
 	{
+		// ReSharper disable InconsistentNaming
 		[Description("Default/Inherit")]
 		Inherit,
-		Black,
+		black,
 		[Description("Dark Blue")]
-		DarkBlue,
+		dark_blue,
 		[Description("Dark Green")]
-		DarkGreen,
+		dark_green,
 		[Description("Dark Aqua")]
-		DarkAqua,
+		dark_awua,
 		[Description("Dark Red")]
-		DarkRed,
+		dark_red,
 		[Description("Dark Purple")]
-		DarkPurple,
-		Gold,
-		Gray,
+		dark_purple,
+		gold,
+		gray,
 		[Description("Dark Grey")]
-		DarkGray,
-		Blue,
-		Green,
-		Aqua,
-		Red,
+		dark_gray,
+		blue,
+		green,
+		aqua,
+		red,
 		[Description("Light Purple")]
-		LightPurple,
-		Yellow,
-		White,
-		Reset
+		light_purple,
+		yellow,
+		white,
+		reset
+		// ReSharper restore InconsistentNaming
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using StackingEntities.Model.Enums;
 
 namespace StackingEntities.Model.Entities.Other
 {
@@ -7,7 +8,7 @@ namespace StackingEntities.Model.Entities.Other
 	{
 		public LeashKnot ()
 		{
-			Type = EntityTypes.LeashKnot;
+			Type = EntityType.LeashKnot;
 		}
 
 		public override string DisplayImage => "/StackingEntities.Resources;component/Images/Other/Lead.png";
