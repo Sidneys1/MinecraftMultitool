@@ -193,6 +193,9 @@
     <Compile Include="ViewModel\Converters\YesNoInheritConverter.cs" />
     <Compile Include="ViewModel\DisplayOption.cs" />
     <Compile Include="ViewModel\EnumerationExtension.cs" />
+    <Compile Include="View\Controls\EntityDisplayControl.xaml.cs">
+      <DependentUpon>EntityDisplayControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\ItemDropdown.xaml.cs">
       <DependentUpon>ItemDropdown.xaml</DependentUpon>
     </Compile>
@@ -225,6 +228,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\Controls\EntityDisplayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Controls\ItemControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
