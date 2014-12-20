@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
 using StackingEntities.Desktop.Model;
@@ -73,76 +72,25 @@ namespace StackingEntities.Desktop.View.Windows
 			// ReSharper restore InvertIf
 
 
-			//var values = Enum.GetValues(typeof(EntityTypes));
-			//foreach (var eb in 
-			//	from EntityTypes etype in values
+			//var values = Enum.GetValues(typeof(EntityType));
+			//foreach (var eb in
+			//	from EntityType etype in values
 			//	select etype.GetType().GetMember(etype.ToString())[0].GetCustomAttributes(typeof(ClassLinkAttribute))
 			//	into props
-			//	select (IList<Attribute>) (props as IList<Attribute> ?? props.ToList())
+			//	select (props as IList<Attribute> ?? props.ToList())
 			//	into attributes
 			//	select attributes.Cast<ClassLinkAttribute>().FirstOrDefault()
 			//	into eb
 			//	where eb != null
 			//	select eb)
 			//{
-			//	_model.Entities.Insert(0, (EntityBase)Activator.CreateInstance(eb.LinkType));
+			//	Model.Entities.Insert(0, (EntityBase)Activator.CreateInstance(eb.LinkType));
 			//}
 		}
 
 		public DataModel Model { set; get; }
 
 		#region Methods
-
-/*
-		private void GenControls(EntityBase ent)
-		{
-			var dict = new Dictionary<string, List<DisplayOption>>();
-
-			#region Extract Options
-
-			ExtractOptions(ent, dict);
-
-			#endregion
-
-			#region Add Groups
-
-			foreach (var str in dict.Keys)
-			{
-				//EditStackPanel.Children.Add(OptionsGenerator.AddGroup(str, dict));
-			}
-
-			#endregion
-		}
-*/
-
-/*
-		private static void ExtractOptions(EntityBase ent, IDictionary<string, List<DisplayOption>> dict)
-		{
-			var props = ent.GetType().GetPropertiesSorted();
-			foreach (var info in props.Reverse())
-			{
-				//info
-				if (!Attribute.IsDefined(info, typeof(EntityDescriptorAttribute))) continue;
-				var prop = (EntityDescriptorAttribute)info.GetCustomAttribute(typeof(EntityDescriptorAttribute));
-				if (!dict.ContainsKey(prop.Category))
-					dict.Add(prop.Category, new List<DisplayOption>());
-
-				object min = null, max = null;
-				var multiline = Attribute.IsDefined(info, typeof(MultilineStringAttribute));
-
-				if (Attribute.IsDefined(info, typeof(MinMaxAttribute)))
-				{
-					var att = (MinMaxAttribute)info.GetCustomAttribute(typeof(MinMaxAttribute));
-					min = att.Minimum;
-					max = att.Maximum;
-				}
-
-				dict[prop.Category].Insert(0,
-					new DisplayOption(prop.Name, info.Name, info.PropertyType, ent, desc: prop.Description, min: min, max: max, mLine: multiline, epName: prop.IsEnabledPath,
-						fSize: prop.FixedSize, dgRowPath: prop.DataGridRowHeaderPath));
-			}
-		}
-*/
 
 		private bool CheckSave()
 		{
@@ -230,7 +178,8 @@ namespace StackingEntities.Desktop.View.Windows
 			if (index <= 0) return;
 			EntitiesListBox.SelectedIndex = -1;
 			Model.Entities.Remove(ent);
-			if ((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift) //Keyboard.IsKeyDown(Key.LeftShift))
+
+			if ((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift) 
 			{
 				Model.Entities.Insert(0, ent);
 				EntitiesListBox.SelectedIndex = 0;
@@ -240,6 +189,9 @@ namespace StackingEntities.Desktop.View.Windows
 				Model.Entities.Insert(--index, ent);
 				EntitiesListBox.SelectedIndex = index;
 			}
+
+			EntitiesListBox.UpdateLayout();
+			EntitiesListBox.ScrollIntoView(ent);
 		}
 
 		private void MoveSelectedEntityDownBtn_Clicked(object sender, MouseButtonEventArgs e)
@@ -264,6 +216,8 @@ namespace StackingEntities.Desktop.View.Windows
 				Model.Entities.Insert(++index, ent);
 				EntitiesListBox.SelectedIndex = index;
 			}
+			EntitiesListBox.UpdateLayout();
+			EntitiesListBox.ScrollIntoView(ent);
 		}
 
 		private void EntitiesListBox_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -271,12 +225,18 @@ namespace StackingEntities.Desktop.View.Windows
 			switch (e.Key)
 			{
 				case Key.Up:
-					MoveSelectedEntityUpBtn_Clicked(this, null);
-					e.Handled = true;
+					if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+					{
+						MoveSelectedEntityUpBtn_Clicked(this, null);
+						e.Handled = true;
+					}
 					break;
 				case Key.Down:
-					MoveSelectedEntityDownBtn_Clicked(this, null);
-					e.Handled = true;
+					if ((Keyboard.Modifiers & ModifierKeys.Control) == ModifierKeys.Control)
+					{
+						MoveSelectedEntityDownBtn_Clicked(this, null);
+						e.Handled = true;
+					}
 					break;
 				case Key.Delete:
 					DeleteSelectedEntityButton_Clicked(this, null);

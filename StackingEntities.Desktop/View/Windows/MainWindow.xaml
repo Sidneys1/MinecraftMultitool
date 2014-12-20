@@ -36,15 +36,13 @@
                     FontSize="12pt" FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"
                     HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
-				<!--<TextBlock Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="9pt" FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"/>-->
-
 				<TextBlock Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Margin="3" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap"
                     FontSize="6pt" FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"
                     UseLayoutRounding="True"/>
 
-				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="0" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/StackingEntities.Resources;component/Images/Delete.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Remove Item" Tag="{Binding Mode=OneWay}" MouseUp="DeleteSelectedEntityButton_Clicked" Stretch="None" Effect="{DynamicResource Blur}" />
-				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="1" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Up.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Up" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityUpBtn_Clicked" />
-				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="2" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Down.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Down" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityDownBtn_Clicked" />
+				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="0" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/StackingEntities.Resources;component/Images/Delete.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Remove Item (Delete)" Tag="{Binding Mode=OneWay}" MouseUp="DeleteSelectedEntityButton_Clicked" Stretch="None" Effect="{DynamicResource Blur}" />
+				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="1" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Up.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Up (Ctrl+Up)&#x0d;&#x0a;Hold Shift to move to top." Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityUpBtn_Clicked" />
+				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="2" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Down.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Down (Ctrl+Down)&#x0d;&#x0a;Hold Shift to move to bottom." Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityDownBtn_Clicked" />
 			</Grid>
 		</DataTemplate>
 	</Window.Resources>
@@ -148,7 +146,7 @@
 
 				<ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" BorderBrush="#FFABADB3" BorderThickness="1">
 					<ListBox x:Name="EntitiesListBox" ItemsSource="{Binding Entities}" BorderThickness="0" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewKeyDown="EntitiesListBox_PreviewKeyDown"
-							 SelectedItem="{Binding DataContext, ElementName=OptionsPresenter, Mode=OneWayToSource}"/>
+							 SelectedItem="{Binding DataContext, ElementName=OptionsPresenter, Mode=OneWayToSource, IsAsync=True}"/>
 				</ScrollViewer>
 			</Grid>
 		</GroupBox>

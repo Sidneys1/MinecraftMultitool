@@ -9,7 +9,6 @@
 	xmlns:objects="clr-namespace:StackingEntities.Model.Objects;assembly=StackingEntities.Data"
 	xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
 	xmlns:simpleTypes="clr-namespace:StackingEntities.Model.SimpleTypes;assembly=StackingEntities.Data"
-	xmlns:entities="clr-namespace:StackingEntities.Model.Entities;assembly=StackingEntities.Data"
 	mc:Ignorable="d" x:Class="StackingEntities.Desktop.App"
     StartupUri="View/Windows/MainWindow.xaml">
 	<Application.Resources>
