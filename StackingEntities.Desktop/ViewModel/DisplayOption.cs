@@ -4,12 +4,12 @@ namespace StackingEntities.Desktop.ViewModel
 {
 	public class DisplayOption
 	{
-		public DisplayOption(string rName, string pName, Type pType, object dContext, string desc = null, object min = null, object max = null, bool mLine = false, string epName = null, bool fSize = false, string dgRowPath = null)
+		public DisplayOption(string rName, string pName, Type pType, string desc = null, object min = null, object max = null, bool mLine = false, string epName = null, bool fSize = false, string dgRowPath = null)
 		{
 			ReadableName = rName;
 			PropertyName = pName;
 			PropertyType = pType;
-			DataContext = dContext;
+			//DataContext = dContext;
 
 			Minimum = min;
 			Maximum = max;
@@ -40,7 +40,7 @@ namespace StackingEntities.Desktop.ViewModel
 
 		public bool Multiline { get; set; }
 
-		public object DataContext { get; set; }
+		//public object DataContext { get; set; }
 
 		public string EnabledPropertyName { get; set; }
 

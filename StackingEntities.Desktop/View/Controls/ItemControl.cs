@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
+﻿using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using StackingEntities.Desktop.ViewModel;
 using StackingEntities.Model.Items;
-using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Desktop.View.Controls
 {
@@ -28,61 +24,28 @@ namespace StackingEntities.Desktop.View.Controls
 
 			var ent = (Item)DataContext;
 
-			var dict = new Dictionary<string, List<DisplayOption>>();
+			SetValue(Grid.ColumnSpanProperty, ent.SlotTitle != null ? 2 : 1);
 
 			#region Extract Options
 
-			ExtractOptions(ent, dict);
+			foreach (var jsonAble in ent.Tag)
+			{
+				var dict = new Dictionary<string, List<DisplayOption>>();
+				OptionsGenerator.ExtractOptions(jsonAble, dict);
+				OptionsGenerator.AddGroups(dict, true).ForEach(o =>
+				{
+					o.DataContext = jsonAble;
+					MoreOptsBox.Children.Add(o);
+				});
+			}
 
 			#endregion
 
 			#region Add Groups
 
-			foreach (var str in dict.Keys)
-			{
-				var g = new Expander { Header = str, Margin = new Thickness(10, 0, 10, 0) };
 
-				var grid = new Grid();
-				grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(0, GridUnitType.Auto) });
-				grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
-				g.Content = grid;
-
-				#region Add Controls
-
-				MoreOptsBox.Children.Add(OptionsGenerator.AddGroup(str, dict, true, true));
-
-				#endregion
-			}
 
 			#endregion
-		}
-
-		private static void ExtractOptions(Item ent, Dictionary<string, List<DisplayOption>> dict)
-		{
-			foreach (var jsonAble in ent.Tag)
-			{
-				var props = jsonAble.GetType().GetProperties();
-				foreach (var info in props.Reverse())
-				{
-					if (!Attribute.IsDefined(info, typeof(EntityDescriptorAttribute))) continue;
-					var prop = (EntityDescriptorAttribute)info.GetCustomAttribute(typeof(EntityDescriptorAttribute));
-					if (!dict.ContainsKey(prop.Category))
-						dict.Add(prop.Category, new List<DisplayOption>());
-
-					object min = null, max = null;
-					var multiline = Attribute.IsDefined(info, typeof(MultilineStringAttribute));
-
-					if (Attribute.IsDefined(info, typeof(MinMaxAttribute)))
-					{
-						var att = (MinMaxAttribute)info.GetCustomAttribute(typeof(MinMaxAttribute));
-						min = att.Minimum;
-						max = att.Maximum;
-					}
-
-					dict[prop.Category].Insert(0,
-						new DisplayOption(prop.Name, info.Name, info.PropertyType, jsonAble, desc: prop.Description, min: min, max: max, mLine: multiline, epName: prop.IsEnabledPath));
-				}
-			}
 		}
 	}
 }

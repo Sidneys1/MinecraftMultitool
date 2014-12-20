@@ -10,7 +10,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Win32;
 using StackingEntities.Desktop.Model;
-using StackingEntities.Desktop.ViewModel;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Entities.Vehicles;
 using StackingEntities.Model.Enums;
@@ -24,8 +23,6 @@ namespace StackingEntities.Desktop.View.Windows
 	public partial class MainWindow
 	{
 		#region Variables
-
-		EntityType _lastEntity = EntityType.NoEnt;
 
 		readonly SaveFileDialog _saveFileDialog = new SaveFileDialog
 		{
@@ -96,6 +93,7 @@ namespace StackingEntities.Desktop.View.Windows
 
 		#region Methods
 
+/*
 		private void GenControls(EntityBase ent)
 		{
 			var dict = new Dictionary<string, List<DisplayOption>>();
@@ -110,12 +108,14 @@ namespace StackingEntities.Desktop.View.Windows
 
 			foreach (var str in dict.Keys)
 			{
-				EditStackPanel.Children.Add(OptionsGenerator.AddGroup(str, dict));
+				//EditStackPanel.Children.Add(OptionsGenerator.AddGroup(str, dict));
 			}
 
 			#endregion
 		}
+*/
 
+/*
 		private static void ExtractOptions(EntityBase ent, IDictionary<string, List<DisplayOption>> dict)
 		{
 			var props = ent.GetType().GetPropertiesSorted();
@@ -142,6 +142,7 @@ namespace StackingEntities.Desktop.View.Windows
 						fSize: prop.FixedSize, dgRowPath: prop.DataGridRowHeaderPath));
 			}
 		}
+*/
 
 		private bool CheckSave()
 		{
@@ -174,24 +175,6 @@ namespace StackingEntities.Desktop.View.Windows
 			var eb = attributes.Cast<ClassLinkAttribute>().FirstOrDefault();
 			if (eb != null)
 				Model.Entities.Insert(0, (EntityBase)Activator.CreateInstance(eb.LinkType));
-		}
-
-		private void EntitiesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			if (EntitiesListBox.SelectedItem != null)
-			{
-				var ent = (EntityBase)EntitiesListBox.SelectedItem;
-
-				if (_lastEntity == ent.Type) return;
-
-				EditStackPanel.Children.Clear();
-				GenControls(ent);
-				_lastEntity = ent.Type;
-				return;
-			}
-
-			EditStackPanel.Children.Clear();
-			_lastEntity = EntityType.NoEnt;
 		}
 
 		private void GenerateButton_Clicked(object sender, RoutedEventArgs e)

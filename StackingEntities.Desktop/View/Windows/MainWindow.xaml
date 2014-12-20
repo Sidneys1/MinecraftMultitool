@@ -9,6 +9,7 @@
         xmlns:model1="clr-namespace:StackingEntities.Desktop.Model"
 	xmlns:converters="clr-namespace:StackingEntities.Desktop.ViewModel.Converters"
         xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
+        xmlns:controls="clr-namespace:StackingEntities.Desktop.View.Controls"
         x:Class="StackingEntities.Desktop.View.Windows.MainWindow"
         Title="{x:Static Properties:Resources.MainWindow_Title}" Height="600" Width="800" MinHeight="600" MinWidth="800"
 		ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="/StackingEntities;component/CommandBlock.ico" SnapsToDevicePixels="True"
@@ -36,7 +37,7 @@
                     HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
 
 				<!--<TextBlock Grid.Column="2" Grid.Row="1" Grid.RowSpan="2" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap" Margin="3" FontSize="9pt" FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"/>-->
-				
+
 				<TextBlock Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Margin="3" Text="{Binding Display}" TextTrimming="CharacterEllipsis" TextWrapping="Wrap"
                     FontSize="6pt" FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased"
                     UseLayoutRounding="True"/>
@@ -146,7 +147,8 @@
 				<Button Grid.Column="1" Grid.Row="0" Content="{x:Static Properties:Resources.MainWindow_Add}" Margin="3" Click="AddButton_Clicked" HorizontalAlignment="Right"  />
 
 				<ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" VerticalScrollBarVisibility="Auto" BorderBrush="#FFABADB3" BorderThickness="1">
-					<ListBox x:Name="EntitiesListBox" ItemsSource="{Binding Entities}" BorderThickness="0" BorderBrush="{x:Null}" SelectionChanged="EntitiesListBox_SelectionChanged" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewKeyDown="EntitiesListBox_PreviewKeyDown"/>
+					<ListBox x:Name="EntitiesListBox" ItemsSource="{Binding Entities}" BorderThickness="0" BorderBrush="{x:Null}" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" PreviewKeyDown="EntitiesListBox_PreviewKeyDown"
+							 SelectedItem="{Binding DataContext, ElementName=OptionsPresenter, Mode=OneWayToSource}"/>
 				</ScrollViewer>
 			</Grid>
 		</GroupBox>
@@ -174,7 +176,14 @@
 		</GroupBox>
 
 		<ScrollViewer Grid.Column="1" Grid.Row="2" VerticalScrollBarVisibility="Auto" >
-			<StackPanel x:Name="EditStackPanel" DataContext="{Binding SelectedItem, ElementName=EntitiesListBox}" Margin="0,0,0,100"/>
+			<!--<StackPanel x:Name="EditStackPanel" DataContext="{Binding SelectedItem, ElementName=EntitiesListBox}" Margin="0,0,0,100"/>-->
+			<ContentPresenter x:Name="OptionsPresenter">
+				<ContentPresenter.ContentTemplate>
+					<DataTemplate>
+						<controls:EntityDisplayControl/>
+					</DataTemplate>
+				</ContentPresenter.ContentTemplate>
+			</ContentPresenter>
 		</ScrollViewer>
 
 		<Grid Grid.Column="1" Grid.Row="3">

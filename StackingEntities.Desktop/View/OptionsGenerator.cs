@@ -2,14 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using StackingEntities.Desktop.View.Controls;
 using StackingEntities.Desktop.ViewModel;
+using StackingEntities.Model.Annotations;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
+using StackingEntities.Model.Metadata;
 using StackingEntities.Model.Objects;
 using Xceed.Wpf.Toolkit;
 using Attribute = StackingEntities.Model.Objects.Attribute;
@@ -18,7 +22,12 @@ namespace StackingEntities.Desktop.View
 {
 	public class OptionsGenerator
 	{
-		public static Expander AddGroup(string header, IDictionary<string, List<DisplayOption>> dict, bool bindDirect = false, bool wide = false)
+		public static List<Expander> AddGroups(IDictionary<string, List<DisplayOption>> dict, bool wide = false)
+		{
+			return dict.Keys.Select(key => AddGroup(key, dict, wide)).ToList();
+		}
+
+		public static Expander AddGroup(string header, IDictionary<string, List<DisplayOption>> dict, bool wide = false)
 		{
 			var g = new Expander { Header = header };
 
@@ -102,7 +111,6 @@ namespace StackingEntities.Desktop.View
 
 				#endregion
 
-				//if (!option.PropertyType.IsGenericType || option.PropertyType.GetGenericTypeDefinition() != typeof(ObservableCollection<>))
 				if (elem.GetValue(Grid.ColumnSpanProperty)?.Equals(1) ?? true)
 				{
 					var l = new Label { Content = option.ReadableName, ToolTip = option.Description };
@@ -121,9 +129,6 @@ namespace StackingEntities.Desktop.View
 				elem.SetValue(Grid.RowProperty, i);
 
 				elem.ToolTip = option.Description;
-
-				if (bindDirect)
-					elem.DataContext = option.DataContext;
 
 				grid.Children.Add(elem);
 
@@ -144,12 +149,12 @@ namespace StackingEntities.Desktop.View
 
 			FrameworkElement ctrl;
 
-			if (listType == typeof(Item) 
-				|| listType == typeof(Attribute) 
+			if (listType == typeof(Item)
+				|| listType == typeof(Attribute)
 				|| listType == typeof(VillagerRecipe)
 				|| listType == typeof(PotionEffect)
 				|| listType == typeof(BookPage)
-                || listType == typeof(JsonTextElement))
+				|| listType == typeof(JsonTextElement))
 			{
 				if (!option.FixedSize || (option.Minimum == null || option.Maximum == null))
 				{
@@ -163,33 +168,14 @@ namespace StackingEntities.Desktop.View
 				}
 				else
 				{
-					var invGrid = new Grid();
-					var itemList = option.DataContext.GetType().GetProperty(option.PropertyName).GetValue(option.DataContext) as ObservableCollection<Item>;
-					if (itemList == null || itemList.Count != ((int)option.Minimum * (int)option.Maximum))
-						throw new IndexOutOfRangeException("What the hell, Steve?");
-
-					for (var i = 0; i < (int)option.Minimum; i++)
+					var invGrid = new InventoryControl
 					{
-						invGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Auto) });
-					}
-
-					for (var i = 0; i < (int)option.Maximum; i++)
-					{
-						invGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
-					}
-
-					for (var x = 0; x < (int)option.Minimum; x++)
-					{
-						for (var y = 0; y < (int)option.Maximum; y++)
-						{
-							var itemDrop = new ItemDropdown { DataContext = itemList[(y * (int)option.Minimum) + x] };
-							itemDrop.SetValue(Grid.ColumnProperty, x); itemDrop.SetValue(Grid.RowProperty, y);
-							invGrid.Children.Add(itemDrop);
-						}
-					}
-
-					//invGrid.SetBinding(FrameworkElement.DataContextProperty, new Binding(option.PropertyName));
-					invGrid.HorizontalAlignment = HorizontalAlignment.Center;
+						InvWidth = (int) option.Minimum,
+						InvHeight = (int) option.Maximum,
+						HorizontalAlignment = HorizontalAlignment.Center
+					};
+					invGrid.SetBinding(FrameworkElement.DataContextProperty, new Binding(option.PropertyName));
+					
 					ctrl = invGrid;
 				}
 			}
@@ -207,8 +193,8 @@ namespace StackingEntities.Desktop.View
 				ctrl2.AutoGeneratingColumn += (sender1, e1) =>
 				{
 					var displayName = PropertyHelpers.GetPropertyDisplayName(e1.PropertyDescriptor);
-					if (e1.PropertyType == typeof (string))
-						((DataGridTextColumn) e1.Column).EditingElementStyle = (Style)Application.Current.Resources["DataGridTextColumnStyle"];
+					if (e1.PropertyType == typeof(string))
+						((DataGridTextColumn)e1.Column).EditingElementStyle = (Style)Application.Current.Resources["DataGridTextColumnStyle"];
 
 					if (!string.IsNullOrEmpty(displayName))
 						e1.Column.Header = displayName;
@@ -222,13 +208,12 @@ namespace StackingEntities.Desktop.View
 					rowHeaderStyle.Setters.Add(new Setter(ContentControl.ContentProperty, new Binding(option.DataGridRowHeaderPath)));
 					ctrl2.RowHeaderStyle = rowHeaderStyle;
 				}
-				ctrl2.Margin = new Thickness(15,0,0,0);
+				ctrl2.Margin = new Thickness(15, 0, 0, 0);
 				ctrl = ctrl2;
 				ctrl.SetBinding(ItemsControl.ItemsSourceProperty, new Binding(option.PropertyName));
 			}
 
 
-			//elem = ctrl;
 			drop.Content = ctrl;
 			drop.SetValue(Grid.ColumnSpanProperty, 2);
 			return drop;
@@ -238,9 +223,6 @@ namespace StackingEntities.Desktop.View
 		{
 			var ctrl = new ItemControl { Margin = new Thickness(3) };
 			ctrl.SetBinding(FrameworkElement.DataContextProperty, new Binding(option.PropertyName));
-			var item = option.DataContext.GetType().GetProperty(option.PropertyName).GetValue(option.DataContext) as Item;
-			if (item?.SlotTitle != null)
-				ctrl.SetValue(Grid.ColumnSpanProperty, 2);
 
 			return ctrl;
 		}
@@ -328,6 +310,51 @@ namespace StackingEntities.Desktop.View
 			var ctrl = new CheckBox();
 			ctrl.SetBinding(ToggleButton.IsCheckedProperty, new Binding(option.PropertyName));
 			return ctrl;
+		}
+
+		private static readonly Dictionary<Type, Dictionary<string, List<DisplayOption>>> _cachedTypes = new Dictionary<Type, Dictionary<string, List<DisplayOption>>>(); 
+		public static void ExtractOptions([NotNull] object ent, Dictionary<string, List<DisplayOption>> dict)
+		{
+			if (ent == null) throw new ArgumentNullException("ent");
+
+			var eType = ent.GetType();
+			if (_cachedTypes.ContainsKey(eType))
+			{
+				foreach (var type in _cachedTypes[eType])
+				{
+					dict[type.Key] = type.Value;
+				}
+
+				return;
+			}
+
+			var props = eType.GetProperties();
+			_cachedTypes[eType] = new Dictionary<string, List<DisplayOption>>();
+			foreach (var info in props.Reverse())
+			{
+				if (!System.Attribute.IsDefined(info, typeof (EntityDescriptorAttribute))) continue;
+				var prop = (EntityDescriptorAttribute) info.GetCustomAttribute(typeof (EntityDescriptorAttribute));
+
+				if (!dict.ContainsKey(prop.Category))
+					dict.Add(prop.Category, new List<DisplayOption>());
+				if (!_cachedTypes[eType].ContainsKey(prop.Category))
+					_cachedTypes[eType].Add(prop.Category, new List<DisplayOption>());
+
+				object min = null, max = null;
+				var multiline = System.Attribute.IsDefined(info, typeof (MultilineStringAttribute));
+
+				if (System.Attribute.IsDefined(info, typeof (MinMaxAttribute)))
+				{
+					var att = (MinMaxAttribute) info.GetCustomAttribute(typeof (MinMaxAttribute));
+					min = att.Minimum;
+					max = att.Maximum;
+				}
+
+				var displayOption = new DisplayOption(prop.Name, info.Name, info.PropertyType, prop.Description, min, max, multiline, prop.IsEnabledPath, prop.FixedSize, prop.DataGridRowHeaderPath);
+
+				_cachedTypes[eType][prop.Category].Insert(0, displayOption);
+				dict[prop.Category].Insert(0, displayOption);
+			}
 		}
 	}
 }
