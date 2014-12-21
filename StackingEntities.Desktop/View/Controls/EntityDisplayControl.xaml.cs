@@ -20,6 +20,12 @@ namespace StackingEntities.Desktop.View.Controls
 		{
 			set
 			{
+				if (value == null)
+				{
+					_eBase = null;
+					return;
+				}
+
 				var newType = value.GetType();
 				
 				if (_eBase == null || _eBase.GetType() != newType)
@@ -50,9 +56,8 @@ namespace StackingEntities.Desktop.View.Controls
 		private void EntityDisplayControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 			var newValue = e.NewValue as EntityBase;
-			if (newValue != null)
-				EBase = newValue;
-			else EditStackPanel.Children.Clear();
+			EBase = newValue;
+			if (newValue == null) EditStackPanel.Children.Clear();
 		}
 
 		private void GenControls(EntityBase ent)

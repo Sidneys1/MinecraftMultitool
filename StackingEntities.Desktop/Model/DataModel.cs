@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using StackingEntities.Model.Entities;
+using StackingEntities.Model.Items;
 
 //using System.Attribute;
 
@@ -15,6 +16,8 @@ namespace StackingEntities.Desktop.Model
 	public class DataModel: INotifyPropertyChanged
 	{
 		public ObservableCollection<EntityBase> Entities { get; } = new ObservableCollection<EntityBase>();
+
+		public static Item GiveItem { get; set; } = new Item {Count = null, Damage = null, GenIdTag = false};
 
 		[field: NonSerialized] public string SavePath;
 

@@ -5,13 +5,17 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Win32;
 using StackingEntities.Desktop.Model;
+using StackingEntities.Desktop.ViewModel;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Entities.Vehicles;
 using StackingEntities.Model.Enums;
+using StackingEntities.Model.Helpers;
+using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Desktop.View.Windows
@@ -220,6 +224,16 @@ namespace StackingEntities.Desktop.View.Windows
 			EntitiesListBox.ScrollIntoView(ent);
 		}
 
+		private void DuplicateSelectedEntityBtn_Clicked(object sender, MouseButtonEventArgs e)
+		{
+			if (EntitiesListBox.SelectedIndex == -1)
+				return;
+			var ent = (EntityBase)EntitiesListBox.SelectedItem;
+			var index = EntitiesListBox.SelectedIndex;
+
+			Model.Entities.Insert(index, ent.Copy());
+		}
+
 		private void EntitiesListBox_PreviewKeyDown(object sender, KeyEventArgs e)
 		{
 			switch (e.Key)
@@ -245,13 +259,6 @@ namespace StackingEntities.Desktop.View.Windows
 			}
 		}
 
-		private void GiveGeneratorMenu_Clicked(object sender, RoutedEventArgs e)
-		{
-			var cmd = new GiveGeneratorDialog { Owner = this };
-			cmd.ShowDialog();
-			cmd.Close();
-		}
-
 		private void MainWindow_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
 			Model = (DataModel)DataContext;
@@ -262,6 +269,42 @@ namespace StackingEntities.Desktop.View.Windows
 			if (!CheckSave())
 				e.Cancel = true;
 		}
+
+		private void GiveCopyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Clipboard.SetText(GiveTextBlock.Text, TextDataFormat.Text);
+			}
+			catch (Exception)
+			{
+				Trace.WriteLine("Clipboard failed.");
+			}
+		}
+
+		private void GiveGenBtn_Click(object sender, RoutedEventArgs e)
+		{
+			var b = new StringBuilder();
+
+			b.AppendFormat("/give {0} {1} {2} {3} ", GiveTargetTextBox.Text.EscapeJsonString(), ((Item)GiveTab.DataContext).Id.EscapeJsonString(), GiveCountTextBox.Value, GiveDvTextBox.Value);
+
+			var b2 = new StringBuilder();
+
+			foreach (var jsonAble in ((Item)GiveTab.DataContext).Tag)
+			{
+				b2.Append(jsonAble.GenerateJson(true));
+			}
+			if (b2.Length > 0 && b2[b2.Length - 1] == ',')
+				b2.Remove(b2.Length - 1, 1);
+
+			if (b2.Length > 0)
+				b.AppendFormat("{{{0}}}", b2);
+
+			var s = b.ToString();
+
+			GiveTextBlock.Text = s;
+		}
+
 
 		#endregion
 
@@ -323,5 +366,6 @@ namespace StackingEntities.Desktop.View.Windows
 		}
 
 		#endregion
+
 	}
 }

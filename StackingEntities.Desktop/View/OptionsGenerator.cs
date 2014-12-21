@@ -223,7 +223,6 @@ namespace StackingEntities.Desktop.View
 		{
 			var ctrl = new ItemControl { Margin = new Thickness(3) };
 			ctrl.SetBinding(FrameworkElement.DataContextProperty, new Binding(option.PropertyName));
-
 			return ctrl;
 		}
 

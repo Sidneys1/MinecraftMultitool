@@ -407,6 +407,7 @@
     <Resource Include="Images\Mobs\Villager\Villager.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\Duplicate.png" />
     <Content Include="Images\Redstone.png" />
   </ItemGroup>
   <ItemGroup>
