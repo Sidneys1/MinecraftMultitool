@@ -25,7 +25,25 @@
 			<Button Margin="2" Content="Add Item" FontSize="6pt" Padding="15,5" Click="Button_Click_1"/>
 			<Button Margin="2" Grid.Column="2" Content="Remove Item" FontSize="6pt" Padding="15,5" Click="Button_Click" IsEnabled="{Binding SelectedItems.Count, ElementName=ItemsControl}"/>
 		</Grid>
-		<ListBox x:Name="ItemsControl" Grid.Row="2" ItemsSource="{Binding}" HorizontalContentAlignment="Stretch" BorderThickness="0" Template="{StaticResource itemControltemplate}" >
+		<ListBox x:Name="ItemsControl" Grid.Row="2" ItemsSource="{Binding}" HorizontalContentAlignment="Stretch">
+			<ListBox.Style>
+				<Style TargetType="ListBox">
+					<Style.Triggers>
+						<DataTrigger Binding="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=Items.Count}" Value="0">
+							<Setter Property="Template">
+								<Setter.Value>
+									<ControlTemplate>
+										<Border BorderThickness="1" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+											<Label Content="No Items" HorizontalAlignment="Center" Margin="3" Opacity="50"/>	
+										</Border>
+									</ControlTemplate>
+								</Setter.Value>
+							</Setter>
+						</DataTrigger>
+					</Style.Triggers>
+				</Style>
+			</ListBox.Style>
 		</ListBox>
+		<!--Template="{StaticResource itemControltemplate}" />-->
 	</Grid>
 </UserControl>

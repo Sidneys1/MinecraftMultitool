@@ -161,7 +161,7 @@ namespace StackingEntities.Desktop.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generate Summon.
+        ///   Looks up a localized string similar to Generate.
         /// </summary>
         public static string MainWindow_GenerateSummon {
             get {

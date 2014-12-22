@@ -20,14 +20,19 @@ namespace StackingEntities.Model.Objects
 
 		public string Translate { get; set; }
 		public ObservableCollection<SimpleString> TranslateWith { get; } = new ObservableCollection<SimpleString>();
-		
+
 		public string ScoreName { get; set; }
 		public string ScoreObjective { get; set; }
 		public string ScoreValue { get; set; }
 
 		public string Selector { get; set; }
-		 
-		public JsonTextType TextType { get; set; } = JsonTextType.Text;
+
+		private JsonTextType _textType = JsonTextType.Text;
+		public JsonTextType TextType
+		{
+			get { return _textType; }
+			set { _textType = value; PropChanged("TextType"); }
+		}
 
 		public JsonTextColor Color { get; set; } = JsonTextColor.Inherit;
 		public bool? Bold { get; set; }
@@ -36,7 +41,13 @@ namespace StackingEntities.Model.Objects
 		public bool? Strikethrough { get; set; }
 		public bool? Obfuscated { get; set; }
 
-		public JsonTextClickEvent ClickEvent { get; set; } = JsonTextClickEvent.None;
+		private JsonTextClickEvent _clickEvent = JsonTextClickEvent.None;
+		public JsonTextClickEvent ClickEvent
+		{
+			get { return _clickEvent; }
+			set { _clickEvent = value; PropChanged("ClickEvent"); }
+		}
+
 		public string ClickEventValue { get; set; }
 
 		public JsonTextHoverEvent HoverEvent
@@ -49,7 +60,7 @@ namespace StackingEntities.Model.Objects
 				{
 					if (HoverEventText == null)
 					{
-						HoverEventText = _hoverEventTextBackup ?? new JsonTextElement {Title = "Hover Text"};
+						HoverEventText = _hoverEventTextBackup ?? new JsonTextElement { Title = "Hover Text" };
 						PropChanged("HoverEventText");
 					}
 				}
@@ -59,19 +70,21 @@ namespace StackingEntities.Model.Objects
 					HoverEventText = null;
 					PropChanged("HoverEventText");
 				}
-				
-				
-				PropChanged();
+
+
+				PropChanged("HoverEvent");
 			}
 		}
 
 		private JsonTextElement _hoverEventTextBackup;
-        public JsonTextElement HoverEventText { get; private set; }
+
+
+		public JsonTextElement HoverEventText { get; private set; }
 		public string HoverEventEntityName { get; set; }
 		public AchievementName HoverEventAchievementName { get; set; }
-		public Item HoverEventItem { get; }= new Item { Count = null, Slot = null };
+		public Item HoverEventItem { get; } = new Item { Count = null, Slot = null };
 		public EntityType HoverEntityType { get; set; }
-		public  string HoverEntityId { get; set; }
+		public string HoverEntityId { get; set; }
 
 		public ObservableCollection<JsonTextElement> Extra { get; } = new ObservableCollection<JsonTextElement>();
 
@@ -124,7 +137,7 @@ namespace StackingEntities.Model.Objects
 		//	{
 		//		case JsonTextHoverEvent.show_text:
 		//			ret |= HoverEventText?.HasValue() ?? false;
-  //                  break;
+		//                  break;
 		//		case JsonTextHoverEvent.show_item:
 		//		case JsonTextHoverEvent.show_achievement:
 		//		case JsonTextHoverEvent.show_entity:
@@ -213,7 +226,8 @@ namespace StackingEntities.Model.Objects
 				if (b[b.Length - 1] == ',')
 					b.Remove(b.Length - 1, 1);
 				b.Append("}");
-				return b.ToString();
+
+				return b.ToString() == string.Format("{{text:\"{0}\"}}", j.Text.EscapeJsonString()) ? string.Format("\"{0}\"", j.Text.EscapeJsonString()) : b.ToString();
 			}
 
 			b.Append("extra:[");

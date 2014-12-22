@@ -3,12 +3,15 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using StackingEntities.Desktop.Model.Enums;
+using StackingEntities.Model.Annotations;
 using StackingEntities.Model.Entities;
+using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
-
-//using System.Attribute;
+using StackingEntities.Model.Objects;
 
 namespace StackingEntities.Desktop.Model
 {
@@ -17,11 +20,26 @@ namespace StackingEntities.Desktop.Model
 	{
 		public ObservableCollection<EntityBase> Entities { get; } = new ObservableCollection<EntityBase>();
 
-		public static Item GiveItem { get; set; } = new Item {Count = null, Damage = null, GenIdTag = false};
+		#region Static
 
-		[field: NonSerialized] public string SavePath;
+		public static Item GiveItem { get; set; } = new Item {Count = null, Damage = null, GenIdTag = false};
+		public static int GiveCount { get; set; } = 1;
+		public static int GiveDV { get; set; }
+		public static string GiveTarget { get; set; } = "@p";
+
+		public static TextCommandType TextCommandType { get; set; }
+		public static string TellRawTarget { get; set; } = "@a";
+		public static JsonTextElement TellrawText { get; } = new JsonTextElement();
+
+		#endregion
+
+
+		[field: NonSerialized]
+		public string SavePath;
 
 		private string _x="~", _y="~", _z="~";
+		
+
 		public string X
 		{
 			get { return _x; }
@@ -60,7 +78,8 @@ namespace StackingEntities.Desktop.Model
 		[field:NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		private void PropChanged(string propertyName)
+		[NotifyPropertyChangedInvocator]
+		protected virtual void PropChanged([CallerMemberName] string propertyName = null)
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
@@ -138,6 +157,51 @@ namespace StackingEntities.Desktop.Model
 				fs.Close();
 			}
 			return m;
+		}
+
+		public static string GenerateGive()
+		{
+			var b = new StringBuilder();
+
+			b.AppendFormat("/give {0} {1} {2} {3} ", GiveTarget.EscapeJsonString(),
+				GiveItem.Id.EscapeJsonString(), GiveCount, GiveDV);
+
+			var b2 = new StringBuilder();
+
+			foreach (var jsonAble in GiveItem.Tag)
+			{
+			b2.Append(jsonAble.GenerateJson(true));
+			}
+			if (b2.Length > 0 && b2[b2.Length - 1] == ',')
+				b2.Remove(b2.Length - 1, 1);
+
+			if (b2.Length > 0)
+				b.AppendFormat("{{{0}}}", b2);
+
+			var s = b.ToString();
+			return s;
+		}
+
+		public static string GenerateJson()
+		{
+			var b = new StringBuilder("/");
+
+			switch (TextCommandType)
+			{
+				case TextCommandType.Tellraw:
+					b.AppendFormat("tellraw {0} ", TellRawTarget);
+					break;
+				case TextCommandType.Title:
+					b.AppendFormat("title {0} title ", TellRawTarget);
+					break;
+				case TextCommandType.Subtitle:
+					b.AppendFormat("title {0} subtitle ", TellRawTarget);
+					break;
+			}
+
+			b.Append(TellrawText.GenerateJson(false));
+
+			return b.ToString();
 		}
 	}
 }

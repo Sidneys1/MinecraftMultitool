@@ -14,7 +14,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		public bool MapScaling { get; set; } = false;
 
 		[EntityDescriptor("Map","Markers")]
-		public ObservableCollection<Decoration> Decor { get; set; } = new ObservableCollection<Decoration>();
+		public ObservableCollection<MapDecoration> Decor { get; set; } = new ObservableCollection<MapDecoration>();
 
 		public string GenerateJson(bool topLevel)
 		{

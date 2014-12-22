@@ -366,6 +366,87 @@
 				<Label Content="{Binding Name}"/>
 				<TextBox Grid.Column="1" Text="{Binding Value}"/>
 			</Grid>
-		</DataTemplate>	
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type objects:Enchantment}">
+			<Grid HorizontalAlignment="Left">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+
+				<Label Content="Type"/>
+				<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:EnchantmentId}}}"
+					DisplayMemberPath="Description"
+					SelectedValue="{Binding Type}"
+					SelectedValuePath="Value"/>
+				
+				<Label Grid.Column="0" Grid.Row="1" Content="Level"/>
+				<xctk:ShortUpDown Grid.Column="1" Grid.Row="1" Margin="3" MinWidth="100" Minimum="1" Value="{Binding Level}"/>
+			</Grid>
+		</DataTemplate>
+
+		<DataTemplate DataType="{x:Type objects:MapDecoration}">
+			<Grid HorizontalAlignment="Left">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+
+				<Label Content="Name"/>
+				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3"/>
+				
+				<Label Grid.Row="1" Grid.Column="0" Content="Type"/>
+				<ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:MapMarker}}}"
+					DisplayMemberPath="Description"
+					SelectedValue="{Binding MType}"
+					SelectedValuePath="Value"/>
+				
+				<Label Grid.Column="0" Grid.Row="2" Content="Rotation"/>
+				<xctk:DoubleUpDown Grid.Column="1" Grid.Row="2" Margin="3" MinWidth="100" Minimum="0" Maximum="360" Value="{Binding Rotation}"/>
+				
+				<Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition/>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Label Content="Position"/>
+					<Label Grid.Column="1" Content="X"/>
+					<xctk:DoubleUpDown Grid.Column="2" Value="{Binding X}"/>
+					<Label Grid.Column="3" Content="Z"/>
+					<xctk:DoubleUpDown Grid.Column="4" Value="{Binding Z}"/>
+				</Grid>
+			</Grid>
+		</DataTemplate>
+		
+		<DataTemplate DataType="{x:Type objects:BlockType}">
+			<Grid HorizontalAlignment="Left">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+
+				<Label Content="Block ID"/>
+				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3" MinWidth="100"/>
+			</Grid>
+		</DataTemplate>
+		
+		<!-- 
+			TODO: Templates
+				* Place On/Destroy
+		-->
 	</Application.Resources>
 </Application>

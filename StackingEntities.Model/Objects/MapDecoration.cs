@@ -1,14 +1,14 @@
 using System;
 using System.ComponentModel;
 using System.Text;
+using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
-using StackingEntities.Model.Items.ItemTags;
 
 namespace StackingEntities.Model.Objects
 {
 	[Serializable]
-	public class Decoration : IJsonAble
+	public class MapDecoration : IJsonAble
 	{
 		[DisplayName(@"ID")]
 		public string Id { get; set; }

@@ -46,6 +46,7 @@
     <Compile Include="Enums\JsonTextHoverEvent.cs" />
     <Compile Include="Enums\JsonTextColor.cs" />
     <Compile Include="Enums\JsonTextType.cs" />
+    <Compile Include="Enums\MapMarker.cs" />
     <Compile Include="Objects\JsonTextElement.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Entities\DynamicTiles\FallingSand.cs" />
@@ -148,7 +149,6 @@
     <Compile Include="Items\ItemTags\ItemTagsFireworkStar.cs" />
     <Compile Include="Items\ItemTags\ItemTagsGeneral.cs" />
     <Compile Include="Items\ItemTags\ItemTagsMap.cs" />
-    <Compile Include="Items\ItemTags\MapMarker.cs" />
     <Compile Include="Metadata\ClassLinkAttribute.cs" />
     <Compile Include="Metadata\EntityDescriptorAttribute.cs" />
     <Compile Include="Metadata\MinMaxAttribute.cs" />
@@ -157,7 +157,7 @@
     <Compile Include="Objects\Attribute.cs" />
     <Compile Include="Objects\AttributeModifier.cs" />
     <Compile Include="Objects\BlockType.cs" />
-    <Compile Include="Objects\Decoration.cs" />
+    <Compile Include="Objects\MapDecoration.cs" />
     <Compile Include="Objects\Enchantment.cs" />
     <Compile Include="Objects\BookPage.cs" />
     <Compile Include="Objects\PotionEffect.cs" />

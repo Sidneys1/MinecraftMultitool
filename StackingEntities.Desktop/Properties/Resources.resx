@@ -134,7 +134,7 @@
     <value>Stacked Entities</value>
   </data>
   <data name="MainWindow_GenerateSummon" xml:space="preserve">
-    <value>Generate Summon</value>
+    <value>Generate</value>
   </data>
   <data name="MainWindow_Copy" xml:space="preserve">
     <value>Copy</value>

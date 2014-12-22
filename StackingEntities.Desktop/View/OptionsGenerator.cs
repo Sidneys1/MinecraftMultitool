@@ -154,6 +154,9 @@ namespace StackingEntities.Desktop.View
 				|| listType == typeof(VillagerRecipe)
 				|| listType == typeof(PotionEffect)
 				|| listType == typeof(BookPage)
+				|| listType == typeof(Enchantment)
+				|| listType == typeof(MapDecoration)
+				|| listType == typeof(BlockType)
 				|| listType == typeof(JsonTextElement))
 			{
 				if (!option.FixedSize || (option.Minimum == null || option.Maximum == null))

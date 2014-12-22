@@ -1,20 +1,34 @@
 ﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:objects="clr-namespace:StackingEntities.Model.Objects;assembly=StackingEntities.Data"
-             xmlns:viewModel="clr-namespace:StackingEntities.Desktop.ViewModel"
-             xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
-             xmlns:Converters="clr-namespace:StackingEntities.Desktop.ViewModel.Converters"
-             xmlns:controls="clr-namespace:StackingEntities.Desktop.View.Controls"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:objects="clr-namespace:StackingEntities.Model.Objects;assembly=StackingEntities.Data"
+	xmlns:viewModel="clr-namespace:StackingEntities.Desktop.ViewModel"
+	xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
+	xmlns:Converters="clr-namespace:StackingEntities.Desktop.ViewModel.Converters"
+	xmlns:controls="clr-namespace:StackingEntities.Desktop.View.Controls"
 	x:Class="StackingEntities.Desktop.View.Controls.JsonTextControl"
-             mc:Ignorable="d" x:Name="userControl"
-             d:DesignHeight="800" d:DesignWidth="400" d:DataContext="{d:DesignInstance objects:JsonTextElement}"
+	mc:Ignorable="d" x:Name="userControl"
+	d:DesignHeight="800" d:DesignWidth="400" d:DataContext="{d:DesignInstance objects:JsonTextElement}"
 	DataContextChanged="JsonTextControl_OnDataContextChanged">
 	<UserControl.Resources>
-		<Converters:YesNoInheritConverter x:Key="YesNoInheritConverter"/>
+		<!--<Converters:YesNoInheritConverter x:Key="YesNoInheritConverter"/>-->
 		<Converters:EnumVisibilityConverter x:Key="EnumVisibilityConverter"/>
+		
+		<Style x:Key="YesNoInheritCheckbox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+			<Style.Triggers>
+				<Trigger Property="IsChecked" Value="True">
+					<Setter Property="Content" Value="Yes"/>
+				</Trigger>
+				<Trigger Property="IsChecked" Value="False">
+					<Setter Property="Content" Value="No"/>
+				</Trigger>
+				<Trigger Property="IsChecked" Value="{x:Null}">
+					<Setter Property="Content" Value="Inherit"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
 	</UserControl.Resources>
 	<Expander Header="{Binding Title, TargetNullValue=JSON Text Options}" IsExpanded="False"  IsEnabled="{Binding IsEnabled, ElementName=userControl}">
 		<Grid Margin="15,0,0,0">
@@ -41,7 +55,7 @@
 				SelectedValuePath="Value"/>
 
 			<Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
-			      Visibility="{Binding TextType, ConverterParameter=Text, Converter={StaticResource EnumVisibilityConverter}}" >
+				  Visibility="{Binding TextType, ConverterParameter=Text, Converter={StaticResource EnumVisibilityConverter}}" >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="*"/>
@@ -51,7 +65,7 @@
 			</Grid>
 
 			<Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
-			      Visibility="{Binding TextType, ConverterParameter=Selector, Converter={StaticResource EnumVisibilityConverter}}" >
+				  Visibility="{Binding TextType, ConverterParameter=Selector, Converter={StaticResource EnumVisibilityConverter}}" >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="*"/>
@@ -61,7 +75,7 @@
 			</Grid>
 
 			<Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
-			      Visibility="{Binding TextType, ConverterParameter=Translate, Converter={StaticResource EnumVisibilityConverter}}" >
+				  Visibility="{Binding TextType, ConverterParameter=Translate, Converter={StaticResource EnumVisibilityConverter}}" >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="*"/>
@@ -79,7 +93,7 @@
 			</Grid>
 
 			<Grid Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0"
-			      Visibility="{Binding TextType, ConverterParameter=Score, Converter={StaticResource EnumVisibilityConverter}}" >
+				  Visibility="{Binding TextType, ConverterParameter=Score, Converter={StaticResource EnumVisibilityConverter}}" >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="*"/>
@@ -121,19 +135,24 @@
 						SelectedValuePath="Value"/>
 
 					<Label Grid.Row="1" Grid.Column="0" Content="Bold"/>
-					<CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding Bold}" IsThreeState="True" Content="{Binding Bold, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>
+					<CheckBox Grid.Row="1" Grid.Column="1" IsChecked="{Binding Bold}" IsThreeState="True"  Style="{DynamicResource YesNoInheritCheckbox}"/>
+							  <!--Content="{Binding Bold, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>-->
 
 					<Label Grid.Row="2" Grid.Column="0" Content="Underlined"/>
-					<CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Underlined}" IsThreeState="True" Content="{Binding Underlined, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>
+					<CheckBox Grid.Row="2" Grid.Column="1" IsChecked="{Binding Underlined}" IsThreeState="True" Style="{DynamicResource YesNoInheritCheckbox}"/>
+							  <!--Content="{Binding Underlined, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>-->
 
 					<Label Grid.Row="3" Grid.Column="0" Content="Italic"/>
-					<CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding Italic}" IsThreeState="True" Content="{Binding Italic, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>
+					<CheckBox Grid.Row="3" Grid.Column="1" IsChecked="{Binding Italic}" IsThreeState="True"  Style="{DynamicResource YesNoInheritCheckbox}"/>
+							  <!--Content="{Binding Italic, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>-->
 
 					<Label Grid.Row="4" Grid.Column="0" Content="Strikethrough"/>
-					<CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding Strikethrough}" IsThreeState="True" Content="{Binding Strikethrough, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>
+					<CheckBox Grid.Row="4" Grid.Column="1" IsChecked="{Binding Strikethrough}" IsThreeState="True"  Style="{DynamicResource YesNoInheritCheckbox}"/>
+							  <!--Content="{Binding Strikethrough, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>-->
 
 					<Label Grid.Row="5" Grid.Column="0" Content="Obfuscated"/>
-					<CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding Obfuscated}" IsThreeState="True" Content="{Binding Obfuscated, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>
+					<CheckBox Grid.Row="5" Grid.Column="1" IsChecked="{Binding Obfuscated}" IsThreeState="True"  Style="{DynamicResource YesNoInheritCheckbox}"/>
+							  <!--Content="{Binding Obfuscated, Converter={StaticResource YesNoInheritConverter}, Mode=OneWay}"/>-->
 				</Grid>
 			</Expander>
 

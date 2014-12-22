@@ -10,14 +10,14 @@
     xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
     xmlns:controls="clr-namespace:StackingEntities.Desktop.View.Controls"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-    xmlns:system="clr-namespace:System;assembly=mscorlib"
-    xmlns:items="clr-namespace:StackingEntities.Model.Items;assembly=StackingEntities.Data"
+    xmlns:enums1="clr-namespace:StackingEntities.Desktop.Model.Enums"
     x:Class="StackingEntities.Desktop.View.Windows.MainWindow"
 	
     Title="{x:Static Properties:Resources.MainWindow_Title}" Height="600" Width="800" MinHeight="600" MinWidth="800"
 	ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="/StackingEntities;component/CommandBlock.ico" SnapsToDevicePixels="True"
 	DataContextChanged="MainWindow_OnDataContextChanged" Closing="MainWindow_OnClosing">
 	<Window.Resources>
+		<converters:EnumVisibilityConverter x:Key="EnumVisibilityConverter"/>
 		<DropShadowEffect x:Key="Blur" ShadowDepth="0" BlurRadius="5" RenderingBias="Quality"/>
 		<converters:EnumDescriptionConverter x:Key="enumDesc"/>
 		<DataTemplate DataType="{x:Type entities:EntityBase}">
@@ -45,9 +45,9 @@
                     UseLayoutRounding="True"/>
 
 				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="0" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" HorizontalAlignment="Center" VerticalAlignment="Center" Source="/StackingEntities.Resources;component/Images/Delete.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Remove Item (Delete)" Tag="{Binding Mode=OneWay}" MouseUp="DeleteSelectedEntityButton_Clicked" Stretch="None" Effect="{DynamicResource Blur}" />
-				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="1" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Up.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Up (Ctrl+Up)&#x0d;&#x0a;Hold Shift to move to top." Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityUpBtn_Clicked" />
+				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="1" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Up.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Up (Ctrl+Up)&#xA;Hold Shift to move to top." Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityUpBtn_Clicked" />
 				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="2" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Duplicate.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Duplicate Entity" Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="DuplicateSelectedEntityBtn_Clicked" />
-				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="3" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Down.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Down (Ctrl+Down)&#x0d;&#x0a;Hold Shift to move to bottom." Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityDownBtn_Clicked" />
+				<Image RenderOptions.BitmapScalingMode="NearestNeighbor" Grid.Row="3" Grid.Column="0" SnapsToDevicePixels="True" UseLayoutRounding="True" Source="/StackingEntities.Resources;component/Images/Down.png" Style="{DynamicResource ImageButton}" Cursor="Hand" ToolTip="Move Item Down (Ctrl+Down)&#xA;Hold Shift to move to bottom." Tag="{Binding Mode=OneWay}" HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="None" Effect="{DynamicResource Blur}" MouseUp="MoveSelectedEntityDownBtn_Clicked" />
 			</Grid>
 		</DataTemplate>
 	</Window.Resources>
@@ -133,7 +133,7 @@
 						<ColumnDefinition Width="*"/>
 					</Grid.ColumnDefinitions>
 
-					<GroupBox Header="{x:Static Properties:Resources.StackedEntities_Header}" Grid.Column="0" Grid.RowSpan="3">
+					<GroupBox Header="{x:Static Properties:Resources.StackedEntities_Header}" Grid.Column="0" Grid.RowSpan="2">
 						<Grid>
 							<Grid.ColumnDefinitions>
 								<ColumnDefinition Width="*"/>
@@ -190,7 +190,7 @@
 						</ContentPresenter>
 					</ScrollViewer>
 
-					<Grid Grid.Column="1" Grid.Row="2">
+					<Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2">
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="Auto"/>
 							<ColumnDefinition Width="*"/>
@@ -198,12 +198,12 @@
 						</Grid.ColumnDefinitions>
 
 						<Button Content="{x:Static Properties:Resources.MainWindow_GenerateSummon}" Margin="5" Click="GenerateButton_Clicked" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-						<TextBox Grid.Column="1" x:Name="SummonCommandOutputTxtBx" Background="Transparent" BorderThickness="0" Text="/summon x ~ ~ ~" IsReadOnly="True" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontFamily="Courier New" VerticalScrollBarVisibility="Auto" MaxHeight="150" />
+						<TextBox Grid.Column="1" x:Name="SummonCommandOutputTxtBx" Background="Transparent" BorderThickness="0" Text="/summon ..." IsReadOnly="True" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontFamily="Courier New" VerticalScrollBarVisibility="Auto" MaxHeight="150" />
 						<Button Grid.Column="2" Content="{x:Static Properties:Resources.MainWindow_Copy}" Margin="5" Click="CopyButton_Clicked" VerticalAlignment="Center" HorizontalAlignment="Right" />
 					</Grid>
 				</Grid>
 			</TabItem>
-			
+
 			<TabItem x:Name="GiveTab" Header="Give">
 				<Grid>
 					<Grid.RowDefinitions>
@@ -222,16 +222,17 @@
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
 						<Label Content="Target"/>
-						<TextBox x:Name="GiveTargetTextBox" Grid.Column="1" Text="@p" Margin="3"/>
+						<TextBox Grid.Column="1" Text="{Binding GiveTarget}" Margin="3"/>
 
 						<Label Grid.Column="2" Content="Count"/>
-						<xctk:IntegerUpDown x:Name="GiveCountTextBox" Grid.Column="3" Value="1" Minimum="1" Maximum="64" Margin="3"/>
+						<xctk:IntegerUpDown Grid.Column="3" Value="{Binding GiveCount}" Minimum="1" Maximum="64" Margin="3"/>
 
 						<Label Grid.Column="4" Content="Data Value"/>
-						<xctk:IntegerUpDown x:Name="GiveDvTextBox" Grid.Column="5" Value="0" Minimum="0" Maximum="32767"  Margin="3"/>
+						<xctk:IntegerUpDown Grid.Column="5" Value="{Binding GiveDV}" Minimum="0" Maximum="32767"  Margin="3"/>
 					</Grid>
 					<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" >
-						<controls:ItemControl Margin="0,0,0,25" MaxWidth="{x:Static system:Double.MaxValue}"/>
+						<!--<controls:ItemControl Margin="0,0,0,25" MaxWidth="{x:Static system:Double.MaxValue}"/>-->
+						<ContentPresenter Content="{Binding GiveItem}" UseLayoutRounding="True" Margin="0,0,0,25"/>
 					</ScrollViewer>
 
 					<Grid Grid.Row="2">
@@ -241,20 +242,65 @@
 							<ColumnDefinition Width="Auto"/>
 						</Grid.ColumnDefinitions>
 
-						<Button x:Name="GiveGenBtn" Grid.Column="0" Content="Generate Give" Margin="5" Click="GiveGenBtn_Click"/>
+						<Button Grid.Column="0" Content="{x:Static Properties:Resources.MainWindow_GenerateSummon}" Margin="5" Click="GiveGenBtn_Click"/>
 						<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" >
-							<TextBlock x:Name="GiveTextBlock" Margin="5" Text="/give @p" VerticalAlignment="Center" FontFamily="Courier New" TextWrapping="Wrap"/>
+							<TextBlock x:Name="GiveTextBlock" Margin="5" Text="/give @p ..." VerticalAlignment="Center" FontFamily="Courier New" TextWrapping="Wrap"/>
 						</ScrollViewer>
 
-						<Button x:Name="GiveCopyBtn" Grid.Column="2" Content="Copy" Margin="5" Click="GiveCopyBtn_Click" />
+						<Button Grid.Column="2" Content="Copy" Margin="5" Click="GiveCopyBtn_Click" />
 					</Grid>
 				</Grid>
 
 			</TabItem>
-			
+
 			<TabItem Header="Blockdata" IsEnabled="False"/>
-			
-			<TabItem Header="JSON Text" IsEnabled="False"/>
+
+			<TabItem Header="JSON Text">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Label Content="Command Type"/>
+						<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums1:TextCommandType}}}"
+							DisplayMemberPath="Description"
+							SelectedValue="{Binding TextCommandType}"
+							SelectedValuePath="Value"/>
+
+						<Label Grid.Row="0" Grid.Column="2" Content="Target"/>
+						<TextBox Grid.Row="0" Grid.Column="3" Margin="3" Text="{Binding TellRawTarget}"/>
+
+						
+					</Grid>
+					
+					<ScrollViewer Grid.Row="1">
+						<ContentPresenter Content="{Binding TellrawText}"/>
+					</ScrollViewer>
+					
+					<Grid Grid.Row="2">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+
+							<Button Grid.Column="0" Content="{x:Static Properties:Resources.MainWindow_GenerateSummon}" Margin="5" Click="JsonGenBtn_Click"/>
+							<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" >
+								<TextBlock x:Name="JsonTextBlock" Margin="5" Text="/tellraw @p ..." VerticalAlignment="Center" FontFamily="Courier New" TextWrapping="Wrap"/>
+							</ScrollViewer>
+
+							<Button Grid.Column="2" Content="Copy" Margin="5" Click="JsonCopyBtn_Click" />
+						</Grid>
+				</Grid>
+			</TabItem>
 		</TabControl>
 	</DockPanel>
 </Window>

@@ -12,8 +12,9 @@ namespace StackingEntities.Model.Objects
 	{
 		[DisplayName(@"ID")]
 		public EnchantmentId Type { get; set; }
+
 		[DisplayName(@"Level"), MinMax(short.MinValue, short.MaxValue)]
-		public int Level { get; set; }
+		public int Level { get; set; } = 1;
 
 		public string GenerateJson(bool topLevel = true)
 		{

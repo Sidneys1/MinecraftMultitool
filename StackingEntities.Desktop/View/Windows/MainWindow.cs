@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using Microsoft.Win32;
@@ -14,8 +13,6 @@ using StackingEntities.Desktop.ViewModel;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Entities.Vehicles;
 using StackingEntities.Model.Enums;
-using StackingEntities.Model.Helpers;
-using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
 
 namespace StackingEntities.Desktop.View.Windows
@@ -230,7 +227,6 @@ namespace StackingEntities.Desktop.View.Windows
 				return;
 			var ent = (EntityBase)EntitiesListBox.SelectedItem;
 			var index = EntitiesListBox.SelectedIndex;
-
 			Model.Entities.Insert(index, ent.Copy());
 		}
 
@@ -284,27 +280,20 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void GiveGenBtn_Click(object sender, RoutedEventArgs e)
 		{
-			var b = new StringBuilder();
-
-			b.AppendFormat("/give {0} {1} {2} {3} ", GiveTargetTextBox.Text.EscapeJsonString(), ((Item)GiveTab.DataContext).Id.EscapeJsonString(), GiveCountTextBox.Value, GiveDvTextBox.Value);
-
-			var b2 = new StringBuilder();
-
-			foreach (var jsonAble in ((Item)GiveTab.DataContext).Tag)
-			{
-				b2.Append(jsonAble.GenerateJson(true));
-			}
-			if (b2.Length > 0 && b2[b2.Length - 1] == ',')
-				b2.Remove(b2.Length - 1, 1);
-
-			if (b2.Length > 0)
-				b.AppendFormat("{{{0}}}", b2);
-
-			var s = b.ToString();
-
-			GiveTextBlock.Text = s;
+			GiveTextBlock.Text = DataModel.GenerateGive();
 		}
 
+		private void JsonCopyBtn_Click(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Clipboard.SetText(JsonTextBlock.Text, TextDataFormat.Text);
+			}
+			catch (Exception)
+			{
+				Trace.WriteLine("Clipboard failed.");
+			}
+		}
 
 		#endregion
 
@@ -366,6 +355,11 @@ namespace StackingEntities.Desktop.View.Windows
 		}
 
 		#endregion
+
+		private void JsonGenBtn_Click(object sender, RoutedEventArgs e)
+		{
+			JsonTextBlock.Text = DataModel.GenerateJson();
+		}
 
 	}
 }
