@@ -8,6 +8,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using StackingEntities.Desktop.Model.Enums;
 using StackingEntities.Model.Annotations;
+using StackingEntities.Model.BlockEntities;
+using StackingEntities.Model.BlockEntities.BaseClasses;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
@@ -16,40 +18,45 @@ using StackingEntities.Model.Objects;
 namespace StackingEntities.Desktop.Model
 {
 	[Serializable]
-	public class DataModel: INotifyPropertyChanged
+	public class DataModel : INotifyPropertyChanged
 	{
 		public ObservableCollection<EntityBase> Entities { get; } = new ObservableCollection<EntityBase>();
 
 		#region Static
 
-		public static Item GiveItem { get; set; } = new Item {Count = null, Damage = null, GenIdTag = false};
-		public static int GiveCount { get; set; } = 1;
-		public static int GiveDV { get; set; }
-		public static string GiveTarget { get; set; } = "@p";
+		public Item GiveItem { get; set; } = new Item { Count = null, Damage = null, GenIdTag = false };
+		public int GiveCount { get; set; } = 1;
+		public int GiveDv { get; set; }
+		public string GiveTarget { get; set; } = "@p";
 
-		public static TextCommandType TextCommandType { get; set; }
-		public static string TellRawTarget { get; set; } = "@a";
-		public static JsonTextElement TellrawText { get; } = new JsonTextElement();
+		public TextCommandType TextCommandType { get; set; }
+		public string TellRawTarget { get; set; } = "@a";
+		public JsonTextElement TellrawText { get; } = new JsonTextElement();
 
+		private BlockEntityBase _blockDataModel = new Banner();
+
+		public BlockEntityBase BlockDataModel { get { return _blockDataModel; } set { _blockDataModel = value; PropChanged("BlockDataModel"); } }
+
+		public string BlockDataX { get; set; } = "~";
+		public string BlockDataY { get; set; } = "~";
+		public string BlockDataZ { get; set; } = "~";
 		#endregion
 
 
 		[field: NonSerialized]
 		public string SavePath;
 
-		private string _x="~", _y="~", _z="~";
-		
+		private string _x = "~", _y = "~", _z = "~";
+
 
 		public string X
 		{
 			get { return _x; }
-			set 
+			set
 			{
-				if (_x == null || !_x.Equals(value))
-				{
-					_x = value;
-					PropChanged("X");
-				}
+				if (_x != null && _x.Equals(value)) return;
+				_x = value;
+				PropChanged("X");
 			}
 		}
 		public string Y
@@ -75,7 +82,7 @@ namespace StackingEntities.Desktop.Model
 
 		#region Property Changed
 
-		[field:NonSerialized]
+		[field: NonSerialized]
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		[NotifyPropertyChangedInvocator]
@@ -159,18 +166,18 @@ namespace StackingEntities.Desktop.Model
 			return m;
 		}
 
-		public static string GenerateGive()
+		public string GenerateGive()
 		{
 			var b = new StringBuilder();
 
 			b.AppendFormat("/give {0} {1} {2} {3} ", GiveTarget.EscapeJsonString(),
-				GiveItem.Id.EscapeJsonString(), GiveCount, GiveDV);
+				GiveItem.Id.EscapeJsonString(), GiveCount, GiveDv);
 
 			var b2 = new StringBuilder();
 
 			foreach (var jsonAble in GiveItem.Tag)
 			{
-			b2.Append(jsonAble.GenerateJson(true));
+				b2.Append(jsonAble.GenerateJson(true));
 			}
 			if (b2.Length > 0 && b2[b2.Length - 1] == ',')
 				b2.Remove(b2.Length - 1, 1);
@@ -182,7 +189,7 @@ namespace StackingEntities.Desktop.Model
 			return s;
 		}
 
-		public static string GenerateJson()
+		public string GenerateJsonText()
 		{
 			var b = new StringBuilder("/");
 
@@ -202,6 +209,19 @@ namespace StackingEntities.Desktop.Model
 			b.Append(TellrawText.GenerateJson(false));
 
 			return b.ToString();
+		}
+
+		public string GenerateBlockdata()
+		{
+			var generateJson = BlockDataModel.GenerateJson(false);
+			if (generateJson.Length == 1) generateJson = string.Empty;
+			else
+			{
+				generateJson = generateJson.Remove(generateJson.Length - 1, 1);
+				generateJson += "}";
+			}
+
+			return string.Format("/blockdata {0} {1} {2} {3}", BlockDataX, BlockDataY, BlockDataZ, generateJson);
 		}
 	}
 }

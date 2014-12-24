@@ -17,7 +17,6 @@
 	ResizeMode="CanResize" WindowStartupLocation="CenterScreen" Icon="/StackingEntities;component/CommandBlock.ico" SnapsToDevicePixels="True"
 	DataContextChanged="MainWindow_OnDataContextChanged" Closing="MainWindow_OnClosing">
 	<Window.Resources>
-		<converters:EnumVisibilityConverter x:Key="EnumVisibilityConverter"/>
 		<DropShadowEffect x:Key="Blur" ShadowDepth="0" BlurRadius="5" RenderingBias="Quality"/>
 		<converters:EnumDescriptionConverter x:Key="enumDesc"/>
 		<DataTemplate DataType="{x:Type entities:EntityBase}">
@@ -184,7 +183,7 @@
 						<ContentPresenter x:Name="OptionsPresenter">
 							<ContentPresenter.ContentTemplate>
 								<DataTemplate>
-									<controls:EntityDisplayControl/>
+									<controls:OptionsDisplayControl/>
 								</DataTemplate>
 							</ContentPresenter.ContentTemplate>
 						</ContentPresenter>
@@ -228,7 +227,7 @@
 						<xctk:IntegerUpDown Grid.Column="3" Value="{Binding GiveCount}" Minimum="1" Maximum="64" Margin="3"/>
 
 						<Label Grid.Column="4" Content="Data Value"/>
-						<xctk:IntegerUpDown Grid.Column="5" Value="{Binding GiveDV}" Minimum="0" Maximum="32767"  Margin="3"/>
+						<xctk:IntegerUpDown Grid.Column="5" Value="{Binding GiveDv}" Minimum="0" Maximum="32767"  Margin="3"/>
 					</Grid>
 					<ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" >
 						<!--<controls:ItemControl Margin="0,0,0,25" MaxWidth="{x:Static system:Double.MaxValue}"/>-->
@@ -243,9 +242,7 @@
 						</Grid.ColumnDefinitions>
 
 						<Button Grid.Column="0" Content="{x:Static Properties:Resources.MainWindow_GenerateSummon}" Margin="5" Click="GiveGenBtn_Click"/>
-						<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" >
-							<TextBlock x:Name="GiveTextBlock" Margin="5" Text="/give @p ..." VerticalAlignment="Center" FontFamily="Courier New" TextWrapping="Wrap"/>
-						</ScrollViewer>
+						<TextBox Grid.Column="1" x:Name="GiveTextBlock"  Background="Transparent" BorderThickness="0" Text="/give ..." IsReadOnly="True" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontFamily="Courier New" VerticalScrollBarVisibility="Auto" MaxHeight="150" />
 
 						<Button Grid.Column="2" Content="Copy" Margin="5" Click="GiveCopyBtn_Click" />
 					</Grid>
@@ -253,7 +250,70 @@
 
 			</TabItem>
 
-			<TabItem Header="Blockdata" IsEnabled="False"/>
+			<TabItem Header="Blockdata">
+								<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="Auto" MaxHeight="150"/>
+					</Grid.RowDefinitions>
+
+					<GroupBox Header="{x:Static Properties:Resources.BlockDataOptions_Header}" Grid.Row="0">
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+
+							<Label Content="X"/>
+							<TextBox Grid.Row="0" Grid.Column="1" Margin="3" Text="{Binding BlockDataX}"/>
+
+							<Label Grid.Row="0" Grid.Column="2" Content="Y"/>
+							<TextBox Grid.Row="0" Grid.Column="3"  Margin="3" Text="{Binding BlockDataY}"/>
+
+							<Label Grid.Row="0" Grid.Column="4" Content="Z"/>
+							<TextBox Grid.Row="0" Grid.Column="5" Margin="3" Text="{Binding BlockDataZ}"/>
+							
+							<ComboBox x:Name="BlockEntityTypeComboBox" Margin="3" SelectedIndex="0" Grid.Row="1" Grid.ColumnSpan="6" Grid.Column="0"
+							    ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:BlockEntityType}}}"
+								DisplayMemberPath="Description"
+								SelectedValuePath="Value"
+								VerticalAlignment="Center" SelectionChanged="BlockEntityTypeComboBox_SelectionChanged"/>
+						</Grid>
+					</GroupBox>
+
+					<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" >
+						<ContentPresenter x:Name="BlockdataOptionsPresenter" Content="{Binding BlockDataModel}">
+							<ContentPresenter.ContentTemplate>
+								<DataTemplate>
+									<controls:OptionsDisplayControl/>
+								</DataTemplate>
+							</ContentPresenter.ContentTemplate>
+						</ContentPresenter>
+					</ScrollViewer>
+
+					<Grid Grid.Row="2">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="Auto"/>
+						</Grid.ColumnDefinitions>
+
+						<Button Content="{x:Static Properties:Resources.MainWindow_GenerateSummon}" Margin="5" Click="BlokdataGenerateButton_Clicked" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+						<TextBox Grid.Column="1" x:Name="BlockdataCommandOutputTxtBx" Background="Transparent" BorderThickness="0" Text="/blockdata ..." IsReadOnly="True" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontFamily="Courier New" VerticalScrollBarVisibility="Auto" MaxHeight="150" />
+						<Button Grid.Column="2" Content="{x:Static Properties:Resources.MainWindow_Copy}" Margin="5" Click="BlockdataCopyButton_Clicked" VerticalAlignment="Center" HorizontalAlignment="Right" />
+					</Grid>
+				</Grid>
+
+			</TabItem>
 
 			<TabItem Header="JSON Text">
 				<Grid>
@@ -292,10 +352,8 @@
 								<ColumnDefinition Width="Auto"/>
 							</Grid.ColumnDefinitions>
 
-							<Button Grid.Column="0" Content="{x:Static Properties:Resources.MainWindow_GenerateSummon}" Margin="5" Click="JsonGenBtn_Click"/>
-							<ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" >
-								<TextBlock x:Name="JsonTextBlock" Margin="5" Text="/tellraw @p ..." VerticalAlignment="Center" FontFamily="Courier New" TextWrapping="Wrap"/>
-							</ScrollViewer>
+						<Button Grid.Column="0" Content="{x:Static Properties:Resources.MainWindow_GenerateSummon}" Margin="5" Click="JsonGenBtn_Click"/>
+						<TextBox Grid.Column="1" x:Name="JsonTextBlock" Text="/tellraw ..."  Background="Transparent" BorderThickness="0" IsReadOnly="True" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontFamily="Courier New" VerticalScrollBarVisibility="Auto" MaxHeight="150" />
 
 							<Button Grid.Column="2" Content="Copy" Margin="5" Click="JsonCopyBtn_Click" />
 						</Grid>

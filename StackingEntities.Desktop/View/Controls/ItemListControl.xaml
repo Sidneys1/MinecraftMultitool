@@ -4,11 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Margin="15,0,0,0"
              mc:Ignorable="d" d:DesignHeight="300" d:DesignWidth="300">
-	<UserControl.Resources>
-		<ControlTemplate x:Key="itemControltemplate">
-			<ItemsPresenter/>
-		</ControlTemplate>
-	</UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>

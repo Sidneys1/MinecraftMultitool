@@ -2,39 +2,37 @@ using System;
 using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Enums;
-using StackingEntities.Model.Items;
-using StackingEntities.Model.Items.ItemTags;
 using StackingEntities.Model.Metadata;
 using StackingEntities.Model.SimpleTypes;
 
-namespace StackingEntities.Model.Entities.Other
+namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
 	[Serializable]
-	internal class ArmorStand : EntityBase
+	internal class ArmorStand : MobBase
 	{
-		public ArmorStand()
+		public ArmorStand() : base(2)
 		{
 			Type = EntityType.ArmorStand;
 
-			Holding.Tag.Add(new ItemTagsMap());
-			Holding.Tag.Add(new ItemTagsGeneral());
-			Holding.Tag.Add(new ItemTagsFireworkStar());
-			Holding.Tag.Add(new ItemTagsDisplay());
-			Holding.Tag.Add(new ItemTagsEnchantments());
-			Holding.Tag.Add(new ItemTagsBook());
-			Holding.Tag.Add(new ItemTagsBlock());
+			//Holding.Tag.Add(new ItemTagsMap());
+			//Holding.Tag.Add(new ItemTagsGeneral());
+			//Holding.Tag.Add(new ItemTagsFireworkStar());
+			//Holding.Tag.Add(new ItemTagsDisplay());
+			//Holding.Tag.Add(new ItemTagsEnchantments());
+			//Holding.Tag.Add(new ItemTagsBook());
+			//Holding.Tag.Add(new ItemTagsBlock());
 
-			Leggings.Tag.Add(new ItemTagsDisplay());
-			Leggings.Tag.Add(new ItemTagsEnchantments());
+			//Leggings.Tag.Add(new ItemTagsDisplay());
+			//Leggings.Tag.Add(new ItemTagsEnchantments());
 
-			Boots.Tag.Add(new ItemTagsDisplay());
-			Boots.Tag.Add(new ItemTagsEnchantments());
+			//Boots.Tag.Add(new ItemTagsDisplay());
+			//Boots.Tag.Add(new ItemTagsEnchantments());
 
-			Chestplate.Tag.Add(new ItemTagsDisplay());
-			Chestplate.Tag.Add(new ItemTagsEnchantments());
+			//Chestplate.Tag.Add(new ItemTagsDisplay());
+			//Chestplate.Tag.Add(new ItemTagsEnchantments());
 
-			Helmet.Tag.Add(new ItemTagsDisplay());
-			Helmet.Tag.Add(new ItemTagsEnchantments());
+			//Helmet.Tag.Add(new ItemTagsDisplay());
+			//Helmet.Tag.Add(new ItemTagsEnchantments());
 		}
 
 		#region Pose
@@ -76,20 +74,20 @@ namespace StackingEntities.Model.Entities.Other
 		[EntityDescriptor("Disabled Slots", "Head")]
 		public DisabledSlots HeadDisabledSlots { get; set; }
 
-		[EntityDescriptor("Equipment", "Held Item")]
-		public Item Holding { get; set; } = new Item { Id = string.Empty, SlotTitle = "Held Item" };
+		//[EntityDescriptor("Equipment", "Held Item")]
+		//public Item Holding { get; set; } = new Item { Id = string.Empty, SlotTitle = "Held Item" };
 
-		[EntityDescriptor("Equipment", "Boots")]
-		public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Boots" };
+		//[EntityDescriptor("Equipment", "Boots")]
+		//public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Boots" };
 
-		[EntityDescriptor("Equipment", "Leggings")]
-		public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Leggings" };
+		//[EntityDescriptor("Equipment", "Leggings")]
+		//public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Leggings" };
 
-		[EntityDescriptor("Equipment", "Chestplate")]
-		public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Chestplate" };
+		//[EntityDescriptor("Equipment", "Chestplate")]
+		//public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Chestplate" };
 
-		[EntityDescriptor("Equipment", "Helmet")]
-		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Helmet" };
+		//[EntityDescriptor("Equipment", "Helmet")]
+		//public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Helmet" };
 
 		#endregion
 

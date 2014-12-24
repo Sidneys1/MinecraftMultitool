@@ -61,6 +61,15 @@ namespace StackingEntities.Desktop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Blockdata Options.
+        /// </summary>
+        public static string BlockDataOptions_Header {
+            get {
+                return ResourceManager.GetString("BlockDataOptions_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Enter your commands, one per line. We&apos;ll create a MinecartCommandBlock stack for you that will execute in order.
         ///(We recommend adding &quot;kill @e[type=MinecartCommandBlock,r=1]&quot; as your last command..
         /// </summary>

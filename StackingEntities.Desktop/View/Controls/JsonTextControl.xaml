@@ -13,22 +13,7 @@
 	d:DesignHeight="800" d:DesignWidth="400" d:DataContext="{d:DesignInstance objects:JsonTextElement}"
 	DataContextChanged="JsonTextControl_OnDataContextChanged">
 	<UserControl.Resources>
-		<!--<Converters:YesNoInheritConverter x:Key="YesNoInheritConverter"/>-->
 		<Converters:EnumVisibilityConverter x:Key="EnumVisibilityConverter"/>
-		
-		<Style x:Key="YesNoInheritCheckbox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
-			<Style.Triggers>
-				<Trigger Property="IsChecked" Value="True">
-					<Setter Property="Content" Value="Yes"/>
-				</Trigger>
-				<Trigger Property="IsChecked" Value="False">
-					<Setter Property="Content" Value="No"/>
-				</Trigger>
-				<Trigger Property="IsChecked" Value="{x:Null}">
-					<Setter Property="Content" Value="Inherit"/>
-				</Trigger>
-			</Style.Triggers>
-		</Style>
 	</UserControl.Resources>
 	<Expander Header="{Binding Title, TargetNullValue=JSON Text Options}" IsExpanded="False"  IsEnabled="{Binding IsEnabled, ElementName=userControl}">
 		<Grid Margin="15,0,0,0">

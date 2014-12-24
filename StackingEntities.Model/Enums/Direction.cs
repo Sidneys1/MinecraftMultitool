@@ -1,10 +1,17 @@
-﻿namespace StackingEntities.Model.Enums
+﻿using System.ComponentModel;
+
+namespace StackingEntities.Model.Enums
 {
-	internal enum Direction
+	public enum Direction
 	{
-		North = 2,
-		South = 0,
-		East = 3,
-		West = 1
+		Inherit = -1,
+		[Description("North")]
+		north = 2,
+		[Description("South")]
+		south = 0,
+		[Description("East")]
+		east = 3,
+		[Description("West")]
+		west = 1
 	}
 }

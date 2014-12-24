@@ -2,8 +2,10 @@ using System.ComponentModel;
 
 namespace StackingEntities.Model.Enums
 {
-	public enum EffectId
+	public enum PotionEffectId
 	{
+		Inherit=-1,
+		None,
 		Speed,
 		Slowness,
 		Haste,

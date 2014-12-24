@@ -10,7 +10,7 @@ namespace StackingEntities.Model.Objects
 	public class PotionEffect :IJsonAble
 	{
 		[DisplayName(@"Type")]
-		public EffectId Id { get; set; }
+		public PotionEffectId Id { get; set; }
 
 		[DisplayName(@"Level (0=I)")]
 		public byte Amplifier { get; set; }
@@ -23,6 +23,8 @@ namespace StackingEntities.Model.Objects
 
 		[DisplayName(@"Particles")]
 		public bool ShowParticles { get; set; } = true;
+
+		public string Header { get; set; } = null;
 
 		public string GenerateJson(bool topLevel)
 		{

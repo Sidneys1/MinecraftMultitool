@@ -166,4 +166,7 @@
   <data name="MainWindow_Tools" xml:space="preserve">
     <value>Tools</value>
   </data>
+  <data name="BlockDataOptions_Header" xml:space="preserve">
+    <value>Blockdata Options</value>
+  </data>
 </root>

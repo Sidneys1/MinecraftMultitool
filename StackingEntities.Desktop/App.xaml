@@ -51,14 +51,6 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type ToggleButton}">
 						<Border Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True" UseLayoutRounding="True">
-							<!--<ContentPresenter Grid.Column="1" HorizontalAlignment="Left" Margin="4,0,0,0" RecognizesAccessKey="True" SnapsToDevicePixels="True" VerticalAlignment="Center"
-                                                  />-->
-							<!--</Grid>-->
-							<!--<Grid Background="Transparent">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>-->
 							<Image x:Name="icon" RenderOptions.BitmapScalingMode="NearestNeighbor" Margin="2" Cursor="Hand" Source="/StackingEntities.Resources;component/Images/ExpanderClosed.png" Stretch="None" SnapsToDevicePixels="True" UseLayoutRounding="True"/>
 						</Border>
 						<ControlTemplate.Triggers>
@@ -215,6 +207,21 @@
 			<Setter Property="Margin" Value="3"/>
 		</Style>
 
+		<Style x:Key="YesNoInheritCheckbox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+			<Style.Triggers>
+				<Trigger Property="IsChecked" Value="True">
+					<Setter Property="Content" Value="Yes"/>
+				</Trigger>
+				<Trigger Property="IsChecked" Value="False">
+					<Setter Property="Content" Value="No"/>
+				</Trigger>
+				<Trigger Property="IsChecked" Value="{x:Null}">
+					<Setter Property="Content" Value="Inherit"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+
+
 		<!-- Data Templates -->
 		<DataTemplate DataType="{x:Type items:Item}">
 			<controls:ItemControl/>
@@ -314,7 +321,7 @@
 		</DataTemplate>
 
 		<DataTemplate DataType="{x:Type objects:PotionEffect}">
-			<Expander IsExpanded="False" Header="Potion Effect Options">
+			<Expander IsExpanded="False" Header="{Binding Header, TargetNullValue=Potion Effect Options}">
 				<Grid Margin="15,0,0,0">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto"/>
@@ -329,7 +336,7 @@
 					</Grid.RowDefinitions>
 
 					<Label Content="Type"/>
-					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:EffectId}}}"
+					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:PotionEffectId}}}"
 						  DisplayMemberPath="Description"
 						  SelectedValue="{Binding Id}"
 						  SelectedValuePath="Value"/>
@@ -384,7 +391,7 @@
 					DisplayMemberPath="Description"
 					SelectedValue="{Binding Type}"
 					SelectedValuePath="Value"/>
-				
+
 				<Label Grid.Column="0" Grid.Row="1" Content="Level"/>
 				<xctk:ShortUpDown Grid.Column="1" Grid.Row="1" Margin="3" MinWidth="100" Minimum="1" Value="{Binding Level}"/>
 			</Grid>
@@ -405,16 +412,16 @@
 
 				<Label Content="Name"/>
 				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3"/>
-				
+
 				<Label Grid.Row="1" Grid.Column="0" Content="Type"/>
 				<ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:MapMarker}}}"
 					DisplayMemberPath="Description"
 					SelectedValue="{Binding MType}"
 					SelectedValuePath="Value"/>
-				
+
 				<Label Grid.Column="0" Grid.Row="2" Content="Rotation"/>
 				<xctk:DoubleUpDown Grid.Column="1" Grid.Row="2" Margin="3" MinWidth="100" Minimum="0" Maximum="360" Value="{Binding Rotation}"/>
-				
+
 				<Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto"/>
@@ -431,7 +438,7 @@
 				</Grid>
 			</Grid>
 		</DataTemplate>
-		
+
 		<DataTemplate DataType="{x:Type objects:BlockType}">
 			<Grid HorizontalAlignment="Left">
 				<Grid.ColumnDefinitions>
@@ -443,10 +450,35 @@
 				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3" MinWidth="100"/>
 			</Grid>
 		</DataTemplate>
-		
+
+		<DataTemplate DataType="{x:Type objects:BannerPattern}">
+			<Grid HorizontalAlignment="Left">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+
+				<Label Content="Color"/>
+				<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:Dyes}}}"
+					DisplayMemberPath="Description"
+					SelectedValue="{Binding Color}"
+					SelectedValuePath="Value"/>
+
+				<Label Grid.Column="0" Grid.Row="1" Content="Pattern"/>
+				<ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:BannerPatternId}}}"
+					DisplayMemberPath="Description"
+					SelectedValue="{Binding Pattern}"
+					SelectedValuePath="Value"/>
+			</Grid>
+		</DataTemplate>
+
 		<!-- 
 			TODO: Templates
-				* Place On/Destroy
+				* Spawn Potential
 		-->
 	</Application.Resources>
 </Application>

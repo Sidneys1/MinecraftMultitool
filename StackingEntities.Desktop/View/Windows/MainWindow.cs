@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Microsoft.Win32;
 using StackingEntities.Desktop.Model;
 using StackingEntities.Desktop.ViewModel;
+using StackingEntities.Model.BlockEntities.BaseClasses;
 using StackingEntities.Model.Entities;
 using StackingEntities.Model.Entities.Vehicles;
 using StackingEntities.Model.Enums;
@@ -280,7 +281,7 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void GiveGenBtn_Click(object sender, RoutedEventArgs e)
 		{
-			GiveTextBlock.Text = DataModel.GenerateGive();
+			GiveTextBlock.Text = Model.GenerateGive();
 		}
 
 		private void JsonCopyBtn_Click(object sender, RoutedEventArgs e)
@@ -293,6 +294,41 @@ namespace StackingEntities.Desktop.View.Windows
 			{
 				Trace.WriteLine("Clipboard failed.");
 			}
+		}
+
+		private void JsonGenBtn_Click(object sender, RoutedEventArgs e)
+		{
+			JsonTextBlock.Text = Model.GenerateJsonText();
+		}
+
+		private void BlockdataCopyButton_Clicked(object sender, RoutedEventArgs e)
+		{
+			try
+			{
+				Clipboard.SetText(BlockdataCommandOutputTxtBx.Text, TextDataFormat.Text);
+			}
+			catch (Exception)
+			{
+				Trace.WriteLine("Clipboard failed.");
+			}
+		}
+
+		private void BlokdataGenerateButton_Clicked(object sender, RoutedEventArgs e)
+		{
+			BlockdataCommandOutputTxtBx.Text = Model.GenerateBlockdata();
+		}
+
+		private void BlockEntityTypeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+		{
+			var etype = (BlockEntityType) BlockEntityTypeComboBox.SelectedValue;
+
+			var props = etype.GetType().GetMember(etype.ToString())[0].GetCustomAttributes(typeof(ClassLinkAttribute));
+			var attributes = props as IList<Attribute> ?? props.ToList();
+			var eb = attributes.Cast<ClassLinkAttribute>().FirstOrDefault();
+			if (eb == null) return;
+			Model.BlockDataModel = (BlockEntityBase) Activator.CreateInstance(eb.LinkType);
+			//if (BlockdataOptionsPresenter!= null)
+			//	BlockdataOptionsPresenter.Content = Model.BlockDataModel;
 		}
 
 		#endregion
@@ -356,10 +392,6 @@ namespace StackingEntities.Desktop.View.Windows
 
 		#endregion
 
-		private void JsonGenBtn_Click(object sender, RoutedEventArgs e)
-		{
-			JsonTextBlock.Text = DataModel.GenerateJson();
-		}
-
+		
 	}
 }

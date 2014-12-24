@@ -7,7 +7,7 @@ namespace StackingEntities.Model.Metadata
 	{
 		public readonly string Category, Name, IsEnabledPath, DataGridRowHeaderPath, Description;
 
-		public readonly bool FixedSize;
+		public readonly bool FixedSize, Wide;
 
 		/// <summary>
 		/// 
@@ -18,7 +18,8 @@ namespace StackingEntities.Model.Metadata
 		/// <param name="isEnabledPath">Optional: name of parameter that specifies if this option is enabled</param>
 		/// <param name="fixedSize">Whether or not a List is of a fixed length.</param>
 		/// <param name="dgRowPath">The path to the row header of a List displayed in a GridView</param>
-		public EntityDescriptorAttribute(string category, string name, string desc = null, string isEnabledPath = null, bool fixedSize = false, string dgRowPath = null)
+		/// <param name="wide">Whether to span both the label and control column. (E.g., items with SlotTitle set.)</param>
+		public EntityDescriptorAttribute(string category, string name, string desc = null, string isEnabledPath = null, bool fixedSize = false, string dgRowPath = null, bool wide = false)
 		{
 			Category = category;
 			Name = name;
@@ -26,6 +27,7 @@ namespace StackingEntities.Model.Metadata
 			FixedSize = fixedSize;
 			DataGridRowHeaderPath = dgRowPath;
 			Description = desc;
+			Wide = wide;
 		}
 	}
 }

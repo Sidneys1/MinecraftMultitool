@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using StackingEntities.Desktop.ViewModel;
-using StackingEntities.Model.Entities;
 
 namespace StackingEntities.Desktop.View.Controls
 {
 	/// <summary>
 	/// Interaction logic for EntityDisplayControl.xaml
 	/// </summary>
-	public partial class EntityDisplayControl
+	public partial class OptionsDisplayControl
 	{
 		private static readonly Dictionary<Type, List<Expander>> CachedOptions = new Dictionary<Type, List<Expander>>();
 
-		private EntityBase _eBase;
+		private object _eBase;
 
-		private EntityBase EBase
+		private object EBase
 		{
 			set
 			{
@@ -46,7 +45,7 @@ namespace StackingEntities.Desktop.View.Controls
 			}
 		}
 
-		public EntityDisplayControl()
+		public OptionsDisplayControl()
 		{
 			InitializeComponent();
 
@@ -55,12 +54,12 @@ namespace StackingEntities.Desktop.View.Controls
 
 		private void EntityDisplayControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
-			var newValue = e.NewValue as EntityBase;
+			var newValue = e.NewValue;
 			EBase = newValue;
 			if (newValue == null) EditStackPanel.Children.Clear();
 		}
 
-		private void GenControls(EntityBase ent)
+		private void GenControls(object ent)
 		{
 			EditStackPanel.Children.Clear();
 
@@ -74,11 +73,11 @@ namespace StackingEntities.Desktop.View.Controls
 
 			#region Add Groups
 
-			Type _type = DataContext.GetType();
+			var type = DataContext.GetType();
 			OptionsGenerator.AddGroups(dict).ForEach(o =>
 			{
 				EditStackPanel.Children.Add(o);
-				CachedOptions[_type].Add(o);
+				CachedOptions[type].Add(o);
 			});
 
 			#endregion

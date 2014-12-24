@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using StackingEntities.Model.Entities.DynamicTiles;
 using StackingEntities.Model.Entities.ItemEntities;
+using StackingEntities.Model.Entities.Mobs;
 using StackingEntities.Model.Entities.Mobs.Friendly;
 using StackingEntities.Model.Entities.Mobs.Hostile;
 using StackingEntities.Model.Entities.Other;

@@ -39,7 +39,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockEntities\Banner.cs" />
+    <Compile Include="BlockEntities\BaseClasses\BlockEntityBase.cs" />
+    <Compile Include="BlockEntities\BaseClasses\LockedContainerBase.cs" />
+    <Compile Include="BlockEntities\BaseClasses\NamedContainerBase.cs" />
+    <Compile Include="BlockEntities\Beacon.cs" />
+    <Compile Include="BlockEntities\Cauldron.cs" />
+    <Compile Include="BlockEntities\Chest.cs" />
+    <Compile Include="BlockEntities\Control.cs" />
+    <Compile Include="BlockEntities\Dropper.cs" />
+    <Compile Include="BlockEntities\FlowerPot.cs" />
+    <Compile Include="BlockEntities\Furnace.cs" />
+    <Compile Include="BlockEntities\Head.cs" />
+    <Compile Include="BlockEntities\Hopper.cs" />
+    <Compile Include="BlockEntities\Music.cs" />
+    <Compile Include="BlockEntities\RecordPlayer.cs" />
+    <Compile Include="BlockEntities\Sign.cs" />
+    <Compile Include="Entities\Mobs\Friendly\ArmorStand.cs" />
     <Compile Include="Enums\AchievementName.cs" />
+    <Compile Include="Enums\BannerPatternId.cs" />
+    <Compile Include="Enums\BlockEntityType.cs" />
     <Compile Include="Enums\BookGeneration.cs" />
     <Compile Include="Enums\EntityType.cs" />
     <Compile Include="Enums\JsonTextClickEvent.cs" />
@@ -47,6 +66,10 @@
     <Compile Include="Enums\JsonTextColor.cs" />
     <Compile Include="Enums\JsonTextType.cs" />
     <Compile Include="Enums\MapMarker.cs" />
+    <Compile Include="Enums\Note.cs" />
+    <Compile Include="Enums\SignRotation.cs" />
+    <Compile Include="Enums\SkullType.cs" />
+    <Compile Include="Objects\BannerPattern.cs" />
     <Compile Include="Objects\JsonTextElement.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Entities\DynamicTiles\FallingSand.cs" />
@@ -90,7 +113,6 @@
     <Compile Include="Entities\Mobs\Hostile\Zombie.cs" />
     <Compile Include="Entities\Mobs\MobBase.cs" />
     <Compile Include="Entities\Mobs\TameableMobBase.cs" />
-    <Compile Include="Entities\Other\ArmorStand.cs" />
     <Compile Include="Entities\Other\EnderCrystal.cs" />
     <Compile Include="Entities\Other\EyeOfEnder.cs" />
     <Compile Include="Entities\Other\FireworkRocketEntity.cs" />
@@ -125,7 +147,7 @@
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Enums\DisabledSlots.cs" />
     <Compile Include="Enums\Dyes.cs" />
-    <Compile Include="Enums\EffectId.cs" />
+    <Compile Include="Enums\PotionEffectId.cs" />
     <Compile Include="Enums\EnchantmentId.cs" />
     <Compile Include="Enums\HorseColors.cs" />
     <Compile Include="Enums\HorseMarkings.cs" />
@@ -164,6 +186,7 @@
     <Compile Include="Objects\VillagerRecipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleTypes\SimpleDouble.cs" />
+    <Compile Include="SimpleTypes\SimpleInt.cs" />
     <Compile Include="SimpleTypes\SimpleString.cs" />
     <Compile Include="SimpleTypes\ValueDescription.cs" />
   </ItemGroup>
@@ -173,6 +196,7 @@
       <Name>StackingEntities.Resources</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

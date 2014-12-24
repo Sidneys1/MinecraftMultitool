@@ -17,17 +17,19 @@ using StackingEntities.Model.Metadata;
 using StackingEntities.Model.Objects;
 using Xceed.Wpf.Toolkit;
 using Attribute = StackingEntities.Model.Objects.Attribute;
+using DisplayOptionList = System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<StackingEntities.Desktop.ViewModel.DisplayOption>>;
+using CacheTypeList = System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<StackingEntities.Desktop.ViewModel.DisplayOption>>>;
 
 namespace StackingEntities.Desktop.View
 {
 	public class OptionsGenerator
 	{
-		public static List<Expander> AddGroups(IDictionary<string, List<DisplayOption>> dict, bool wide = false)
+		public static List<Expander> AddGroups(DisplayOptionList dict, bool wide = false)
 		{
 			return dict.Keys.Select(key => AddGroup(key, dict, wide)).ToList();
 		}
 
-		public static Expander AddGroup(string header, IDictionary<string, List<DisplayOption>> dict, bool wide = false)
+		public static Expander AddGroup(string header, DisplayOptionList dict, bool wide = false)
 		{
 			var g = new Expander { Header = header };
 
@@ -46,7 +48,7 @@ namespace StackingEntities.Desktop.View
 			{
 				grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(0, GridUnitType.Auto) });
 
-				FrameworkElement elem = new Label();
+				FrameworkElement elem;
 
 				#region Bool
 
@@ -55,11 +57,16 @@ namespace StackingEntities.Desktop.View
 					elem = ExtractBool(option);
 				}
 
+				else if (option.PropertyType == typeof(bool?))
+				{
+					elem = ExtractNullableBool(option);
+				}
+
 				#endregion
 
 				#region Int
 
-				else if (option.PropertyType == typeof(int))
+				else if (option.PropertyType == typeof(int) || option.PropertyType == typeof(int?))
 				{
 					elem = ExtractInt(option);
 				}
@@ -111,6 +118,11 @@ namespace StackingEntities.Desktop.View
 
 				#endregion
 
+				else
+				{
+					elem = ExtractGeneric(option);
+				}
+
 				if (elem.GetValue(Grid.ColumnSpanProperty)?.Equals(1) ?? true)
 				{
 					var l = new Label { Content = option.ReadableName, ToolTip = option.Description };
@@ -141,6 +153,24 @@ namespace StackingEntities.Desktop.View
 
 		}
 
+		private static FrameworkElement ExtractNullableBool(DisplayOption option)
+		{
+			var ctrl = new CheckBox {IsThreeState = true, Style = (Style)Application.Current.Resources["YesNoInheritCheckbox"] };
+			ctrl.SetBinding(ToggleButton.IsCheckedProperty, new Binding(option.PropertyName));
+			return ctrl;
+		}
+
+
+		private static FrameworkElement ExtractGeneric(DisplayOption option)
+		{
+			var ctrl = new ContentPresenter { Margin = new Thickness(3)};
+			ctrl.SetBinding(ContentPresenter.ContentProperty, new Binding(option.PropertyName));
+			if (option.Wide)
+				ctrl.SetValue(Grid.ColumnSpanProperty, 2);
+
+			return ctrl;
+		}
+
 		private static FrameworkElement ExtractList(DisplayOption option)
 		{
 			var drop = new Expander { Margin = new Thickness(5), Header = option.ReadableName };
@@ -157,6 +187,7 @@ namespace StackingEntities.Desktop.View
 				|| listType == typeof(Enchantment)
 				|| listType == typeof(MapDecoration)
 				|| listType == typeof(BlockType)
+				|| listType == typeof(BannerPattern)
 				|| listType == typeof(JsonTextElement))
 			{
 				if (!option.FixedSize || (option.Minimum == null || option.Maximum == null))
@@ -226,6 +257,8 @@ namespace StackingEntities.Desktop.View
 		{
 			var ctrl = new ItemControl { Margin = new Thickness(3) };
 			ctrl.SetBinding(FrameworkElement.DataContextProperty, new Binding(option.PropertyName));
+			if (option.Wide)
+				ctrl.SetValue(Grid.ColumnSpanProperty, 2);
 			return ctrl;
 		}
 
@@ -314,8 +347,8 @@ namespace StackingEntities.Desktop.View
 			return ctrl;
 		}
 
-		private static readonly Dictionary<Type, Dictionary<string, List<DisplayOption>>> _cachedTypes = new Dictionary<Type, Dictionary<string, List<DisplayOption>>>(); 
-		public static void ExtractOptions([NotNull] object ent, Dictionary<string, List<DisplayOption>> dict)
+		private static readonly CacheTypeList _cachedTypes = new CacheTypeList(); 
+		public static void ExtractOptions([NotNull] object ent, DisplayOptionList dict)
 		{
 			if (ent == null) throw new ArgumentNullException("ent");
 
@@ -352,7 +385,7 @@ namespace StackingEntities.Desktop.View
 					max = att.Maximum;
 				}
 
-				var displayOption = new DisplayOption(prop.Name, info.Name, info.PropertyType, prop.Description, min, max, multiline, prop.IsEnabledPath, prop.FixedSize, prop.DataGridRowHeaderPath);
+				var displayOption = new DisplayOption(prop.Name, info.Name, info.PropertyType, prop.Description, min, max, multiline, prop.IsEnabledPath, prop.FixedSize, prop.DataGridRowHeaderPath, prop.Wide);
 
 				_cachedTypes[eType][prop.Category].Insert(0, displayOption);
 				dict[prop.Category].Insert(0, displayOption);

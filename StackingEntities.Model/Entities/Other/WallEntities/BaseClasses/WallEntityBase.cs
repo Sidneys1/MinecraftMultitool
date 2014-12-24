@@ -28,7 +28,7 @@ namespace StackingEntities.Model.Entities.Other.WallEntities.BaseClasses
 			b.Append(string.Format("TileY:{0},", TileY));
 			b.Append(string.Format("TileZ:{0},", TileZ));
 
-			if(Direction != Direction.South)
+			if(Direction != Direction.south)
 				b.Append(string.Format("Direction:{0},", (int)Direction));
 
 			return b.ToString();
