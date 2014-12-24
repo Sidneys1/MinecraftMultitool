@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="StackingEntities.exe" version="0.3.0.2" publicKeyToken="323fafff5dba9699" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="CommandBlock.ico" asmv2:publisher="Borne Programming" asmv2:product="Stacking Entities" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="StackingEntities" version="0.1.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="StackingEntities.exe" parameters="" />
+  </entryPoint>
+  <co.v1:useManifestForTrust xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+            If you want to change the Windows User Account Control level replace the 
+            requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel node will disable file and registry virtualization.
+            If you want to utilize File and Registry Virtualization for backward 
+            compatibility then delete the requestedExecutionLevel node.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="StackingEntities.exe" size="291728">
+      <assemblyIdentity name="StackingEntities" version="0.1.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>EVx244r8jtrLZbSVt27Ho7eLu/esVJNBkGQvZsBzePg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="StackingEntities.Data.dll" size="141824">
+      <assemblyIdentity name="StackingEntities.Data" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>yJc6eM+xZYZpT2K6FeZd4XUGgGTcpea6BCUyK+7lvZ8=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="StackingEntities.Resources.dll" size="664064">
+      <assemblyIdentity name="StackingEntities.Resources" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>RhC8Sh+Wow205zHwF6XeD/qO3fASl8gpLREvsyrylTU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Xceed.Wpf.Toolkit.dll" size="900608">
+      <assemblyIdentity name="Xceed.Wpf.Toolkit" version="2.0.0.0" publicKeyToken="3E4669D2F30244F4" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Nj27IMEG8mHe7xQ1xNUsy+1wLsdBDw3l2usFhdEY9YQ=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="CommandBlock.ico" size="90022">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>sItKIyZ0eMoAj9TTkb/vFsHn5TRwl8nLYHDLvbaZn7A=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="StackingEntities.exe.config" size="186">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>E5pe1Moh3SVgq+7c6PIBn640UkkP2CXKbE7OhyMoiNs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <fileAssociation extension=".sep" description="StackingEntities Project" progid="bpsap" defaultIcon="CommandBlock.ico" xmlns="urn:schemas-microsoft-com:clickonce.v1" />
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of all Windows versions that this application is designed to work with. 
+      Windows will automatically select the most compatible environment.-->
+      <!-- If your application is designed to work with Windows Vista, uncomment the following supportedOS node-->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}"></supportedOS>-->
+      <!-- If your application is designed to work with Windows 7, uncomment the following supportedOS node-->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}"/>-->
+      <!-- If your application is designed to work with Windows 8, uncomment the following supportedOS node-->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}"></supportedOS>-->
+      <!-- If your application is designed to work with Windows 8.1, uncomment the following supportedOS node-->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}"/>-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=EDI\Sid" issuerKeyHash="11988ad33b8e9091ba01c563144201929a65fb79" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>rEeA7iWI53eVtPLqhcDdv+THCyGDwdiX/1iZiVeDR8c=</DigestValue></Reference></SignedInfo><SignatureValue>THRapEoit9zpF6yn4pMFZfY7oqg/F+GXC1ONEmNq8aTSLJwUYxl59nVOGSSEp3xTELCq3V7II3u53h1mpl6iVH3820dnGdqXMm7n7gGV4/DEerKOHu+1to9pmsVd9QbD42W+slJfiw3yMma6RYDzaJPJiaSgm9Xz5HVDU4+46zU=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>sJNPVmpqjhxOfg2d9lo63Pfb0HnrNa3Er+HQeYtN82eCNIbh6gYEkQFuM3YlwJ4/thYW+NhC+7xf8m4nkR2LHpEOYUNgyurhnT2UxoYTZ1Gq4/oQ0VUdZ9rmKjIRXMlSgR9e8G/P05ZDr9K/syf3JbeUAfy0U9scBPk2elqMl8s=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="c7478357899958ff97d8c183210bc7e4bfddc085eaf2b49577e78825ee8047ac" Description="" Url=""><as:assemblyIdentity name="StackingEntities.exe" version="0.3.0.2" publicKeyToken="323fafff5dba9699" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=EDI\Sid</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>YSD5IMnP4HNqwKJwXf54f0hyaaWh21hqkfeShY9U4IM=</DigestValue></Reference></SignedInfo><SignatureValue>mHshjc+a3I/6oEyfe++gnJB+0XbzROyibReCymGT3R8b89hO4Ff9rFUHweiBd6cuwwsP0m6cbibFakoqJ/itfNff0ETNkPPbfRH6FLTYL3UauyqHNx8LcTgWZh8ksBLADkLfbgYu2+Rq4SDQKeOFp9Eqp+O3FEAhqdnsDkk0sfk=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>sJNPVmpqjhxOfg2d9lo63Pfb0HnrNa3Er+HQeYtN82eCNIbh6gYEkQFuM3YlwJ4/thYW+NhC+7xf8m4nkR2LHpEOYUNgyurhnT2UxoYTZ1Gq4/oQ0VUdZ9rmKjIRXMlSgR9e8G/P05ZDr9K/syf3JbeUAfy0U9scBPk2elqMl8s=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBtTCCAR6gAwIBAgIQZO9IkEokZZNOBdae4iCFPjANBgkqhkiG9w0BAQsFADAZMRcwFQYDVQQDHg4ARQBEAEkAXABTAGkAZDAeFw0xNDA4MTEyMzA2NDBaFw0xNTA4MTIwNTA2NDBaMBkxFzAVBgNVBAMeDgBFAEQASQBcAFMAaQBkMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCwk09WamqOHE5+DZ32Wjrc99vQees1rcSv4dB5i03zZ4I0huHqBgSRAW4zdiXAnj+2Fhb42EL7vF/ybieRHYsekQ5hQ2DK6uGdPZTGhhNnUarj+hDRVR1n2uYqMhFcyVKBH17wb8/TlkOv0r+zJ/clt5QB/LRT2xwE+TZ6WoyXywIDAQABMA0GCSqGSIb3DQEBCwUAA4GBADWO/Ww0E/C/Gm/qjym2XKOJJHeqpe0tsYSttjQJ5CzcPFdO/890J7MFET7aFoO5ZG2bgj09h7dEQFTluM6MIxgllU9Hb+KEQxtfPD9z+5XCV51VrqDcmqpqQ3N/jX78JwXgkEIKDNsRMVAFYYrOj2EhQajQL08qbkG4cOiRTB5g</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

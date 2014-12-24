@@ -6,3 +6,4 @@ StackingEntities.sln.ide/
 packages/
 *.suo
 StackingEntities.sln
+*.psess
