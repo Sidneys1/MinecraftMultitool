@@ -1,5 +1,6 @@
-StackingEntities
+Minecraft Multitool
 ================
+Formerly `StackingEntities`
 
 A Summon Command Generator for Minecraft. That's about it now, I'm no wordsmith.
 
