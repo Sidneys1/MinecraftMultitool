@@ -1,8 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using PropertyInfoList = System.Collections.Generic.List<System.Reflection.PropertyInfo>;
 
 namespace StackingEntities.Desktop.View
 {
@@ -33,9 +33,9 @@ namespace StackingEntities.Desktop.View
 			return null;
 		}
 
-		public static IEnumerable<PropertyInfo> GetPropertiesSorted(this Type type)
+		public static PropertyInfoList GetPropertiesSorted(this Type type)
 		{
-			var properties = new List<PropertyInfo>();
+			var properties = new PropertyInfoList();
 			while (type != null)
 			{
 				properties.AddRange(type.GetProperties(BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance));

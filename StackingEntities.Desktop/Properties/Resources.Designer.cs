@@ -197,6 +197,24 @@ namespace StackingEntities.Desktop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string MainWindow_View {
+            get {
+                return ResourceManager.GetString("MainWindow_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switch Visual Style.
+        /// </summary>
+        public static string MainWindow_View_SwitchStyle {
+            get {
+                return ResourceManager.GetString("MainWindow_View_SwitchStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stacked Entities.
         /// </summary>
         public static string StackedEntities_Header {

@@ -1,10 +1,9 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
-using StackingEntities.Model.Objects;
+using BlockTypeList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.BlockType>;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
@@ -15,7 +14,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		public bool Unbreakable { get; set; }
 
 		[EntityDescriptor("General", "Can Destroy")]
-		public ObservableCollection<BlockType> CanDestroy { get; set; } = new ObservableCollection<BlockType>();
+		public BlockTypeList CanDestroy { get; set; } = new BlockTypeList();
 
 		public string GenerateJson(bool topLevel = true)
 		{

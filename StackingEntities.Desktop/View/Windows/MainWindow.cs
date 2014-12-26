@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Markup;
 using Microsoft.Win32;
 using StackingEntities.Desktop.Model;
 using StackingEntities.Desktop.ViewModel;
@@ -51,7 +52,7 @@ namespace StackingEntities.Desktop.View.Windows
 			if (args.Length == 2)
 			{
 				if (File.Exists(args[1]))
-					
+
 				{
 					DataModel m = null;
 					var success = true;
@@ -181,7 +182,7 @@ namespace StackingEntities.Desktop.View.Windows
 			EntitiesListBox.SelectedIndex = -1;
 			Model.Entities.Remove(ent);
 
-			if ((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift) 
+			if ((Keyboard.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift)
 			{
 				Model.Entities.Insert(0, ent);
 				EntitiesListBox.SelectedIndex = 0;
@@ -320,13 +321,13 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void BlockEntityTypeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
 		{
-			var etype = (BlockEntityType) BlockEntityTypeComboBox.SelectedValue;
+			var etype = (BlockEntityType)BlockEntityTypeComboBox.SelectedValue;
 
 			var props = etype.GetType().GetMember(etype.ToString())[0].GetCustomAttributes(typeof(ClassLinkAttribute));
 			var attributes = props as IList<Attribute> ?? props.ToList();
 			var eb = attributes.Cast<ClassLinkAttribute>().FirstOrDefault();
 			if (eb == null) return;
-			Model.BlockDataModel = (BlockEntityBase) Activator.CreateInstance(eb.LinkType);
+			Model.BlockDataModel = (BlockEntityBase)Activator.CreateInstance(eb.LinkType);
 			//if (BlockdataOptionsPresenter!= null)
 			//	BlockdataOptionsPresenter.Content = Model.BlockDataModel;
 		}
@@ -344,7 +345,7 @@ namespace StackingEntities.Desktop.View.Windows
 
 		private void CommandExit_Execute(object sender, ExecutedRoutedEventArgs e)
 		{
-			
+
 			Application.Current.Shutdown();
 		}
 
@@ -392,6 +393,23 @@ namespace StackingEntities.Desktop.View.Windows
 
 		#endregion
 
-		
+		private bool _style;
+		private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+		{
+			Application.Current.Resources.MergedDictionaries.Clear();
+			if (_style)
+				Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary()
+				{
+					Source = new Uri("MinecraftStyle.xaml", UriKind.Relative)
+				});
+			else
+			{
+				Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary()
+				{
+					Source = new Uri("DefaultStyle.xaml", UriKind.Relative)
+				});
+			}
+			_style = !_style;
+		}
 	}
 }

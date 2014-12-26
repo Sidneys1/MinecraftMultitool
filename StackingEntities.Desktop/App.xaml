@@ -8,477 +8,295 @@
     xmlns:viewModel="clr-namespace:StackingEntities.Desktop.ViewModel"
 	xmlns:objects="clr-namespace:StackingEntities.Model.Objects;assembly=StackingEntities.Data"
 	xmlns:enums="clr-namespace:StackingEntities.Model.Enums;assembly=StackingEntities.Data"
-	xmlns:simpleTypes="clr-namespace:StackingEntities.Model.SimpleTypes;assembly=StackingEntities.Data"
+	xmlns:simpleTypes="clr-namespace:StackingEntities.Model.Objects.SimpleTypes;assembly=StackingEntities.Data"
 	mc:Ignorable="d" x:Class="StackingEntities.Desktop.App"
     StartupUri="View/Windows/MainWindow.xaml">
 	<Application.Resources>
-		<Style x:Key="Header1Style" TargetType="{x:Type Label}">
-			<Setter Property="FontSize" Value="16"/>
-			<Setter Property="FontFamily" Value="Segoe UI Light"/>
-			<Setter Property="Effect">
-				<Setter.Value>
-					<DropShadowEffect BlurRadius="3" RenderingBias="Quality" ShadowDepth="0" Opacity="0.5"/>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="Header2Style" TargetType="{x:Type Label}">
-			<Setter Property="FontSize" Value="12"/>
-			<Setter Property="FontFamily" Value="Segoe UI"/>
-		</Style>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="MinecraftStyle.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
 
-		<Style TargetType="{x:Type Label}">
-			<Setter Property="FontFamily" Value="/StackingEntities.Resources;component/Fonts/#pixelmix"/>
-			<Setter Property="FontSize" Value="6pt"/>
-			<Setter Property="SnapsToDevicePixels" Value="True"/>
-			<Setter Property="UseLayoutRounding" Value="True"/>
-			<Setter Property="TextOptions.TextRenderingMode" Value="Aliased"/>
-			<Setter Property="VerticalContentAlignment" Value="Center"/>
-		</Style>
+			<Style x:Key="DataGridTextColumnStyle"  TargetType="{x:Type TextBox}">
+				<Setter Property="TextWrapping" Value="Wrap"/>
+				<Setter Property="AcceptsReturn" Value="True"/>
+			</Style>
+			<Style TargetType="{x:Type CheckBox}">
+				<Setter Property="VerticalAlignment" Value="Center"/>
+				<Setter Property="Margin" Value="3"/>
+			</Style>
+			<Style x:Key="YesNoInheritCheckbox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
+				<Style.Triggers>
+					<Trigger Property="IsChecked" Value="True">
+						<Setter Property="Content" Value="Yes"/>
+					</Trigger>
+					<Trigger Property="IsChecked" Value="False">
+						<Setter Property="Content" Value="No"/>
+					</Trigger>
+					<Trigger Property="IsChecked" Value="{x:Null}">
+						<Setter Property="Content" Value="Inherit"/>
+					</Trigger>
+				</Style.Triggers>
+			</Style>
+			
+			<!-- Data Templates -->
+			<DataTemplate DataType="{x:Type items:Item}">
+				<controls:ItemControl/>
+			</DataTemplate>
 
-		<Style x:Key="ExpanderHeaderFocusVisual">
-			<Setter Property="Control.Template">
-				<Setter.Value>
-					<ControlTemplate>
-						<Border>
-							<Rectangle Margin="0" SnapsToDevicePixels="true" Stroke="Black" StrokeThickness="1" StrokeDashArray="1 2"/>
-						</Border>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style x:Key="ExpanderDownHeaderStyle" TargetType="{x:Type ToggleButton}">
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type ToggleButton}">
-						<Border Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True" UseLayoutRounding="True">
-							<Image x:Name="icon" RenderOptions.BitmapScalingMode="NearestNeighbor" Margin="2" Cursor="Hand" Source="/StackingEntities.Resources;component/Images/ExpanderClosed.png" Stretch="None" SnapsToDevicePixels="True" UseLayoutRounding="True"/>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsChecked" Value="true">
-								<Setter Property="Source" TargetName="icon" Value="/StackingEntities.Resources;component/Images/ExpanderOpen.png"/>
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style TargetType="{x:Type Expander}">
-			<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
-			<Setter Property="Background" Value="Transparent"/>
-			<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-			<Setter Property="VerticalContentAlignment" Value="Stretch"/>
-			<Setter Property="BorderBrush" Value="Transparent"/>
-			<Setter Property="BorderThickness" Value="1"/>
-			<Setter Property="HeaderTemplate">
-				<Setter.Value>
-					<DataTemplate>
-						<ContentPresenter TextBlock.FontSize="12pt" TextBlock.FontFamily="/StackingEntities.Resources;component/Fonts/#pixelmix" SnapsToDevicePixels="True" TextOptions.TextRenderingMode="Aliased" Content="{TemplateBinding Content}" VerticalAlignment="Center" UseLayoutRounding="True"/>
-					</DataTemplate>
-				</Setter.Value>
-			</Setter>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type Expander}">
-						<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" CornerRadius="3" SnapsToDevicePixels="true">
-							<DockPanel>
-								<Grid DockPanel.Dock="Top" >
-									<Grid.ColumnDefinitions>
-										<ColumnDefinition Width="Auto"/>
-										<ColumnDefinition Width="*"/>
-									</Grid.ColumnDefinitions>
-									<ToggleButton x:Name="HeaderSite"  ContentTemplate="{TemplateBinding HeaderTemplate}" ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}" Content="{TemplateBinding Header}" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FocusVisualStyle="{StaticResource ExpanderHeaderFocusVisual}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsChecked="{Binding IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" MinWidth="0" MinHeight="0" Padding="{TemplateBinding Padding}" Style="{StaticResource ExpanderDownHeaderStyle}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
-									<Label Grid.Column="1" Content="{TemplateBinding Header}" VerticalAlignment="Center" HorizontalAlignment="Left" FontSize="12pt" TextOptions.TextRenderingMode="Aliased"/>
-								</Grid>
-								<ContentPresenter x:Name="ExpandSite" DockPanel.Dock="Bottom" Focusable="false" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Visibility="Collapsed" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
-							</DockPanel>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsExpanded" Value="true">
-								<Setter Property="Visibility" TargetName="ExpandSite" Value="Visible"/>
-							</Trigger>
-							<Trigger Property="IsEnabled" Value="false">
-								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
+			<DataTemplate DataType="{x:Type objects:Attribute}">
+				<Expander IsExpanded="False" Header="Attribute Options">
+					<Grid Margin="15,0,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
 
-
-		<Style x:Key="FocusVisual">
-			<Setter Property="Control.Template">
-				<Setter.Value>
-					<ControlTemplate>
-						<Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-
-		<SolidColorBrush x:Key="Button.Static.Border" Color="Black"/>
-		<SolidColorBrush x:Key="Button.MouseOver.Border" Color="Black"/>
-		<SolidColorBrush x:Key="Button.Pressed.Border" Color="Black"/>
-		<SolidColorBrush x:Key="Button.Disabled.Border" Color="Black"/>
-		<SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
-		<VisualBrush x:Key="Button.Static.Background" Viewport="0,0,60,60" ViewportUnits="Absolute" TileMode="Tile">
-			<VisualBrush.Visual>
-				<Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities.Resources;component/Images/ButtonBackEnabled.bmp" />
-			</VisualBrush.Visual>
-		</VisualBrush>
-		<VisualBrush x:Key="Button.MouseOver.Background" Viewport="0,0,60,60" ViewportUnits="Absolute" TileMode="Tile">
-			<VisualBrush.Visual>
-				<Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities.Resources;component/Images/ButtonBackHover.bmp" />
-			</VisualBrush.Visual>
-		</VisualBrush>
-		<VisualBrush x:Key="Button.Disabled.Background" Viewport="0,0,60,60" ViewportUnits="Absolute" TileMode="Tile">
-			<VisualBrush.Visual>
-				<Image  RenderOptions.BitmapScalingMode="NearestNeighbor" Source="/StackingEntities.Resources;component/Images/ButtonBackDisabled.bmp" />
-			</VisualBrush.Visual>
-		</VisualBrush>
-		<TransformGroup x:Key="TransformGroup">
-			<ScaleTransform/>
-			<SkewTransform/>
-			<RotateTransform/>
-			<TranslateTransform X="1" Y="1"/>
-		</TransformGroup>
-		<Style TargetType="{x:Type Button}">
-			<Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
-			<Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
-			<Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
-			<Setter Property="Foreground" Value="White"/>
-			<Setter Property="BorderThickness" Value="2"/>
-			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="VerticalContentAlignment" Value="Center"/>
-			<Setter Property="Padding" Value="10,5"/>
-			<Setter Property="FontFamily" Value="/StackingEntities.Resources;component/Fonts/#pixelmix"/>
-			<Setter Property="FontSize" Value="12pt"/>
-			<Setter Property="UseLayoutRounding" Value="True"/>
-			<Setter Property="Cursor" Value="Hand"/>
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type Button}">
-						<Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
-							<Border BorderThickness="2,2,0,0" BorderBrush="#8CFFFFFF">
-								<Border BorderThickness="0,0,2,3" BorderBrush="#8C000000" Margin="-2,-2,0,0">
-									<Grid x:Name="Grid">
-										<TextBlock x:Name="contentPresenterDS" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Text="{TemplateBinding Content}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-											TextOptions.TextRenderingMode="Aliased" Foreground="#C0000000" TextOptions.TextFormattingMode="Display">
-											<TextBlock.RenderTransform>
-												<TranslateTransform X="2" Y="2"/>
-											</TextBlock.RenderTransform>
-										</TextBlock>
-										<TextBlock x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" Text="{TemplateBinding Content}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-											TextOptions.TextRenderingMode="Aliased" TextOptions.TextFormattingMode="Display"/>
-									</Grid>
-								</Border>
-							</Border>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsDefaulted" Value="true">
-								<Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
-							</Trigger>
-							<Trigger Property="IsMouseOver" Value="true">
-								<Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
-								<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
-							</Trigger>
-							<Trigger Property="IsPressed" Value="true">
-								<Setter TargetName="Grid" Property="RenderTransform" Value="{StaticResource TransformGroup}"/>
-								<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
-							</Trigger>
-							<Trigger Property="IsEnabled" Value="false">
-								<Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-								<Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-								<Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-
-		<Style x:Key="DataGridTextColumnStyle"  TargetType="{x:Type TextBox}">
-			<Setter Property="TextWrapping" Value="Wrap"/>
-			<Setter Property="AcceptsReturn" Value="True"/>
-		</Style>
-
-		<Style TargetType="{x:Type CheckBox}">
-			<Setter Property="VerticalAlignment" Value="Center"/>
-			<Setter Property="Margin" Value="3"/>
-		</Style>
-
-		<Style x:Key="YesNoInheritCheckbox" TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
-			<Style.Triggers>
-				<Trigger Property="IsChecked" Value="True">
-					<Setter Property="Content" Value="Yes"/>
-				</Trigger>
-				<Trigger Property="IsChecked" Value="False">
-					<Setter Property="Content" Value="No"/>
-				</Trigger>
-				<Trigger Property="IsChecked" Value="{x:Null}">
-					<Setter Property="Content" Value="Inherit"/>
-				</Trigger>
-			</Style.Triggers>
-		</Style>
-
-
-		<!-- Data Templates -->
-		<DataTemplate DataType="{x:Type items:Item}">
-			<controls:ItemControl/>
-		</DataTemplate>
-
-		<DataTemplate DataType="{x:Type objects:Attribute}">
-			<Expander IsExpanded="False" Header="Attribute Options">
-				<Grid Margin="15,0,0,0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="*"/>
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-					</Grid.RowDefinitions>
-
-					<Label Content="Type"/>
-					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:AttributeType}}}"
+						<Label Content="Type"/>
+						<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:AttributeType}}}"
 						  DisplayMemberPath="Description"
 						  SelectedValue="{Binding Name}"
 						  SelectedValuePath="Value"/>
 
-					<Label Grid.Row="1" Grid.Column="0" Content="Base Value"/>
-					<xctk:DoubleUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Base}" MinWidth="50" HorizontalAlignment="Left"/>
+						<Label Grid.Row="1" Grid.Column="0" Content="Base Value"/>
+						<xctk:DoubleUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Base}" MinWidth="50" HorizontalAlignment="Left"/>
 
-					<Expander Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Header="Modifiers" IsExpanded="False" Margin="15,0,0,0" FontSize="12" DataContext="{Binding Modifiers}">
-						<controls:ItemListControl/>
-					</Expander>
-				</Grid>
-			</Expander>
-		</DataTemplate>
+						<Expander Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Header="Modifiers" IsExpanded="False" Margin="15,0,0,0" FontSize="12" DataContext="{Binding Modifiers}">
+							<controls:ItemListControl/>
+						</Expander>
+					</Grid>
+				</Expander>
+			</DataTemplate>
 
-		<DataTemplate DataType="{x:Type objects:AttributeModifier}">
-			<Expander IsExpanded="False" Header="Attribute Modifier Options">
-				<Grid Margin="15,0,0,0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="*"/>
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-					</Grid.RowDefinitions>
-					<Label Content="Name"/>
-					<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" Margin="3"/>
+			<DataTemplate DataType="{x:Type objects:AttributeModifier}">
+				<Expander IsExpanded="False" Header="Attribute Modifier Options">
+					<Grid Margin="15,0,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<Label Content="Name"/>
+						<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}" Margin="3"/>
 
-					<Label Grid.Row="1" Grid.Column="0" Content="Amount"/>
-					<xctk:DoubleUpDown Grid.Row="1" Grid.Column="1" Value="{Binding Amount}" Margin="3" MinWidth="50" HorizontalAlignment="Left"/>
+						<Label Grid.Row="1" Grid.Column="0" Content="Amount"/>
+						<xctk:DoubleUpDown Grid.Row="1" Grid.Column="1" Value="{Binding Amount}" Margin="3" MinWidth="50" HorizontalAlignment="Left"/>
 
-					<Label Grid.Row="2" Grid.Column="0" Content="Operation"/>
-					<ComboBox Grid.Row="2" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:AttributeModifierOperation}}}"
+						<Label Grid.Row="2" Grid.Column="0" Content="Operation"/>
+						<ComboBox Grid.Row="2" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:AttributeModifierOperation}}}"
 						  DisplayMemberPath="Description"
 						  SelectedValue="{Binding Operation}"
 						  SelectedValuePath="Value"/>
-				</Grid>
-			</Expander>
-		</DataTemplate>
+					</Grid>
+				</Expander>
+			</DataTemplate>
 
-		<DataTemplate DataType="{x:Type objects:VillagerRecipe}">
-			<Expander IsExpanded="False" Header="Villager Trade Options">
-				<Grid Margin="15,0,0,0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="*"/>
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-					</Grid.RowDefinitions>
+			<DataTemplate DataType="{x:Type objects:VillagerRecipe}">
+				<Expander IsExpanded="False" Header="Villager Trade Options">
+					<Grid Margin="15,0,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
 
-					<Label Content="Reward Experience"/>
-					<CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding RewardExp}" Margin="3"/>
+						<Label Content="Reward Experience"/>
+						<CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding RewardExp}" Margin="3"/>
 
-					<Label Grid.Row="1" Grid.Column="0" Content="Maxiumum Uses"/>
-					<xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Value="{Binding MaxUses}" Minimum="0" Margin="3" MinWidth="50" HorizontalAlignment="Left"/>
+						<Label Grid.Row="1" Grid.Column="0" Content="Maxiumum Uses"/>
+						<xctk:IntegerUpDown Grid.Row="1" Grid.Column="1" Value="{Binding MaxUses}" Minimum="0" Margin="3" MinWidth="50" HorizontalAlignment="Left"/>
 
 
-					<Label Grid.Row="2" Grid.Column="0" Content="Current Uses"/>
-					<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Value="{Binding Uses}" Minimum="0" Margin="3" MinWidth="50" HorizontalAlignment="Left"/>
+						<Label Grid.Row="2" Grid.Column="0" Content="Current Uses"/>
+						<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Value="{Binding Uses}" Minimum="0" Margin="3" MinWidth="50" HorizontalAlignment="Left"/>
 
-					<Label Grid.Row="3" Grid.Column="0" Content="Buy Two Items"/>
-					<CheckBox x:Name="CheckBox"  Grid.Row="3" Grid.Column="1" IsChecked="{Binding TwoItems}" Margin="3"/>
+						<Label Grid.Row="3" Grid.Column="0" Content="Buy Two Items"/>
+						<CheckBox x:Name="CheckBox"  Grid.Row="3" Grid.Column="1" IsChecked="{Binding TwoItems}" Margin="3"/>
 
-					<controls:ItemControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{Binding BuyItem}"/>
-					<controls:ItemControl Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" IsEnabled="{Binding IsChecked, ElementName=CheckBox}" DataContext="{Binding BuyItemB}"/>
-					<controls:ItemControl Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{Binding SellItem}"/>
-				</Grid>
-			</Expander>
-		</DataTemplate>
+						<controls:ItemControl Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{Binding BuyItem}"/>
+						<controls:ItemControl Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" IsEnabled="{Binding IsChecked, ElementName=CheckBox}" DataContext="{Binding BuyItemB}"/>
+						<controls:ItemControl Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" DataContext="{Binding SellItem}"/>
+					</Grid>
+				</Expander>
+			</DataTemplate>
 
-		<DataTemplate DataType="{x:Type objects:PotionEffect}">
-			<Expander IsExpanded="False" Header="{Binding Header, TargetNullValue=Potion Effect Options}">
-				<Grid Margin="15,0,0,0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="*"/>
-					</Grid.ColumnDefinitions>
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-					</Grid.RowDefinitions>
+			<DataTemplate DataType="{x:Type objects:PotionEffect}">
+				<Expander IsExpanded="False" Header="{Binding Header, TargetNullValue=Potion Effect Options}">
+					<Grid Margin="15,0,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
 
-					<Label Content="Type"/>
-					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:PotionEffectId}}}"
+						<Label Content="Type"/>
+						<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:PotionEffectId}}}"
 						  DisplayMemberPath="Description"
 						  SelectedValue="{Binding Id}"
 						  SelectedValuePath="Value"/>
 
-					<Label Grid.Row="1" Grid.Column="0" Content="Level" ToolTip="0 = I, 1 = II, 11 = X, etc."/>
-					<xctk:ByteUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Amplifier}" MinWidth="50" HorizontalAlignment="Left" ToolTip="0 = I, 1 = II, 11 = X, etc."/>
+						<Label Grid.Row="1" Grid.Column="0" Content="Level" ToolTip="0 = I, 1 = II, 11 = X, etc."/>
+						<xctk:ByteUpDown Grid.Row="1" Grid.Column="1" Margin="3" Value="{Binding Amplifier}" MinWidth="50" HorizontalAlignment="Left" ToolTip="0 = I, 1 = II, 11 = X, etc."/>
 
-					<Label Grid.Row="2" Grid.Column="0" Content="Duration (Ticks)"/>
-					<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="3" Value="{Binding Duration}" Minimum="0" MinWidth="50" HorizontalAlignment="Left"/>
+						<Label Grid.Row="2" Grid.Column="0" Content="Duration (Ticks)"/>
+						<xctk:IntegerUpDown Grid.Row="2" Grid.Column="1" Margin="3" Value="{Binding Duration}" Minimum="0" MinWidth="50" HorizontalAlignment="Left"/>
 
-					<Label Grid.Row="3" Grid.Column="0" Content="From Beacon"/>
-					<CheckBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Ambient}"/>
+						<Label Grid.Row="3" Grid.Column="0" Content="From Beacon"/>
+						<CheckBox Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding Ambient}"/>
 
-					<Label Grid.Row="4" Grid.Column="0" Content="Show Particles"/>
-					<CheckBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding ShowParticles}"/>
+						<Label Grid.Row="4" Grid.Column="0" Content="Show Particles"/>
+						<CheckBox Grid.Row="4" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" IsChecked="{Binding ShowParticles}"/>
+					</Grid>
+				</Expander>
+			</DataTemplate>
+
+			<DataTemplate DataType="{x:Type objects:BookPage}">
+				<ContentPresenter Content="{Binding Text}"/>
+			</DataTemplate>
+
+			<DataTemplate DataType="{x:Type objects:JsonTextElement}">
+				<controls:JsonTextControl/>
+			</DataTemplate>
+
+			<DataTemplate DataType="{x:Type simpleTypes:SimpleString}">
+				<Grid >
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="*"/>
+					</Grid.ColumnDefinitions>
+					<Label Content="{Binding Name}"/>
+					<TextBox Grid.Column="1" Text="{Binding Value}"/>
 				</Grid>
-			</Expander>
-		</DataTemplate>
+			</DataTemplate>
 
-		<DataTemplate DataType="{x:Type objects:BookPage}">
-			<ContentPresenter Content="{Binding Text}"/>
-		</DataTemplate>
+			<DataTemplate DataType="{x:Type objects:Enchantment}">
+				<Grid HorizontalAlignment="Left">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
 
-		<DataTemplate DataType="{x:Type objects:JsonTextElement}">
-			<controls:JsonTextControl/>
-		</DataTemplate>
-
-		<DataTemplate DataType="{x:Type simpleTypes:SimpleString}">
-			<Grid >
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="*"/>
-				</Grid.ColumnDefinitions>
-				<Label Content="{Binding Name}"/>
-				<TextBox Grid.Column="1" Text="{Binding Value}"/>
-			</Grid>
-		</DataTemplate>
-
-		<DataTemplate DataType="{x:Type objects:Enchantment}">
-			<Grid HorizontalAlignment="Left">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition/>
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition/>
-				</Grid.RowDefinitions>
-
-				<Label Content="Type"/>
-				<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:EnchantmentId}}}"
+					<Label Content="Type"/>
+					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:EnchantmentId}}}"
 					DisplayMemberPath="Description"
 					SelectedValue="{Binding Type}"
 					SelectedValuePath="Value"/>
 
-				<Label Grid.Column="0" Grid.Row="1" Content="Level"/>
-				<xctk:ShortUpDown Grid.Column="1" Grid.Row="1" Margin="3" MinWidth="100" Minimum="1" Value="{Binding Level}"/>
-			</Grid>
-		</DataTemplate>
+					<Label Grid.Column="0" Grid.Row="1" Content="Level"/>
+					<xctk:ShortUpDown Grid.Column="1" Grid.Row="1" Margin="3" MinWidth="100" Minimum="1" Value="{Binding Level}"/>
+				</Grid>
+			</DataTemplate>
 
-		<DataTemplate DataType="{x:Type objects:MapDecoration}">
-			<Grid HorizontalAlignment="Left">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition/>
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
-				</Grid.RowDefinitions>
+			<DataTemplate DataType="{x:Type objects:MapDecoration}">
+				<Grid HorizontalAlignment="Left">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
 
-				<Label Content="Name"/>
-				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3"/>
+					<Label Content="Name"/>
+					<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3"/>
 
-				<Label Grid.Row="1" Grid.Column="0" Content="Type"/>
-				<ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:MapMarker}}}"
+					<Label Grid.Row="1" Grid.Column="0" Content="Type"/>
+					<ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:MapMarker}}}"
 					DisplayMemberPath="Description"
 					SelectedValue="{Binding MType}"
 					SelectedValuePath="Value"/>
 
-				<Label Grid.Column="0" Grid.Row="2" Content="Rotation"/>
-				<xctk:DoubleUpDown Grid.Column="1" Grid.Row="2" Margin="3" MinWidth="100" Minimum="0" Maximum="360" Value="{Binding Rotation}"/>
+					<Label Grid.Column="0" Grid.Row="2" Content="Rotation"/>
+					<xctk:DoubleUpDown Grid.Column="1" Grid.Row="2" Margin="3" MinWidth="100" Minimum="0" Maximum="360" Value="{Binding Rotation}"/>
 
-				<Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+					<Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+							<ColumnDefinition Width="Auto"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<Label Content="Position"/>
+						<Label Grid.Column="1" Content="X"/>
+						<xctk:DoubleUpDown Grid.Column="2" Value="{Binding X}"/>
+						<Label Grid.Column="3" Content="Z"/>
+						<xctk:DoubleUpDown Grid.Column="4" Value="{Binding Z}"/>
+					</Grid>
+				</Grid>
+			</DataTemplate>
+
+			<DataTemplate DataType="{x:Type objects:BlockType}">
+				<Grid HorizontalAlignment="Left">
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition/>
 						<ColumnDefinition Width="Auto"/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
-					<Label Content="Position"/>
-					<Label Grid.Column="1" Content="X"/>
-					<xctk:DoubleUpDown Grid.Column="2" Value="{Binding X}"/>
-					<Label Grid.Column="3" Content="Z"/>
-					<xctk:DoubleUpDown Grid.Column="4" Value="{Binding Z}"/>
+
+					<Label Content="Block ID"/>
+					<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3" MinWidth="100"/>
 				</Grid>
-			</Grid>
-		</DataTemplate>
+			</DataTemplate>
 
-		<DataTemplate DataType="{x:Type objects:BlockType}">
-			<Grid HorizontalAlignment="Left">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition/>
-				</Grid.ColumnDefinitions>
+			<DataTemplate DataType="{x:Type objects:BannerPattern}">
+				<Grid HorizontalAlignment="Left">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
 
-				<Label Content="Block ID"/>
-				<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Id}" Margin="3" MinWidth="100"/>
-			</Grid>
-		</DataTemplate>
-
-		<DataTemplate DataType="{x:Type objects:BannerPattern}">
-			<Grid HorizontalAlignment="Left">
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition/>
-				</Grid.ColumnDefinitions>
-				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition/>
-				</Grid.RowDefinitions>
-
-				<Label Content="Color"/>
-				<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:Dyes}}}"
+					<Label Content="Color"/>
+					<ComboBox Grid.Row="0" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:Dyes}}}"
 					DisplayMemberPath="Description"
 					SelectedValue="{Binding Color}"
 					SelectedValuePath="Value"/>
 
-				<Label Grid.Column="0" Grid.Row="1" Content="Pattern"/>
-				<ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:BannerPatternId}}}"
+					<Label Grid.Column="0" Grid.Row="1" Content="Pattern"/>
+					<ComboBox Grid.Row="1" Grid.Column="1" Margin="3" ItemsSource="{Binding Source={viewModel:Enumeration {x:Type enums:BannerPatternId}}}"
 					DisplayMemberPath="Description"
 					SelectedValue="{Binding Pattern}"
 					SelectedValuePath="Value"/>
-			</Grid>
-		</DataTemplate>
+				</Grid>
+			</DataTemplate>
 
-		<!-- 
+			<!-- 
 			TODO: Templates
 				* Spawn Potential
 		-->
+		</ResourceDictionary>
 	</Application.Resources>
 </Application>

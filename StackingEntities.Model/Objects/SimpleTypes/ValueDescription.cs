@@ -1,6 +1,6 @@
 using System;
 
-namespace StackingEntities.Model.SimpleTypes
+namespace StackingEntities.Model.Objects.SimpleTypes
 {
 	[Serializable]
 	public class ValueDescription

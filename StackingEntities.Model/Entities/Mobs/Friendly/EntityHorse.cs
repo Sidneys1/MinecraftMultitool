@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
 using StackingEntities.Model.Metadata;
+using ItemList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Items.Item>;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
@@ -63,7 +63,7 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		}
 
 		[EntityDescriptor("Horse Options", "Inventory", isEnabledPath: "ChestedHorse", fixedSize: true), MinMax(5, 3)]
-		public ObservableCollection<Item> Inventory { get; } = new ObservableCollection<Item>();
+		public ItemList Inventory { get; } = new ItemList();
 
 		public EntityHorse() : base(30)
 		{

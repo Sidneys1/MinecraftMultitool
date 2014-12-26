@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using StackingEntities.Model.SimpleTypes;
+using StackingEntities.Model.Objects.SimpleTypes;
+using ValueDescriptionEnum = System.Collections.Generic.IEnumerable<StackingEntities.Model.Objects.SimpleTypes.ValueDescription>;
 
 namespace StackingEntities.Model.Helpers
 {
@@ -31,7 +31,7 @@ namespace StackingEntities.Model.Helpers
 		/// <summary>
 		/// Returns an enumerable collection of all values and descriptions for an enum type.
 		/// </summary>
-		public static IEnumerable<ValueDescription> GetAllValuesAndDescriptions<TEnum>() where TEnum : struct, IConvertible, IComparable, IFormattable
+		public static ValueDescriptionEnum GetAllValuesAndDescriptions<TEnum>() where TEnum : struct, IConvertible, IComparable, IFormattable
 		{
 			if (!typeof(TEnum).IsEnum)
 				throw new ArgumentException("TEnum must be an Enumeration type");

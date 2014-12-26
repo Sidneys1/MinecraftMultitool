@@ -1,5 +1,4 @@
 using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -8,7 +7,8 @@ using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Items;
-using StackingEntities.Model.SimpleTypes;
+using SimpleStringList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.SimpleTypes.SimpleString>;
+using JsonTextElementList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.JsonTextElement>;
 
 namespace StackingEntities.Model.Objects
 {
@@ -19,7 +19,7 @@ namespace StackingEntities.Model.Objects
 		public string Text { get; set; }
 
 		public string Translate { get; set; }
-		public ObservableCollection<SimpleString> TranslateWith { get; } = new ObservableCollection<SimpleString>();
+		public SimpleStringList TranslateWith { get; } = new SimpleStringList();
 
 		public string ScoreName { get; set; }
 		public string ScoreObjective { get; set; }
@@ -86,7 +86,7 @@ namespace StackingEntities.Model.Objects
 		public EntityType HoverEntityType { get; set; }
 		public string HoverEntityId { get; set; }
 
-		public ObservableCollection<JsonTextElement> Extra { get; } = new ObservableCollection<JsonTextElement>();
+		public JsonTextElementList Extra { get; } = new JsonTextElementList();
 
 		public string InsertionText { get; set; }
 

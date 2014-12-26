@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace StackingEntities.Model.SimpleTypes
+namespace StackingEntities.Model.Objects.SimpleTypes
 {
 	[Serializable]
 	public class SimpleDouble

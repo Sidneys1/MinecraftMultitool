@@ -1,9 +1,9 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Enums;
 using StackingEntities.Model.Metadata;
-using StackingEntities.Model.SimpleTypes;
+using StackingEntities.Model.Objects.SimpleTypes;
+using DoubleList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.SimpleTypes.SimpleDouble>;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
@@ -13,47 +13,27 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		public ArmorStand() : base(2)
 		{
 			Type = EntityType.ArmorStand;
-
-			//Holding.Tag.Add(new ItemTagsMap());
-			//Holding.Tag.Add(new ItemTagsGeneral());
-			//Holding.Tag.Add(new ItemTagsFireworkStar());
-			//Holding.Tag.Add(new ItemTagsDisplay());
-			//Holding.Tag.Add(new ItemTagsEnchantments());
-			//Holding.Tag.Add(new ItemTagsBook());
-			//Holding.Tag.Add(new ItemTagsBlock());
-
-			//Leggings.Tag.Add(new ItemTagsDisplay());
-			//Leggings.Tag.Add(new ItemTagsEnchantments());
-
-			//Boots.Tag.Add(new ItemTagsDisplay());
-			//Boots.Tag.Add(new ItemTagsEnchantments());
-
-			//Chestplate.Tag.Add(new ItemTagsDisplay());
-			//Chestplate.Tag.Add(new ItemTagsEnchantments());
-
-			//Helmet.Tag.Add(new ItemTagsDisplay());
-			//Helmet.Tag.Add(new ItemTagsEnchantments());
 		}
 
 		#region Pose
 
 		[EntityDescriptor("Pose", "Body Pose", fixedSize: true, dgRowPath: "Name")]
-		public ObservableCollection<SimpleDouble> BodyPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
+		public DoubleList BodyPose { get; } = new DoubleList { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Head Pose", fixedSize: true, dgRowPath: "Name")]
-		public ObservableCollection<SimpleDouble> HeadPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
+		public DoubleList HeadPose { get; } = new DoubleList { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Left Arm Pose", fixedSize: true, dgRowPath: "Name")]
-		public ObservableCollection<SimpleDouble> LeftArmPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
+		public DoubleList LeftArmPose { get; } = new DoubleList { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Right Arm Pose", fixedSize: true, dgRowPath: "Name")]
-		public ObservableCollection<SimpleDouble> RightArmPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
+		public DoubleList RightArmPose { get; } = new DoubleList { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Left Leg Pose", fixedSize: true, dgRowPath: "Name")]
-		public ObservableCollection<SimpleDouble> LeftLegPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
+		public DoubleList LeftLegPose { get; } = new DoubleList { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		[EntityDescriptor("Pose", "Right Leg Pose", fixedSize: true, dgRowPath: "Name")]
-		public ObservableCollection<SimpleDouble> RightLegPose { get; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
+		public DoubleList RightLegPose { get; } = new DoubleList { new SimpleDouble("X"), new SimpleDouble("Y"), new SimpleDouble("Z") };
 
 		#endregion
 
@@ -73,21 +53,6 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 
 		[EntityDescriptor("Disabled Slots", "Head")]
 		public DisabledSlots HeadDisabledSlots { get; set; }
-
-		//[EntityDescriptor("Equipment", "Held Item")]
-		//public Item Holding { get; set; } = new Item { Id = string.Empty, SlotTitle = "Held Item" };
-
-		//[EntityDescriptor("Equipment", "Boots")]
-		//public Item Boots { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Boots" };
-
-		//[EntityDescriptor("Equipment", "Leggings")]
-		//public Item Leggings { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Leggings" };
-
-		//[EntityDescriptor("Equipment", "Chestplate")]
-		//public Item Chestplate { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Chestplate" };
-
-		//[EntityDescriptor("Equipment", "Helmet")]
-		//public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Helmet" };
 
 		#endregion
 

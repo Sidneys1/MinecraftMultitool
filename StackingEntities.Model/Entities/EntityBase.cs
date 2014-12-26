@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
-using StackingEntities.Model.SimpleTypes;
+using StackingEntities.Model.Objects.SimpleTypes;
+using DoubleList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.SimpleTypes.SimpleDouble>;
 
 namespace StackingEntities.Model.Entities
 {
@@ -17,9 +17,7 @@ namespace StackingEntities.Model.Entities
 		#region Motion
 
 		[EntityDescriptor("Entity Options", "Velocity", fixedSize: true, dgRowPath: "Name")]
-		public ObservableCollection<SimpleDouble> Velocity
-		{ get; }
-		= new ObservableCollection<SimpleDouble>
+		public DoubleList Velocity { get; } = new DoubleList
 		{
 			new SimpleDouble("X"),
 			new SimpleDouble("Y"),
@@ -84,7 +82,6 @@ namespace StackingEntities.Model.Entities
 
 		#region Process
 
-		// ReSharper disable once InconsistentNaming
 		public virtual string GenerateJson(bool topLevel)
 		{
 			var b = new StringBuilder("{");

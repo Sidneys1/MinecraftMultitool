@@ -24,7 +24,7 @@ namespace StackingEntities.Model.BlockEntities
 
 			for (var i = 0; i <= 26; i++)
 			{
-				Items.Add(new Item { Slot = i, SlotTagEnabled = false, SlotTitle = string.Format("Chest slot {0}", i+1)});
+				Items.Add(new Item { Slot = i, SlotTagEnabled = false, SlotTitle = string.Format("Chest slot {0}", i + 1) });
 			}
 		}
 

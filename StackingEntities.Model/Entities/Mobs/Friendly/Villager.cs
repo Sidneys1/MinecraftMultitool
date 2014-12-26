@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
-using StackingEntities.Model.Objects;
+using ItemList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Items.Item>;
+using VillagerRecipeList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.VillagerRecipe>;
 
 namespace StackingEntities.Model.Entities.Mobs.Friendly
 {
@@ -25,10 +25,10 @@ namespace StackingEntities.Model.Entities.Mobs.Friendly
 		public VillagerCareer Career { get; set; } = VillagerCareer.Default;
 
 		[EntityDescriptor("Villager Options", "Inventory", fixedSize: true), MinMax(8, 1)]
-		public ObservableCollection<Item> Inventory { get; } = new ObservableCollection<Item>();
+		public ItemList Inventory { get; } = new ItemList();
 
 		[EntityDescriptor("Villager Options", "Trading Offers")]
-		public ObservableCollection<VillagerRecipe> Offers { get; } = new ObservableCollection<VillagerRecipe>();
+		public VillagerRecipeList Offers { get; } = new VillagerRecipeList();
 
 		public Villager() : base(20)
 		{

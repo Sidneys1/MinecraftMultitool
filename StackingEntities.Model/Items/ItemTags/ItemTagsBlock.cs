@@ -1,10 +1,9 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
-using StackingEntities.Model.Objects;
+using BlockTypeList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.BlockType>;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
@@ -12,8 +11,9 @@ namespace StackingEntities.Model.Items.ItemTags
 	public class ItemTagsBlock : IJsonAble
 	{
 		[EntityDescriptor("Block", "Can Place On")]
-		public ObservableCollection<BlockType> CanPlaceOn { get; set; } = new ObservableCollection<BlockType>();
+		public BlockTypeList CanPlaceOn { get; set; } = new BlockTypeList();
 
+		// TODO: Tile Entity Tags
 		//[Property("Block", "Block Entity")]
 		//public TileEntity BlockEntityTag{get;}
 

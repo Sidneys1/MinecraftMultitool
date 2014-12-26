@@ -71,6 +71,10 @@
     <Compile Include="Enums\SkullType.cs" />
     <Compile Include="Objects\BannerPattern.cs" />
     <Compile Include="Objects\JsonTextElement.cs" />
+    <Compile Include="Objects\SimpleTypes\SimpleDouble.cs" />
+    <Compile Include="Objects\SimpleTypes\SimpleInt.cs" />
+    <Compile Include="Objects\SimpleTypes\SimpleString.cs" />
+    <Compile Include="Objects\SimpleTypes\ValueDescription.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Entities\DynamicTiles\FallingSand.cs" />
     <Compile Include="Entities\DynamicTiles\PrimedTNT.cs" />
@@ -185,10 +189,6 @@
     <Compile Include="Objects\PotionEffect.cs" />
     <Compile Include="Objects\VillagerRecipe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleTypes\SimpleDouble.cs" />
-    <Compile Include="SimpleTypes\SimpleInt.cs" />
-    <Compile Include="SimpleTypes\SimpleString.cs" />
-    <Compile Include="SimpleTypes\ValueDescription.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StackingEntities.Resources\StackingEntities.Resources.csproj">

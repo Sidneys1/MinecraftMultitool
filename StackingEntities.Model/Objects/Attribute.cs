@@ -1,10 +1,10 @@
 using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
 using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
+using AttributeModifierList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.AttributeModifier>;
 
 namespace StackingEntities.Model.Objects
 {
@@ -17,7 +17,7 @@ namespace StackingEntities.Model.Objects
 		[DisplayName(@"Base Value")]
 		public double Base { get; set; }
 
-		public ObservableCollection<AttributeModifier> Modifiers { get; } = new ObservableCollection<AttributeModifier>();
+		public AttributeModifierList Modifiers { get; } = new AttributeModifierList();
 
 		public string GenerateJson(bool topLevel)
 		{

@@ -1,9 +1,8 @@
 using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
-using StackingEntities.Model.Objects;
+using EnchantmentList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.Enchantment>;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
@@ -11,10 +10,10 @@ namespace StackingEntities.Model.Items.ItemTags
 	public class ItemTagsEnchantments : IJsonAble
 	{
 		[EntityDescriptor("Enchanting","Enchantments")]
-		public ObservableCollection<Enchantment> Ench { get; set; } = new ObservableCollection<Enchantment>();
+		public EnchantmentList Ench { get; set; } = new EnchantmentList();
 
 		[EntityDescriptor("Enchanting", "Book Enchantments")]
-		public ObservableCollection<Enchantment> StoredEnchantments {get; set; }= new ObservableCollection<Enchantment>();
+		public EnchantmentList StoredEnchantments {get; set; }= new EnchantmentList();
 
 		[EntityDescriptor("Enchanting", "Repair Cost")]
 		public int RepairCost { get; set; }

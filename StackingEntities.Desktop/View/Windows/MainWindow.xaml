@@ -101,6 +101,9 @@
 					</MenuItem.Icon>
 				</MenuItem>
 			</MenuItem>
+			<MenuItem Header="{x:Static Properties:Resources.MainWindow_View}">
+				<MenuItem Header="{x:Static Properties:Resources.MainWindow_View_SwitchStyle}" Click="MenuItem_OnClick"/>
+			</MenuItem>
 			<MenuItem Padding="3" Header="{x:Static Properties:Resources.MainWindow_Tools}" Cursor="Hand">
 				<MenuItem Header="{x:Static Properties:Resources.CommandBlockWindow_Title}" Click="CommandListDialogButton_Clicked">
 					<MenuItem.Icon>

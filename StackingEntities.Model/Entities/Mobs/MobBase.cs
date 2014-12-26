@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Items.ItemTags;
 using StackingEntities.Model.Metadata;
-using StackingEntities.Model.Objects;
-using StackingEntities.Model.SimpleTypes;
-using Attribute = StackingEntities.Model.Objects.Attribute;
+using StackingEntities.Model.Objects.SimpleTypes;
+using PotionEffectList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.PotionEffect>;
+using AttributeList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.Attribute>;
+using DoubleList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.SimpleTypes.SimpleDouble>;
 
 namespace StackingEntities.Model.Entities.Mobs
 {
@@ -112,16 +112,23 @@ namespace StackingEntities.Model.Entities.Mobs
 		public Item Helmet { get; set; } = new Item() { Id = string.Empty, CountTagEnabled = false, SlotTitle = "Helmet" };
 
 		[EntityDescriptor("Mob Options", "Attributes")]
-		public ObservableCollection<Attribute> Attributes { get; } = new ObservableCollection<Attribute>();
+		public AttributeList Attributes { get; } = new AttributeList();
 
 		[EntityDescriptor("Mob Options", "Potion Effects")]
-		public ObservableCollection<PotionEffect> PotionEffects { get; } = new ObservableCollection<PotionEffect>();
+		public PotionEffectList PotionEffects { get; } = new PotionEffectList();
 
 		[EntityDescriptor("Mob Options", "No AI")]
 		public bool NoAi { get; set; } = false;
 
 		[EntityDescriptor("Equipment", "Drop Chances", fixedSize: true, dgRowPath: "Name")]
-		public ObservableCollection<SimpleDouble> DropChanceFloats { get; set; } = new ObservableCollection<SimpleDouble> { new SimpleDouble("Held Item"), new SimpleDouble("Boots"), new SimpleDouble("Leggings"), new SimpleDouble("Chestplate"), new SimpleDouble("Helmet") };
+		public DoubleList DropChanceFloats { get; set; } = new DoubleList
+		{
+			new SimpleDouble("Held Item"),
+			new SimpleDouble("Boots"),
+			new SimpleDouble("Leggings"),
+			new SimpleDouble("Chestplate"),
+			new SimpleDouble("Helmet")
+		};
 
 		#endregion
 

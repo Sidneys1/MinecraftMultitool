@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Metadata;
+using ItemList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Items.Item>;
 
 namespace StackingEntities.Model.Entities.Vehicles
 {
@@ -12,7 +12,7 @@ namespace StackingEntities.Model.Entities.Vehicles
 	public class MinecartChest : Minecart
 	{
 		[EntityDescriptor("Minecart Chest Options", "Inventory", fixedSize: true), MinMax(9, 3)]
-		public ObservableCollection<Item> Inventory { get; } = new ObservableCollection<Item>();
+		public ItemList Inventory { get; } = new ItemList();
 
 		public MinecartChest()
 		{

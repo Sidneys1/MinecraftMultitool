@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
-using System.Windows.Controls;
-using StackingEntities.Desktop.ViewModel;
+﻿using System.Windows;
+using CacheList = System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.List<System.Windows.Controls.Expander>>;
+using ExpanderList = System.Collections.Generic.List<System.Windows.Controls.Expander>;
+using UIList = System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<StackingEntities.Desktop.ViewModel.DisplayOption>>;
 
 namespace StackingEntities.Desktop.View.Controls
 {
@@ -11,7 +10,7 @@ namespace StackingEntities.Desktop.View.Controls
 	/// </summary>
 	public partial class OptionsDisplayControl
 	{
-		private static readonly Dictionary<Type, List<Expander>> CachedOptions = new Dictionary<Type, List<Expander>>();
+		private static readonly CacheList CachedOptions = new CacheList();
 
 		private object _eBase;
 
@@ -37,7 +36,7 @@ namespace StackingEntities.Desktop.View.Controls
 					}
 					else
 					{
-						CachedOptions.Add(newType, new List<Expander>());
+						CachedOptions.Add(newType, new ExpanderList());
 						GenControls(value);
 					}
 				}
@@ -63,7 +62,7 @@ namespace StackingEntities.Desktop.View.Controls
 		{
 			EditStackPanel.Children.Clear();
 
-			var dict = new Dictionary<string, List<DisplayOption>>();
+			var dict = new UIList();
 
 			#region Extract Options
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -7,6 +6,7 @@ using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Items.ItemTags;
 using StackingEntities.Model.Metadata;
+using JsonableList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Interface.IJsonAble>;
 
 namespace StackingEntities.Model.Items
 {
@@ -47,7 +47,7 @@ namespace StackingEntities.Model.Items
 
 		public bool GenIdTag { get; set; } = true;
 
-		public ObservableCollection<IJsonAble> Tag = new ObservableCollection<IJsonAble>();
+		public JsonableList Tag = new JsonableList();
 		private string _id;
 
 		public bool HasTags => Tag.Count > 0;

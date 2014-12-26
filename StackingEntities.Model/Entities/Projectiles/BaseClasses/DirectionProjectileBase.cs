@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Metadata;
-using StackingEntities.Model.SimpleTypes;
+using StackingEntities.Model.Objects.SimpleTypes;
+using DoubleList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.SimpleTypes.SimpleDouble>;
 
 namespace StackingEntities.Model.Entities.Projectiles.BaseClasses
 {
@@ -10,9 +10,9 @@ namespace StackingEntities.Model.Entities.Projectiles.BaseClasses
 	public abstract class DirectionProjectileBase : ProjectileBase
 	{
 		[EntityDescriptor("Projectile Options", "Direction", fixedSize: true, dgRowPath: "Name")]
-		public new ObservableCollection<SimpleDouble> Velocity
+		public new DoubleList Velocity
 		{ get; }
-		= new ObservableCollection<SimpleDouble>
+		= new DoubleList
 		{
 			new SimpleDouble("X"),
 			new SimpleDouble("Y"),
@@ -23,9 +23,9 @@ namespace StackingEntities.Model.Entities.Projectiles.BaseClasses
 		{
 			var b = new StringBuilder(base.GenerateJson(topLevel));
 
-			double Dx = Velocity[0].Value, Dy = Velocity[1].Value, Dz = Velocity[2].Value;
-			if (Math.Abs(Dx) > 0 || Math.Abs(Dy) > 0 || Math.Abs(Dz) > 0)
-				b.Append(string.Format("direction:[{0:0.0},{1:0.0},{2:0.0}],", Dx, Dy, Dz));
+			double dx = Velocity[0].Value, dy = Velocity[1].Value, dz = Velocity[2].Value;
+			if (Math.Abs(dx) > 0 || Math.Abs(dy) > 0 || Math.Abs(dz) > 0)
+				b.Append(string.Format("direction:[{0:0.0},{1:0.0},{2:0.0}],", dx, dy, dz));
 
 			return b.ToString();
 		}

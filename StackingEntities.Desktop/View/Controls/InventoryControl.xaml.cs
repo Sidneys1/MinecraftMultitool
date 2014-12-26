@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using StackingEntities.Model.Items;
+using ItemList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Items.Item>;
 
 namespace StackingEntities.Desktop.View.Controls
 {
@@ -21,7 +20,7 @@ namespace StackingEntities.Desktop.View.Controls
 
 		private void InventoryControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
-			var itemList = DataContext as ObservableCollection<Item>;
+			var itemList = DataContext as ItemList;
 
 			if (itemList == null) return;
 

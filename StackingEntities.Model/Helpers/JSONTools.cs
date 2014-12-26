@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Text;
-using StackingEntities.Model.Items;
+using ItemList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Items.Item>;
 
 namespace StackingEntities.Model.Helpers
 {
@@ -57,7 +56,7 @@ namespace StackingEntities.Model.Helpers
 			return output.ToString();
 		}
 
-		public static string GenItems(ObservableCollection<Item> items, string tagName = "Items")
+		public static string GenItems(ItemList items, string tagName = "Items")
 		{
 			var b = new StringBuilder();
 			var usedSlots = new List<int>();

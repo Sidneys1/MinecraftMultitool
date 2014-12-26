@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using StackingEntities.Desktop.ViewModel.ArrayExtensions;
+using ObjectDict = System.Collections.Generic.Dictionary<object, object>;
 
 namespace StackingEntities.Desktop.ViewModel
 {
@@ -17,7 +18,7 @@ namespace StackingEntities.Desktop.ViewModel
 
 		public static object Copy(this object originalobject)
 		{
-			return InternalCopy(originalobject, new Dictionary<object, object>(new ReferenceEqualityComparer()));
+			return InternalCopy(originalobject, new ObjectDict(new ReferenceEqualityComparer()));
 		}
 		private static object InternalCopy(object originalobject, IDictionary<object, object> visited)
 		{

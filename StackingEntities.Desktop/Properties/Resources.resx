@@ -169,4 +169,10 @@
   <data name="BlockDataOptions_Header" xml:space="preserve">
     <value>Blockdata Options</value>
   </data>
+  <data name="MainWindow_View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="MainWindow_View_SwitchStyle" xml:space="preserve">
+    <value>Switch Visual Style</value>
+  </data>
 </root>

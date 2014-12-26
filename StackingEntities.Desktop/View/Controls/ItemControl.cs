@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using StackingEntities.Desktop.ViewModel;
 using StackingEntities.Model.Items;
+using UIList = System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<StackingEntities.Desktop.ViewModel.DisplayOption>>;
 
 namespace StackingEntities.Desktop.View.Controls
 {
@@ -30,7 +29,7 @@ namespace StackingEntities.Desktop.View.Controls
 
 			foreach (var jsonAble in ent.Tag)
 			{
-				var dict = new Dictionary<string, List<DisplayOption>>();
+				var dict = new UIList();
 				OptionsGenerator.ExtractOptions(jsonAble, dict);
 				OptionsGenerator.AddGroups(dict, true).ForEach(o =>
 				{
@@ -38,12 +37,6 @@ namespace StackingEntities.Desktop.View.Controls
 					MoreOptsBox.Children.Add(o);
 				});
 			}
-
-			#endregion
-
-			#region Add Groups
-
-
 
 			#endregion
 		}

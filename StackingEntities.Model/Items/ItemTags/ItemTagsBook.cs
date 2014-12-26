@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Text;
 using StackingEntities.Model.Enums;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Interface;
 using StackingEntities.Model.Metadata;
-using StackingEntities.Model.Objects;
+using BookPageList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Objects.BookPage>;
 
 namespace StackingEntities.Model.Items.ItemTags
 {
@@ -22,7 +21,7 @@ namespace StackingEntities.Model.Items.ItemTags
 		public string Title { get; set; }
 
 		[EntityDescriptor("Book", "Pages")]
-		public ObservableCollection<BookPage> Pages { get; set; } = new ObservableCollection<BookPage>(); 
+		public BookPageList Pages { get; set; } = new BookPageList(); 
 
 		public string GenerateJson(bool topLevel)
 		{

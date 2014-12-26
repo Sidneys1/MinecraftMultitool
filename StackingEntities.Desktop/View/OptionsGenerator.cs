@@ -19,12 +19,13 @@ using Xceed.Wpf.Toolkit;
 using Attribute = StackingEntities.Model.Objects.Attribute;
 using DisplayOptionList = System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<StackingEntities.Desktop.ViewModel.DisplayOption>>;
 using CacheTypeList = System.Collections.Generic.Dictionary<System.Type, System.Collections.Generic.Dictionary<string, System.Collections.Generic.List<StackingEntities.Desktop.ViewModel.DisplayOption>>>;
+using ExpanderList = System.Collections.Generic.List<System.Windows.Controls.Expander>;
 
 namespace StackingEntities.Desktop.View
 {
 	public class OptionsGenerator
 	{
-		public static List<Expander> AddGroups(DisplayOptionList dict, bool wide = false)
+		public static ExpanderList AddGroups(DisplayOptionList dict, bool wide = false)
 		{
 			return dict.Keys.Select(key => AddGroup(key, dict, wide)).ToList();
 		}
@@ -364,7 +365,7 @@ namespace StackingEntities.Desktop.View
 			}
 
 			var props = eType.GetProperties();
-			_cachedTypes[eType] = new Dictionary<string, List<DisplayOption>>();
+			_cachedTypes[eType] = new DisplayOptionList();
 			foreach (var info in props.Reverse())
 			{
 				if (!System.Attribute.IsDefined(info, typeof (EntityDescriptorAttribute))) continue;

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -10,17 +9,17 @@ using StackingEntities.Desktop.Model.Enums;
 using StackingEntities.Model.Annotations;
 using StackingEntities.Model.BlockEntities;
 using StackingEntities.Model.BlockEntities.BaseClasses;
-using StackingEntities.Model.Entities;
 using StackingEntities.Model.Helpers;
 using StackingEntities.Model.Items;
 using StackingEntities.Model.Objects;
+using EntityBaseList = System.Collections.ObjectModel.ObservableCollection<StackingEntities.Model.Entities.EntityBase>;
 
 namespace StackingEntities.Desktop.Model
 {
 	[Serializable]
 	public class DataModel : INotifyPropertyChanged
 	{
-		public ObservableCollection<EntityBase> Entities { get; } = new ObservableCollection<EntityBase>();
+		public EntityBaseList Entities { get; } = new EntityBaseList();
 
 		#region Static
 
